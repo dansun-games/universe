@@ -4,6 +4,7 @@
 #![allow(unused_braces)]
 
 mod descriptors;
+mod c_types;
 
 use descriptors::commands::get_commands;
 use descriptors::constants::get_constants;
@@ -12,6 +13,8 @@ use descriptors::extensions::get_extensions;
 use descriptors::structs::get_structs;
 use descriptors::unions::get_unions;
 use vk_parse as vk;
+
+use crate::descriptors::platforms::get_platforms;
 
 fn main() {
 	let vkxml = download_vk_xml().expect("Could not download vk.xml file.");
@@ -24,21 +27,20 @@ fn main() {
 
 	/*
 	---- type categories
-	-- done
+	:done:
 	struct
 	union
 	enum
 	bitmask
 	enum constants
-
 	commands
+	platforms
 
-	-- todo
+	:todo:
 	include
 	* basetype
 	* funcpointer
 	* formats
-	* platforms
 	* feature
 	spirvextensions
 	spirvcapabilities
@@ -56,6 +58,7 @@ fn main() {
 	let unions = get_unions(&types);
 	let (structs, struct_aliases) = get_structs(&types);
 	let (commands, command_aliases) = get_commands(&registry);
+	let platforms = get_platforms(&registry);
 
 	
 }

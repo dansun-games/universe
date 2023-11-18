@@ -9,10 +9,10 @@ pub fn get_commands(reg: &vk::Registry) -> (Vec<CommandDescriptor>, Vec<Alias>) 
 		_ => None,
 	});
 
-	let commands = filtered.next().expect("Could not find commands");
+	let cmds = filtered.next().expect("Could not find commands");
 	assert_eq!(filtered.next(), None);
 
-	let commands: Vec<_> = commands
+	let commands: Vec<_> = cmds
 		.iter()
 		.filter_map(|v| match v {
 			vk::Command::Definition(v) => Some(v),
@@ -21,8 +21,16 @@ pub fn get_commands(reg: &vk::Registry) -> (Vec<CommandDescriptor>, Vec<Alias>) 
 		.map(|c| CommandDescriptor::from(c))
 		.collect();
 
-	//TODO: aliases
-	let aliases: Vec<Alias> = vec![];
+	let aliases: Vec<_> = cmds
+		.iter()
+		.filter_map(|v| match v {
+			vk::Command::Alias { name, alias } => Some(Alias{
+				name: name.clone(),
+				alias_for: alias.clone(),
+			}),
+			_ => None,
+		})
+		.collect();
 
 	(commands, aliases)
 }
