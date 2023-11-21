@@ -51,25 +51,25 @@ impl From<&str> for ExtensionDeprecation {
 #[derive(Debug, PartialEq, Eq)]
 pub struct ExtensionDescriptor {
 	/// Module path
-	pub module:            Vec<String>,
+	pub module: Vec<String>,
 	/// Name used by vulkan when enabling extension.
-	pub v_name:            String,
+	pub v_name: String,
 	/// Numeric Id
-	pub number:            u32,
+	pub number: u32,
 	/// Instance or Device Extension
-	pub kind:              ExtensionKind,
+	pub kind: ExtensionKind,
 	/// Whether or not the extension is provisional/unstable
-	pub provisional:       bool,
+	pub provisional: bool,
 	/// Extension dependencies
-	pub depends:           Vec<String>,
+	pub depends: Vec<String>,
 	/// The vulkan variant's this extension can be used with
-	pub variant_compat:    Vec<VulkanVariant>,
+	pub variant_compat: Vec<VulkanVariant>,
 	/// The vulkan variant's this extensions has been ratified with
 	pub ratified_variants: Vec<VulkanVariant>,
 	/// Other extension or version to use instead
-	pub deprecated_by:     Option<ExtensionDeprecation>,
+	pub deprecated_by: Option<ExtensionDeprecation>,
 	/// Feture gates to put this extension behind
-	pub feat_gates:        Vec<String>,
+	pub feat_gates: Vec<String>,
 }
 
 impl From<&vk_parse::Extension> for ExtensionDescriptor {
@@ -153,7 +153,7 @@ impl From<&vk_parse::Extension> for ExtensionDescriptor {
 
 #[derive(Debug, PartialEq, Eq)]
 pub enum VulkanVariant {
-	Vulkan   = 0,
+	Vulkan = 0,
 	VulkanSC = 1,
 }
 

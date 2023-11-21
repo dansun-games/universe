@@ -27,8 +27,8 @@ impl From<&vk::Type> for Alias {
 }
 
 impl From<&vk::Enum> for Alias {
-    fn from(def: &vk::Enum) -> Self {
-        assert_eq!(def.api, None);
+	fn from(def: &vk::Enum) -> Self {
+		assert_eq!(def.api, None);
 		assert_eq!(def.protect, None);
 		assert_eq!(def.deprecated, None);
 		assert_eq!(def.type_suffix, None);
@@ -42,9 +42,6 @@ impl From<&vk::Enum> for Alias {
 			_ => panic!("Spec is not enum value"),
 		};
 
-		Alias {
-			name,
-			alias_for,
-		}
-    }
+		Alias { name, alias_for }
+	}
 }

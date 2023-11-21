@@ -4,9 +4,9 @@ use super::alias::Alias;
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct ConstDescriptor {
-	pub name:   String,
+	pub name: String,
 	pub c_type: String,
-	pub value:  String,
+	pub value: String,
 }
 
 impl From<&vk::Enum> for ConstDescriptor {
@@ -51,16 +51,16 @@ pub fn get_constants(reg: &vk::Registry) -> (Vec<ConstDescriptor>, Vec<Alias>) {
 		});
 
 	let enums: Vec<_> = def_iter
-	    .clone()
-	    .filter(|e| e.type_suffix.is_some())
-	    .map(ConstDescriptor::from)
-	    .collect();
+		.clone()
+		.filter(|e| e.type_suffix.is_some())
+		.map(ConstDescriptor::from)
+		.collect();
 
-    let aliases: Vec<_> = def_iter
-	    .clone()
-	    .filter(|e| e.type_suffix.is_none())
-	    .map(Alias::from)
-	    .collect();
+	let aliases: Vec<_> = def_iter
+		.clone()
+		.filter(|e| e.type_suffix.is_none())
+		.map(Alias::from)
+		.collect();
 
 	(enums, aliases)
 }

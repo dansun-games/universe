@@ -5,7 +5,8 @@ use vk_parse as vk;
 use super::alias::Alias;
 
 pub fn get_enums(reg: &vk::Registry) -> Vec<EnumDescriptor> {
-	let mut enums: Vec<_> = reg.0
+	let mut enums: Vec<_> = reg
+		.0
 		.iter()
 		.filter_map(|item| match item {
 			vk::RegistryChild::Enums(v) => Some(v),
@@ -29,7 +30,10 @@ pub fn get_enum_aliases(enums: &Vec<EnumDescriptor>, types: &Vec<vk::Type>) -> V
 		let search_name = def.name.clone().expect("Enum missing name");
 		let matched = enums.iter().find(|e| e.name == search_name);
 		if matched.is_none() {
-			panic!("Could not find enum {:?} referenced in type list", search_name)
+			panic!(
+				"Could not find enum {:?} referenced in type list",
+				search_name
+			)
 		}
 	}
 
@@ -42,22 +46,22 @@ pub fn get_enum_aliases(enums: &Vec<EnumDescriptor>, types: &Vec<vk::Type>) -> V
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct EnumDescriptor {
-	pub name:       String,
+	pub name: String,
 	pub is_bitmask: bool,
 	pub bit_width: u32,
-	pub values:     Vec<EnumValue>,
-	pub aliases:    Vec<EnumAlias>,
+	pub values: Vec<EnumValue>,
+	pub aliases: Vec<EnumAlias>,
 }
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct EnumValue {
-	pub name:  String,
+	pub name: String,
 	pub value: i64,
 }
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct EnumAlias {
-	pub name:  String,
+	pub name: String,
 	pub alias: String,
 }
 
@@ -67,14 +71,14 @@ impl From<&vk::Enums> for EnumDescriptor {
 		assert_eq!(def.start, None);
 		assert_eq!(def.end, None);
 		assert_eq!(def.vendor, None);
-		
+
 		let kind = def.kind.as_ref().expect("Missing Kind for enum");
 		let is_bitmask = match kind.as_str() {
 			"bitmask" => true,
 			"enum" => false,
 			_ => panic!("Invalid kind for enum"),
 		};
-		
+
 		let bit_width = def.bitwidth.unwrap_or(32);
 		let name = def.name.as_ref().expect("Missing name").clone();
 
@@ -89,14 +93,14 @@ impl From<&vk::Enums> for EnumDescriptor {
 				vk::EnumSpec::Value { value, extends } => {
 					assert_eq!(extends.as_ref(), None);
 					Some(EnumValue {
-						name:  e.name.clone(),
+						name: e.name.clone(),
 						value: parse_enum_val(value),
 					})
 				},
 				vk::EnumSpec::Bitpos { bitpos, extends } => {
 					assert_eq!(extends.as_ref(), None);
 					Some(EnumValue {
-						name:  e.name.clone(),
+						name: e.name.clone(),
 						value: 2_i64.pow(*bitpos as u32),
 					})
 				},
@@ -111,7 +115,7 @@ impl From<&vk::Enums> for EnumDescriptor {
 				vk::EnumSpec::Alias { alias, extends } => {
 					assert_eq!(extends.as_ref(), None);
 					Some(EnumAlias {
-						name:  e.name.clone(),
+						name: e.name.clone(),
 						alias: alias.clone(),
 					})
 				},
@@ -140,7 +144,7 @@ fn parse_enum_val(value: &str) -> i64 {
 
 fn patch_enums(enums: &mut Vec<EnumDescriptor>) {
 	let patch_names = vec!["VkQueryPoolCreateFlagBits"];
-	
+
 	let conflicting: Vec<_> = enums
 		.iter()
 		.filter(|e| patch_names.contains(&e.name.as_str()))
@@ -151,17 +155,17 @@ fn patch_enums(enums: &mut Vec<EnumDescriptor>) {
 		panic!("Patch enums are already defined: {:?}", conflicting);
 	}
 
-	enums.push(EnumDescriptor { 
-		name: String::from("VkQueryPoolCreateFlagBits"), 
-		is_bitmask: true, 
+	enums.push(EnumDescriptor {
+		name: String::from("VkQueryPoolCreateFlagBits"),
+		is_bitmask: true,
 		bit_width: 32,
 		values: vec![],
 		aliases: vec![],
 	});
 
-	enums.push(EnumDescriptor { 
-		name: String::from("VkDeviceCreateFlagBits"), 
-		is_bitmask: true, 
+	enums.push(EnumDescriptor {
+		name: String::from("VkDeviceCreateFlagBits"),
+		is_bitmask: true,
 		bit_width: 32,
 		values: vec![],
 		aliases: vec![],

@@ -1,8 +1,6 @@
 version = "Two"
 
 blank_lines_upper_bound = 2
-enum_discrim_align_threshold = 120
-struct_field_align_threshold = 120
 fn_params_layout = "Compressed"
 format_code_in_doc_comments = true
 format_macro_matchers = true

@@ -1,10 +1,15 @@
 #![feature(lazy_cell)]
 #![feature(result_option_inspect)]
 #![feature(let_chains)]
+#![feature(iter_intersperse)]
 #![allow(unused_braces)]
 
-mod descriptors;
 mod c_types;
+mod descriptors;
+mod gen;
+
+use std::fs::File;
+use std::path::Path;
 
 use descriptors::commands::get_commands;
 use descriptors::constants::get_constants;
@@ -12,11 +17,16 @@ use descriptors::enums::{get_enum_aliases, get_enums};
 use descriptors::extensions::get_extensions;
 use descriptors::structs::get_structs;
 use descriptors::unions::get_unions;
+use gen::write_struct;
 use vk_parse as vk;
 
 use crate::descriptors::platforms::get_platforms;
 
+enum Descriptor {}
+
 fn main() {
+	println!("cargo:rerun-if-env-changed=GENERATE_BINDS");
+
 	let vkxml = download_vk_xml().expect("Could not download vk.xml file.");
 	let (registry, vk_errors) = vk::parse_stream(vkxml.as_bytes()).expect("Could not parse vk.xml");
 
@@ -46,7 +56,7 @@ fn main() {
 	spirvcapabilities
 	sync?
 	* define - manual
-	
+
 	*/
 
 	let types = all_types(&registry);
@@ -60,7 +70,18 @@ fn main() {
 	let (commands, command_aliases) = get_commands(&registry);
 	let platforms = get_platforms(&registry);
 
-	
+	// let version_types = get_version_info(&registry);
+
+	let path = Path::new(env!("CARGO_MANIFEST_DIR"))
+		.join("src")
+		.join("structs.rs");
+	println!("writing out at {:?}", path);
+
+	let mut file = File::create(path).expect("Could not open file");
+
+	for desc in structs {
+		write_struct(&mut file, &desc).unwrap();
+	}
 }
 
 fn all_types(reg: &vk::Registry) -> Vec<vk::Type> {

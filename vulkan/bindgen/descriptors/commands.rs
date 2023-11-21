@@ -24,7 +24,7 @@ pub fn get_commands(reg: &vk::Registry) -> (Vec<CommandDescriptor>, Vec<Alias>) 
 	let aliases: Vec<_> = cmds
 		.iter()
 		.filter_map(|v| match v {
-			vk::Command::Alias { name, alias } => Some(Alias{
+			vk::Command::Alias { name, alias } => Some(Alias {
 				name: name.clone(),
 				alias_for: alias.clone(),
 			}),
@@ -37,21 +37,21 @@ pub fn get_commands(reg: &vk::Registry) -> (Vec<CommandDescriptor>, Vec<Alias>) 
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct CommandDescriptor {
-	pub name:           String,
-	pub return_type:    String,
-	pub params:         Vec<CommandParamDescriptor>,
-	pub api_feat:       String,
-	pub success_codes:  Vec<String>,
-	pub error_codes:    Vec<String>,
+	pub name: String,
+	pub return_type: String,
+	pub params: Vec<CommandParamDescriptor>,
+	pub api_feat: String,
+	pub success_codes: Vec<String>,
+	pub error_codes: Vec<String>,
 	pub command_useage: CommandUseage,
 }
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct CommandUseage {
-	pub queue_types:        Vec<QueueType>,
-	pub render_pass_scope:  Option<CommandIssueScope>,
+	pub queue_types: Vec<QueueType>,
+	pub render_pass_scope: Option<CommandIssueScope>,
 	pub video_coding_scope: CommandIssueScope,
-	pub buffer_levels:      CmdBufferLevels,
+	pub buffer_levels: CmdBufferLevels,
 }
 
 impl From<&vk::CommandDefinition> for CommandDescriptor {
@@ -124,8 +124,8 @@ impl From<&vk::CommandDefinition> for CommandDescriptor {
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct CommandParamDescriptor {
-	pub var_spec:  VarDescriptor,
-	pub api_feat:  Option<String>,
+	pub var_spec: VarDescriptor,
+	pub api_feat: Option<String>,
 	pub sync_ctrl: bool,
 }
 
@@ -173,14 +173,14 @@ impl From<&str> for QueueType {
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct CmdBufferLevels {
-	pub primary:   bool,
+	pub primary: bool,
 	pub secondary: bool,
 }
 
 impl From<Option<&str>> for CmdBufferLevels {
 	fn from(value: Option<&str>) -> Self {
 		let mut lvls = CmdBufferLevels {
-			primary:   false,
+			primary: false,
 			secondary: false,
 		};
 

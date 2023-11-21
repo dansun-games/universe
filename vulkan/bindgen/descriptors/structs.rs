@@ -25,10 +25,10 @@ pub fn get_structs(types: &Vec<vk::Type>) -> (Vec<StructDescriptor>, Vec<Alias>)
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct StructMember {
-	pub var_spec:     VarDescriptor,
+	pub var_spec: VarDescriptor,
 	pub variant_feat: Option<String>,
-	pub deprecated:   bool,
-	pub sync_ctrl:    bool,
+	pub deprecated: bool,
+	pub sync_ctrl: bool,
 }
 
 impl From<&vk::TypeMemberDefinition> for StructMember {
@@ -69,7 +69,7 @@ impl From<&vk::TypeMemberDefinition> for StructMember {
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct StructDescriptor {
-	pub name:    String,
+	pub name: String,
 	pub parents: Vec<String>,
 	pub members: Vec<StructMember>,
 }

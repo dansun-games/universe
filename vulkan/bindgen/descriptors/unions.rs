@@ -12,8 +12,8 @@ pub fn get_unions(types: &Vec<vk::Type>) -> Vec<UnionDescriptor> {
 
 
 pub struct UnionDescriptor {
-    pub name: String,
-    pub members: Vec<VarDescriptor>,
+	pub name: String,
+	pub members: Vec<VarDescriptor>,
 }
 
 impl From<&vk::Type> for UnionDescriptor {
@@ -36,17 +36,14 @@ impl From<&vk::Type> for UnionDescriptor {
 		};
 
 		let members: Vec<_> = members
-            .iter()
-            .filter_map(|m| match m {
-                vk::TypeMember::Definition(v) => Some(v),
-                _ => None,
-            })
-            .map(VarDescriptor::from)
-            .collect();
+			.iter()
+			.filter_map(|m| match m {
+				vk::TypeMember::Definition(v) => Some(v),
+				_ => None,
+			})
+			.map(VarDescriptor::from)
+			.collect();
 
-		UnionDescriptor {
-            name,
-            members,
-        }
+		UnionDescriptor { name, members }
 	}
 }
