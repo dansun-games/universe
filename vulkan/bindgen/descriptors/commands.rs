@@ -158,14 +158,15 @@ pub enum QueueType {
 
 impl From<&str> for QueueType {
 	fn from(value: &str) -> Self {
+		use QueueType::*;
 		match value {
-			"graphics" => QueueType::Graphics,
-			"compute" => QueueType::Compute,
-			"transfer" => QueueType::Transfer,
-			"sparse_binding" => QueueType::SparseBinding,
-			"decode" => QueueType::Decode,
-			"encode" => QueueType::Encode,
-			"opticalflow" => QueueType::OpticalFlow,
+			"graphics" => Graphics,
+			"compute" => Compute,
+			"transfer" => Transfer,
+			"sparse_binding" => SparseBinding,
+			"decode" => Decode,
+			"encode" => Encode,
+			"opticalflow" => OpticalFlow,
 			_ => panic!("Invalid Queue Type"),
 		}
 	}

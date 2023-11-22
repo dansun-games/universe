@@ -3,6 +3,7 @@ pub mod commands;
 pub mod constants;
 pub mod enums;
 pub mod extensions;
+pub mod handles;
 pub mod platforms;
 pub mod structs;
 pub mod unions;

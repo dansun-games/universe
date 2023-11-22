@@ -5,6 +5,7 @@ pub fn convert_identifier(ident: &str) -> String {
 	let mut upper_flag = false;
 	for ch in ident.chars() {
 		if ch.is_uppercase() {
+			//if the uppercase is a continuation then don't seperate
 			if !upper_flag {
 				name.insert(name.len(), '_');
 			}
@@ -14,7 +15,11 @@ pub fn convert_identifier(ident: &str) -> String {
 		}
 		upper_flag = false;
 
+		//underscores get ignored otherwise we have double underscore
 		if ch != '_' {
+			//i think this could break if you have lowercase after underscore.
+			//else with upperflag = true would fix i think?
+			//not worried about it right now
 			name.insert(name.len(), ch);
 		}
 	}

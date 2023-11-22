@@ -4,23 +4,24 @@
 #![feature(iter_intersperse)]
 #![allow(unused_braces)]
 
-mod c_types;
 mod descriptors;
 mod gen;
 
 use std::fs::File;
 use std::path::Path;
 
+use vk_parse as vk;
+
 use descriptors::commands::get_commands;
 use descriptors::constants::get_constants;
 use descriptors::enums::{get_enum_aliases, get_enums};
 use descriptors::extensions::get_extensions;
+use descriptors::handles::get_handles;
+use descriptors::platforms::get_platforms;
 use descriptors::structs::get_structs;
 use descriptors::unions::get_unions;
 use gen::write_struct;
-use vk_parse as vk;
 
-use crate::descriptors::platforms::get_platforms;
 
 enum Descriptor {}
 
@@ -69,6 +70,7 @@ fn main() {
 	let (structs, struct_aliases) = get_structs(&types);
 	let (commands, command_aliases) = get_commands(&registry);
 	let platforms = get_platforms(&registry);
+	let (handles, handle_aliases) = get_handles(&types);
 
 	// let version_types = get_version_info(&registry);
 

@@ -1,3 +1,5 @@
+use crate::descriptors::var::VarDescriptor;
+
 #[derive(Clone, PartialEq, Eq, Debug)]
 pub struct CTypeInfo {
 	c_type: &'static str,
@@ -82,3 +84,13 @@ pub static C_TYPE_MAPPINGS: &[CTypeInfo] = &[
 		rust_type: "usize",
 	},
 ];
+
+pub fn convert_type(desc: &VarDescriptor) -> String {
+	let rust_type = C_TYPE_MAPPINGS
+		.iter()
+		.find(|m| m.c_type == desc.c_type.as_str())
+		.map(|v| v.rust_type.to_owned())
+		.unwrap_or(desc.c_type.clone());
+
+	return rust_type;
+}
