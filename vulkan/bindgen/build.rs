@@ -71,6 +71,9 @@ fn main() {
 
 	let root_path = PathBuf::from("./src/");
 
+	//Right now, we are just shoving everything into a single file.
+	//In the future we should break them up in a more category-by-use-case way.
+	//going to use some kind of toml file to automate the process.
 	let root_file = ModGen {
 		name: String::from("everything"),
 		module_doc: None,
