@@ -27,7 +27,7 @@ pub fn get_enum_aliases(enums: &Vec<EnumDescriptor>, types: &Vec<vk::Type>) -> V
 
 	let enum_defs = enums_types.clone().filter(|c| c.alias.is_none());
 	for def in enum_defs {
-		let search_name = def.name.clone().expect("Enum missing name");
+		let search_name = def.name.as_ref().expect("Enum missing name").to_owned();
 		let matched = enums.iter().find(|e| e.name == search_name);
 		if matched.is_none() {
 			panic!(
@@ -48,7 +48,7 @@ pub fn get_enum_aliases(enums: &Vec<EnumDescriptor>, types: &Vec<vk::Type>) -> V
 pub struct EnumDescriptor {
 	pub name: String,
 	pub is_bitmask: bool,
-	pub bit_width: u32,
+	pub bit_width: usize,
 	pub values: Vec<EnumValue>,
 	pub aliases: Vec<Alias>,
 }
@@ -73,8 +73,8 @@ impl From<&vk::Enums> for EnumDescriptor {
 			_ => panic!("Invalid kind for enum"),
 		};
 
-		let bit_width = def.bitwidth.unwrap_or(32);
-		let name = def.name.as_ref().expect("Missing name").clone();
+		let bit_width = def.bitwidth.unwrap_or(32) as usize;
+		let name = def.name.as_ref().expect("Missing name").to_owned();
 
 		let enum_defs = def.children.iter().filter_map(|ec| match ec {
 			vk::EnumsChild::Enum(e) => Some(e),
@@ -137,11 +137,27 @@ fn parse_enum_val(value: &str) -> i64 {
 }
 
 fn patch_enums(enums: &mut Vec<EnumDescriptor>) {
-	let patch_names = vec!["VkQueryPoolCreateFlagBits"];
+	let mut new_enums = vec![
+		EnumDescriptor {
+			name: String::from("VkQueryPoolCreateFlagBits"),
+			is_bitmask: true,
+			bit_width: 32,
+			values: vec![],
+			aliases: vec![],
+		},
+		EnumDescriptor {
+			name: String::from("VkDeviceCreateFlagBits"),
+			is_bitmask: true,
+			bit_width: 32,
+			values: vec![],
+			aliases: vec![],
+		},
+	];
+	let new_names: Vec<_> = new_enums.iter().map(|v| v.name.as_ref()).collect();
 
 	let conflicting: Vec<_> = enums
 		.iter()
-		.filter(|e| patch_names.contains(&e.name.as_str()))
+		.filter(|e| new_names.contains(&e.name.as_str()))
 		.map(|e| e.name.as_str())
 		.collect();
 
@@ -149,19 +165,5 @@ fn patch_enums(enums: &mut Vec<EnumDescriptor>) {
 		panic!("Patch enums are already defined: {:?}", conflicting);
 	}
 
-	enums.push(EnumDescriptor {
-		name: String::from("VkQueryPoolCreateFlagBits"),
-		is_bitmask: true,
-		bit_width: 32,
-		values: vec![],
-		aliases: vec![],
-	});
-
-	enums.push(EnumDescriptor {
-		name: String::from("VkDeviceCreateFlagBits"),
-		is_bitmask: true,
-		bit_width: 32,
-		values: vec![],
-		aliases: vec![],
-	});
+	enums.append(&mut new_enums);
 }

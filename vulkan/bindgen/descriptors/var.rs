@@ -130,7 +130,7 @@ fn parse_c_type(code: &str) -> VarDescriptor {
 	let delim = code
 		.find(|c| c == ' ' || c == '*')
 		.expect("Could not get delim after type identifier");
-	let c_type = code[..delim].to_string();
+	let c_type = code[..delim].trim_start_matches("Vk").to_owned();
 	code = code[delim..].trim_start();
 
 	let ptr = code.starts_with("*");
@@ -156,7 +156,7 @@ fn parse_c_type(code: &str) -> VarDescriptor {
 	let delim = code
 		.find(|c| c == '[' || c == ':' || c == ' ')
 		.unwrap_or(code.len());
-	let name = code[..delim].to_string();
+	let name = code[..delim].to_owned();
 	code = code[delim..].trim_start();
 
 	let mut arr_lengths: Vec<ArrayLen> = vec![];

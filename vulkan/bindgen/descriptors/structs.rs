@@ -85,7 +85,7 @@ impl From<&vk::Type> for StructDescriptor {
 		assert_eq!(def.parent, None);
 		assert_eq!(def.requires, None);
 
-		let name = def.name.clone().unwrap();
+		let name = def.name.as_ref().unwrap().to_owned();
 
 		let members = match &def.spec {
 			vk_parse::TypeSpec::Members(v) => v,

@@ -1,4 +1,5 @@
-use std::fs::File;
+use std::iter::repeat;
+use std::{fs::File, fmt::format};
 use std::io;
 use std::path::PathBuf;
 
@@ -20,6 +21,18 @@ impl ModGen {
 		let file_name = format!("{}.rs", self.name);
 		let out = root.join(file_name.as_str());
 		let mut file = File::create(out)?;
+
+		for desc in &self.content.type_aliases {
+			write_type_alias(&mut file, desc)?;
+		}
+
+		for desc in &self.content.handles {
+			write_handle(&mut file, desc)?;
+		}
+
+		for desc in &self.content.enums {
+			write_enum(&mut file, desc)?;
+		}
 
 		for desc in &self.content.structs {
 			write_struct(&mut file, desc)?;
@@ -45,9 +58,15 @@ pub struct FileContent {
 	pub type_aliases: Vec<Alias>,
 }
 
-pub fn write_struct(w: &mut impl io::Write, desc: &StructDescriptor) -> Result<(), std::io::Error> {
+fn strip_vk(name: &str) -> &str {
+	name.strip_prefix("Vk").expect("missing vk prefix")
+}
+
+fn write_struct(w: &mut impl io::Write, desc: &StructDescriptor) -> Result<(), io::Error> {
+	let name = strip_vk(desc.name.as_ref());
+
 	writeln!(w, "#[repr(C)]")?;
-	writeln!(w, "pub struct {} {{", desc.name)?;
+	writeln!(w, "pub struct {} {{", name)?;
 
 	for mem in &desc.members {
 		if mem.deprecated {
@@ -64,6 +83,49 @@ pub fn write_struct(w: &mut impl io::Write, desc: &StructDescriptor) -> Result<(
 	}
 
 	writeln!(w, "}}")?;
+	writeln!(w)?;
+
+	Ok(())
+}
+
+fn write_type_alias(w: &mut impl io::Write, desc: &Alias) -> Result<(), io::Error> {
+	let name = strip_vk(desc.name.as_ref());
+
+	writeln!(w, "#[repr(transparent)]")?;
+	writeln!(w, "pub struct {}({});", name, desc.alias_for)?;
+	writeln!(w)?;
+
+	Ok(())
+}
+
+fn write_enum(w: &mut impl io::Write, desc: &EnumDescriptor) -> Result<(), io::Error> {
+	let name = strip_vk(desc.name.as_ref());
+
+	writeln!(w, "#[repr(u{})]", desc.bit_width)?;
+	writeln!(w, "pub enum {} {{", name)?;
+
+	for val in &desc.values {
+		if desc.is_bitmask {
+			// let value = format!("{:b}", val.value);
+			// assert!(value.len() < desc.bit_width);
+			// let pad: String = repeat('0').take(desc.bit_width - value.len()).collect();
+			writeln!(w, "{} = {:#b},", val.name, val.value)?;
+		} else {
+			writeln!(w, "{} = {},", val.name, val.value)?;
+		}
+	}
+
+	writeln!(w, "}}")?;
+	writeln!(w)?;
+
+	Ok(())
+}
+
+fn write_handle(w: &mut impl io::Write, desc: &HandleDescriptor) -> Result<(), io::Error> {
+	let name = strip_vk(desc.name.as_ref());
+
+	writeln!(w, "#[repr(transparent)]")?;
+	writeln!(w, "pub struct {}({});", name, desc.rust_type)?;
 	writeln!(w)?;
 
 	Ok(())
