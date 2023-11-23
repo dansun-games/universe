@@ -7,23 +7,16 @@
 mod descriptors;
 mod gen;
 
-use std::fs::File;
-use std::path::Path;
+use std::env;
+use std::path::PathBuf;
 
+use descriptors::{
+	get_commands, get_constants, get_enum_aliases, get_enums, get_extensions, get_handles,
+	get_platforms, get_structs, get_type_aliases, get_unions,
+};
+use gen::{FileContent, ModGen};
 use vk_parse as vk;
 
-use descriptors::commands::get_commands;
-use descriptors::constants::get_constants;
-use descriptors::enums::{get_enum_aliases, get_enums};
-use descriptors::extensions::get_extensions;
-use descriptors::handles::get_handles;
-use descriptors::platforms::get_platforms;
-use descriptors::structs::get_structs;
-use descriptors::unions::get_unions;
-use gen::write_struct;
-
-
-enum Descriptor {}
 
 fn main() {
 	println!("cargo:rerun-if-env-changed=GENERATE_BINDS");
@@ -46,10 +39,10 @@ fn main() {
 	enum constants
 	commands
 	platforms
+	basetype
 
 	:todo:
 	include
-	* basetype
 	* funcpointer
 	* formats
 	* feature
@@ -63,27 +56,41 @@ fn main() {
 	let types = all_types(&registry);
 
 	let extensions = get_extensions(&registry);
+	let platforms = get_platforms(&registry);
+
+	let type_aliases = get_type_aliases();
 	let (constants, const_aliases) = get_constants(&registry);
 	let enums = get_enums(&registry);
 	let enum_aliases = get_enum_aliases(&enums, &types);
 	let unions = get_unions(&types);
+	let (handles, handle_aliases) = get_handles(&types);
 	let (structs, struct_aliases) = get_structs(&types);
 	let (commands, command_aliases) = get_commands(&registry);
-	let platforms = get_platforms(&registry);
-	let (handles, handle_aliases) = get_handles(&types);
 
 	// let version_types = get_version_info(&registry);
 
-	let path = Path::new(env!("CARGO_MANIFEST_DIR"))
-		.join("src")
-		.join("structs.rs");
-	println!("writing out at {:?}", path);
+	let root_path = PathBuf::from("./src/");
 
-	let mut file = File::create(path).expect("Could not open file");
+	let root_file = ModGen {
+		name: String::from("everything"),
+		module_doc: None,
+		content: FileContent {
+			constants,
+			const_aliases,
+			enums,
+			enum_aliases,
+			unions,
+			structs,
+			struct_aliases,
+			commands,
+			command_aliases,
+			handles,
+			handle_aliases,
+			type_aliases,
+		},
+	};
 
-	for desc in structs {
-		write_struct(&mut file, &desc).unwrap();
-	}
+	root_file.generate(&root_path).unwrap();
 }
 
 fn all_types(reg: &vk::Registry) -> Vec<vk::Type> {

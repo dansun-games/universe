@@ -1,4 +1,4 @@
-use crate::descriptors::var::VarDescriptor;
+use crate::descriptors::VarDescriptor;
 
 #[derive(Clone, PartialEq, Eq, Debug)]
 pub struct CTypeInfo {
@@ -7,30 +7,6 @@ pub struct CTypeInfo {
 }
 
 pub static C_TYPE_MAPPINGS: &[CTypeInfo] = &[
-	CTypeInfo {
-		c_type: "VkSampleMask",
-		rust_type: "u32",
-	},
-	CTypeInfo {
-		c_type: "VkBool32",
-		rust_type: "u32",
-	},
-	CTypeInfo {
-		c_type: "VkFlags",
-		rust_type: "u32",
-	},
-	CTypeInfo {
-		c_type: "VkFlags64",
-		rust_type: "u64",
-	},
-	CTypeInfo {
-		c_type: "VkDeviceSize",
-		rust_type: "u64",
-	},
-	CTypeInfo {
-		c_type: "VkDeviceAddress",
-		rust_type: "u64",
-	},
 	CTypeInfo {
 		c_type: "void",
 		rust_type: "c_void",
@@ -85,6 +61,7 @@ pub static C_TYPE_MAPPINGS: &[CTypeInfo] = &[
 	},
 ];
 
+//TODO: pointers and all the other stuff
 pub fn convert_type(desc: &VarDescriptor) -> String {
 	let rust_type = C_TYPE_MAPPINGS
 		.iter()

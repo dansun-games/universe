@@ -2,39 +2,65 @@ use vk_parse as vk;
 
 use super::alias::Alias;
 
-pub fn get_handles(types: &Vec<vk::Type>) -> (Vec<HandleDesc>, Vec<Alias>) {
-	let handle_types = types.iter().filter(|t| t.category.as_ref().unwrap() == "handle");
-	let handles: Vec<_> = handle_types.clone().map(HandleDesc::from).collect();
-	let aliases: Vec<_> = handle_types.clone().map(Alias::from).collect();
+pub fn get_handles(types: &Vec<vk::Type>) -> (Vec<HandleDescriptor>, Vec<Alias>) {
+	let handle_types = types
+		.iter()
+		.filter(|t| t.category.as_ref().unwrap() == "handle");
+	let handles: Vec<_> = handle_types.clone().filter(|v| v.alias.is_none()).map(HandleDescriptor::from).collect();
+	let aliases: Vec<_> = handle_types.clone().filter(|v| v.alias.is_some()).map(Alias::from).collect();
 
 	(handles, aliases)
 }
 
-pub struct HandleDesc {
-	name: String,
-	parent: Option<HandleParent>,
-	object_type: String,
+#[derive(Debug, PartialEq, Eq)]
+pub struct HandleDescriptor {
+	pub name: String,
+	pub parent: Option<HandleParent>,
+	pub rust_type: String,
+	pub object_type: String,
 }
 
-impl From<&vk::Type> for HandleDesc {
+impl From<&vk::Type> for HandleDescriptor {
 	fn from(def: &vk::Type) -> Self {
 		assert_eq!(def.category.as_ref().unwrap(), "handle");
-		let name = def.name.clone().expect("Handle missing name");
+
+		let spec = match &def.spec {
+			vk::TypeSpec::Code(v) => v,
+			_ => panic!("Unexpected handle spec type"),
+		};
+
+		let (name, dispatchable) = if let Some(s) = spec.code.strip_prefix("VK_DEFINE_HANDLE") {
+			(unwrap_paren(s), true)
+		} else if let Some(s) = spec.code.strip_prefix("VK_DEFINE_NON_DISPATCHABLE_HANDLE") {
+			(unwrap_paren(s), false)
+		} else {
+			panic!("Unexpected handle define macro");
+		};
+        let name = name.to_owned();
+
+        //"dispatchable handles" are actual pointers to memory, hence they should be the actual size of pointers on the device.
+        //"non dispatchable handles" on the other hand, are more like id's to opaque resources. Vulkan always uses 64-bit ids for these.
+        let rust_type = if dispatchable { String::from("usize") } else { String::from("u64") };
+
+        let object_type = def.objtypeenum.clone().expect("Missing object type enum");
 		let parent = def
 			.parent
 			.as_ref()
 			.map(String::as_ref)
 			.map(HandleParent::from);
-		let object_type = def.objtypeenum.clone().expect("Missing object type");
 
-		HandleDesc {
+        println!("{name}");
+
+		HandleDescriptor {
 			name,
 			parent,
+            rust_type,
 			object_type,
 		}
 	}
 }
 
+#[derive(Debug, PartialEq, Eq)]
 pub enum HandleParent {
 	Instance,
 	Device,
@@ -59,4 +85,12 @@ impl From<&str> for HandleParent {
 			_ => panic!("Unknown handle parent value"),
 		}
 	}
+}
+
+
+fn unwrap_paren(s: &str) -> &str {
+	s.strip_prefix("(")
+		.expect("Missing opening paren")
+		.strip_suffix(")")
+		.expect("Missing closing paren")
 }

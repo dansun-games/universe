@@ -50,19 +50,13 @@ pub struct EnumDescriptor {
 	pub is_bitmask: bool,
 	pub bit_width: u32,
 	pub values: Vec<EnumValue>,
-	pub aliases: Vec<EnumAlias>,
+	pub aliases: Vec<Alias>,
 }
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct EnumValue {
 	pub name: String,
 	pub value: i64,
-}
-
-#[derive(Debug, PartialEq, Eq)]
-pub struct EnumAlias {
-	pub name: String,
-	pub alias: String,
 }
 
 impl From<&vk::Enums> for EnumDescriptor {
@@ -114,9 +108,9 @@ impl From<&vk::Enums> for EnumDescriptor {
 			.filter_map(|e| match &e.spec {
 				vk::EnumSpec::Alias { alias, extends } => {
 					assert_eq!(extends.as_ref(), None);
-					Some(EnumAlias {
+					Some(Alias {
 						name: e.name.clone(),
-						alias: alias.clone(),
+						alias_for: alias.clone(),
 					})
 				},
 				_ => None,
