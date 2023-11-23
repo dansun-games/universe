@@ -101,8 +101,15 @@ fn write_type_alias(w: &mut impl io::Write, desc: &Alias) -> Result<(), io::Erro
 fn write_enum(w: &mut impl io::Write, desc: &EnumDescriptor) -> Result<(), io::Error> {
 	let name = strip_vk(desc.name.as_ref());
 
-	writeln!(w, "#[repr(u{})]", desc.bit_width)?;
-	writeln!(w, "pub enum {} {{", name)?;
+	let repr = if desc.is_bitmask {
+		format!("u{}", desc.bit_width)
+	} else {
+		//let rust figure it out...
+		String::from("C")
+	};
+
+	writeln!(w, "#[repr({repr})]")?;
+	writeln!(w, "pub enum {name} {{")?;
 
 	for val in &desc.values {
 		if desc.is_bitmask {
