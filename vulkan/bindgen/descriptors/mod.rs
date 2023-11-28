@@ -6,9 +6,9 @@ mod extensions;
 mod handles;
 mod platforms;
 mod structs;
+mod type_aliases;
 mod unions;
 mod var;
-mod type_aliases;
 
 pub use alias::*;
 pub use commands::*;
@@ -18,6 +18,6 @@ pub use extensions::*;
 pub use handles::*;
 pub use platforms::*;
 pub use structs::*;
+pub use type_aliases::*;
 pub use unions::*;
 pub use var::*;
-pub use type_aliases::*;

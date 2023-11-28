@@ -16,6 +16,72 @@ pub struct DeviceSize(u64);
 #[repr(transparent)]
 pub struct DeviceAddress(u64);
 
+const MAX_PHYSICAL_DEVICE_NAME_SIZE: u32 = 256;
+
+const UUID_SIZE: u32 = 16;
+
+const LUID_SIZE: u32 = 8;
+
+const MAX_EXTENSION_NAME_SIZE: u32 = 256;
+
+const MAX_DESCRIPTION_SIZE: u32 = 256;
+
+const MAX_MEMORY_TYPES: u32 = 32;
+
+const MAX_MEMORY_HEAPS: u32 = 16;
+
+const LOD_CLAMP_NONE: f32 = 1000.0;
+
+const REMAINING_MIP_LEVELS: u32 = !0;
+
+const REMAINING_ARRAY_LAYERS: u32 = !0;
+
+const REMAINING_3D_SLICES_EXT: u32 = !0;
+
+const WHOLE_SIZE: u64 = !0;
+
+const ATTACHMENT_UNUSED: u32 = !0;
+
+const TRUE: Bool32 = 1;
+
+const FALSE: Bool32 = 0;
+
+const QUEUE_FAMILY_IGNORED: u32 = !0;
+
+const QUEUE_FAMILY_EXTERNAL: u32 = !1;
+
+const QUEUE_FAMILY_FOREIGN_EXT: u32 = !2;
+
+const SUBPASS_EXTERNAL: u32 = !0;
+
+const MAX_DEVICE_GROUP_SIZE: u32 = 32;
+
+const MAX_DRIVER_NAME_SIZE: u32 = 256;
+
+const MAX_DRIVER_INFO_SIZE: u32 = 256;
+
+const SHADER_UNUSED_KHR: u32 = !0;
+
+const MAX_GLOBAL_PRIORITY_SIZE_KHR: u32 = 16;
+
+const MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT: u32 = 32;
+
+const SHADER_INDEX_UNUSED_AMDX: u32 = !0;
+
+const LUID_SIZE_KHR = LUID_SIZE;
+
+const QUEUE_FAMILY_EXTERNAL_KHR = QUEUE_FAMILY_EXTERNAL;
+
+const MAX_DEVICE_GROUP_SIZE_KHR = MAX_DEVICE_GROUP_SIZE;
+
+const MAX_DRIVER_NAME_SIZE_KHR = MAX_DRIVER_NAME_SIZE;
+
+const MAX_DRIVER_INFO_SIZE_KHR = MAX_DRIVER_INFO_SIZE;
+
+const SHADER_UNUSED_NV = SHADER_UNUSED_KHR;
+
+const MAX_GLOBAL_PRIORITY_SIZE_EXT = MAX_GLOBAL_PRIORITY_SIZE_KHR;
+
 #[repr(transparent)]
 pub struct Instance(usize);
 
@@ -171,112 +237,112 @@ pub struct CudaFunctionNV(u64);
 
 #[repr(C)]
 pub enum ImageLayout {
-VK_IMAGE_LAYOUT_UNDEFINED = 0,
-VK_IMAGE_LAYOUT_GENERAL = 1,
-VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL = 2,
-VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL = 3,
-VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL = 4,
-VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL = 5,
-VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL = 6,
-VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL = 7,
-VK_IMAGE_LAYOUT_PREINITIALIZED = 8,
+ImageLayoutUndefined = 0,
+ImageLayoutGeneral = 1,
+ImageLayoutColorAttachmentOptimal = 2,
+ImageLayoutDepthStencilAttachmentOptimal = 3,
+ImageLayoutDepthStencilReadOnlyOptimal = 4,
+ImageLayoutShaderReadOnlyOptimal = 5,
+ImageLayoutTransferSrcOptimal = 6,
+ImageLayoutTransferDstOptimal = 7,
+ImageLayoutPreinitialized = 8,
 }
 
 #[repr(C)]
 pub enum AttachmentLoadOp {
-VK_ATTACHMENT_LOAD_OP_LOAD = 0,
-VK_ATTACHMENT_LOAD_OP_CLEAR = 1,
-VK_ATTACHMENT_LOAD_OP_DONT_CARE = 2,
+AttachmentLoadOpLoad = 0,
+AttachmentLoadOpClear = 1,
+AttachmentLoadOpDontCare = 2,
 }
 
 #[repr(C)]
 pub enum AttachmentStoreOp {
-VK_ATTACHMENT_STORE_OP_STORE = 0,
-VK_ATTACHMENT_STORE_OP_DONT_CARE = 1,
+AttachmentStoreOpStore = 0,
+AttachmentStoreOpDontCare = 1,
 }
 
 #[repr(C)]
 pub enum ImageType {
-VK_IMAGE_TYPE_1D = 0,
-VK_IMAGE_TYPE_2D = 1,
-VK_IMAGE_TYPE_3D = 2,
+ImageType1d = 0,
+ImageType2d = 1,
+ImageType3d = 2,
 }
 
 #[repr(C)]
 pub enum ImageTiling {
-VK_IMAGE_TILING_OPTIMAL = 0,
-VK_IMAGE_TILING_LINEAR = 1,
+ImageTilingOptimal = 0,
+ImageTilingLinear = 1,
 }
 
 #[repr(C)]
 pub enum ImageViewType {
-VK_IMAGE_VIEW_TYPE_1D = 0,
-VK_IMAGE_VIEW_TYPE_2D = 1,
-VK_IMAGE_VIEW_TYPE_3D = 2,
-VK_IMAGE_VIEW_TYPE_CUBE = 3,
-VK_IMAGE_VIEW_TYPE_1D_ARRAY = 4,
-VK_IMAGE_VIEW_TYPE_2D_ARRAY = 5,
-VK_IMAGE_VIEW_TYPE_CUBE_ARRAY = 6,
+ImageViewType1d = 0,
+ImageViewType2d = 1,
+ImageViewType3d = 2,
+ImageViewTypeCube = 3,
+ImageViewType1dArray = 4,
+ImageViewType2dArray = 5,
+ImageViewTypeCubeArray = 6,
 }
 
 #[repr(C)]
 pub enum CommandBufferLevel {
-VK_COMMAND_BUFFER_LEVEL_PRIMARY = 0,
-VK_COMMAND_BUFFER_LEVEL_SECONDARY = 1,
+CommandBufferLevelPrimary = 0,
+CommandBufferLevelSecondary = 1,
 }
 
 #[repr(C)]
 pub enum ComponentSwizzle {
-VK_COMPONENT_SWIZZLE_IDENTITY = 0,
-VK_COMPONENT_SWIZZLE_ZERO = 1,
-VK_COMPONENT_SWIZZLE_ONE = 2,
-VK_COMPONENT_SWIZZLE_R = 3,
-VK_COMPONENT_SWIZZLE_G = 4,
-VK_COMPONENT_SWIZZLE_B = 5,
-VK_COMPONENT_SWIZZLE_A = 6,
+ComponentSwizzleIdentity = 0,
+ComponentSwizzleZero = 1,
+ComponentSwizzleOne = 2,
+ComponentSwizzleR = 3,
+ComponentSwizzleG = 4,
+ComponentSwizzleB = 5,
+ComponentSwizzleA = 6,
 }
 
 #[repr(C)]
 pub enum DescriptorType {
-VK_DESCRIPTOR_TYPE_SAMPLER = 0,
-VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER = 1,
-VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE = 2,
-VK_DESCRIPTOR_TYPE_STORAGE_IMAGE = 3,
-VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER = 4,
-VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER = 5,
-VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER = 6,
-VK_DESCRIPTOR_TYPE_STORAGE_BUFFER = 7,
-VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC = 8,
-VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC = 9,
-VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT = 10,
+DescriptorTypeSampler = 0,
+DescriptorTypeCombinedImageSampler = 1,
+DescriptorTypeSampledImage = 2,
+DescriptorTypeStorageImage = 3,
+DescriptorTypeUniformTexelBuffer = 4,
+DescriptorTypeStorageTexelBuffer = 5,
+DescriptorTypeUniformBuffer = 6,
+DescriptorTypeStorageBuffer = 7,
+DescriptorTypeUniformBufferDynamic = 8,
+DescriptorTypeStorageBufferDynamic = 9,
+DescriptorTypeInputAttachment = 10,
 }
 
 #[repr(C)]
 pub enum QueryType {
-VK_QUERY_TYPE_OCCLUSION = 0,
-VK_QUERY_TYPE_PIPELINE_STATISTICS = 1,
-VK_QUERY_TYPE_TIMESTAMP = 2,
+QueryTypeOcclusion = 0,
+QueryTypePipelineStatistics = 1,
+QueryTypeTimestamp = 2,
 }
 
 #[repr(C)]
 pub enum BorderColor {
-VK_BORDER_COLOR_FLOAT_TRANSPARENT_BLACK = 0,
-VK_BORDER_COLOR_INT_TRANSPARENT_BLACK = 1,
-VK_BORDER_COLOR_FLOAT_OPAQUE_BLACK = 2,
-VK_BORDER_COLOR_INT_OPAQUE_BLACK = 3,
-VK_BORDER_COLOR_FLOAT_OPAQUE_WHITE = 4,
-VK_BORDER_COLOR_INT_OPAQUE_WHITE = 5,
+BorderColorFloatTransparentBlack = 0,
+BorderColorIntTransparentBlack = 1,
+BorderColorFloatOpaqueBlack = 2,
+BorderColorIntOpaqueBlack = 3,
+BorderColorFloatOpaqueWhite = 4,
+BorderColorIntOpaqueWhite = 5,
 }
 
 #[repr(C)]
 pub enum PipelineBindPoint {
-VK_PIPELINE_BIND_POINT_GRAPHICS = 0,
-VK_PIPELINE_BIND_POINT_COMPUTE = 1,
+PipelineBindPointGraphics = 0,
+PipelineBindPointCompute = 1,
 }
 
 #[repr(C)]
 pub enum PipelineCacheHeaderVersion {
-VK_PIPELINE_CACHE_HEADER_VERSION_ONE = 1,
+PipelineCacheHeaderVersionOne = 1,
 }
 
 #[repr(u32)]
@@ -285,514 +351,514 @@ pub enum PipelineCacheCreateFlagBits {
 
 #[repr(C)]
 pub enum PrimitiveTopology {
-VK_PRIMITIVE_TOPOLOGY_POINT_LIST = 0,
-VK_PRIMITIVE_TOPOLOGY_LINE_LIST = 1,
-VK_PRIMITIVE_TOPOLOGY_LINE_STRIP = 2,
-VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST = 3,
-VK_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP = 4,
-VK_PRIMITIVE_TOPOLOGY_TRIANGLE_FAN = 5,
-VK_PRIMITIVE_TOPOLOGY_LINE_LIST_WITH_ADJACENCY = 6,
-VK_PRIMITIVE_TOPOLOGY_LINE_STRIP_WITH_ADJACENCY = 7,
-VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST_WITH_ADJACENCY = 8,
-VK_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP_WITH_ADJACENCY = 9,
-VK_PRIMITIVE_TOPOLOGY_PATCH_LIST = 10,
+PrimitiveTopologyPointList = 0,
+PrimitiveTopologyLineList = 1,
+PrimitiveTopologyLineStrip = 2,
+PrimitiveTopologyTriangleList = 3,
+PrimitiveTopologyTriangleStrip = 4,
+PrimitiveTopologyTriangleFan = 5,
+PrimitiveTopologyLineListWithAdjacency = 6,
+PrimitiveTopologyLineStripWithAdjacency = 7,
+PrimitiveTopologyTriangleListWithAdjacency = 8,
+PrimitiveTopologyTriangleStripWithAdjacency = 9,
+PrimitiveTopologyPatchList = 10,
 }
 
 #[repr(C)]
 pub enum SharingMode {
-VK_SHARING_MODE_EXCLUSIVE = 0,
-VK_SHARING_MODE_CONCURRENT = 1,
+SharingModeExclusive = 0,
+SharingModeConcurrent = 1,
 }
 
 #[repr(C)]
 pub enum IndexType {
-VK_INDEX_TYPE_UINT16 = 0,
-VK_INDEX_TYPE_UINT32 = 1,
+IndexTypeUint16 = 0,
+IndexTypeUint32 = 1,
 }
 
 #[repr(C)]
 pub enum Filter {
-VK_FILTER_NEAREST = 0,
-VK_FILTER_LINEAR = 1,
+FilterNearest = 0,
+FilterLinear = 1,
 }
 
 #[repr(C)]
 pub enum SamplerMipmapMode {
-VK_SAMPLER_MIPMAP_MODE_NEAREST = 0,
-VK_SAMPLER_MIPMAP_MODE_LINEAR = 1,
+SamplerMipmapModeNearest = 0,
+SamplerMipmapModeLinear = 1,
 }
 
 #[repr(C)]
 pub enum SamplerAddressMode {
-VK_SAMPLER_ADDRESS_MODE_REPEAT = 0,
-VK_SAMPLER_ADDRESS_MODE_MIRRORED_REPEAT = 1,
-VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE = 2,
-VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER = 3,
+SamplerAddressModeRepeat = 0,
+SamplerAddressModeMirroredRepeat = 1,
+SamplerAddressModeClampToEdge = 2,
+SamplerAddressModeClampToBorder = 3,
 }
 
 #[repr(C)]
 pub enum CompareOp {
-VK_COMPARE_OP_NEVER = 0,
-VK_COMPARE_OP_LESS = 1,
-VK_COMPARE_OP_EQUAL = 2,
-VK_COMPARE_OP_LESS_OR_EQUAL = 3,
-VK_COMPARE_OP_GREATER = 4,
-VK_COMPARE_OP_NOT_EQUAL = 5,
-VK_COMPARE_OP_GREATER_OR_EQUAL = 6,
-VK_COMPARE_OP_ALWAYS = 7,
+CompareOpNever = 0,
+CompareOpLess = 1,
+CompareOpEqual = 2,
+CompareOpLessOrEqual = 3,
+CompareOpGreater = 4,
+CompareOpNotEqual = 5,
+CompareOpGreaterOrEqual = 6,
+CompareOpAlways = 7,
 }
 
 #[repr(C)]
 pub enum PolygonMode {
-VK_POLYGON_MODE_FILL = 0,
-VK_POLYGON_MODE_LINE = 1,
-VK_POLYGON_MODE_POINT = 2,
+PolygonModeFill = 0,
+PolygonModeLine = 1,
+PolygonModePoint = 2,
 }
 
 #[repr(C)]
 pub enum FrontFace {
-VK_FRONT_FACE_COUNTER_CLOCKWISE = 0,
-VK_FRONT_FACE_CLOCKWISE = 1,
+FrontFaceCounterClockwise = 0,
+FrontFaceClockwise = 1,
 }
 
 #[repr(C)]
 pub enum BlendFactor {
-VK_BLEND_FACTOR_ZERO = 0,
-VK_BLEND_FACTOR_ONE = 1,
-VK_BLEND_FACTOR_SRC_COLOR = 2,
-VK_BLEND_FACTOR_ONE_MINUS_SRC_COLOR = 3,
-VK_BLEND_FACTOR_DST_COLOR = 4,
-VK_BLEND_FACTOR_ONE_MINUS_DST_COLOR = 5,
-VK_BLEND_FACTOR_SRC_ALPHA = 6,
-VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA = 7,
-VK_BLEND_FACTOR_DST_ALPHA = 8,
-VK_BLEND_FACTOR_ONE_MINUS_DST_ALPHA = 9,
-VK_BLEND_FACTOR_CONSTANT_COLOR = 10,
-VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_COLOR = 11,
-VK_BLEND_FACTOR_CONSTANT_ALPHA = 12,
-VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_ALPHA = 13,
-VK_BLEND_FACTOR_SRC_ALPHA_SATURATE = 14,
-VK_BLEND_FACTOR_SRC1_COLOR = 15,
-VK_BLEND_FACTOR_ONE_MINUS_SRC1_COLOR = 16,
-VK_BLEND_FACTOR_SRC1_ALPHA = 17,
-VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA = 18,
+BlendFactorZero = 0,
+BlendFactorOne = 1,
+BlendFactorSrcColor = 2,
+BlendFactorOneMinusSrcColor = 3,
+BlendFactorDstColor = 4,
+BlendFactorOneMinusDstColor = 5,
+BlendFactorSrcAlpha = 6,
+BlendFactorOneMinusSrcAlpha = 7,
+BlendFactorDstAlpha = 8,
+BlendFactorOneMinusDstAlpha = 9,
+BlendFactorConstantColor = 10,
+BlendFactorOneMinusConstantColor = 11,
+BlendFactorConstantAlpha = 12,
+BlendFactorOneMinusConstantAlpha = 13,
+BlendFactorSrcAlphaSaturate = 14,
+BlendFactorSrc1Color = 15,
+BlendFactorOneMinusSrc1Color = 16,
+BlendFactorSrc1Alpha = 17,
+BlendFactorOneMinusSrc1Alpha = 18,
 }
 
 #[repr(C)]
 pub enum BlendOp {
-VK_BLEND_OP_ADD = 0,
-VK_BLEND_OP_SUBTRACT = 1,
-VK_BLEND_OP_REVERSE_SUBTRACT = 2,
-VK_BLEND_OP_MIN = 3,
-VK_BLEND_OP_MAX = 4,
+BlendOpAdd = 0,
+BlendOpSubtract = 1,
+BlendOpReverseSubtract = 2,
+BlendOpMin = 3,
+BlendOpMax = 4,
 }
 
 #[repr(C)]
 pub enum StencilOp {
-VK_STENCIL_OP_KEEP = 0,
-VK_STENCIL_OP_ZERO = 1,
-VK_STENCIL_OP_REPLACE = 2,
-VK_STENCIL_OP_INCREMENT_AND_CLAMP = 3,
-VK_STENCIL_OP_DECREMENT_AND_CLAMP = 4,
-VK_STENCIL_OP_INVERT = 5,
-VK_STENCIL_OP_INCREMENT_AND_WRAP = 6,
-VK_STENCIL_OP_DECREMENT_AND_WRAP = 7,
+StencilOpKeep = 0,
+StencilOpZero = 1,
+StencilOpReplace = 2,
+StencilOpIncrementAndClamp = 3,
+StencilOpDecrementAndClamp = 4,
+StencilOpInvert = 5,
+StencilOpIncrementAndWrap = 6,
+StencilOpDecrementAndWrap = 7,
 }
 
 #[repr(C)]
 pub enum LogicOp {
-VK_LOGIC_OP_CLEAR = 0,
-VK_LOGIC_OP_AND = 1,
-VK_LOGIC_OP_AND_REVERSE = 2,
-VK_LOGIC_OP_COPY = 3,
-VK_LOGIC_OP_AND_INVERTED = 4,
-VK_LOGIC_OP_NO_OP = 5,
-VK_LOGIC_OP_XOR = 6,
-VK_LOGIC_OP_OR = 7,
-VK_LOGIC_OP_NOR = 8,
-VK_LOGIC_OP_EQUIVALENT = 9,
-VK_LOGIC_OP_INVERT = 10,
-VK_LOGIC_OP_OR_REVERSE = 11,
-VK_LOGIC_OP_COPY_INVERTED = 12,
-VK_LOGIC_OP_OR_INVERTED = 13,
-VK_LOGIC_OP_NAND = 14,
-VK_LOGIC_OP_SET = 15,
+LogicOpClear = 0,
+LogicOpAnd = 1,
+LogicOpAndReverse = 2,
+LogicOpCopy = 3,
+LogicOpAndInverted = 4,
+LogicOpNoOp = 5,
+LogicOpXor = 6,
+LogicOpOr = 7,
+LogicOpNor = 8,
+LogicOpEquivalent = 9,
+LogicOpInvert = 10,
+LogicOpOrReverse = 11,
+LogicOpCopyInverted = 12,
+LogicOpOrInverted = 13,
+LogicOpNand = 14,
+LogicOpSet = 15,
 }
 
 #[repr(C)]
 pub enum InternalAllocationType {
-VK_INTERNAL_ALLOCATION_TYPE_EXECUTABLE = 0,
+InternalAllocationTypeExecutable = 0,
 }
 
 #[repr(C)]
 pub enum SystemAllocationScope {
-VK_SYSTEM_ALLOCATION_SCOPE_COMMAND = 0,
-VK_SYSTEM_ALLOCATION_SCOPE_OBJECT = 1,
-VK_SYSTEM_ALLOCATION_SCOPE_CACHE = 2,
-VK_SYSTEM_ALLOCATION_SCOPE_DEVICE = 3,
-VK_SYSTEM_ALLOCATION_SCOPE_INSTANCE = 4,
+SystemAllocationScopeCommand = 0,
+SystemAllocationScopeObject = 1,
+SystemAllocationScopeCache = 2,
+SystemAllocationScopeDevice = 3,
+SystemAllocationScopeInstance = 4,
 }
 
 #[repr(C)]
 pub enum PhysicalDeviceType {
-VK_PHYSICAL_DEVICE_TYPE_OTHER = 0,
-VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU = 1,
-VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU = 2,
-VK_PHYSICAL_DEVICE_TYPE_VIRTUAL_GPU = 3,
-VK_PHYSICAL_DEVICE_TYPE_CPU = 4,
+PhysicalDeviceTypeOther = 0,
+PhysicalDeviceTypeIntegratedGpu = 1,
+PhysicalDeviceTypeDiscreteGpu = 2,
+PhysicalDeviceTypeVirtualGpu = 3,
+PhysicalDeviceTypeCpu = 4,
 }
 
 #[repr(C)]
 pub enum VertexInputRate {
-VK_VERTEX_INPUT_RATE_VERTEX = 0,
-VK_VERTEX_INPUT_RATE_INSTANCE = 1,
+VertexInputRateVertex = 0,
+VertexInputRateInstance = 1,
 }
 
 #[repr(C)]
 pub enum Format {
-VK_FORMAT_UNDEFINED = 0,
-VK_FORMAT_R4G4_UNORM_PACK8 = 1,
-VK_FORMAT_R4G4B4A4_UNORM_PACK16 = 2,
-VK_FORMAT_B4G4R4A4_UNORM_PACK16 = 3,
-VK_FORMAT_R5G6B5_UNORM_PACK16 = 4,
-VK_FORMAT_B5G6R5_UNORM_PACK16 = 5,
-VK_FORMAT_R5G5B5A1_UNORM_PACK16 = 6,
-VK_FORMAT_B5G5R5A1_UNORM_PACK16 = 7,
-VK_FORMAT_A1R5G5B5_UNORM_PACK16 = 8,
-VK_FORMAT_R8_UNORM = 9,
-VK_FORMAT_R8_SNORM = 10,
-VK_FORMAT_R8_USCALED = 11,
-VK_FORMAT_R8_SSCALED = 12,
-VK_FORMAT_R8_UINT = 13,
-VK_FORMAT_R8_SINT = 14,
-VK_FORMAT_R8_SRGB = 15,
-VK_FORMAT_R8G8_UNORM = 16,
-VK_FORMAT_R8G8_SNORM = 17,
-VK_FORMAT_R8G8_USCALED = 18,
-VK_FORMAT_R8G8_SSCALED = 19,
-VK_FORMAT_R8G8_UINT = 20,
-VK_FORMAT_R8G8_SINT = 21,
-VK_FORMAT_R8G8_SRGB = 22,
-VK_FORMAT_R8G8B8_UNORM = 23,
-VK_FORMAT_R8G8B8_SNORM = 24,
-VK_FORMAT_R8G8B8_USCALED = 25,
-VK_FORMAT_R8G8B8_SSCALED = 26,
-VK_FORMAT_R8G8B8_UINT = 27,
-VK_FORMAT_R8G8B8_SINT = 28,
-VK_FORMAT_R8G8B8_SRGB = 29,
-VK_FORMAT_B8G8R8_UNORM = 30,
-VK_FORMAT_B8G8R8_SNORM = 31,
-VK_FORMAT_B8G8R8_USCALED = 32,
-VK_FORMAT_B8G8R8_SSCALED = 33,
-VK_FORMAT_B8G8R8_UINT = 34,
-VK_FORMAT_B8G8R8_SINT = 35,
-VK_FORMAT_B8G8R8_SRGB = 36,
-VK_FORMAT_R8G8B8A8_UNORM = 37,
-VK_FORMAT_R8G8B8A8_SNORM = 38,
-VK_FORMAT_R8G8B8A8_USCALED = 39,
-VK_FORMAT_R8G8B8A8_SSCALED = 40,
-VK_FORMAT_R8G8B8A8_UINT = 41,
-VK_FORMAT_R8G8B8A8_SINT = 42,
-VK_FORMAT_R8G8B8A8_SRGB = 43,
-VK_FORMAT_B8G8R8A8_UNORM = 44,
-VK_FORMAT_B8G8R8A8_SNORM = 45,
-VK_FORMAT_B8G8R8A8_USCALED = 46,
-VK_FORMAT_B8G8R8A8_SSCALED = 47,
-VK_FORMAT_B8G8R8A8_UINT = 48,
-VK_FORMAT_B8G8R8A8_SINT = 49,
-VK_FORMAT_B8G8R8A8_SRGB = 50,
-VK_FORMAT_A8B8G8R8_UNORM_PACK32 = 51,
-VK_FORMAT_A8B8G8R8_SNORM_PACK32 = 52,
-VK_FORMAT_A8B8G8R8_USCALED_PACK32 = 53,
-VK_FORMAT_A8B8G8R8_SSCALED_PACK32 = 54,
-VK_FORMAT_A8B8G8R8_UINT_PACK32 = 55,
-VK_FORMAT_A8B8G8R8_SINT_PACK32 = 56,
-VK_FORMAT_A8B8G8R8_SRGB_PACK32 = 57,
-VK_FORMAT_A2R10G10B10_UNORM_PACK32 = 58,
-VK_FORMAT_A2R10G10B10_SNORM_PACK32 = 59,
-VK_FORMAT_A2R10G10B10_USCALED_PACK32 = 60,
-VK_FORMAT_A2R10G10B10_SSCALED_PACK32 = 61,
-VK_FORMAT_A2R10G10B10_UINT_PACK32 = 62,
-VK_FORMAT_A2R10G10B10_SINT_PACK32 = 63,
-VK_FORMAT_A2B10G10R10_UNORM_PACK32 = 64,
-VK_FORMAT_A2B10G10R10_SNORM_PACK32 = 65,
-VK_FORMAT_A2B10G10R10_USCALED_PACK32 = 66,
-VK_FORMAT_A2B10G10R10_SSCALED_PACK32 = 67,
-VK_FORMAT_A2B10G10R10_UINT_PACK32 = 68,
-VK_FORMAT_A2B10G10R10_SINT_PACK32 = 69,
-VK_FORMAT_R16_UNORM = 70,
-VK_FORMAT_R16_SNORM = 71,
-VK_FORMAT_R16_USCALED = 72,
-VK_FORMAT_R16_SSCALED = 73,
-VK_FORMAT_R16_UINT = 74,
-VK_FORMAT_R16_SINT = 75,
-VK_FORMAT_R16_SFLOAT = 76,
-VK_FORMAT_R16G16_UNORM = 77,
-VK_FORMAT_R16G16_SNORM = 78,
-VK_FORMAT_R16G16_USCALED = 79,
-VK_FORMAT_R16G16_SSCALED = 80,
-VK_FORMAT_R16G16_UINT = 81,
-VK_FORMAT_R16G16_SINT = 82,
-VK_FORMAT_R16G16_SFLOAT = 83,
-VK_FORMAT_R16G16B16_UNORM = 84,
-VK_FORMAT_R16G16B16_SNORM = 85,
-VK_FORMAT_R16G16B16_USCALED = 86,
-VK_FORMAT_R16G16B16_SSCALED = 87,
-VK_FORMAT_R16G16B16_UINT = 88,
-VK_FORMAT_R16G16B16_SINT = 89,
-VK_FORMAT_R16G16B16_SFLOAT = 90,
-VK_FORMAT_R16G16B16A16_UNORM = 91,
-VK_FORMAT_R16G16B16A16_SNORM = 92,
-VK_FORMAT_R16G16B16A16_USCALED = 93,
-VK_FORMAT_R16G16B16A16_SSCALED = 94,
-VK_FORMAT_R16G16B16A16_UINT = 95,
-VK_FORMAT_R16G16B16A16_SINT = 96,
-VK_FORMAT_R16G16B16A16_SFLOAT = 97,
-VK_FORMAT_R32_UINT = 98,
-VK_FORMAT_R32_SINT = 99,
-VK_FORMAT_R32_SFLOAT = 100,
-VK_FORMAT_R32G32_UINT = 101,
-VK_FORMAT_R32G32_SINT = 102,
-VK_FORMAT_R32G32_SFLOAT = 103,
-VK_FORMAT_R32G32B32_UINT = 104,
-VK_FORMAT_R32G32B32_SINT = 105,
-VK_FORMAT_R32G32B32_SFLOAT = 106,
-VK_FORMAT_R32G32B32A32_UINT = 107,
-VK_FORMAT_R32G32B32A32_SINT = 108,
-VK_FORMAT_R32G32B32A32_SFLOAT = 109,
-VK_FORMAT_R64_UINT = 110,
-VK_FORMAT_R64_SINT = 111,
-VK_FORMAT_R64_SFLOAT = 112,
-VK_FORMAT_R64G64_UINT = 113,
-VK_FORMAT_R64G64_SINT = 114,
-VK_FORMAT_R64G64_SFLOAT = 115,
-VK_FORMAT_R64G64B64_UINT = 116,
-VK_FORMAT_R64G64B64_SINT = 117,
-VK_FORMAT_R64G64B64_SFLOAT = 118,
-VK_FORMAT_R64G64B64A64_UINT = 119,
-VK_FORMAT_R64G64B64A64_SINT = 120,
-VK_FORMAT_R64G64B64A64_SFLOAT = 121,
-VK_FORMAT_B10G11R11_UFLOAT_PACK32 = 122,
-VK_FORMAT_E5B9G9R9_UFLOAT_PACK32 = 123,
-VK_FORMAT_D16_UNORM = 124,
-VK_FORMAT_X8_D24_UNORM_PACK32 = 125,
-VK_FORMAT_D32_SFLOAT = 126,
-VK_FORMAT_S8_UINT = 127,
-VK_FORMAT_D16_UNORM_S8_UINT = 128,
-VK_FORMAT_D24_UNORM_S8_UINT = 129,
-VK_FORMAT_D32_SFLOAT_S8_UINT = 130,
-VK_FORMAT_BC1_RGB_UNORM_BLOCK = 131,
-VK_FORMAT_BC1_RGB_SRGB_BLOCK = 132,
-VK_FORMAT_BC1_RGBA_UNORM_BLOCK = 133,
-VK_FORMAT_BC1_RGBA_SRGB_BLOCK = 134,
-VK_FORMAT_BC2_UNORM_BLOCK = 135,
-VK_FORMAT_BC2_SRGB_BLOCK = 136,
-VK_FORMAT_BC3_UNORM_BLOCK = 137,
-VK_FORMAT_BC3_SRGB_BLOCK = 138,
-VK_FORMAT_BC4_UNORM_BLOCK = 139,
-VK_FORMAT_BC4_SNORM_BLOCK = 140,
-VK_FORMAT_BC5_UNORM_BLOCK = 141,
-VK_FORMAT_BC5_SNORM_BLOCK = 142,
-VK_FORMAT_BC6H_UFLOAT_BLOCK = 143,
-VK_FORMAT_BC6H_SFLOAT_BLOCK = 144,
-VK_FORMAT_BC7_UNORM_BLOCK = 145,
-VK_FORMAT_BC7_SRGB_BLOCK = 146,
-VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK = 147,
-VK_FORMAT_ETC2_R8G8B8_SRGB_BLOCK = 148,
-VK_FORMAT_ETC2_R8G8B8A1_UNORM_BLOCK = 149,
-VK_FORMAT_ETC2_R8G8B8A1_SRGB_BLOCK = 150,
-VK_FORMAT_ETC2_R8G8B8A8_UNORM_BLOCK = 151,
-VK_FORMAT_ETC2_R8G8B8A8_SRGB_BLOCK = 152,
-VK_FORMAT_EAC_R11_UNORM_BLOCK = 153,
-VK_FORMAT_EAC_R11_SNORM_BLOCK = 154,
-VK_FORMAT_EAC_R11G11_UNORM_BLOCK = 155,
-VK_FORMAT_EAC_R11G11_SNORM_BLOCK = 156,
-VK_FORMAT_ASTC_4x4_UNORM_BLOCK = 157,
-VK_FORMAT_ASTC_4x4_SRGB_BLOCK = 158,
-VK_FORMAT_ASTC_5x4_UNORM_BLOCK = 159,
-VK_FORMAT_ASTC_5x4_SRGB_BLOCK = 160,
-VK_FORMAT_ASTC_5x5_UNORM_BLOCK = 161,
-VK_FORMAT_ASTC_5x5_SRGB_BLOCK = 162,
-VK_FORMAT_ASTC_6x5_UNORM_BLOCK = 163,
-VK_FORMAT_ASTC_6x5_SRGB_BLOCK = 164,
-VK_FORMAT_ASTC_6x6_UNORM_BLOCK = 165,
-VK_FORMAT_ASTC_6x6_SRGB_BLOCK = 166,
-VK_FORMAT_ASTC_8x5_UNORM_BLOCK = 167,
-VK_FORMAT_ASTC_8x5_SRGB_BLOCK = 168,
-VK_FORMAT_ASTC_8x6_UNORM_BLOCK = 169,
-VK_FORMAT_ASTC_8x6_SRGB_BLOCK = 170,
-VK_FORMAT_ASTC_8x8_UNORM_BLOCK = 171,
-VK_FORMAT_ASTC_8x8_SRGB_BLOCK = 172,
-VK_FORMAT_ASTC_10x5_UNORM_BLOCK = 173,
-VK_FORMAT_ASTC_10x5_SRGB_BLOCK = 174,
-VK_FORMAT_ASTC_10x6_UNORM_BLOCK = 175,
-VK_FORMAT_ASTC_10x6_SRGB_BLOCK = 176,
-VK_FORMAT_ASTC_10x8_UNORM_BLOCK = 177,
-VK_FORMAT_ASTC_10x8_SRGB_BLOCK = 178,
-VK_FORMAT_ASTC_10x10_UNORM_BLOCK = 179,
-VK_FORMAT_ASTC_10x10_SRGB_BLOCK = 180,
-VK_FORMAT_ASTC_12x10_UNORM_BLOCK = 181,
-VK_FORMAT_ASTC_12x10_SRGB_BLOCK = 182,
-VK_FORMAT_ASTC_12x12_UNORM_BLOCK = 183,
-VK_FORMAT_ASTC_12x12_SRGB_BLOCK = 184,
+FormatUndefined = 0,
+FormatR4g4UnormPack8 = 1,
+FormatR4g4b4a4UnormPack16 = 2,
+FormatB4g4r4a4UnormPack16 = 3,
+FormatR5g6b5UnormPack16 = 4,
+FormatB5g6r5UnormPack16 = 5,
+FormatR5g5b5a1UnormPack16 = 6,
+FormatB5g5r5a1UnormPack16 = 7,
+FormatA1r5g5b5UnormPack16 = 8,
+FormatR8Unorm = 9,
+FormatR8Snorm = 10,
+FormatR8Uscaled = 11,
+FormatR8Sscaled = 12,
+FormatR8Uint = 13,
+FormatR8Sint = 14,
+FormatR8Srgb = 15,
+FormatR8g8Unorm = 16,
+FormatR8g8Snorm = 17,
+FormatR8g8Uscaled = 18,
+FormatR8g8Sscaled = 19,
+FormatR8g8Uint = 20,
+FormatR8g8Sint = 21,
+FormatR8g8Srgb = 22,
+FormatR8g8b8Unorm = 23,
+FormatR8g8b8Snorm = 24,
+FormatR8g8b8Uscaled = 25,
+FormatR8g8b8Sscaled = 26,
+FormatR8g8b8Uint = 27,
+FormatR8g8b8Sint = 28,
+FormatR8g8b8Srgb = 29,
+FormatB8g8r8Unorm = 30,
+FormatB8g8r8Snorm = 31,
+FormatB8g8r8Uscaled = 32,
+FormatB8g8r8Sscaled = 33,
+FormatB8g8r8Uint = 34,
+FormatB8g8r8Sint = 35,
+FormatB8g8r8Srgb = 36,
+FormatR8g8b8a8Unorm = 37,
+FormatR8g8b8a8Snorm = 38,
+FormatR8g8b8a8Uscaled = 39,
+FormatR8g8b8a8Sscaled = 40,
+FormatR8g8b8a8Uint = 41,
+FormatR8g8b8a8Sint = 42,
+FormatR8g8b8a8Srgb = 43,
+FormatB8g8r8a8Unorm = 44,
+FormatB8g8r8a8Snorm = 45,
+FormatB8g8r8a8Uscaled = 46,
+FormatB8g8r8a8Sscaled = 47,
+FormatB8g8r8a8Uint = 48,
+FormatB8g8r8a8Sint = 49,
+FormatB8g8r8a8Srgb = 50,
+FormatA8b8g8r8UnormPack32 = 51,
+FormatA8b8g8r8SnormPack32 = 52,
+FormatA8b8g8r8UscaledPack32 = 53,
+FormatA8b8g8r8SscaledPack32 = 54,
+FormatA8b8g8r8UintPack32 = 55,
+FormatA8b8g8r8SintPack32 = 56,
+FormatA8b8g8r8SrgbPack32 = 57,
+FormatA2r10g10b10UnormPack32 = 58,
+FormatA2r10g10b10SnormPack32 = 59,
+FormatA2r10g10b10UscaledPack32 = 60,
+FormatA2r10g10b10SscaledPack32 = 61,
+FormatA2r10g10b10UintPack32 = 62,
+FormatA2r10g10b10SintPack32 = 63,
+FormatA2b10g10r10UnormPack32 = 64,
+FormatA2b10g10r10SnormPack32 = 65,
+FormatA2b10g10r10UscaledPack32 = 66,
+FormatA2b10g10r10SscaledPack32 = 67,
+FormatA2b10g10r10UintPack32 = 68,
+FormatA2b10g10r10SintPack32 = 69,
+FormatR16Unorm = 70,
+FormatR16Snorm = 71,
+FormatR16Uscaled = 72,
+FormatR16Sscaled = 73,
+FormatR16Uint = 74,
+FormatR16Sint = 75,
+FormatR16Sfloat = 76,
+FormatR16g16Unorm = 77,
+FormatR16g16Snorm = 78,
+FormatR16g16Uscaled = 79,
+FormatR16g16Sscaled = 80,
+FormatR16g16Uint = 81,
+FormatR16g16Sint = 82,
+FormatR16g16Sfloat = 83,
+FormatR16g16b16Unorm = 84,
+FormatR16g16b16Snorm = 85,
+FormatR16g16b16Uscaled = 86,
+FormatR16g16b16Sscaled = 87,
+FormatR16g16b16Uint = 88,
+FormatR16g16b16Sint = 89,
+FormatR16g16b16Sfloat = 90,
+FormatR16g16b16a16Unorm = 91,
+FormatR16g16b16a16Snorm = 92,
+FormatR16g16b16a16Uscaled = 93,
+FormatR16g16b16a16Sscaled = 94,
+FormatR16g16b16a16Uint = 95,
+FormatR16g16b16a16Sint = 96,
+FormatR16g16b16a16Sfloat = 97,
+FormatR32Uint = 98,
+FormatR32Sint = 99,
+FormatR32Sfloat = 100,
+FormatR32g32Uint = 101,
+FormatR32g32Sint = 102,
+FormatR32g32Sfloat = 103,
+FormatR32g32b32Uint = 104,
+FormatR32g32b32Sint = 105,
+FormatR32g32b32Sfloat = 106,
+FormatR32g32b32a32Uint = 107,
+FormatR32g32b32a32Sint = 108,
+FormatR32g32b32a32Sfloat = 109,
+FormatR64Uint = 110,
+FormatR64Sint = 111,
+FormatR64Sfloat = 112,
+FormatR64g64Uint = 113,
+FormatR64g64Sint = 114,
+FormatR64g64Sfloat = 115,
+FormatR64g64b64Uint = 116,
+FormatR64g64b64Sint = 117,
+FormatR64g64b64Sfloat = 118,
+FormatR64g64b64a64Uint = 119,
+FormatR64g64b64a64Sint = 120,
+FormatR64g64b64a64Sfloat = 121,
+FormatB10g11r11UfloatPack32 = 122,
+FormatE5b9g9r9UfloatPack32 = 123,
+FormatD16Unorm = 124,
+FormatX8D24UnormPack32 = 125,
+FormatD32Sfloat = 126,
+FormatS8Uint = 127,
+FormatD16UnormS8Uint = 128,
+FormatD24UnormS8Uint = 129,
+FormatD32SfloatS8Uint = 130,
+FormatBc1RgbUnormBlock = 131,
+FormatBc1RgbSrgbBlock = 132,
+FormatBc1RgbaUnormBlock = 133,
+FormatBc1RgbaSrgbBlock = 134,
+FormatBc2UnormBlock = 135,
+FormatBc2SrgbBlock = 136,
+FormatBc3UnormBlock = 137,
+FormatBc3SrgbBlock = 138,
+FormatBc4UnormBlock = 139,
+FormatBc4SnormBlock = 140,
+FormatBc5UnormBlock = 141,
+FormatBc5SnormBlock = 142,
+FormatBc6hUfloatBlock = 143,
+FormatBc6hSfloatBlock = 144,
+FormatBc7UnormBlock = 145,
+FormatBc7SrgbBlock = 146,
+FormatEtc2R8g8b8UnormBlock = 147,
+FormatEtc2R8g8b8SrgbBlock = 148,
+FormatEtc2R8g8b8a1UnormBlock = 149,
+FormatEtc2R8g8b8a1SrgbBlock = 150,
+FormatEtc2R8g8b8a8UnormBlock = 151,
+FormatEtc2R8g8b8a8SrgbBlock = 152,
+FormatEacR11UnormBlock = 153,
+FormatEacR11SnormBlock = 154,
+FormatEacR11g11UnormBlock = 155,
+FormatEacR11g11SnormBlock = 156,
+FormatAstc4x4UnormBlock = 157,
+FormatAstc4x4SrgbBlock = 158,
+FormatAstc5x4UnormBlock = 159,
+FormatAstc5x4SrgbBlock = 160,
+FormatAstc5x5UnormBlock = 161,
+FormatAstc5x5SrgbBlock = 162,
+FormatAstc6x5UnormBlock = 163,
+FormatAstc6x5SrgbBlock = 164,
+FormatAstc6x6UnormBlock = 165,
+FormatAstc6x6SrgbBlock = 166,
+FormatAstc8x5UnormBlock = 167,
+FormatAstc8x5SrgbBlock = 168,
+FormatAstc8x6UnormBlock = 169,
+FormatAstc8x6SrgbBlock = 170,
+FormatAstc8x8UnormBlock = 171,
+FormatAstc8x8SrgbBlock = 172,
+FormatAstc10x5UnormBlock = 173,
+FormatAstc10x5SrgbBlock = 174,
+FormatAstc10x6UnormBlock = 175,
+FormatAstc10x6SrgbBlock = 176,
+FormatAstc10x8UnormBlock = 177,
+FormatAstc10x8SrgbBlock = 178,
+FormatAstc10x10UnormBlock = 179,
+FormatAstc10x10SrgbBlock = 180,
+FormatAstc12x10UnormBlock = 181,
+FormatAstc12x10SrgbBlock = 182,
+FormatAstc12x12UnormBlock = 183,
+FormatAstc12x12SrgbBlock = 184,
 }
 
 #[repr(C)]
 pub enum StructureType {
-VK_STRUCTURE_TYPE_APPLICATION_INFO = 0,
-VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO = 1,
-VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO = 2,
-VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO = 3,
-VK_STRUCTURE_TYPE_SUBMIT_INFO = 4,
-VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO = 5,
-VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE = 6,
-VK_STRUCTURE_TYPE_BIND_SPARSE_INFO = 7,
-VK_STRUCTURE_TYPE_FENCE_CREATE_INFO = 8,
-VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO = 9,
-VK_STRUCTURE_TYPE_EVENT_CREATE_INFO = 10,
-VK_STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO = 11,
-VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO = 12,
-VK_STRUCTURE_TYPE_BUFFER_VIEW_CREATE_INFO = 13,
-VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO = 14,
-VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO = 15,
-VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO = 16,
-VK_STRUCTURE_TYPE_PIPELINE_CACHE_CREATE_INFO = 17,
-VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO = 18,
-VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO = 19,
-VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO = 20,
-VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_STATE_CREATE_INFO = 21,
-VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO = 22,
-VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO = 23,
-VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO = 24,
-VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO = 25,
-VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO = 26,
-VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO = 27,
-VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO = 28,
-VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO = 29,
-VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO = 30,
-VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO = 31,
-VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO = 32,
-VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO = 33,
-VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO = 34,
-VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET = 35,
-VK_STRUCTURE_TYPE_COPY_DESCRIPTOR_SET = 36,
-VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO = 37,
-VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO = 38,
-VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO = 39,
-VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO = 40,
-VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_INFO = 41,
-VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO = 42,
-VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO = 43,
-VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER = 44,
-VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER = 45,
-VK_STRUCTURE_TYPE_MEMORY_BARRIER = 46,
-VK_STRUCTURE_TYPE_LOADER_INSTANCE_CREATE_INFO = 47,
-VK_STRUCTURE_TYPE_LOADER_DEVICE_CREATE_INFO = 48,
+StructureTypeApplicationInfo = 0,
+StructureTypeInstanceCreateInfo = 1,
+StructureTypeDeviceQueueCreateInfo = 2,
+StructureTypeDeviceCreateInfo = 3,
+StructureTypeSubmitInfo = 4,
+StructureTypeMemoryAllocateInfo = 5,
+StructureTypeMappedMemoryRange = 6,
+StructureTypeBindSparseInfo = 7,
+StructureTypeFenceCreateInfo = 8,
+StructureTypeSemaphoreCreateInfo = 9,
+StructureTypeEventCreateInfo = 10,
+StructureTypeQueryPoolCreateInfo = 11,
+StructureTypeBufferCreateInfo = 12,
+StructureTypeBufferViewCreateInfo = 13,
+StructureTypeImageCreateInfo = 14,
+StructureTypeImageViewCreateInfo = 15,
+StructureTypeShaderModuleCreateInfo = 16,
+StructureTypePipelineCacheCreateInfo = 17,
+StructureTypePipelineShaderStageCreateInfo = 18,
+StructureTypePipelineVertexInputStateCreateInfo = 19,
+StructureTypePipelineInputAssemblyStateCreateInfo = 20,
+StructureTypePipelineTessellationStateCreateInfo = 21,
+StructureTypePipelineViewportStateCreateInfo = 22,
+StructureTypePipelineRasterizationStateCreateInfo = 23,
+StructureTypePipelineMultisampleStateCreateInfo = 24,
+StructureTypePipelineDepthStencilStateCreateInfo = 25,
+StructureTypePipelineColorBlendStateCreateInfo = 26,
+StructureTypePipelineDynamicStateCreateInfo = 27,
+StructureTypeGraphicsPipelineCreateInfo = 28,
+StructureTypeComputePipelineCreateInfo = 29,
+StructureTypePipelineLayoutCreateInfo = 30,
+StructureTypeSamplerCreateInfo = 31,
+StructureTypeDescriptorSetLayoutCreateInfo = 32,
+StructureTypeDescriptorPoolCreateInfo = 33,
+StructureTypeDescriptorSetAllocateInfo = 34,
+StructureTypeWriteDescriptorSet = 35,
+StructureTypeCopyDescriptorSet = 36,
+StructureTypeFramebufferCreateInfo = 37,
+StructureTypeRenderPassCreateInfo = 38,
+StructureTypeCommandPoolCreateInfo = 39,
+StructureTypeCommandBufferAllocateInfo = 40,
+StructureTypeCommandBufferInheritanceInfo = 41,
+StructureTypeCommandBufferBeginInfo = 42,
+StructureTypeRenderPassBeginInfo = 43,
+StructureTypeBufferMemoryBarrier = 44,
+StructureTypeImageMemoryBarrier = 45,
+StructureTypeMemoryBarrier = 46,
+StructureTypeLoaderInstanceCreateInfo = 47,
+StructureTypeLoaderDeviceCreateInfo = 48,
 }
 
 #[repr(C)]
 pub enum SubpassContents {
-VK_SUBPASS_CONTENTS_INLINE = 0,
-VK_SUBPASS_CONTENTS_SECONDARY_COMMAND_BUFFERS = 1,
+SubpassContentsInline = 0,
+SubpassContentsSecondaryCommandBuffers = 1,
 }
 
 #[repr(C)]
 pub enum Result {
-VK_SUCCESS = 0,
-VK_NOT_READY = 1,
-VK_TIMEOUT = 2,
-VK_EVENT_SET = 3,
-VK_EVENT_RESET = 4,
-VK_INCOMPLETE = 5,
-VK_ERROR_OUT_OF_HOST_MEMORY = -1,
-VK_ERROR_OUT_OF_DEVICE_MEMORY = -2,
-VK_ERROR_INITIALIZATION_FAILED = -3,
-VK_ERROR_DEVICE_LOST = -4,
-VK_ERROR_MEMORY_MAP_FAILED = -5,
-VK_ERROR_LAYER_NOT_PRESENT = -6,
-VK_ERROR_EXTENSION_NOT_PRESENT = -7,
-VK_ERROR_FEATURE_NOT_PRESENT = -8,
-VK_ERROR_INCOMPATIBLE_DRIVER = -9,
-VK_ERROR_TOO_MANY_OBJECTS = -10,
-VK_ERROR_FORMAT_NOT_SUPPORTED = -11,
-VK_ERROR_FRAGMENTED_POOL = -12,
-VK_ERROR_UNKNOWN = -13,
+Success = 0,
+NotReady = 1,
+Timeout = 2,
+EventSet = 3,
+EventReset = 4,
+Incomplete = 5,
+ErrorOutOfHostMemory = -1,
+ErrorOutOfDeviceMemory = -2,
+ErrorInitializationFailed = -3,
+ErrorDeviceLost = -4,
+ErrorMemoryMapFailed = -5,
+ErrorLayerNotPresent = -6,
+ErrorExtensionNotPresent = -7,
+ErrorFeatureNotPresent = -8,
+ErrorIncompatibleDriver = -9,
+ErrorTooManyObjects = -10,
+ErrorFormatNotSupported = -11,
+ErrorFragmentedPool = -12,
+ErrorUnknown = -13,
 }
 
 #[repr(C)]
 pub enum DynamicState {
-VK_DYNAMIC_STATE_VIEWPORT = 0,
-VK_DYNAMIC_STATE_SCISSOR = 1,
-VK_DYNAMIC_STATE_LINE_WIDTH = 2,
-VK_DYNAMIC_STATE_DEPTH_BIAS = 3,
-VK_DYNAMIC_STATE_BLEND_CONSTANTS = 4,
-VK_DYNAMIC_STATE_DEPTH_BOUNDS = 5,
-VK_DYNAMIC_STATE_STENCIL_COMPARE_MASK = 6,
-VK_DYNAMIC_STATE_STENCIL_WRITE_MASK = 7,
-VK_DYNAMIC_STATE_STENCIL_REFERENCE = 8,
+DynamicStateViewport = 0,
+DynamicStateScissor = 1,
+DynamicStateLineWidth = 2,
+DynamicStateDepthBias = 3,
+DynamicStateBlendConstants = 4,
+DynamicStateDepthBounds = 5,
+DynamicStateStencilCompareMask = 6,
+DynamicStateStencilWriteMask = 7,
+DynamicStateStencilReference = 8,
 }
 
 #[repr(C)]
 pub enum DescriptorUpdateTemplateType {
-VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET = 0,
+DescriptorUpdateTemplateTypeDescriptorSet = 0,
 }
 
 #[repr(C)]
 pub enum ObjectType {
-VK_OBJECT_TYPE_UNKNOWN = 0,
-VK_OBJECT_TYPE_INSTANCE = 1,
-VK_OBJECT_TYPE_PHYSICAL_DEVICE = 2,
-VK_OBJECT_TYPE_DEVICE = 3,
-VK_OBJECT_TYPE_QUEUE = 4,
-VK_OBJECT_TYPE_SEMAPHORE = 5,
-VK_OBJECT_TYPE_COMMAND_BUFFER = 6,
-VK_OBJECT_TYPE_FENCE = 7,
-VK_OBJECT_TYPE_DEVICE_MEMORY = 8,
-VK_OBJECT_TYPE_BUFFER = 9,
-VK_OBJECT_TYPE_IMAGE = 10,
-VK_OBJECT_TYPE_EVENT = 11,
-VK_OBJECT_TYPE_QUERY_POOL = 12,
-VK_OBJECT_TYPE_BUFFER_VIEW = 13,
-VK_OBJECT_TYPE_IMAGE_VIEW = 14,
-VK_OBJECT_TYPE_SHADER_MODULE = 15,
-VK_OBJECT_TYPE_PIPELINE_CACHE = 16,
-VK_OBJECT_TYPE_PIPELINE_LAYOUT = 17,
-VK_OBJECT_TYPE_RENDER_PASS = 18,
-VK_OBJECT_TYPE_PIPELINE = 19,
-VK_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT = 20,
-VK_OBJECT_TYPE_SAMPLER = 21,
-VK_OBJECT_TYPE_DESCRIPTOR_POOL = 22,
-VK_OBJECT_TYPE_DESCRIPTOR_SET = 23,
-VK_OBJECT_TYPE_FRAMEBUFFER = 24,
-VK_OBJECT_TYPE_COMMAND_POOL = 25,
+ObjectTypeUnknown = 0,
+ObjectTypeInstance = 1,
+ObjectTypePhysicalDevice = 2,
+ObjectTypeDevice = 3,
+ObjectTypeQueue = 4,
+ObjectTypeSemaphore = 5,
+ObjectTypeCommandBuffer = 6,
+ObjectTypeFence = 7,
+ObjectTypeDeviceMemory = 8,
+ObjectTypeBuffer = 9,
+ObjectTypeImage = 10,
+ObjectTypeEvent = 11,
+ObjectTypeQueryPool = 12,
+ObjectTypeBufferView = 13,
+ObjectTypeImageView = 14,
+ObjectTypeShaderModule = 15,
+ObjectTypePipelineCache = 16,
+ObjectTypePipelineLayout = 17,
+ObjectTypeRenderPass = 18,
+ObjectTypePipeline = 19,
+ObjectTypeDescriptorSetLayout = 20,
+ObjectTypeSampler = 21,
+ObjectTypeDescriptorPool = 22,
+ObjectTypeDescriptorSet = 23,
+ObjectTypeFramebuffer = 24,
+ObjectTypeCommandPool = 25,
 }
 
 #[repr(C)]
 pub enum RayTracingInvocationReorderModeNV {
-VK_RAY_TRACING_INVOCATION_REORDER_MODE_NONE_NV = 0,
-VK_RAY_TRACING_INVOCATION_REORDER_MODE_REORDER_NV = 1,
+RayTracingInvocationReorderModeNoneNv = 0,
+RayTracingInvocationReorderModeReorderNv = 1,
 }
 
 #[repr(C)]
 pub enum DirectDriverLoadingModeLUNARG {
-VK_DIRECT_DRIVER_LOADING_MODE_EXCLUSIVE_LUNARG = 0,
-VK_DIRECT_DRIVER_LOADING_MODE_INCLUSIVE_LUNARG = 1,
+DirectDriverLoadingModeExclusiveLunarg = 0,
+DirectDriverLoadingModeInclusiveLunarg = 1,
 }
 
 #[repr(u32)]
 pub enum QueueFlagBits {
-VK_QUEUE_GRAPHICS_BIT = 0b1,
-VK_QUEUE_COMPUTE_BIT = 0b10,
-VK_QUEUE_TRANSFER_BIT = 0b100,
-VK_QUEUE_SPARSE_BINDING_BIT = 0b1000,
+QueueGraphicsBit = 0b1,
+QueueComputeBit = 0b10,
+QueueTransferBit = 0b100,
+QueueSparseBindingBit = 0b1000,
 }
 
 #[repr(u32)]
 pub enum CullModeFlagBits {
-VK_CULL_MODE_NONE = 0b0,
-VK_CULL_MODE_FRONT_BIT = 0b1,
-VK_CULL_MODE_BACK_BIT = 0b10,
-VK_CULL_MODE_FRONT_AND_BACK = 0b11,
+CullModeNone = 0b0,
+CullModeFrontBit = 0b1,
+CullModeBackBit = 0b10,
+CullModeFrontAndBack = 0b11,
 }
 
 #[repr(u32)]
@@ -805,103 +871,103 @@ pub enum DeviceQueueCreateFlagBits {
 
 #[repr(u32)]
 pub enum MemoryPropertyFlagBits {
-VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT = 0b1,
-VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT = 0b10,
-VK_MEMORY_PROPERTY_HOST_COHERENT_BIT = 0b100,
-VK_MEMORY_PROPERTY_HOST_CACHED_BIT = 0b1000,
-VK_MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT = 0b10000,
+MemoryPropertyDeviceLocalBit = 0b1,
+MemoryPropertyHostVisibleBit = 0b10,
+MemoryPropertyHostCoherentBit = 0b100,
+MemoryPropertyHostCachedBit = 0b1000,
+MemoryPropertyLazilyAllocatedBit = 0b10000,
 }
 
 #[repr(u32)]
 pub enum MemoryHeapFlagBits {
-VK_MEMORY_HEAP_DEVICE_LOCAL_BIT = 0b1,
+MemoryHeapDeviceLocalBit = 0b1,
 }
 
 #[repr(u32)]
 pub enum AccessFlagBits {
-VK_ACCESS_INDIRECT_COMMAND_READ_BIT = 0b1,
-VK_ACCESS_INDEX_READ_BIT = 0b10,
-VK_ACCESS_VERTEX_ATTRIBUTE_READ_BIT = 0b100,
-VK_ACCESS_UNIFORM_READ_BIT = 0b1000,
-VK_ACCESS_INPUT_ATTACHMENT_READ_BIT = 0b10000,
-VK_ACCESS_SHADER_READ_BIT = 0b100000,
-VK_ACCESS_SHADER_WRITE_BIT = 0b1000000,
-VK_ACCESS_COLOR_ATTACHMENT_READ_BIT = 0b10000000,
-VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT = 0b100000000,
-VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT = 0b1000000000,
-VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT = 0b10000000000,
-VK_ACCESS_TRANSFER_READ_BIT = 0b100000000000,
-VK_ACCESS_TRANSFER_WRITE_BIT = 0b1000000000000,
-VK_ACCESS_HOST_READ_BIT = 0b10000000000000,
-VK_ACCESS_HOST_WRITE_BIT = 0b100000000000000,
-VK_ACCESS_MEMORY_READ_BIT = 0b1000000000000000,
-VK_ACCESS_MEMORY_WRITE_BIT = 0b10000000000000000,
+AccessIndirectCommandReadBit = 0b1,
+AccessIndexReadBit = 0b10,
+AccessVertexAttributeReadBit = 0b100,
+AccessUniformReadBit = 0b1000,
+AccessInputAttachmentReadBit = 0b10000,
+AccessShaderReadBit = 0b100000,
+AccessShaderWriteBit = 0b1000000,
+AccessColorAttachmentReadBit = 0b10000000,
+AccessColorAttachmentWriteBit = 0b100000000,
+AccessDepthStencilAttachmentReadBit = 0b1000000000,
+AccessDepthStencilAttachmentWriteBit = 0b10000000000,
+AccessTransferReadBit = 0b100000000000,
+AccessTransferWriteBit = 0b1000000000000,
+AccessHostReadBit = 0b10000000000000,
+AccessHostWriteBit = 0b100000000000000,
+AccessMemoryReadBit = 0b1000000000000000,
+AccessMemoryWriteBit = 0b10000000000000000,
 }
 
 #[repr(u32)]
 pub enum BufferUsageFlagBits {
-VK_BUFFER_USAGE_TRANSFER_SRC_BIT = 0b1,
-VK_BUFFER_USAGE_TRANSFER_DST_BIT = 0b10,
-VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT = 0b100,
-VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT = 0b1000,
-VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT = 0b10000,
-VK_BUFFER_USAGE_STORAGE_BUFFER_BIT = 0b100000,
-VK_BUFFER_USAGE_INDEX_BUFFER_BIT = 0b1000000,
-VK_BUFFER_USAGE_VERTEX_BUFFER_BIT = 0b10000000,
-VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT = 0b100000000,
+BufferUsageTransferSrcBit = 0b1,
+BufferUsageTransferDstBit = 0b10,
+BufferUsageUniformTexelBufferBit = 0b100,
+BufferUsageStorageTexelBufferBit = 0b1000,
+BufferUsageUniformBufferBit = 0b10000,
+BufferUsageStorageBufferBit = 0b100000,
+BufferUsageIndexBufferBit = 0b1000000,
+BufferUsageVertexBufferBit = 0b10000000,
+BufferUsageIndirectBufferBit = 0b100000000,
 }
 
 #[repr(u64)]
 pub enum BufferUsageFlagBits2KHR {
-VK_BUFFER_USAGE_2_TRANSFER_SRC_BIT_KHR = 0b1,
-VK_BUFFER_USAGE_2_TRANSFER_DST_BIT_KHR = 0b10,
-VK_BUFFER_USAGE_2_UNIFORM_TEXEL_BUFFER_BIT_KHR = 0b100,
-VK_BUFFER_USAGE_2_STORAGE_TEXEL_BUFFER_BIT_KHR = 0b1000,
-VK_BUFFER_USAGE_2_UNIFORM_BUFFER_BIT_KHR = 0b10000,
-VK_BUFFER_USAGE_2_STORAGE_BUFFER_BIT_KHR = 0b100000,
-VK_BUFFER_USAGE_2_INDEX_BUFFER_BIT_KHR = 0b1000000,
-VK_BUFFER_USAGE_2_VERTEX_BUFFER_BIT_KHR = 0b10000000,
-VK_BUFFER_USAGE_2_INDIRECT_BUFFER_BIT_KHR = 0b100000000,
+BufferUsage2TransferSrcBitKhr = 0b1,
+BufferUsage2TransferDstBitKhr = 0b10,
+BufferUsage2UniformTexelBufferBitKhr = 0b100,
+BufferUsage2StorageTexelBufferBitKhr = 0b1000,
+BufferUsage2UniformBufferBitKhr = 0b10000,
+BufferUsage2StorageBufferBitKhr = 0b100000,
+BufferUsage2IndexBufferBitKhr = 0b1000000,
+BufferUsage2VertexBufferBitKhr = 0b10000000,
+BufferUsage2IndirectBufferBitKhr = 0b100000000,
 }
 
 #[repr(u32)]
 pub enum BufferCreateFlagBits {
-VK_BUFFER_CREATE_SPARSE_BINDING_BIT = 0b1,
-VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT = 0b10,
-VK_BUFFER_CREATE_SPARSE_ALIASED_BIT = 0b100,
+BufferCreateSparseBindingBit = 0b1,
+BufferCreateSparseResidencyBit = 0b10,
+BufferCreateSparseAliasedBit = 0b100,
 }
 
 #[repr(u32)]
 pub enum ShaderStageFlagBits {
-VK_SHADER_STAGE_VERTEX_BIT = 0b1,
-VK_SHADER_STAGE_TESSELLATION_CONTROL_BIT = 0b10,
-VK_SHADER_STAGE_TESSELLATION_EVALUATION_BIT = 0b100,
-VK_SHADER_STAGE_GEOMETRY_BIT = 0b1000,
-VK_SHADER_STAGE_FRAGMENT_BIT = 0b10000,
-VK_SHADER_STAGE_COMPUTE_BIT = 0b100000,
-VK_SHADER_STAGE_ALL_GRAPHICS = 0b11111,
-VK_SHADER_STAGE_ALL = 0b1111111111111111111111111111111,
+ShaderStageVertexBit = 0b1,
+ShaderStageTessellationControlBit = 0b10,
+ShaderStageTessellationEvaluationBit = 0b100,
+ShaderStageGeometryBit = 0b1000,
+ShaderStageFragmentBit = 0b10000,
+ShaderStageComputeBit = 0b100000,
+ShaderStageAllGraphics = 0b11111,
+ShaderStageAll = 0b1111111111111111111111111111111,
 }
 
 #[repr(u32)]
 pub enum ImageUsageFlagBits {
-VK_IMAGE_USAGE_TRANSFER_SRC_BIT = 0b1,
-VK_IMAGE_USAGE_TRANSFER_DST_BIT = 0b10,
-VK_IMAGE_USAGE_SAMPLED_BIT = 0b100,
-VK_IMAGE_USAGE_STORAGE_BIT = 0b1000,
-VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT = 0b10000,
-VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT = 0b100000,
-VK_IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT = 0b1000000,
-VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT = 0b10000000,
+ImageUsageTransferSrcBit = 0b1,
+ImageUsageTransferDstBit = 0b10,
+ImageUsageSampledBit = 0b100,
+ImageUsageStorageBit = 0b1000,
+ImageUsageColorAttachmentBit = 0b10000,
+ImageUsageDepthStencilAttachmentBit = 0b100000,
+ImageUsageTransientAttachmentBit = 0b1000000,
+ImageUsageInputAttachmentBit = 0b10000000,
 }
 
 #[repr(u32)]
 pub enum ImageCreateFlagBits {
-VK_IMAGE_CREATE_SPARSE_BINDING_BIT = 0b1,
-VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT = 0b10,
-VK_IMAGE_CREATE_SPARSE_ALIASED_BIT = 0b100,
-VK_IMAGE_CREATE_MUTABLE_FORMAT_BIT = 0b1000,
-VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT = 0b10000,
+ImageCreateSparseBindingBit = 0b1,
+ImageCreateSparseResidencyBit = 0b10,
+ImageCreateSparseAliasedBit = 0b100,
+ImageCreateMutableFormatBit = 0b1000,
+ImageCreateCubeCompatibleBit = 0b10000,
 }
 
 #[repr(u32)]
@@ -914,16 +980,16 @@ pub enum SamplerCreateFlagBits {
 
 #[repr(u32)]
 pub enum PipelineCreateFlagBits {
-VK_PIPELINE_CREATE_DISABLE_OPTIMIZATION_BIT = 0b1,
-VK_PIPELINE_CREATE_ALLOW_DERIVATIVES_BIT = 0b10,
-VK_PIPELINE_CREATE_DERIVATIVE_BIT = 0b100,
+PipelineCreateDisableOptimizationBit = 0b1,
+PipelineCreateAllowDerivativesBit = 0b10,
+PipelineCreateDerivativeBit = 0b100,
 }
 
 #[repr(u64)]
 pub enum PipelineCreateFlagBits2KHR {
-VK_PIPELINE_CREATE_2_DISABLE_OPTIMIZATION_BIT_KHR = 0b1,
-VK_PIPELINE_CREATE_2_ALLOW_DERIVATIVES_BIT_KHR = 0b10,
-VK_PIPELINE_CREATE_2_DERIVATIVE_BIT_KHR = 0b100,
+PipelineCreate2DisableOptimizationBitKhr = 0b1,
+PipelineCreate2AllowDerivativesBitKhr = 0b10,
+PipelineCreate2DerivativeBitKhr = 0b100,
 }
 
 #[repr(u32)]
@@ -932,15 +998,15 @@ pub enum PipelineShaderStageCreateFlagBits {
 
 #[repr(u32)]
 pub enum ColorComponentFlagBits {
-VK_COLOR_COMPONENT_R_BIT = 0b1,
-VK_COLOR_COMPONENT_G_BIT = 0b10,
-VK_COLOR_COMPONENT_B_BIT = 0b100,
-VK_COLOR_COMPONENT_A_BIT = 0b1000,
+ColorComponentRBit = 0b1,
+ColorComponentGBit = 0b10,
+ColorComponentBBit = 0b100,
+ColorComponentABit = 0b1000,
 }
 
 #[repr(u32)]
 pub enum FenceCreateFlagBits {
-VK_FENCE_CREATE_SIGNALED_BIT = 0b1,
+FenceCreateSignaledBit = 0b1,
 }
 
 #[repr(u32)]
@@ -949,348 +1015,348 @@ pub enum SemaphoreCreateFlagBits {
 
 #[repr(u32)]
 pub enum FormatFeatureFlagBits {
-VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT = 0b1,
-VK_FORMAT_FEATURE_STORAGE_IMAGE_BIT = 0b10,
-VK_FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT = 0b100,
-VK_FORMAT_FEATURE_UNIFORM_TEXEL_BUFFER_BIT = 0b1000,
-VK_FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_BIT = 0b10000,
-VK_FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_ATOMIC_BIT = 0b100000,
-VK_FORMAT_FEATURE_VERTEX_BUFFER_BIT = 0b1000000,
-VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT = 0b10000000,
-VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BLEND_BIT = 0b100000000,
-VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT = 0b1000000000,
-VK_FORMAT_FEATURE_BLIT_SRC_BIT = 0b10000000000,
-VK_FORMAT_FEATURE_BLIT_DST_BIT = 0b100000000000,
-VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT = 0b1000000000000,
+FormatFeatureSampledImageBit = 0b1,
+FormatFeatureStorageImageBit = 0b10,
+FormatFeatureStorageImageAtomicBit = 0b100,
+FormatFeatureUniformTexelBufferBit = 0b1000,
+FormatFeatureStorageTexelBufferBit = 0b10000,
+FormatFeatureStorageTexelBufferAtomicBit = 0b100000,
+FormatFeatureVertexBufferBit = 0b1000000,
+FormatFeatureColorAttachmentBit = 0b10000000,
+FormatFeatureColorAttachmentBlendBit = 0b100000000,
+FormatFeatureDepthStencilAttachmentBit = 0b1000000000,
+FormatFeatureBlitSrcBit = 0b10000000000,
+FormatFeatureBlitDstBit = 0b100000000000,
+FormatFeatureSampledImageFilterLinearBit = 0b1000000000000,
 }
 
 #[repr(u32)]
 pub enum QueryControlFlagBits {
-VK_QUERY_CONTROL_PRECISE_BIT = 0b1,
+QueryControlPreciseBit = 0b1,
 }
 
 #[repr(u32)]
 pub enum QueryResultFlagBits {
-VK_QUERY_RESULT_64_BIT = 0b1,
-VK_QUERY_RESULT_WAIT_BIT = 0b10,
-VK_QUERY_RESULT_WITH_AVAILABILITY_BIT = 0b100,
-VK_QUERY_RESULT_PARTIAL_BIT = 0b1000,
+QueryResult64Bit = 0b1,
+QueryResultWaitBit = 0b10,
+QueryResultWithAvailabilityBit = 0b100,
+QueryResultPartialBit = 0b1000,
 }
 
 #[repr(u32)]
 pub enum CommandBufferUsageFlagBits {
-VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT = 0b1,
-VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT = 0b10,
-VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT = 0b100,
+CommandBufferUsageOneTimeSubmitBit = 0b1,
+CommandBufferUsageRenderPassContinueBit = 0b10,
+CommandBufferUsageSimultaneousUseBit = 0b100,
 }
 
 #[repr(u32)]
 pub enum QueryPipelineStatisticFlagBits {
-VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT = 0b1,
-VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_PRIMITIVES_BIT = 0b10,
-VK_QUERY_PIPELINE_STATISTIC_VERTEX_SHADER_INVOCATIONS_BIT = 0b100,
-VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_INVOCATIONS_BIT = 0b1000,
-VK_QUERY_PIPELINE_STATISTIC_GEOMETRY_SHADER_PRIMITIVES_BIT = 0b10000,
-VK_QUERY_PIPELINE_STATISTIC_CLIPPING_INVOCATIONS_BIT = 0b100000,
-VK_QUERY_PIPELINE_STATISTIC_CLIPPING_PRIMITIVES_BIT = 0b1000000,
-VK_QUERY_PIPELINE_STATISTIC_FRAGMENT_SHADER_INVOCATIONS_BIT = 0b10000000,
-VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_CONTROL_SHADER_PATCHES_BIT = 0b100000000,
-VK_QUERY_PIPELINE_STATISTIC_TESSELLATION_EVALUATION_SHADER_INVOCATIONS_BIT = 0b1000000000,
-VK_QUERY_PIPELINE_STATISTIC_COMPUTE_SHADER_INVOCATIONS_BIT = 0b10000000000,
+QueryPipelineStatisticInputAssemblyVerticesBit = 0b1,
+QueryPipelineStatisticInputAssemblyPrimitivesBit = 0b10,
+QueryPipelineStatisticVertexShaderInvocationsBit = 0b100,
+QueryPipelineStatisticGeometryShaderInvocationsBit = 0b1000,
+QueryPipelineStatisticGeometryShaderPrimitivesBit = 0b10000,
+QueryPipelineStatisticClippingInvocationsBit = 0b100000,
+QueryPipelineStatisticClippingPrimitivesBit = 0b1000000,
+QueryPipelineStatisticFragmentShaderInvocationsBit = 0b10000000,
+QueryPipelineStatisticTessellationControlShaderPatchesBit = 0b100000000,
+QueryPipelineStatisticTessellationEvaluationShaderInvocationsBit = 0b1000000000,
+QueryPipelineStatisticComputeShaderInvocationsBit = 0b10000000000,
 }
 
 #[repr(u32)]
 pub enum ImageAspectFlagBits {
-VK_IMAGE_ASPECT_COLOR_BIT = 0b1,
-VK_IMAGE_ASPECT_DEPTH_BIT = 0b10,
-VK_IMAGE_ASPECT_STENCIL_BIT = 0b100,
-VK_IMAGE_ASPECT_METADATA_BIT = 0b1000,
+ImageAspectColorBit = 0b1,
+ImageAspectDepthBit = 0b10,
+ImageAspectStencilBit = 0b100,
+ImageAspectMetadataBit = 0b1000,
 }
 
 #[repr(u32)]
 pub enum SparseImageFormatFlagBits {
-VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT = 0b1,
-VK_SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT = 0b10,
-VK_SPARSE_IMAGE_FORMAT_NONSTANDARD_BLOCK_SIZE_BIT = 0b100,
+SparseImageFormatSingleMiptailBit = 0b1,
+SparseImageFormatAlignedMipSizeBit = 0b10,
+SparseImageFormatNonstandardBlockSizeBit = 0b100,
 }
 
 #[repr(u32)]
 pub enum SparseMemoryBindFlagBits {
-VK_SPARSE_MEMORY_BIND_METADATA_BIT = 0b1,
+SparseMemoryBindMetadataBit = 0b1,
 }
 
 #[repr(u32)]
 pub enum PipelineStageFlagBits {
-VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT = 0b1,
-VK_PIPELINE_STAGE_DRAW_INDIRECT_BIT = 0b10,
-VK_PIPELINE_STAGE_VERTEX_INPUT_BIT = 0b100,
-VK_PIPELINE_STAGE_VERTEX_SHADER_BIT = 0b1000,
-VK_PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT = 0b10000,
-VK_PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT = 0b100000,
-VK_PIPELINE_STAGE_GEOMETRY_SHADER_BIT = 0b1000000,
-VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT = 0b10000000,
-VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT = 0b100000000,
-VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT = 0b1000000000,
-VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT = 0b10000000000,
-VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT = 0b100000000000,
-VK_PIPELINE_STAGE_TRANSFER_BIT = 0b1000000000000,
-VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT = 0b10000000000000,
-VK_PIPELINE_STAGE_HOST_BIT = 0b100000000000000,
-VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT = 0b1000000000000000,
-VK_PIPELINE_STAGE_ALL_COMMANDS_BIT = 0b10000000000000000,
+PipelineStageTopOfPipeBit = 0b1,
+PipelineStageDrawIndirectBit = 0b10,
+PipelineStageVertexInputBit = 0b100,
+PipelineStageVertexShaderBit = 0b1000,
+PipelineStageTessellationControlShaderBit = 0b10000,
+PipelineStageTessellationEvaluationShaderBit = 0b100000,
+PipelineStageGeometryShaderBit = 0b1000000,
+PipelineStageFragmentShaderBit = 0b10000000,
+PipelineStageEarlyFragmentTestsBit = 0b100000000,
+PipelineStageLateFragmentTestsBit = 0b1000000000,
+PipelineStageColorAttachmentOutputBit = 0b10000000000,
+PipelineStageComputeShaderBit = 0b100000000000,
+PipelineStageTransferBit = 0b1000000000000,
+PipelineStageBottomOfPipeBit = 0b10000000000000,
+PipelineStageHostBit = 0b100000000000000,
+PipelineStageAllGraphicsBit = 0b1000000000000000,
+PipelineStageAllCommandsBit = 0b10000000000000000,
 }
 
 #[repr(u32)]
 pub enum CommandPoolCreateFlagBits {
-VK_COMMAND_POOL_CREATE_TRANSIENT_BIT = 0b1,
-VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT = 0b10,
+CommandPoolCreateTransientBit = 0b1,
+CommandPoolCreateResetCommandBufferBit = 0b10,
 }
 
 #[repr(u32)]
 pub enum CommandPoolResetFlagBits {
-VK_COMMAND_POOL_RESET_RELEASE_RESOURCES_BIT = 0b1,
+CommandPoolResetReleaseResourcesBit = 0b1,
 }
 
 #[repr(u32)]
 pub enum CommandBufferResetFlagBits {
-VK_COMMAND_BUFFER_RESET_RELEASE_RESOURCES_BIT = 0b1,
+CommandBufferResetReleaseResourcesBit = 0b1,
 }
 
 #[repr(u32)]
 pub enum SampleCountFlagBits {
-VK_SAMPLE_COUNT_1_BIT = 0b1,
-VK_SAMPLE_COUNT_2_BIT = 0b10,
-VK_SAMPLE_COUNT_4_BIT = 0b100,
-VK_SAMPLE_COUNT_8_BIT = 0b1000,
-VK_SAMPLE_COUNT_16_BIT = 0b10000,
-VK_SAMPLE_COUNT_32_BIT = 0b100000,
-VK_SAMPLE_COUNT_64_BIT = 0b1000000,
+SampleCount1Bit = 0b1,
+SampleCount2Bit = 0b10,
+SampleCount4Bit = 0b100,
+SampleCount8Bit = 0b1000,
+SampleCount16Bit = 0b10000,
+SampleCount32Bit = 0b100000,
+SampleCount64Bit = 0b1000000,
 }
 
 #[repr(u32)]
 pub enum AttachmentDescriptionFlagBits {
-VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT = 0b1,
+AttachmentDescriptionMayAliasBit = 0b1,
 }
 
 #[repr(u32)]
 pub enum StencilFaceFlagBits {
-VK_STENCIL_FACE_FRONT_BIT = 0b1,
-VK_STENCIL_FACE_BACK_BIT = 0b10,
-VK_STENCIL_FACE_FRONT_AND_BACK = 0b11,
+StencilFaceFrontBit = 0b1,
+StencilFaceBackBit = 0b10,
+StencilFaceFrontAndBack = 0b11,
 }
 
 #[repr(u32)]
 pub enum DescriptorPoolCreateFlagBits {
-VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT = 0b1,
+DescriptorPoolCreateFreeDescriptorSetBit = 0b1,
 }
 
 #[repr(u32)]
 pub enum DependencyFlagBits {
-VK_DEPENDENCY_BY_REGION_BIT = 0b1,
+DependencyByRegionBit = 0b1,
 }
 
 #[repr(C)]
 pub enum SemaphoreType {
-VK_SEMAPHORE_TYPE_BINARY = 0,
-VK_SEMAPHORE_TYPE_TIMELINE = 1,
+SemaphoreTypeBinary = 0,
+SemaphoreTypeTimeline = 1,
 }
 
 #[repr(u32)]
 pub enum SemaphoreWaitFlagBits {
-VK_SEMAPHORE_WAIT_ANY_BIT = 0b1,
+SemaphoreWaitAnyBit = 0b1,
 }
 
 #[repr(C)]
 pub enum PresentModeKHR {
-VK_PRESENT_MODE_IMMEDIATE_KHR = 0,
-VK_PRESENT_MODE_MAILBOX_KHR = 1,
-VK_PRESENT_MODE_FIFO_KHR = 2,
-VK_PRESENT_MODE_FIFO_RELAXED_KHR = 3,
+PresentModeImmediateKhr = 0,
+PresentModeMailboxKhr = 1,
+PresentModeFifoKhr = 2,
+PresentModeFifoRelaxedKhr = 3,
 }
 
 #[repr(C)]
 pub enum ColorSpaceKHR {
-VK_COLOR_SPACE_SRGB_NONLINEAR_KHR = 0,
+ColorSpaceSrgbNonlinearKhr = 0,
 }
 
 #[repr(u32)]
 pub enum DisplayPlaneAlphaFlagBitsKHR {
-VK_DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR = 0b1,
-VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR = 0b10,
-VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR = 0b100,
-VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR = 0b1000,
+DisplayPlaneAlphaOpaqueBitKhr = 0b1,
+DisplayPlaneAlphaGlobalBitKhr = 0b10,
+DisplayPlaneAlphaPerPixelBitKhr = 0b100,
+DisplayPlaneAlphaPerPixelPremultipliedBitKhr = 0b1000,
 }
 
 #[repr(u32)]
 pub enum CompositeAlphaFlagBitsKHR {
-VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR = 0b1,
-VK_COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR = 0b10,
-VK_COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR = 0b100,
-VK_COMPOSITE_ALPHA_INHERIT_BIT_KHR = 0b1000,
+CompositeAlphaOpaqueBitKhr = 0b1,
+CompositeAlphaPreMultipliedBitKhr = 0b10,
+CompositeAlphaPostMultipliedBitKhr = 0b100,
+CompositeAlphaInheritBitKhr = 0b1000,
 }
 
 #[repr(u32)]
 pub enum SurfaceTransformFlagBitsKHR {
-VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR = 0b1,
-VK_SURFACE_TRANSFORM_ROTATE_90_BIT_KHR = 0b10,
-VK_SURFACE_TRANSFORM_ROTATE_180_BIT_KHR = 0b100,
-VK_SURFACE_TRANSFORM_ROTATE_270_BIT_KHR = 0b1000,
-VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_BIT_KHR = 0b10000,
-VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_BIT_KHR = 0b100000,
-VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_BIT_KHR = 0b1000000,
-VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_BIT_KHR = 0b10000000,
-VK_SURFACE_TRANSFORM_INHERIT_BIT_KHR = 0b100000000,
+SurfaceTransformIdentityBitKhr = 0b1,
+SurfaceTransformRotate90BitKhr = 0b10,
+SurfaceTransformRotate180BitKhr = 0b100,
+SurfaceTransformRotate270BitKhr = 0b1000,
+SurfaceTransformHorizontalMirrorBitKhr = 0b10000,
+SurfaceTransformHorizontalMirrorRotate90BitKhr = 0b100000,
+SurfaceTransformHorizontalMirrorRotate180BitKhr = 0b1000000,
+SurfaceTransformHorizontalMirrorRotate270BitKhr = 0b10000000,
+SurfaceTransformInheritBitKhr = 0b100000000,
 }
 
 #[repr(u32)]
 pub enum SwapchainImageUsageFlagBitsANDROID {
-VK_SWAPCHAIN_IMAGE_USAGE_SHARED_BIT_ANDROID = 0b1,
+SwapchainImageUsageSharedBitAndroid = 0b1,
 }
 
 #[repr(C)]
 pub enum TimeDomainEXT {
-VK_TIME_DOMAIN_DEVICE_EXT = 0,
-VK_TIME_DOMAIN_CLOCK_MONOTONIC_EXT = 1,
-VK_TIME_DOMAIN_CLOCK_MONOTONIC_RAW_EXT = 2,
-VK_TIME_DOMAIN_QUERY_PERFORMANCE_COUNTER_EXT = 3,
+TimeDomainDeviceExt = 0,
+TimeDomainClockMonotonicExt = 1,
+TimeDomainClockMonotonicRawExt = 2,
+TimeDomainQueryPerformanceCounterExt = 3,
 }
 
 #[repr(u32)]
 pub enum DebugReportFlagBitsEXT {
-VK_DEBUG_REPORT_INFORMATION_BIT_EXT = 0b1,
-VK_DEBUG_REPORT_WARNING_BIT_EXT = 0b10,
-VK_DEBUG_REPORT_PERFORMANCE_WARNING_BIT_EXT = 0b100,
-VK_DEBUG_REPORT_ERROR_BIT_EXT = 0b1000,
-VK_DEBUG_REPORT_DEBUG_BIT_EXT = 0b10000,
+DebugReportInformationBitExt = 0b1,
+DebugReportWarningBitExt = 0b10,
+DebugReportPerformanceWarningBitExt = 0b100,
+DebugReportErrorBitExt = 0b1000,
+DebugReportDebugBitExt = 0b10000,
 }
 
 #[repr(C)]
 pub enum DebugReportObjectTypeEXT {
-VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT = 0,
-VK_DEBUG_REPORT_OBJECT_TYPE_INSTANCE_EXT = 1,
-VK_DEBUG_REPORT_OBJECT_TYPE_PHYSICAL_DEVICE_EXT = 2,
-VK_DEBUG_REPORT_OBJECT_TYPE_DEVICE_EXT = 3,
-VK_DEBUG_REPORT_OBJECT_TYPE_QUEUE_EXT = 4,
-VK_DEBUG_REPORT_OBJECT_TYPE_SEMAPHORE_EXT = 5,
-VK_DEBUG_REPORT_OBJECT_TYPE_COMMAND_BUFFER_EXT = 6,
-VK_DEBUG_REPORT_OBJECT_TYPE_FENCE_EXT = 7,
-VK_DEBUG_REPORT_OBJECT_TYPE_DEVICE_MEMORY_EXT = 8,
-VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_EXT = 9,
-VK_DEBUG_REPORT_OBJECT_TYPE_IMAGE_EXT = 10,
-VK_DEBUG_REPORT_OBJECT_TYPE_EVENT_EXT = 11,
-VK_DEBUG_REPORT_OBJECT_TYPE_QUERY_POOL_EXT = 12,
-VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_VIEW_EXT = 13,
-VK_DEBUG_REPORT_OBJECT_TYPE_IMAGE_VIEW_EXT = 14,
-VK_DEBUG_REPORT_OBJECT_TYPE_SHADER_MODULE_EXT = 15,
-VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_CACHE_EXT = 16,
-VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_LAYOUT_EXT = 17,
-VK_DEBUG_REPORT_OBJECT_TYPE_RENDER_PASS_EXT = 18,
-VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_EXT = 19,
-VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT_EXT = 20,
-VK_DEBUG_REPORT_OBJECT_TYPE_SAMPLER_EXT = 21,
-VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_POOL_EXT = 22,
-VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_EXT = 23,
-VK_DEBUG_REPORT_OBJECT_TYPE_FRAMEBUFFER_EXT = 24,
-VK_DEBUG_REPORT_OBJECT_TYPE_COMMAND_POOL_EXT = 25,
-VK_DEBUG_REPORT_OBJECT_TYPE_SURFACE_KHR_EXT = 26,
-VK_DEBUG_REPORT_OBJECT_TYPE_SWAPCHAIN_KHR_EXT = 27,
-VK_DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_CALLBACK_EXT_EXT = 28,
-VK_DEBUG_REPORT_OBJECT_TYPE_DISPLAY_KHR_EXT = 29,
-VK_DEBUG_REPORT_OBJECT_TYPE_DISPLAY_MODE_KHR_EXT = 30,
-VK_DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT_EXT = 33,
+DebugReportObjectTypeUnknownExt = 0,
+DebugReportObjectTypeInstanceExt = 1,
+DebugReportObjectTypePhysicalDeviceExt = 2,
+DebugReportObjectTypeDeviceExt = 3,
+DebugReportObjectTypeQueueExt = 4,
+DebugReportObjectTypeSemaphoreExt = 5,
+DebugReportObjectTypeCommandBufferExt = 6,
+DebugReportObjectTypeFenceExt = 7,
+DebugReportObjectTypeDeviceMemoryExt = 8,
+DebugReportObjectTypeBufferExt = 9,
+DebugReportObjectTypeImageExt = 10,
+DebugReportObjectTypeEventExt = 11,
+DebugReportObjectTypeQueryPoolExt = 12,
+DebugReportObjectTypeBufferViewExt = 13,
+DebugReportObjectTypeImageViewExt = 14,
+DebugReportObjectTypeShaderModuleExt = 15,
+DebugReportObjectTypePipelineCacheExt = 16,
+DebugReportObjectTypePipelineLayoutExt = 17,
+DebugReportObjectTypeRenderPassExt = 18,
+DebugReportObjectTypePipelineExt = 19,
+DebugReportObjectTypeDescriptorSetLayoutExt = 20,
+DebugReportObjectTypeSamplerExt = 21,
+DebugReportObjectTypeDescriptorPoolExt = 22,
+DebugReportObjectTypeDescriptorSetExt = 23,
+DebugReportObjectTypeFramebufferExt = 24,
+DebugReportObjectTypeCommandPoolExt = 25,
+DebugReportObjectTypeSurfaceKhrExt = 26,
+DebugReportObjectTypeSwapchainKhrExt = 27,
+DebugReportObjectTypeDebugReportCallbackExtExt = 28,
+DebugReportObjectTypeDisplayKhrExt = 29,
+DebugReportObjectTypeDisplayModeKhrExt = 30,
+DebugReportObjectTypeValidationCacheExtExt = 33,
 }
 
 #[repr(C)]
 pub enum DeviceMemoryReportEventTypeEXT {
-VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATE_EXT = 0,
-VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_FREE_EXT = 1,
-VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_IMPORT_EXT = 2,
-VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_UNIMPORT_EXT = 3,
-VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATION_FAILED_EXT = 4,
+DeviceMemoryReportEventTypeAllocateExt = 0,
+DeviceMemoryReportEventTypeFreeExt = 1,
+DeviceMemoryReportEventTypeImportExt = 2,
+DeviceMemoryReportEventTypeUnimportExt = 3,
+DeviceMemoryReportEventTypeAllocationFailedExt = 4,
 }
 
 #[repr(C)]
 pub enum RasterizationOrderAMD {
-VK_RASTERIZATION_ORDER_STRICT_AMD = 0,
-VK_RASTERIZATION_ORDER_RELAXED_AMD = 1,
+RasterizationOrderStrictAmd = 0,
+RasterizationOrderRelaxedAmd = 1,
 }
 
 #[repr(u32)]
 pub enum ExternalMemoryHandleTypeFlagBitsNV {
-VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_NV = 0b1,
-VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_NV = 0b10,
-VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_BIT_NV = 0b100,
-VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_IMAGE_KMT_BIT_NV = 0b1000,
+ExternalMemoryHandleTypeOpaqueWin32BitNv = 0b1,
+ExternalMemoryHandleTypeOpaqueWin32KmtBitNv = 0b10,
+ExternalMemoryHandleTypeD3d11ImageBitNv = 0b100,
+ExternalMemoryHandleTypeD3d11ImageKmtBitNv = 0b1000,
 }
 
 #[repr(u32)]
 pub enum ExternalMemoryFeatureFlagBitsNV {
-VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_NV = 0b1,
-VK_EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_NV = 0b10,
-VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_NV = 0b100,
+ExternalMemoryFeatureDedicatedOnlyBitNv = 0b1,
+ExternalMemoryFeatureExportableBitNv = 0b10,
+ExternalMemoryFeatureImportableBitNv = 0b100,
 }
 
 #[repr(C)]
 pub enum ValidationCheckEXT {
-VK_VALIDATION_CHECK_ALL_EXT = 0,
-VK_VALIDATION_CHECK_SHADERS_EXT = 1,
+ValidationCheckAllExt = 0,
+ValidationCheckShadersExt = 1,
 }
 
 #[repr(C)]
 pub enum ValidationFeatureEnableEXT {
-VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT = 0,
-VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT = 1,
-VK_VALIDATION_FEATURE_ENABLE_BEST_PRACTICES_EXT = 2,
-VK_VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT = 3,
-VK_VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION_EXT = 4,
+ValidationFeatureEnableGpuAssistedExt = 0,
+ValidationFeatureEnableGpuAssistedReserveBindingSlotExt = 1,
+ValidationFeatureEnableBestPracticesExt = 2,
+ValidationFeatureEnableDebugPrintfExt = 3,
+ValidationFeatureEnableSynchronizationValidationExt = 4,
 }
 
 #[repr(C)]
 pub enum ValidationFeatureDisableEXT {
-VK_VALIDATION_FEATURE_DISABLE_ALL_EXT = 0,
-VK_VALIDATION_FEATURE_DISABLE_SHADERS_EXT = 1,
-VK_VALIDATION_FEATURE_DISABLE_THREAD_SAFETY_EXT = 2,
-VK_VALIDATION_FEATURE_DISABLE_API_PARAMETERS_EXT = 3,
-VK_VALIDATION_FEATURE_DISABLE_OBJECT_LIFETIMES_EXT = 4,
-VK_VALIDATION_FEATURE_DISABLE_CORE_CHECKS_EXT = 5,
-VK_VALIDATION_FEATURE_DISABLE_UNIQUE_HANDLES_EXT = 6,
-VK_VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE_EXT = 7,
+ValidationFeatureDisableAllExt = 0,
+ValidationFeatureDisableShadersExt = 1,
+ValidationFeatureDisableThreadSafetyExt = 2,
+ValidationFeatureDisableApiParametersExt = 3,
+ValidationFeatureDisableObjectLifetimesExt = 4,
+ValidationFeatureDisableCoreChecksExt = 5,
+ValidationFeatureDisableUniqueHandlesExt = 6,
+ValidationFeatureDisableShaderValidationCacheExt = 7,
 }
 
 #[repr(u32)]
 pub enum SubgroupFeatureFlagBits {
-VK_SUBGROUP_FEATURE_BASIC_BIT = 0b1,
-VK_SUBGROUP_FEATURE_VOTE_BIT = 0b10,
-VK_SUBGROUP_FEATURE_ARITHMETIC_BIT = 0b100,
-VK_SUBGROUP_FEATURE_BALLOT_BIT = 0b1000,
-VK_SUBGROUP_FEATURE_SHUFFLE_BIT = 0b10000,
-VK_SUBGROUP_FEATURE_SHUFFLE_RELATIVE_BIT = 0b100000,
-VK_SUBGROUP_FEATURE_CLUSTERED_BIT = 0b1000000,
-VK_SUBGROUP_FEATURE_QUAD_BIT = 0b10000000,
+SubgroupFeatureBasicBit = 0b1,
+SubgroupFeatureVoteBit = 0b10,
+SubgroupFeatureArithmeticBit = 0b100,
+SubgroupFeatureBallotBit = 0b1000,
+SubgroupFeatureShuffleBit = 0b10000,
+SubgroupFeatureShuffleRelativeBit = 0b100000,
+SubgroupFeatureClusteredBit = 0b1000000,
+SubgroupFeatureQuadBit = 0b10000000,
 }
 
 #[repr(u32)]
 pub enum IndirectCommandsLayoutUsageFlagBitsNV {
-VK_INDIRECT_COMMANDS_LAYOUT_USAGE_EXPLICIT_PREPROCESS_BIT_NV = 0b1,
-VK_INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT_NV = 0b10,
-VK_INDIRECT_COMMANDS_LAYOUT_USAGE_UNORDERED_SEQUENCES_BIT_NV = 0b100,
+IndirectCommandsLayoutUsageExplicitPreprocessBitNv = 0b1,
+IndirectCommandsLayoutUsageIndexedSequencesBitNv = 0b10,
+IndirectCommandsLayoutUsageUnorderedSequencesBitNv = 0b100,
 }
 
 #[repr(u32)]
 pub enum IndirectStateFlagBitsNV {
-VK_INDIRECT_STATE_FLAG_FRONTFACE_BIT_NV = 0b1,
+IndirectStateFlagFrontfaceBitNv = 0b1,
 }
 
 #[repr(C)]
 pub enum IndirectCommandsTokenTypeNV {
-VK_INDIRECT_COMMANDS_TOKEN_TYPE_SHADER_GROUP_NV = 0,
-VK_INDIRECT_COMMANDS_TOKEN_TYPE_STATE_FLAGS_NV = 1,
-VK_INDIRECT_COMMANDS_TOKEN_TYPE_INDEX_BUFFER_NV = 2,
-VK_INDIRECT_COMMANDS_TOKEN_TYPE_VERTEX_BUFFER_NV = 3,
-VK_INDIRECT_COMMANDS_TOKEN_TYPE_PUSH_CONSTANT_NV = 4,
-VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_INDEXED_NV = 5,
-VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_NV = 6,
-VK_INDIRECT_COMMANDS_TOKEN_TYPE_DRAW_TASKS_NV = 7,
+IndirectCommandsTokenTypeShaderGroupNv = 0,
+IndirectCommandsTokenTypeStateFlagsNv = 1,
+IndirectCommandsTokenTypeIndexBufferNv = 2,
+IndirectCommandsTokenTypeVertexBufferNv = 3,
+IndirectCommandsTokenTypePushConstantNv = 4,
+IndirectCommandsTokenTypeDrawIndexedNv = 5,
+IndirectCommandsTokenTypeDrawNv = 6,
+IndirectCommandsTokenTypeDrawTasksNv = 7,
 }
 
 #[repr(u32)]
@@ -1303,102 +1369,102 @@ pub enum DescriptorSetLayoutCreateFlagBits {
 
 #[repr(u32)]
 pub enum ExternalMemoryHandleTypeFlagBits {
-VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT = 0b1,
-VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT = 0b10,
-VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 0b100,
-VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT = 0b1000,
-VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT = 0b10000,
-VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT = 0b100000,
-VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT = 0b1000000,
+ExternalMemoryHandleTypeOpaqueFdBit = 0b1,
+ExternalMemoryHandleTypeOpaqueWin32Bit = 0b10,
+ExternalMemoryHandleTypeOpaqueWin32KmtBit = 0b100,
+ExternalMemoryHandleTypeD3d11TextureBit = 0b1000,
+ExternalMemoryHandleTypeD3d11TextureKmtBit = 0b10000,
+ExternalMemoryHandleTypeD3d12HeapBit = 0b100000,
+ExternalMemoryHandleTypeD3d12ResourceBit = 0b1000000,
 }
 
 #[repr(u32)]
 pub enum ExternalMemoryFeatureFlagBits {
-VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT = 0b1,
-VK_EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT = 0b10,
-VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT = 0b100,
+ExternalMemoryFeatureDedicatedOnlyBit = 0b1,
+ExternalMemoryFeatureExportableBit = 0b10,
+ExternalMemoryFeatureImportableBit = 0b100,
 }
 
 #[repr(u32)]
 pub enum ExternalSemaphoreHandleTypeFlagBits {
-VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT = 0b1,
-VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT = 0b10,
-VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 0b100,
-VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT = 0b1000,
-VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT = 0b10000,
+ExternalSemaphoreHandleTypeOpaqueFdBit = 0b1,
+ExternalSemaphoreHandleTypeOpaqueWin32Bit = 0b10,
+ExternalSemaphoreHandleTypeOpaqueWin32KmtBit = 0b100,
+ExternalSemaphoreHandleTypeD3d12FenceBit = 0b1000,
+ExternalSemaphoreHandleTypeSyncFdBit = 0b10000,
 }
 
 #[repr(u32)]
 pub enum ExternalSemaphoreFeatureFlagBits {
-VK_EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT = 0b1,
-VK_EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT = 0b10,
+ExternalSemaphoreFeatureExportableBit = 0b1,
+ExternalSemaphoreFeatureImportableBit = 0b10,
 }
 
 #[repr(u32)]
 pub enum SemaphoreImportFlagBits {
-VK_SEMAPHORE_IMPORT_TEMPORARY_BIT = 0b1,
+SemaphoreImportTemporaryBit = 0b1,
 }
 
 #[repr(u32)]
 pub enum ExternalFenceHandleTypeFlagBits {
-VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_FD_BIT = 0b1,
-VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_BIT = 0b10,
-VK_EXTERNAL_FENCE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT = 0b100,
-VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT = 0b1000,
+ExternalFenceHandleTypeOpaqueFdBit = 0b1,
+ExternalFenceHandleTypeOpaqueWin32Bit = 0b10,
+ExternalFenceHandleTypeOpaqueWin32KmtBit = 0b100,
+ExternalFenceHandleTypeSyncFdBit = 0b1000,
 }
 
 #[repr(u32)]
 pub enum ExternalFenceFeatureFlagBits {
-VK_EXTERNAL_FENCE_FEATURE_EXPORTABLE_BIT = 0b1,
-VK_EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT = 0b10,
+ExternalFenceFeatureExportableBit = 0b1,
+ExternalFenceFeatureImportableBit = 0b10,
 }
 
 #[repr(u32)]
 pub enum FenceImportFlagBits {
-VK_FENCE_IMPORT_TEMPORARY_BIT = 0b1,
+FenceImportTemporaryBit = 0b1,
 }
 
 #[repr(u32)]
 pub enum SurfaceCounterFlagBitsEXT {
-VK_SURFACE_COUNTER_VBLANK_BIT_EXT = 0b1,
+SurfaceCounterVblankBitExt = 0b1,
 }
 
 #[repr(C)]
 pub enum DisplayPowerStateEXT {
-VK_DISPLAY_POWER_STATE_OFF_EXT = 0,
-VK_DISPLAY_POWER_STATE_SUSPEND_EXT = 1,
-VK_DISPLAY_POWER_STATE_ON_EXT = 2,
+DisplayPowerStateOffExt = 0,
+DisplayPowerStateSuspendExt = 1,
+DisplayPowerStateOnExt = 2,
 }
 
 #[repr(C)]
 pub enum DeviceEventTypeEXT {
-VK_DEVICE_EVENT_TYPE_DISPLAY_HOTPLUG_EXT = 0,
+DeviceEventTypeDisplayHotplugExt = 0,
 }
 
 #[repr(C)]
 pub enum DisplayEventTypeEXT {
-VK_DISPLAY_EVENT_TYPE_FIRST_PIXEL_OUT_EXT = 0,
+DisplayEventTypeFirstPixelOutExt = 0,
 }
 
 #[repr(u32)]
 pub enum PeerMemoryFeatureFlagBits {
-VK_PEER_MEMORY_FEATURE_COPY_SRC_BIT = 0b1,
-VK_PEER_MEMORY_FEATURE_COPY_DST_BIT = 0b10,
-VK_PEER_MEMORY_FEATURE_GENERIC_SRC_BIT = 0b100,
-VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT = 0b1000,
+PeerMemoryFeatureCopySrcBit = 0b1,
+PeerMemoryFeatureCopyDstBit = 0b10,
+PeerMemoryFeatureGenericSrcBit = 0b100,
+PeerMemoryFeatureGenericDstBit = 0b1000,
 }
 
 #[repr(u32)]
 pub enum MemoryAllocateFlagBits {
-VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT = 0b1,
+MemoryAllocateDeviceMaskBit = 0b1,
 }
 
 #[repr(u32)]
 pub enum DeviceGroupPresentModeFlagBitsKHR {
-VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR = 0b1,
-VK_DEVICE_GROUP_PRESENT_MODE_REMOTE_BIT_KHR = 0b10,
-VK_DEVICE_GROUP_PRESENT_MODE_SUM_BIT_KHR = 0b100,
-VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_MULTI_DEVICE_BIT_KHR = 0b1000,
+DeviceGroupPresentModeLocalBitKhr = 0b1,
+DeviceGroupPresentModeRemoteBitKhr = 0b10,
+DeviceGroupPresentModeSumBitKhr = 0b100,
+DeviceGroupPresentModeLocalMultiDeviceBitKhr = 0b1000,
 }
 
 #[repr(u32)]
@@ -1407,20 +1473,20 @@ pub enum SwapchainCreateFlagBitsKHR {
 
 #[repr(C)]
 pub enum ViewportCoordinateSwizzleNV {
-VK_VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_X_NV = 0,
-VK_VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_X_NV = 1,
-VK_VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_Y_NV = 2,
-VK_VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_Y_NV = 3,
-VK_VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_Z_NV = 4,
-VK_VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_Z_NV = 5,
-VK_VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_W_NV = 6,
-VK_VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_W_NV = 7,
+ViewportCoordinateSwizzlePositiveXNv = 0,
+ViewportCoordinateSwizzleNegativeXNv = 1,
+ViewportCoordinateSwizzlePositiveYNv = 2,
+ViewportCoordinateSwizzleNegativeYNv = 3,
+ViewportCoordinateSwizzlePositiveZNv = 4,
+ViewportCoordinateSwizzleNegativeZNv = 5,
+ViewportCoordinateSwizzlePositiveWNv = 6,
+ViewportCoordinateSwizzleNegativeWNv = 7,
 }
 
 #[repr(C)]
 pub enum DiscardRectangleModeEXT {
-VK_DISCARD_RECTANGLE_MODE_INCLUSIVE_EXT = 0,
-VK_DISCARD_RECTANGLE_MODE_EXCLUSIVE_EXT = 1,
+DiscardRectangleModeInclusiveExt = 0,
+DiscardRectangleModeExclusiveExt = 1,
 }
 
 #[repr(u32)]
@@ -1429,290 +1495,290 @@ pub enum SubpassDescriptionFlagBits {
 
 #[repr(C)]
 pub enum PointClippingBehavior {
-VK_POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES = 0,
-VK_POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY = 1,
+PointClippingBehaviorAllClipPlanes = 0,
+PointClippingBehaviorUserClipPlanesOnly = 1,
 }
 
 #[repr(C)]
 pub enum SamplerReductionMode {
-VK_SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE = 0,
-VK_SAMPLER_REDUCTION_MODE_MIN = 1,
-VK_SAMPLER_REDUCTION_MODE_MAX = 2,
+SamplerReductionModeWeightedAverage = 0,
+SamplerReductionModeMin = 1,
+SamplerReductionModeMax = 2,
 }
 
 #[repr(C)]
 pub enum TessellationDomainOrigin {
-VK_TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT = 0,
-VK_TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT = 1,
+TessellationDomainOriginUpperLeft = 0,
+TessellationDomainOriginLowerLeft = 1,
 }
 
 #[repr(C)]
 pub enum SamplerYcbcrModelConversion {
-VK_SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY = 0,
-VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_IDENTITY = 1,
-VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_709 = 2,
-VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_601 = 3,
-VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020 = 4,
+SamplerYcbcrModelConversionRgbIdentity = 0,
+SamplerYcbcrModelConversionYcbcrIdentity = 1,
+SamplerYcbcrModelConversionYcbcr709 = 2,
+SamplerYcbcrModelConversionYcbcr601 = 3,
+SamplerYcbcrModelConversionYcbcr2020 = 4,
 }
 
 #[repr(C)]
 pub enum SamplerYcbcrRange {
-VK_SAMPLER_YCBCR_RANGE_ITU_FULL = 0,
-VK_SAMPLER_YCBCR_RANGE_ITU_NARROW = 1,
+SamplerYcbcrRangeItuFull = 0,
+SamplerYcbcrRangeItuNarrow = 1,
 }
 
 #[repr(C)]
 pub enum ChromaLocation {
-VK_CHROMA_LOCATION_COSITED_EVEN = 0,
-VK_CHROMA_LOCATION_MIDPOINT = 1,
+ChromaLocationCositedEven = 0,
+ChromaLocationMidpoint = 1,
 }
 
 #[repr(C)]
 pub enum BlendOverlapEXT {
-VK_BLEND_OVERLAP_UNCORRELATED_EXT = 0,
-VK_BLEND_OVERLAP_DISJOINT_EXT = 1,
-VK_BLEND_OVERLAP_CONJOINT_EXT = 2,
+BlendOverlapUncorrelatedExt = 0,
+BlendOverlapDisjointExt = 1,
+BlendOverlapConjointExt = 2,
 }
 
 #[repr(C)]
 pub enum CoverageModulationModeNV {
-VK_COVERAGE_MODULATION_MODE_NONE_NV = 0,
-VK_COVERAGE_MODULATION_MODE_RGB_NV = 1,
-VK_COVERAGE_MODULATION_MODE_ALPHA_NV = 2,
-VK_COVERAGE_MODULATION_MODE_RGBA_NV = 3,
+CoverageModulationModeNoneNv = 0,
+CoverageModulationModeRgbNv = 1,
+CoverageModulationModeAlphaNv = 2,
+CoverageModulationModeRgbaNv = 3,
 }
 
 #[repr(C)]
 pub enum CoverageReductionModeNV {
-VK_COVERAGE_REDUCTION_MODE_MERGE_NV = 0,
-VK_COVERAGE_REDUCTION_MODE_TRUNCATE_NV = 1,
+CoverageReductionModeMergeNv = 0,
+CoverageReductionModeTruncateNv = 1,
 }
 
 #[repr(C)]
 pub enum ValidationCacheHeaderVersionEXT {
-VK_VALIDATION_CACHE_HEADER_VERSION_ONE_EXT = 1,
+ValidationCacheHeaderVersionOneExt = 1,
 }
 
 #[repr(C)]
 pub enum ShaderInfoTypeAMD {
-VK_SHADER_INFO_TYPE_STATISTICS_AMD = 0,
-VK_SHADER_INFO_TYPE_BINARY_AMD = 1,
-VK_SHADER_INFO_TYPE_DISASSEMBLY_AMD = 2,
+ShaderInfoTypeStatisticsAmd = 0,
+ShaderInfoTypeBinaryAmd = 1,
+ShaderInfoTypeDisassemblyAmd = 2,
 }
 
 #[repr(C)]
 pub enum QueueGlobalPriorityKHR {
-VK_QUEUE_GLOBAL_PRIORITY_LOW_KHR = 128,
-VK_QUEUE_GLOBAL_PRIORITY_MEDIUM_KHR = 256,
-VK_QUEUE_GLOBAL_PRIORITY_HIGH_KHR = 512,
-VK_QUEUE_GLOBAL_PRIORITY_REALTIME_KHR = 1024,
+QueueGlobalPriorityLowKhr = 128,
+QueueGlobalPriorityMediumKhr = 256,
+QueueGlobalPriorityHighKhr = 512,
+QueueGlobalPriorityRealtimeKhr = 1024,
 }
 
 #[repr(u32)]
 pub enum DebugUtilsMessageSeverityFlagBitsEXT {
-VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT = 0b1,
-VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT = 0b10000,
-VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT = 0b100000000,
-VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT = 0b1000000000000,
+DebugUtilsMessageSeverityVerboseBitExt = 0b1,
+DebugUtilsMessageSeverityInfoBitExt = 0b10000,
+DebugUtilsMessageSeverityWarningBitExt = 0b100000000,
+DebugUtilsMessageSeverityErrorBitExt = 0b1000000000000,
 }
 
 #[repr(u32)]
 pub enum DebugUtilsMessageTypeFlagBitsEXT {
-VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT = 0b1,
-VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT = 0b10,
-VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT = 0b100,
+DebugUtilsMessageTypeGeneralBitExt = 0b1,
+DebugUtilsMessageTypeValidationBitExt = 0b10,
+DebugUtilsMessageTypePerformanceBitExt = 0b100,
 }
 
 #[repr(C)]
 pub enum ConservativeRasterizationModeEXT {
-VK_CONSERVATIVE_RASTERIZATION_MODE_DISABLED_EXT = 0,
-VK_CONSERVATIVE_RASTERIZATION_MODE_OVERESTIMATE_EXT = 1,
-VK_CONSERVATIVE_RASTERIZATION_MODE_UNDERESTIMATE_EXT = 2,
+ConservativeRasterizationModeDisabledExt = 0,
+ConservativeRasterizationModeOverestimateExt = 1,
+ConservativeRasterizationModeUnderestimateExt = 2,
 }
 
 #[repr(u32)]
 pub enum DescriptorBindingFlagBits {
-VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT = 0b1,
-VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT = 0b10,
-VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT = 0b100,
-VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT = 0b1000,
+DescriptorBindingUpdateAfterBindBit = 0b1,
+DescriptorBindingUpdateUnusedWhilePendingBit = 0b10,
+DescriptorBindingPartiallyBoundBit = 0b100,
+DescriptorBindingVariableDescriptorCountBit = 0b1000,
 }
 
 #[repr(C)]
 pub enum VendorId {
-VK_VENDOR_ID_VIV = 65537,
-VK_VENDOR_ID_VSI = 65538,
-VK_VENDOR_ID_KAZAN = 65539,
-VK_VENDOR_ID_CODEPLAY = 65540,
-VK_VENDOR_ID_MESA = 65541,
-VK_VENDOR_ID_POCL = 65542,
-VK_VENDOR_ID_MOBILEYE = 65543,
+VendorIdViv = 65537,
+VendorIdVsi = 65538,
+VendorIdKazan = 65539,
+VendorIdCodeplay = 65540,
+VendorIdMesa = 65541,
+VendorIdPocl = 65542,
+VendorIdMobileye = 65543,
 }
 
 #[repr(C)]
 pub enum DriverId {
-VK_DRIVER_ID_AMD_PROPRIETARY = 1,
-VK_DRIVER_ID_AMD_OPEN_SOURCE = 2,
-VK_DRIVER_ID_MESA_RADV = 3,
-VK_DRIVER_ID_NVIDIA_PROPRIETARY = 4,
-VK_DRIVER_ID_INTEL_PROPRIETARY_WINDOWS = 5,
-VK_DRIVER_ID_INTEL_OPEN_SOURCE_MESA = 6,
-VK_DRIVER_ID_IMAGINATION_PROPRIETARY = 7,
-VK_DRIVER_ID_QUALCOMM_PROPRIETARY = 8,
-VK_DRIVER_ID_ARM_PROPRIETARY = 9,
-VK_DRIVER_ID_GOOGLE_SWIFTSHADER = 10,
-VK_DRIVER_ID_GGP_PROPRIETARY = 11,
-VK_DRIVER_ID_BROADCOM_PROPRIETARY = 12,
-VK_DRIVER_ID_MESA_LLVMPIPE = 13,
-VK_DRIVER_ID_MOLTENVK = 14,
-VK_DRIVER_ID_COREAVI_PROPRIETARY = 15,
-VK_DRIVER_ID_JUICE_PROPRIETARY = 16,
-VK_DRIVER_ID_VERISILICON_PROPRIETARY = 17,
-VK_DRIVER_ID_MESA_TURNIP = 18,
-VK_DRIVER_ID_MESA_V3DV = 19,
-VK_DRIVER_ID_MESA_PANVK = 20,
-VK_DRIVER_ID_SAMSUNG_PROPRIETARY = 21,
-VK_DRIVER_ID_MESA_VENUS = 22,
-VK_DRIVER_ID_MESA_DOZEN = 23,
-VK_DRIVER_ID_MESA_NVK = 24,
-VK_DRIVER_ID_IMAGINATION_OPEN_SOURCE_MESA = 25,
-VK_DRIVER_ID_MESA_AGXV = 26,
+DriverIdAmdProprietary = 1,
+DriverIdAmdOpenSource = 2,
+DriverIdMesaRadv = 3,
+DriverIdNvidiaProprietary = 4,
+DriverIdIntelProprietaryWindows = 5,
+DriverIdIntelOpenSourceMesa = 6,
+DriverIdImaginationProprietary = 7,
+DriverIdQualcommProprietary = 8,
+DriverIdArmProprietary = 9,
+DriverIdGoogleSwiftshader = 10,
+DriverIdGgpProprietary = 11,
+DriverIdBroadcomProprietary = 12,
+DriverIdMesaLlvmpipe = 13,
+DriverIdMoltenvk = 14,
+DriverIdCoreaviProprietary = 15,
+DriverIdJuiceProprietary = 16,
+DriverIdVerisiliconProprietary = 17,
+DriverIdMesaTurnip = 18,
+DriverIdMesaV3dv = 19,
+DriverIdMesaPanvk = 20,
+DriverIdSamsungProprietary = 21,
+DriverIdMesaVenus = 22,
+DriverIdMesaDozen = 23,
+DriverIdMesaNvk = 24,
+DriverIdImaginationOpenSourceMesa = 25,
+DriverIdMesaAgxv = 26,
 }
 
 #[repr(u32)]
 pub enum ConditionalRenderingFlagBitsEXT {
-VK_CONDITIONAL_RENDERING_INVERTED_BIT_EXT = 0b1,
+ConditionalRenderingInvertedBitExt = 0b1,
 }
 
 #[repr(u32)]
 pub enum ResolveModeFlagBits {
-VK_RESOLVE_MODE_NONE = 0b0,
-VK_RESOLVE_MODE_SAMPLE_ZERO_BIT = 0b1,
-VK_RESOLVE_MODE_AVERAGE_BIT = 0b10,
-VK_RESOLVE_MODE_MIN_BIT = 0b100,
-VK_RESOLVE_MODE_MAX_BIT = 0b1000,
+ResolveModeNone = 0b0,
+ResolveModeSampleZeroBit = 0b1,
+ResolveModeAverageBit = 0b10,
+ResolveModeMinBit = 0b100,
+ResolveModeMaxBit = 0b1000,
 }
 
 #[repr(C)]
 pub enum ShadingRatePaletteEntryNV {
-VK_SHADING_RATE_PALETTE_ENTRY_NO_INVOCATIONS_NV = 0,
-VK_SHADING_RATE_PALETTE_ENTRY_16_INVOCATIONS_PER_PIXEL_NV = 1,
-VK_SHADING_RATE_PALETTE_ENTRY_8_INVOCATIONS_PER_PIXEL_NV = 2,
-VK_SHADING_RATE_PALETTE_ENTRY_4_INVOCATIONS_PER_PIXEL_NV = 3,
-VK_SHADING_RATE_PALETTE_ENTRY_2_INVOCATIONS_PER_PIXEL_NV = 4,
-VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_PIXEL_NV = 5,
-VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_2X1_PIXELS_NV = 6,
-VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_1X2_PIXELS_NV = 7,
-VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_2X2_PIXELS_NV = 8,
-VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_4X2_PIXELS_NV = 9,
-VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_2X4_PIXELS_NV = 10,
-VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_4X4_PIXELS_NV = 11,
+ShadingRatePaletteEntryNoInvocationsNv = 0,
+ShadingRatePaletteEntry16InvocationsPerPixelNv = 1,
+ShadingRatePaletteEntry8InvocationsPerPixelNv = 2,
+ShadingRatePaletteEntry4InvocationsPerPixelNv = 3,
+ShadingRatePaletteEntry2InvocationsPerPixelNv = 4,
+ShadingRatePaletteEntry1InvocationPerPixelNv = 5,
+ShadingRatePaletteEntry1InvocationPer2x1PixelsNv = 6,
+ShadingRatePaletteEntry1InvocationPer1x2PixelsNv = 7,
+ShadingRatePaletteEntry1InvocationPer2x2PixelsNv = 8,
+ShadingRatePaletteEntry1InvocationPer4x2PixelsNv = 9,
+ShadingRatePaletteEntry1InvocationPer2x4PixelsNv = 10,
+ShadingRatePaletteEntry1InvocationPer4x4PixelsNv = 11,
 }
 
 #[repr(C)]
 pub enum CoarseSampleOrderTypeNV {
-VK_COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV = 0,
-VK_COARSE_SAMPLE_ORDER_TYPE_CUSTOM_NV = 1,
-VK_COARSE_SAMPLE_ORDER_TYPE_PIXEL_MAJOR_NV = 2,
-VK_COARSE_SAMPLE_ORDER_TYPE_SAMPLE_MAJOR_NV = 3,
+CoarseSampleOrderTypeDefaultNv = 0,
+CoarseSampleOrderTypeCustomNv = 1,
+CoarseSampleOrderTypePixelMajorNv = 2,
+CoarseSampleOrderTypeSampleMajorNv = 3,
 }
 
 #[repr(u32)]
 pub enum GeometryInstanceFlagBitsKHR {
-VK_GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_BIT_KHR = 0b1,
-VK_GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_BIT_KHR = 0b10,
-VK_GEOMETRY_INSTANCE_FORCE_OPAQUE_BIT_KHR = 0b100,
-VK_GEOMETRY_INSTANCE_FORCE_NO_OPAQUE_BIT_KHR = 0b1000,
+GeometryInstanceTriangleFacingCullDisableBitKhr = 0b1,
+GeometryInstanceTriangleFlipFacingBitKhr = 0b10,
+GeometryInstanceForceOpaqueBitKhr = 0b100,
+GeometryInstanceForceNoOpaqueBitKhr = 0b1000,
 }
 
 #[repr(u32)]
 pub enum GeometryFlagBitsKHR {
-VK_GEOMETRY_OPAQUE_BIT_KHR = 0b1,
-VK_GEOMETRY_NO_DUPLICATE_ANY_HIT_INVOCATION_BIT_KHR = 0b10,
+GeometryOpaqueBitKhr = 0b1,
+GeometryNoDuplicateAnyHitInvocationBitKhr = 0b10,
 }
 
 #[repr(u32)]
 pub enum BuildAccelerationStructureFlagBitsKHR {
-VK_BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_KHR = 0b1,
-VK_BUILD_ACCELERATION_STRUCTURE_ALLOW_COMPACTION_BIT_KHR = 0b10,
-VK_BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_TRACE_BIT_KHR = 0b100,
-VK_BUILD_ACCELERATION_STRUCTURE_PREFER_FAST_BUILD_BIT_KHR = 0b1000,
-VK_BUILD_ACCELERATION_STRUCTURE_LOW_MEMORY_BIT_KHR = 0b10000,
+BuildAccelerationStructureAllowUpdateBitKhr = 0b1,
+BuildAccelerationStructureAllowCompactionBitKhr = 0b10,
+BuildAccelerationStructurePreferFastTraceBitKhr = 0b100,
+BuildAccelerationStructurePreferFastBuildBitKhr = 0b1000,
+BuildAccelerationStructureLowMemoryBitKhr = 0b10000,
 }
 
 #[repr(u32)]
 pub enum AccelerationStructureCreateFlagBitsKHR {
-VK_ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR = 0b1,
+AccelerationStructureCreateDeviceAddressCaptureReplayBitKhr = 0b1,
 }
 
 #[repr(C)]
 pub enum CopyAccelerationStructureModeKHR {
-VK_COPY_ACCELERATION_STRUCTURE_MODE_CLONE_KHR = 0,
-VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR = 1,
-VK_COPY_ACCELERATION_STRUCTURE_MODE_SERIALIZE_KHR = 2,
-VK_COPY_ACCELERATION_STRUCTURE_MODE_DESERIALIZE_KHR = 3,
+CopyAccelerationStructureModeCloneKhr = 0,
+CopyAccelerationStructureModeCompactKhr = 1,
+CopyAccelerationStructureModeSerializeKhr = 2,
+CopyAccelerationStructureModeDeserializeKhr = 3,
 }
 
 #[repr(C)]
 pub enum BuildAccelerationStructureModeKHR {
-VK_BUILD_ACCELERATION_STRUCTURE_MODE_BUILD_KHR = 0,
-VK_BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR = 1,
+BuildAccelerationStructureModeBuildKhr = 0,
+BuildAccelerationStructureModeUpdateKhr = 1,
 }
 
 #[repr(C)]
 pub enum AccelerationStructureTypeKHR {
-VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR = 0,
-VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_KHR = 1,
-VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR = 2,
+AccelerationStructureTypeTopLevelKhr = 0,
+AccelerationStructureTypeBottomLevelKhr = 1,
+AccelerationStructureTypeGenericKhr = 2,
 }
 
 #[repr(C)]
 pub enum GeometryTypeKHR {
-VK_GEOMETRY_TYPE_TRIANGLES_KHR = 0,
-VK_GEOMETRY_TYPE_AABBS_KHR = 1,
-VK_GEOMETRY_TYPE_INSTANCES_KHR = 2,
+GeometryTypeTrianglesKhr = 0,
+GeometryTypeAabbsKhr = 1,
+GeometryTypeInstancesKhr = 2,
 }
 
 #[repr(C)]
 pub enum AccelerationStructureMemoryRequirementsTypeNV {
-VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_OBJECT_NV = 0,
-VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_BUILD_SCRATCH_NV = 1,
-VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_UPDATE_SCRATCH_NV = 2,
+AccelerationStructureMemoryRequirementsTypeObjectNv = 0,
+AccelerationStructureMemoryRequirementsTypeBuildScratchNv = 1,
+AccelerationStructureMemoryRequirementsTypeUpdateScratchNv = 2,
 }
 
 #[repr(C)]
 pub enum AccelerationStructureBuildTypeKHR {
-VK_ACCELERATION_STRUCTURE_BUILD_TYPE_HOST_KHR = 0,
-VK_ACCELERATION_STRUCTURE_BUILD_TYPE_DEVICE_KHR = 1,
-VK_ACCELERATION_STRUCTURE_BUILD_TYPE_HOST_OR_DEVICE_KHR = 2,
+AccelerationStructureBuildTypeHostKhr = 0,
+AccelerationStructureBuildTypeDeviceKhr = 1,
+AccelerationStructureBuildTypeHostOrDeviceKhr = 2,
 }
 
 #[repr(C)]
 pub enum RayTracingShaderGroupTypeKHR {
-VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_KHR = 0,
-VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR = 1,
-VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR = 2,
+RayTracingShaderGroupTypeGeneralKhr = 0,
+RayTracingShaderGroupTypeTrianglesHitGroupKhr = 1,
+RayTracingShaderGroupTypeProceduralHitGroupKhr = 2,
 }
 
 #[repr(C)]
 pub enum AccelerationStructureCompatibilityKHR {
-VK_ACCELERATION_STRUCTURE_COMPATIBILITY_COMPATIBLE_KHR = 0,
-VK_ACCELERATION_STRUCTURE_COMPATIBILITY_INCOMPATIBLE_KHR = 1,
+AccelerationStructureCompatibilityCompatibleKhr = 0,
+AccelerationStructureCompatibilityIncompatibleKhr = 1,
 }
 
 #[repr(C)]
 pub enum ShaderGroupShaderKHR {
-VK_SHADER_GROUP_SHADER_GENERAL_KHR = 0,
-VK_SHADER_GROUP_SHADER_CLOSEST_HIT_KHR = 1,
-VK_SHADER_GROUP_SHADER_ANY_HIT_KHR = 2,
-VK_SHADER_GROUP_SHADER_INTERSECTION_KHR = 3,
+ShaderGroupShaderGeneralKhr = 0,
+ShaderGroupShaderClosestHitKhr = 1,
+ShaderGroupShaderAnyHitKhr = 2,
+ShaderGroupShaderIntersectionKhr = 3,
 }
 
 #[repr(C)]
 pub enum MemoryOverallocationBehaviorAMD {
-VK_MEMORY_OVERALLOCATION_BEHAVIOR_DEFAULT_AMD = 0,
-VK_MEMORY_OVERALLOCATION_BEHAVIOR_ALLOWED_AMD = 1,
-VK_MEMORY_OVERALLOCATION_BEHAVIOR_DISALLOWED_AMD = 2,
+MemoryOverallocationBehaviorDefaultAmd = 0,
+MemoryOverallocationBehaviorAllowedAmd = 1,
+MemoryOverallocationBehaviorDisallowedAmd = 2,
 }
 
 #[repr(u32)]
@@ -1721,68 +1787,68 @@ pub enum FramebufferCreateFlagBits {
 
 #[repr(u32)]
 pub enum DeviceDiagnosticsConfigFlagBitsNV {
-VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_DEBUG_INFO_BIT_NV = 0b1,
-VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_RESOURCE_TRACKING_BIT_NV = 0b10,
-VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_AUTOMATIC_CHECKPOINTS_BIT_NV = 0b100,
-VK_DEVICE_DIAGNOSTICS_CONFIG_ENABLE_SHADER_ERROR_REPORTING_BIT_NV = 0b1000,
+DeviceDiagnosticsConfigEnableShaderDebugInfoBitNv = 0b1,
+DeviceDiagnosticsConfigEnableResourceTrackingBitNv = 0b10,
+DeviceDiagnosticsConfigEnableAutomaticCheckpointsBitNv = 0b100,
+DeviceDiagnosticsConfigEnableShaderErrorReportingBitNv = 0b1000,
 }
 
 #[repr(u32)]
 pub enum PipelineCreationFeedbackFlagBits {
-VK_PIPELINE_CREATION_FEEDBACK_VALID_BIT = 0b1,
-VK_PIPELINE_CREATION_FEEDBACK_APPLICATION_PIPELINE_CACHE_HIT_BIT = 0b10,
-VK_PIPELINE_CREATION_FEEDBACK_BASE_PIPELINE_ACCELERATION_BIT = 0b100,
+PipelineCreationFeedbackValidBit = 0b1,
+PipelineCreationFeedbackApplicationPipelineCacheHitBit = 0b10,
+PipelineCreationFeedbackBasePipelineAccelerationBit = 0b100,
 }
 
 #[repr(C)]
 pub enum FullScreenExclusiveEXT {
-VK_FULL_SCREEN_EXCLUSIVE_DEFAULT_EXT = 0,
-VK_FULL_SCREEN_EXCLUSIVE_ALLOWED_EXT = 1,
-VK_FULL_SCREEN_EXCLUSIVE_DISALLOWED_EXT = 2,
-VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT = 3,
+FullScreenExclusiveDefaultExt = 0,
+FullScreenExclusiveAllowedExt = 1,
+FullScreenExclusiveDisallowedExt = 2,
+FullScreenExclusiveApplicationControlledExt = 3,
 }
 
 #[repr(C)]
 pub enum PerformanceCounterScopeKHR {
-VK_PERFORMANCE_COUNTER_SCOPE_COMMAND_BUFFER_KHR = 0,
-VK_PERFORMANCE_COUNTER_SCOPE_RENDER_PASS_KHR = 1,
-VK_PERFORMANCE_COUNTER_SCOPE_COMMAND_KHR = 2,
+PerformanceCounterScopeCommandBufferKhr = 0,
+PerformanceCounterScopeRenderPassKhr = 1,
+PerformanceCounterScopeCommandKhr = 2,
 }
 
 #[repr(u64)]
 pub enum MemoryDecompressionMethodFlagBitsNV {
-VK_MEMORY_DECOMPRESSION_METHOD_GDEFLATE_1_0_BIT_NV = 0b1,
+MemoryDecompressionMethodGdeflate10BitNv = 0b1,
 }
 
 #[repr(C)]
 pub enum PerformanceCounterUnitKHR {
-VK_PERFORMANCE_COUNTER_UNIT_GENERIC_KHR = 0,
-VK_PERFORMANCE_COUNTER_UNIT_PERCENTAGE_KHR = 1,
-VK_PERFORMANCE_COUNTER_UNIT_NANOSECONDS_KHR = 2,
-VK_PERFORMANCE_COUNTER_UNIT_BYTES_KHR = 3,
-VK_PERFORMANCE_COUNTER_UNIT_BYTES_PER_SECOND_KHR = 4,
-VK_PERFORMANCE_COUNTER_UNIT_KELVIN_KHR = 5,
-VK_PERFORMANCE_COUNTER_UNIT_WATTS_KHR = 6,
-VK_PERFORMANCE_COUNTER_UNIT_VOLTS_KHR = 7,
-VK_PERFORMANCE_COUNTER_UNIT_AMPS_KHR = 8,
-VK_PERFORMANCE_COUNTER_UNIT_HERTZ_KHR = 9,
-VK_PERFORMANCE_COUNTER_UNIT_CYCLES_KHR = 10,
+PerformanceCounterUnitGenericKhr = 0,
+PerformanceCounterUnitPercentageKhr = 1,
+PerformanceCounterUnitNanosecondsKhr = 2,
+PerformanceCounterUnitBytesKhr = 3,
+PerformanceCounterUnitBytesPerSecondKhr = 4,
+PerformanceCounterUnitKelvinKhr = 5,
+PerformanceCounterUnitWattsKhr = 6,
+PerformanceCounterUnitVoltsKhr = 7,
+PerformanceCounterUnitAmpsKhr = 8,
+PerformanceCounterUnitHertzKhr = 9,
+PerformanceCounterUnitCyclesKhr = 10,
 }
 
 #[repr(C)]
 pub enum PerformanceCounterStorageKHR {
-VK_PERFORMANCE_COUNTER_STORAGE_INT32_KHR = 0,
-VK_PERFORMANCE_COUNTER_STORAGE_INT64_KHR = 1,
-VK_PERFORMANCE_COUNTER_STORAGE_UINT32_KHR = 2,
-VK_PERFORMANCE_COUNTER_STORAGE_UINT64_KHR = 3,
-VK_PERFORMANCE_COUNTER_STORAGE_FLOAT32_KHR = 4,
-VK_PERFORMANCE_COUNTER_STORAGE_FLOAT64_KHR = 5,
+PerformanceCounterStorageInt32Khr = 0,
+PerformanceCounterStorageInt64Khr = 1,
+PerformanceCounterStorageUint32Khr = 2,
+PerformanceCounterStorageUint64Khr = 3,
+PerformanceCounterStorageFloat32Khr = 4,
+PerformanceCounterStorageFloat64Khr = 5,
 }
 
 #[repr(u32)]
 pub enum PerformanceCounterDescriptionFlagBitsKHR {
-VK_PERFORMANCE_COUNTER_DESCRIPTION_PERFORMANCE_IMPACTING_BIT_KHR = 0b1,
-VK_PERFORMANCE_COUNTER_DESCRIPTION_CONCURRENTLY_IMPACTED_BIT_KHR = 0b10,
+PerformanceCounterDescriptionPerformanceImpactingBitKhr = 0b1,
+PerformanceCounterDescriptionConcurrentlyImpactedBitKhr = 0b10,
 }
 
 #[repr(u32)]
@@ -1799,56 +1865,56 @@ pub enum RefreshObjectFlagBitsKHR {
 
 #[repr(C)]
 pub enum PerformanceConfigurationTypeINTEL {
-VK_PERFORMANCE_CONFIGURATION_TYPE_COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL = 0,
+PerformanceConfigurationTypeCommandQueueMetricsDiscoveryActivatedIntel = 0,
 }
 
 #[repr(C)]
 pub enum QueryPoolSamplingModeINTEL {
-VK_QUERY_POOL_SAMPLING_MODE_MANUAL_INTEL = 0,
+QueryPoolSamplingModeManualIntel = 0,
 }
 
 #[repr(C)]
 pub enum PerformanceOverrideTypeINTEL {
-VK_PERFORMANCE_OVERRIDE_TYPE_NULL_HARDWARE_INTEL = 0,
-VK_PERFORMANCE_OVERRIDE_TYPE_FLUSH_GPU_CACHES_INTEL = 1,
+PerformanceOverrideTypeNullHardwareIntel = 0,
+PerformanceOverrideTypeFlushGpuCachesIntel = 1,
 }
 
 #[repr(C)]
 pub enum PerformanceParameterTypeINTEL {
-VK_PERFORMANCE_PARAMETER_TYPE_HW_COUNTERS_SUPPORTED_INTEL = 0,
-VK_PERFORMANCE_PARAMETER_TYPE_STREAM_MARKER_VALID_BITS_INTEL = 1,
+PerformanceParameterTypeHwCountersSupportedIntel = 0,
+PerformanceParameterTypeStreamMarkerValidBitsIntel = 1,
 }
 
 #[repr(C)]
 pub enum PerformanceValueTypeINTEL {
-VK_PERFORMANCE_VALUE_TYPE_UINT32_INTEL = 0,
-VK_PERFORMANCE_VALUE_TYPE_UINT64_INTEL = 1,
-VK_PERFORMANCE_VALUE_TYPE_FLOAT_INTEL = 2,
-VK_PERFORMANCE_VALUE_TYPE_BOOL_INTEL = 3,
-VK_PERFORMANCE_VALUE_TYPE_STRING_INTEL = 4,
+PerformanceValueTypeUint32Intel = 0,
+PerformanceValueTypeUint64Intel = 1,
+PerformanceValueTypeFloatIntel = 2,
+PerformanceValueTypeBoolIntel = 3,
+PerformanceValueTypeStringIntel = 4,
 }
 
 #[repr(C)]
 pub enum ShaderFloatControlsIndependence {
-VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_32_BIT_ONLY = 0,
-VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_ALL = 1,
-VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE = 2,
+ShaderFloatControlsIndependence32BitOnly = 0,
+ShaderFloatControlsIndependenceAll = 1,
+ShaderFloatControlsIndependenceNone = 2,
 }
 
 #[repr(C)]
 pub enum PipelineExecutableStatisticFormatKHR {
-VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_BOOL32_KHR = 0,
-VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_INT64_KHR = 1,
-VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_UINT64_KHR = 2,
-VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_FLOAT64_KHR = 3,
+PipelineExecutableStatisticFormatBool32Khr = 0,
+PipelineExecutableStatisticFormatInt64Khr = 1,
+PipelineExecutableStatisticFormatUint64Khr = 2,
+PipelineExecutableStatisticFormatFloat64Khr = 3,
 }
 
 #[repr(C)]
 pub enum LineRasterizationModeEXT {
-VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT = 0,
-VK_LINE_RASTERIZATION_MODE_RECTANGULAR_EXT = 1,
-VK_LINE_RASTERIZATION_MODE_BRESENHAM_EXT = 2,
-VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT = 3,
+LineRasterizationModeDefaultExt = 0,
+LineRasterizationModeRectangularExt = 1,
+LineRasterizationModeBresenhamExt = 2,
+LineRasterizationModeRectangularSmoothExt = 3,
 }
 
 #[repr(u32)]
@@ -1861,148 +1927,148 @@ pub enum PipelineCompilerControlFlagBitsAMD {
 
 #[repr(C)]
 pub enum FaultLevel {
-VK_FAULT_LEVEL_UNASSIGNED = 0,
-VK_FAULT_LEVEL_CRITICAL = 1,
-VK_FAULT_LEVEL_RECOVERABLE = 2,
-VK_FAULT_LEVEL_WARNING = 3,
+FaultLevelUnassigned = 0,
+FaultLevelCritical = 1,
+FaultLevelRecoverable = 2,
+FaultLevelWarning = 3,
 }
 
 #[repr(C)]
 pub enum FaultType {
-VK_FAULT_TYPE_INVALID = 0,
-VK_FAULT_TYPE_UNASSIGNED = 1,
-VK_FAULT_TYPE_IMPLEMENTATION = 2,
-VK_FAULT_TYPE_SYSTEM = 3,
-VK_FAULT_TYPE_PHYSICAL_DEVICE = 4,
-VK_FAULT_TYPE_COMMAND_BUFFER_FULL = 5,
-VK_FAULT_TYPE_INVALID_API_USAGE = 6,
+FaultTypeInvalid = 0,
+FaultTypeUnassigned = 1,
+FaultTypeImplementation = 2,
+FaultTypeSystem = 3,
+FaultTypePhysicalDevice = 4,
+FaultTypeCommandBufferFull = 5,
+FaultTypeInvalidApiUsage = 6,
 }
 
 #[repr(C)]
 pub enum FaultQueryBehavior {
-VK_FAULT_QUERY_BEHAVIOR_GET_AND_CLEAR_ALL_FAULTS = 0,
+FaultQueryBehaviorGetAndClearAllFaults = 0,
 }
 
 #[repr(u32)]
 pub enum ToolPurposeFlagBits {
-VK_TOOL_PURPOSE_VALIDATION_BIT = 0b1,
-VK_TOOL_PURPOSE_PROFILING_BIT = 0b10,
-VK_TOOL_PURPOSE_TRACING_BIT = 0b100,
-VK_TOOL_PURPOSE_ADDITIONAL_FEATURES_BIT = 0b1000,
-VK_TOOL_PURPOSE_MODIFYING_FEATURES_BIT = 0b10000,
+ToolPurposeValidationBit = 0b1,
+ToolPurposeProfilingBit = 0b10,
+ToolPurposeTracingBit = 0b100,
+ToolPurposeAdditionalFeaturesBit = 0b1000,
+ToolPurposeModifyingFeaturesBit = 0b10000,
 }
 
 #[repr(C)]
 pub enum PipelineMatchControl {
-VK_PIPELINE_MATCH_CONTROL_APPLICATION_UUID_EXACT_MATCH = 0,
+PipelineMatchControlApplicationUuidExactMatch = 0,
 }
 
 #[repr(C)]
 pub enum FragmentShadingRateCombinerOpKHR {
-VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR = 0,
-VK_FRAGMENT_SHADING_RATE_COMBINER_OP_REPLACE_KHR = 1,
-VK_FRAGMENT_SHADING_RATE_COMBINER_OP_MIN_KHR = 2,
-VK_FRAGMENT_SHADING_RATE_COMBINER_OP_MAX_KHR = 3,
-VK_FRAGMENT_SHADING_RATE_COMBINER_OP_MUL_KHR = 4,
+FragmentShadingRateCombinerOpKeepKhr = 0,
+FragmentShadingRateCombinerOpReplaceKhr = 1,
+FragmentShadingRateCombinerOpMinKhr = 2,
+FragmentShadingRateCombinerOpMaxKhr = 3,
+FragmentShadingRateCombinerOpMulKhr = 4,
 }
 
 #[repr(C)]
 pub enum FragmentShadingRateNV {
-VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_PIXEL_NV = 0,
-VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_1X2_PIXELS_NV = 1,
-VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X1_PIXELS_NV = 4,
-VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X2_PIXELS_NV = 5,
-VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_2X4_PIXELS_NV = 6,
-VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_4X2_PIXELS_NV = 9,
-VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_4X4_PIXELS_NV = 10,
-VK_FRAGMENT_SHADING_RATE_2_INVOCATIONS_PER_PIXEL_NV = 11,
-VK_FRAGMENT_SHADING_RATE_4_INVOCATIONS_PER_PIXEL_NV = 12,
-VK_FRAGMENT_SHADING_RATE_8_INVOCATIONS_PER_PIXEL_NV = 13,
-VK_FRAGMENT_SHADING_RATE_16_INVOCATIONS_PER_PIXEL_NV = 14,
-VK_FRAGMENT_SHADING_RATE_NO_INVOCATIONS_NV = 15,
+FragmentShadingRate1InvocationPerPixelNv = 0,
+FragmentShadingRate1InvocationPer1x2PixelsNv = 1,
+FragmentShadingRate1InvocationPer2x1PixelsNv = 4,
+FragmentShadingRate1InvocationPer2x2PixelsNv = 5,
+FragmentShadingRate1InvocationPer2x4PixelsNv = 6,
+FragmentShadingRate1InvocationPer4x2PixelsNv = 9,
+FragmentShadingRate1InvocationPer4x4PixelsNv = 10,
+FragmentShadingRate2InvocationsPerPixelNv = 11,
+FragmentShadingRate4InvocationsPerPixelNv = 12,
+FragmentShadingRate8InvocationsPerPixelNv = 13,
+FragmentShadingRate16InvocationsPerPixelNv = 14,
+FragmentShadingRateNoInvocationsNv = 15,
 }
 
 #[repr(C)]
 pub enum FragmentShadingRateTypeNV {
-VK_FRAGMENT_SHADING_RATE_TYPE_FRAGMENT_SIZE_NV = 0,
-VK_FRAGMENT_SHADING_RATE_TYPE_ENUMS_NV = 1,
+FragmentShadingRateTypeFragmentSizeNv = 0,
+FragmentShadingRateTypeEnumsNv = 1,
 }
 
 #[repr(C)]
 pub enum SubpassMergeStatusEXT {
-VK_SUBPASS_MERGE_STATUS_MERGED_EXT = 0,
-VK_SUBPASS_MERGE_STATUS_DISALLOWED_EXT = 1,
-VK_SUBPASS_MERGE_STATUS_NOT_MERGED_SIDE_EFFECTS_EXT = 2,
-VK_SUBPASS_MERGE_STATUS_NOT_MERGED_SAMPLES_MISMATCH_EXT = 3,
-VK_SUBPASS_MERGE_STATUS_NOT_MERGED_VIEWS_MISMATCH_EXT = 4,
-VK_SUBPASS_MERGE_STATUS_NOT_MERGED_ALIASING_EXT = 5,
-VK_SUBPASS_MERGE_STATUS_NOT_MERGED_DEPENDENCIES_EXT = 6,
-VK_SUBPASS_MERGE_STATUS_NOT_MERGED_INCOMPATIBLE_INPUT_ATTACHMENT_EXT = 7,
-VK_SUBPASS_MERGE_STATUS_NOT_MERGED_TOO_MANY_ATTACHMENTS_EXT = 8,
-VK_SUBPASS_MERGE_STATUS_NOT_MERGED_INSUFFICIENT_STORAGE_EXT = 9,
-VK_SUBPASS_MERGE_STATUS_NOT_MERGED_DEPTH_STENCIL_COUNT_EXT = 10,
-VK_SUBPASS_MERGE_STATUS_NOT_MERGED_RESOLVE_ATTACHMENT_REUSE_EXT = 11,
-VK_SUBPASS_MERGE_STATUS_NOT_MERGED_SINGLE_SUBPASS_EXT = 12,
-VK_SUBPASS_MERGE_STATUS_NOT_MERGED_UNSPECIFIED_EXT = 13,
+SubpassMergeStatusMergedExt = 0,
+SubpassMergeStatusDisallowedExt = 1,
+SubpassMergeStatusNotMergedSideEffectsExt = 2,
+SubpassMergeStatusNotMergedSamplesMismatchExt = 3,
+SubpassMergeStatusNotMergedViewsMismatchExt = 4,
+SubpassMergeStatusNotMergedAliasingExt = 5,
+SubpassMergeStatusNotMergedDependenciesExt = 6,
+SubpassMergeStatusNotMergedIncompatibleInputAttachmentExt = 7,
+SubpassMergeStatusNotMergedTooManyAttachmentsExt = 8,
+SubpassMergeStatusNotMergedInsufficientStorageExt = 9,
+SubpassMergeStatusNotMergedDepthStencilCountExt = 10,
+SubpassMergeStatusNotMergedResolveAttachmentReuseExt = 11,
+SubpassMergeStatusNotMergedSingleSubpassExt = 12,
+SubpassMergeStatusNotMergedUnspecifiedExt = 13,
 }
 
 #[repr(u64)]
 pub enum AccessFlagBits2 {
-VK_ACCESS_2_NONE = 0b0,
-VK_ACCESS_2_INDIRECT_COMMAND_READ_BIT = 0b1,
-VK_ACCESS_2_INDEX_READ_BIT = 0b10,
-VK_ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT = 0b100,
-VK_ACCESS_2_UNIFORM_READ_BIT = 0b1000,
-VK_ACCESS_2_INPUT_ATTACHMENT_READ_BIT = 0b10000,
-VK_ACCESS_2_SHADER_READ_BIT = 0b100000,
-VK_ACCESS_2_SHADER_WRITE_BIT = 0b1000000,
-VK_ACCESS_2_COLOR_ATTACHMENT_READ_BIT = 0b10000000,
-VK_ACCESS_2_COLOR_ATTACHMENT_WRITE_BIT = 0b100000000,
-VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_READ_BIT = 0b1000000000,
-VK_ACCESS_2_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT = 0b10000000000,
-VK_ACCESS_2_TRANSFER_READ_BIT = 0b100000000000,
-VK_ACCESS_2_TRANSFER_WRITE_BIT = 0b1000000000000,
-VK_ACCESS_2_HOST_READ_BIT = 0b10000000000000,
-VK_ACCESS_2_HOST_WRITE_BIT = 0b100000000000000,
-VK_ACCESS_2_MEMORY_READ_BIT = 0b1000000000000000,
-VK_ACCESS_2_MEMORY_WRITE_BIT = 0b10000000000000000,
-VK_ACCESS_2_SHADER_SAMPLED_READ_BIT = 0b100000000000000000000000000000000,
-VK_ACCESS_2_SHADER_STORAGE_READ_BIT = 0b1000000000000000000000000000000000,
-VK_ACCESS_2_SHADER_STORAGE_WRITE_BIT = 0b10000000000000000000000000000000000,
+Access2None = 0b0,
+Access2IndirectCommandReadBit = 0b1,
+Access2IndexReadBit = 0b10,
+Access2VertexAttributeReadBit = 0b100,
+Access2UniformReadBit = 0b1000,
+Access2InputAttachmentReadBit = 0b10000,
+Access2ShaderReadBit = 0b100000,
+Access2ShaderWriteBit = 0b1000000,
+Access2ColorAttachmentReadBit = 0b10000000,
+Access2ColorAttachmentWriteBit = 0b100000000,
+Access2DepthStencilAttachmentReadBit = 0b1000000000,
+Access2DepthStencilAttachmentWriteBit = 0b10000000000,
+Access2TransferReadBit = 0b100000000000,
+Access2TransferWriteBit = 0b1000000000000,
+Access2HostReadBit = 0b10000000000000,
+Access2HostWriteBit = 0b100000000000000,
+Access2MemoryReadBit = 0b1000000000000000,
+Access2MemoryWriteBit = 0b10000000000000000,
+Access2ShaderSampledReadBit = 0b100000000000000000000000000000000,
+Access2ShaderStorageReadBit = 0b1000000000000000000000000000000000,
+Access2ShaderStorageWriteBit = 0b10000000000000000000000000000000000,
 }
 
 #[repr(u64)]
 pub enum PipelineStageFlagBits2 {
-VK_PIPELINE_STAGE_2_NONE = 0b0,
-VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT = 0b1,
-VK_PIPELINE_STAGE_2_DRAW_INDIRECT_BIT = 0b10,
-VK_PIPELINE_STAGE_2_VERTEX_INPUT_BIT = 0b100,
-VK_PIPELINE_STAGE_2_VERTEX_SHADER_BIT = 0b1000,
-VK_PIPELINE_STAGE_2_TESSELLATION_CONTROL_SHADER_BIT = 0b10000,
-VK_PIPELINE_STAGE_2_TESSELLATION_EVALUATION_SHADER_BIT = 0b100000,
-VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT = 0b1000000,
-VK_PIPELINE_STAGE_2_FRAGMENT_SHADER_BIT = 0b10000000,
-VK_PIPELINE_STAGE_2_EARLY_FRAGMENT_TESTS_BIT = 0b100000000,
-VK_PIPELINE_STAGE_2_LATE_FRAGMENT_TESTS_BIT = 0b1000000000,
-VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT = 0b10000000000,
-VK_PIPELINE_STAGE_2_COMPUTE_SHADER_BIT = 0b100000000000,
-VK_PIPELINE_STAGE_2_ALL_TRANSFER_BIT = 0b1000000000000,
-VK_PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT = 0b10000000000000,
-VK_PIPELINE_STAGE_2_HOST_BIT = 0b100000000000000,
-VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT = 0b1000000000000000,
-VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT = 0b10000000000000000,
-VK_PIPELINE_STAGE_2_COPY_BIT = 0b100000000000000000000000000000000,
-VK_PIPELINE_STAGE_2_RESOLVE_BIT = 0b1000000000000000000000000000000000,
-VK_PIPELINE_STAGE_2_BLIT_BIT = 0b10000000000000000000000000000000000,
-VK_PIPELINE_STAGE_2_CLEAR_BIT = 0b100000000000000000000000000000000000,
-VK_PIPELINE_STAGE_2_INDEX_INPUT_BIT = 0b1000000000000000000000000000000000000,
-VK_PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT = 0b10000000000000000000000000000000000000,
-VK_PIPELINE_STAGE_2_PRE_RASTERIZATION_SHADERS_BIT = 0b100000000000000000000000000000000000000,
+PipelineStage2None = 0b0,
+PipelineStage2TopOfPipeBit = 0b1,
+PipelineStage2DrawIndirectBit = 0b10,
+PipelineStage2VertexInputBit = 0b100,
+PipelineStage2VertexShaderBit = 0b1000,
+PipelineStage2TessellationControlShaderBit = 0b10000,
+PipelineStage2TessellationEvaluationShaderBit = 0b100000,
+PipelineStage2GeometryShaderBit = 0b1000000,
+PipelineStage2FragmentShaderBit = 0b10000000,
+PipelineStage2EarlyFragmentTestsBit = 0b100000000,
+PipelineStage2LateFragmentTestsBit = 0b1000000000,
+PipelineStage2ColorAttachmentOutputBit = 0b10000000000,
+PipelineStage2ComputeShaderBit = 0b100000000000,
+PipelineStage2AllTransferBit = 0b1000000000000,
+PipelineStage2BottomOfPipeBit = 0b10000000000000,
+PipelineStage2HostBit = 0b100000000000000,
+PipelineStage2AllGraphicsBit = 0b1000000000000000,
+PipelineStage2AllCommandsBit = 0b10000000000000000,
+PipelineStage2CopyBit = 0b100000000000000000000000000000000,
+PipelineStage2ResolveBit = 0b1000000000000000000000000000000000,
+PipelineStage2BlitBit = 0b10000000000000000000000000000000000,
+PipelineStage2ClearBit = 0b100000000000000000000000000000000000,
+PipelineStage2IndexInputBit = 0b1000000000000000000000000000000000000,
+PipelineStage2VertexAttributeInputBit = 0b10000000000000000000000000000000000000,
+PipelineStage2PreRasterizationShadersBit = 0b100000000000000000000000000000000000000,
 }
 
 #[repr(u32)]
 pub enum SubmitFlagBits {
-VK_SUBMIT_PROTECTED_BIT = 0b1,
+SubmitProtectedBit = 0b1,
 }
 
 #[repr(u32)]
@@ -2015,33 +2081,33 @@ pub enum PipelineLayoutCreateFlagBits {
 
 #[repr(C)]
 pub enum SciSyncClientTypeNV {
-VK_SCI_SYNC_CLIENT_TYPE_SIGNALER_NV = 0,
-VK_SCI_SYNC_CLIENT_TYPE_WAITER_NV = 1,
-VK_SCI_SYNC_CLIENT_TYPE_SIGNALER_WAITER_NV = 2,
+SciSyncClientTypeSignalerNv = 0,
+SciSyncClientTypeWaiterNv = 1,
+SciSyncClientTypeSignalerWaiterNv = 2,
 }
 
 #[repr(C)]
 pub enum SciSyncPrimitiveTypeNV {
-VK_SCI_SYNC_PRIMITIVE_TYPE_FENCE_NV = 0,
-VK_SCI_SYNC_PRIMITIVE_TYPE_SEMAPHORE_NV = 1,
+SciSyncPrimitiveTypeFenceNv = 0,
+SciSyncPrimitiveTypeSemaphoreNv = 1,
 }
 
 #[repr(C)]
 pub enum ProvokingVertexModeEXT {
-VK_PROVOKING_VERTEX_MODE_FIRST_VERTEX_EXT = 0,
-VK_PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT = 1,
+ProvokingVertexModeFirstVertexExt = 0,
+ProvokingVertexModeLastVertexExt = 1,
 }
 
 #[repr(C)]
 pub enum PipelineCacheValidationVersion {
-VK_PIPELINE_CACHE_VALIDATION_VERSION_SAFETY_CRITICAL_ONE = 1,
+PipelineCacheValidationVersionSafetyCriticalOne = 1,
 }
 
 #[repr(C)]
 pub enum AccelerationStructureMotionInstanceTypeNV {
-VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_STATIC_NV = 0,
-VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_MATRIX_MOTION_NV = 1,
-VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_SRT_MOTION_NV = 2,
+AccelerationStructureMotionInstanceTypeStaticNv = 0,
+AccelerationStructureMotionInstanceTypeMatrixMotionNv = 1,
+AccelerationStructureMotionInstanceTypeSrtMotionNv = 2,
 }
 
 #[repr(u32)]
@@ -2054,209 +2120,209 @@ pub enum PipelineDepthStencilStateCreateFlagBits {
 
 #[repr(u32)]
 pub enum GraphicsPipelineLibraryFlagBitsEXT {
-VK_GRAPHICS_PIPELINE_LIBRARY_VERTEX_INPUT_INTERFACE_BIT_EXT = 0b1,
-VK_GRAPHICS_PIPELINE_LIBRARY_PRE_RASTERIZATION_SHADERS_BIT_EXT = 0b10,
-VK_GRAPHICS_PIPELINE_LIBRARY_FRAGMENT_SHADER_BIT_EXT = 0b100,
-VK_GRAPHICS_PIPELINE_LIBRARY_FRAGMENT_OUTPUT_INTERFACE_BIT_EXT = 0b1000,
+GraphicsPipelineLibraryVertexInputInterfaceBitExt = 0b1,
+GraphicsPipelineLibraryPreRasterizationShadersBitExt = 0b10,
+GraphicsPipelineLibraryFragmentShaderBitExt = 0b100,
+GraphicsPipelineLibraryFragmentOutputInterfaceBitExt = 0b1000,
 }
 
 #[repr(u32)]
 pub enum DeviceAddressBindingFlagBitsEXT {
-VK_DEVICE_ADDRESS_BINDING_INTERNAL_OBJECT_BIT_EXT = 0b1,
+DeviceAddressBindingInternalObjectBitExt = 0b1,
 }
 
 #[repr(C)]
 pub enum DeviceAddressBindingTypeEXT {
-VK_DEVICE_ADDRESS_BINDING_TYPE_BIND_EXT = 0,
-VK_DEVICE_ADDRESS_BINDING_TYPE_UNBIND_EXT = 1,
+DeviceAddressBindingTypeBindExt = 0,
+DeviceAddressBindingTypeUnbindExt = 1,
 }
 
 #[repr(u32)]
 pub enum FrameBoundaryFlagBitsEXT {
-VK_FRAME_BOUNDARY_FRAME_END_BIT_EXT = 0b1,
+FrameBoundaryFrameEndBitExt = 0b1,
 }
 
 #[repr(u32)]
 pub enum PresentScalingFlagBitsEXT {
-VK_PRESENT_SCALING_ONE_TO_ONE_BIT_EXT = 0b1,
-VK_PRESENT_SCALING_ASPECT_RATIO_STRETCH_BIT_EXT = 0b10,
-VK_PRESENT_SCALING_STRETCH_BIT_EXT = 0b100,
+PresentScalingOneToOneBitExt = 0b1,
+PresentScalingAspectRatioStretchBitExt = 0b10,
+PresentScalingStretchBitExt = 0b100,
 }
 
 #[repr(u32)]
 pub enum PresentGravityFlagBitsEXT {
-VK_PRESENT_GRAVITY_MIN_BIT_EXT = 0b1,
-VK_PRESENT_GRAVITY_MAX_BIT_EXT = 0b10,
-VK_PRESENT_GRAVITY_CENTERED_BIT_EXT = 0b100,
+PresentGravityMinBitExt = 0b1,
+PresentGravityMaxBitExt = 0b10,
+PresentGravityCenteredBitExt = 0b100,
 }
 
 #[repr(u32)]
 pub enum PhysicalDeviceSchedulingControlsFlagBitsARM {
-VK_PHYSICAL_DEVICE_SCHEDULING_CONTROLS_SHADER_CORE_COUNT_ARM = 0b1,
+PhysicalDeviceSchedulingControlsShaderCoreCountArm = 0b1,
 }
 
 #[repr(u32)]
 pub enum VideoCodecOperationFlagBitsKHR {
-VK_VIDEO_CODEC_OPERATION_NONE_KHR = 0b0,
+VideoCodecOperationNoneKhr = 0b0,
 }
 
 #[repr(u32)]
 pub enum VideoChromaSubsamplingFlagBitsKHR {
-VK_VIDEO_CHROMA_SUBSAMPLING_INVALID_KHR = 0b0,
-VK_VIDEO_CHROMA_SUBSAMPLING_MONOCHROME_BIT_KHR = 0b1,
-VK_VIDEO_CHROMA_SUBSAMPLING_420_BIT_KHR = 0b10,
-VK_VIDEO_CHROMA_SUBSAMPLING_422_BIT_KHR = 0b100,
-VK_VIDEO_CHROMA_SUBSAMPLING_444_BIT_KHR = 0b1000,
+VideoChromaSubsamplingInvalidKhr = 0b0,
+VideoChromaSubsamplingMonochromeBitKhr = 0b1,
+VideoChromaSubsampling420BitKhr = 0b10,
+VideoChromaSubsampling422BitKhr = 0b100,
+VideoChromaSubsampling444BitKhr = 0b1000,
 }
 
 #[repr(u32)]
 pub enum VideoComponentBitDepthFlagBitsKHR {
-VK_VIDEO_COMPONENT_BIT_DEPTH_INVALID_KHR = 0b0,
-VK_VIDEO_COMPONENT_BIT_DEPTH_8_BIT_KHR = 0b1,
-VK_VIDEO_COMPONENT_BIT_DEPTH_10_BIT_KHR = 0b100,
-VK_VIDEO_COMPONENT_BIT_DEPTH_12_BIT_KHR = 0b10000,
+VideoComponentBitDepthInvalidKhr = 0b0,
+VideoComponentBitDepth8BitKhr = 0b1,
+VideoComponentBitDepth10BitKhr = 0b100,
+VideoComponentBitDepth12BitKhr = 0b10000,
 }
 
 #[repr(u32)]
 pub enum VideoCapabilityFlagBitsKHR {
-VK_VIDEO_CAPABILITY_PROTECTED_CONTENT_BIT_KHR = 0b1,
-VK_VIDEO_CAPABILITY_SEPARATE_REFERENCE_IMAGES_BIT_KHR = 0b10,
+VideoCapabilityProtectedContentBitKhr = 0b1,
+VideoCapabilitySeparateReferenceImagesBitKhr = 0b10,
 }
 
 #[repr(u32)]
 pub enum VideoSessionCreateFlagBitsKHR {
-VK_VIDEO_SESSION_CREATE_PROTECTED_CONTENT_BIT_KHR = 0b1,
+VideoSessionCreateProtectedContentBitKhr = 0b1,
 }
 
 #[repr(u32)]
 pub enum VideoDecodeH264PictureLayoutFlagBitsKHR {
-VK_VIDEO_DECODE_H264_PICTURE_LAYOUT_PROGRESSIVE_KHR = 0b0,
-VK_VIDEO_DECODE_H264_PICTURE_LAYOUT_INTERLACED_INTERLEAVED_LINES_BIT_KHR = 0b1,
-VK_VIDEO_DECODE_H264_PICTURE_LAYOUT_INTERLACED_SEPARATE_PLANES_BIT_KHR = 0b10,
+VideoDecodeH264PictureLayoutProgressiveKhr = 0b0,
+VideoDecodeH264PictureLayoutInterlacedInterleavedLinesBitKhr = 0b1,
+VideoDecodeH264PictureLayoutInterlacedSeparatePlanesBitKhr = 0b10,
 }
 
 #[repr(u32)]
 pub enum VideoCodingControlFlagBitsKHR {
-VK_VIDEO_CODING_CONTROL_RESET_BIT_KHR = 0b1,
+VideoCodingControlResetBitKhr = 0b1,
 }
 
 #[repr(C)]
 pub enum QueryResultStatusKHR {
-VK_QUERY_RESULT_STATUS_ERROR_KHR = -1,
-VK_QUERY_RESULT_STATUS_NOT_READY_KHR = 0,
-VK_QUERY_RESULT_STATUS_COMPLETE_KHR = 1,
+QueryResultStatusErrorKhr = -1,
+QueryResultStatusNotReadyKhr = 0,
+QueryResultStatusCompleteKhr = 1,
 }
 
 #[repr(u32)]
 pub enum VideoDecodeUsageFlagBitsKHR {
-VK_VIDEO_DECODE_USAGE_DEFAULT_KHR = 0b0,
-VK_VIDEO_DECODE_USAGE_TRANSCODING_BIT_KHR = 0b1,
-VK_VIDEO_DECODE_USAGE_OFFLINE_BIT_KHR = 0b10,
-VK_VIDEO_DECODE_USAGE_STREAMING_BIT_KHR = 0b100,
+VideoDecodeUsageDefaultKhr = 0b0,
+VideoDecodeUsageTranscodingBitKhr = 0b1,
+VideoDecodeUsageOfflineBitKhr = 0b10,
+VideoDecodeUsageStreamingBitKhr = 0b100,
 }
 
 #[repr(u32)]
 pub enum VideoDecodeCapabilityFlagBitsKHR {
-VK_VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_COINCIDE_BIT_KHR = 0b1,
-VK_VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_DISTINCT_BIT_KHR = 0b10,
+VideoDecodeCapabilityDpbAndOutputCoincideBitKhr = 0b1,
+VideoDecodeCapabilityDpbAndOutputDistinctBitKhr = 0b10,
 }
 
 #[repr(u32)]
 pub enum VideoEncodeUsageFlagBitsKHR {
-VK_VIDEO_ENCODE_USAGE_DEFAULT_KHR = 0b0,
-VK_VIDEO_ENCODE_USAGE_TRANSCODING_BIT_KHR = 0b1,
-VK_VIDEO_ENCODE_USAGE_STREAMING_BIT_KHR = 0b10,
-VK_VIDEO_ENCODE_USAGE_RECORDING_BIT_KHR = 0b100,
-VK_VIDEO_ENCODE_USAGE_CONFERENCING_BIT_KHR = 0b1000,
+VideoEncodeUsageDefaultKhr = 0b0,
+VideoEncodeUsageTranscodingBitKhr = 0b1,
+VideoEncodeUsageStreamingBitKhr = 0b10,
+VideoEncodeUsageRecordingBitKhr = 0b100,
+VideoEncodeUsageConferencingBitKhr = 0b1000,
 }
 
 #[repr(u32)]
 pub enum VideoEncodeContentFlagBitsKHR {
-VK_VIDEO_ENCODE_CONTENT_DEFAULT_KHR = 0b0,
-VK_VIDEO_ENCODE_CONTENT_CAMERA_BIT_KHR = 0b1,
-VK_VIDEO_ENCODE_CONTENT_DESKTOP_BIT_KHR = 0b10,
-VK_VIDEO_ENCODE_CONTENT_RENDERED_BIT_KHR = 0b100,
+VideoEncodeContentDefaultKhr = 0b0,
+VideoEncodeContentCameraBitKhr = 0b1,
+VideoEncodeContentDesktopBitKhr = 0b10,
+VideoEncodeContentRenderedBitKhr = 0b100,
 }
 
 #[repr(C)]
 pub enum VideoEncodeTuningModeKHR {
-VK_VIDEO_ENCODE_TUNING_MODE_DEFAULT_KHR = 0,
-VK_VIDEO_ENCODE_TUNING_MODE_HIGH_QUALITY_KHR = 1,
-VK_VIDEO_ENCODE_TUNING_MODE_LOW_LATENCY_KHR = 2,
-VK_VIDEO_ENCODE_TUNING_MODE_ULTRA_LOW_LATENCY_KHR = 3,
-VK_VIDEO_ENCODE_TUNING_MODE_LOSSLESS_KHR = 4,
+VideoEncodeTuningModeDefaultKhr = 0,
+VideoEncodeTuningModeHighQualityKhr = 1,
+VideoEncodeTuningModeLowLatencyKhr = 2,
+VideoEncodeTuningModeUltraLowLatencyKhr = 3,
+VideoEncodeTuningModeLosslessKhr = 4,
 }
 
 #[repr(u32)]
 pub enum VideoEncodeCapabilityFlagBitsKHR {
-VK_VIDEO_ENCODE_CAPABILITY_PRECEDING_EXTERNALLY_ENCODED_BYTES_BIT_KHR = 0b1,
-VK_VIDEO_ENCODE_CAPABILITY_INSUFFICIENT_BITSTREAM_BUFFER_RANGE_DETECTION_BIT_KHR = 0b10,
+VideoEncodeCapabilityPrecedingExternallyEncodedBytesBitKhr = 0b1,
+VideoEncodeCapabilityInsufficientBitstreamBufferRangeDetectionBitKhr = 0b10,
 }
 
 #[repr(u32)]
 pub enum VideoEncodeFeedbackFlagBitsKHR {
-VK_VIDEO_ENCODE_FEEDBACK_BITSTREAM_BUFFER_OFFSET_BIT_KHR = 0b1,
-VK_VIDEO_ENCODE_FEEDBACK_BITSTREAM_BYTES_WRITTEN_BIT_KHR = 0b10,
-VK_VIDEO_ENCODE_FEEDBACK_BITSTREAM_HAS_OVERRIDES_BIT_KHR = 0b100,
+VideoEncodeFeedbackBitstreamBufferOffsetBitKhr = 0b1,
+VideoEncodeFeedbackBitstreamBytesWrittenBitKhr = 0b10,
+VideoEncodeFeedbackBitstreamHasOverridesBitKhr = 0b100,
 }
 
 #[repr(u32)]
 pub enum VideoEncodeRateControlModeFlagBitsKHR {
-VK_VIDEO_ENCODE_RATE_CONTROL_MODE_DEFAULT_KHR = 0b0,
-VK_VIDEO_ENCODE_RATE_CONTROL_MODE_DISABLED_BIT_KHR = 0b1,
-VK_VIDEO_ENCODE_RATE_CONTROL_MODE_CBR_BIT_KHR = 0b10,
-VK_VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_BIT_KHR = 0b100,
+VideoEncodeRateControlModeDefaultKhr = 0b0,
+VideoEncodeRateControlModeDisabledBitKhr = 0b1,
+VideoEncodeRateControlModeCbrBitKhr = 0b10,
+VideoEncodeRateControlModeVbrBitKhr = 0b100,
 }
 
 #[repr(u32)]
 pub enum VideoEncodeH264CapabilityFlagBitsEXT {
-VK_VIDEO_ENCODE_H264_CAPABILITY_HRD_COMPLIANCE_BIT_EXT = 0b1,
-VK_VIDEO_ENCODE_H264_CAPABILITY_PREDICTION_WEIGHT_TABLE_GENERATED_BIT_EXT = 0b10,
-VK_VIDEO_ENCODE_H264_CAPABILITY_ROW_UNALIGNED_SLICE_BIT_EXT = 0b100,
-VK_VIDEO_ENCODE_H264_CAPABILITY_DIFFERENT_SLICE_TYPE_BIT_EXT = 0b1000,
-VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L0_LIST_BIT_EXT = 0b10000,
-VK_VIDEO_ENCODE_H264_CAPABILITY_B_FRAME_IN_L1_LIST_BIT_EXT = 0b100000,
-VK_VIDEO_ENCODE_H264_CAPABILITY_PER_PICTURE_TYPE_MIN_MAX_QP_BIT_EXT = 0b1000000,
-VK_VIDEO_ENCODE_H264_CAPABILITY_PER_SLICE_CONSTANT_QP_BIT_EXT = 0b10000000,
-VK_VIDEO_ENCODE_H264_CAPABILITY_GENERATE_PREFIX_NALU_BIT_EXT = 0b100000000,
+VideoEncodeH264CapabilityHrdComplianceBitExt = 0b1,
+VideoEncodeH264CapabilityPredictionWeightTableGeneratedBitExt = 0b10,
+VideoEncodeH264CapabilityRowUnalignedSliceBitExt = 0b100,
+VideoEncodeH264CapabilityDifferentSliceTypeBitExt = 0b1000,
+VideoEncodeH264CapabilityBFrameInL0ListBitExt = 0b10000,
+VideoEncodeH264CapabilityBFrameInL1ListBitExt = 0b100000,
+VideoEncodeH264CapabilityPerPictureTypeMinMaxQpBitExt = 0b1000000,
+VideoEncodeH264CapabilityPerSliceConstantQpBitExt = 0b10000000,
+VideoEncodeH264CapabilityGeneratePrefixNaluBitExt = 0b100000000,
 }
 
 #[repr(u32)]
 pub enum VideoEncodeH264StdFlagBitsEXT {
-VK_VIDEO_ENCODE_H264_STD_SEPARATE_COLOR_PLANE_FLAG_SET_BIT_EXT = 0b1,
-VK_VIDEO_ENCODE_H264_STD_QPPRIME_Y_ZERO_TRANSFORM_BYPASS_FLAG_SET_BIT_EXT = 0b10,
-VK_VIDEO_ENCODE_H264_STD_SCALING_MATRIX_PRESENT_FLAG_SET_BIT_EXT = 0b100,
-VK_VIDEO_ENCODE_H264_STD_CHROMA_QP_INDEX_OFFSET_BIT_EXT = 0b1000,
-VK_VIDEO_ENCODE_H264_STD_SECOND_CHROMA_QP_INDEX_OFFSET_BIT_EXT = 0b10000,
-VK_VIDEO_ENCODE_H264_STD_PIC_INIT_QP_MINUS26_BIT_EXT = 0b100000,
-VK_VIDEO_ENCODE_H264_STD_WEIGHTED_PRED_FLAG_SET_BIT_EXT = 0b1000000,
-VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_EXPLICIT_BIT_EXT = 0b10000000,
-VK_VIDEO_ENCODE_H264_STD_WEIGHTED_BIPRED_IDC_IMPLICIT_BIT_EXT = 0b100000000,
-VK_VIDEO_ENCODE_H264_STD_TRANSFORM_8X8_MODE_FLAG_SET_BIT_EXT = 0b1000000000,
-VK_VIDEO_ENCODE_H264_STD_DIRECT_SPATIAL_MV_PRED_FLAG_UNSET_BIT_EXT = 0b10000000000,
-VK_VIDEO_ENCODE_H264_STD_ENTROPY_CODING_MODE_FLAG_UNSET_BIT_EXT = 0b100000000000,
-VK_VIDEO_ENCODE_H264_STD_ENTROPY_CODING_MODE_FLAG_SET_BIT_EXT = 0b1000000000000,
-VK_VIDEO_ENCODE_H264_STD_DIRECT_8X8_INFERENCE_FLAG_UNSET_BIT_EXT = 0b10000000000000,
-VK_VIDEO_ENCODE_H264_STD_CONSTRAINED_INTRA_PRED_FLAG_SET_BIT_EXT = 0b100000000000000,
-VK_VIDEO_ENCODE_H264_STD_DEBLOCKING_FILTER_DISABLED_BIT_EXT = 0b1000000000000000,
-VK_VIDEO_ENCODE_H264_STD_DEBLOCKING_FILTER_ENABLED_BIT_EXT = 0b10000000000000000,
-VK_VIDEO_ENCODE_H264_STD_DEBLOCKING_FILTER_PARTIAL_BIT_EXT = 0b100000000000000000,
-VK_VIDEO_ENCODE_H264_STD_SLICE_QP_DELTA_BIT_EXT = 0b10000000000000000000,
-VK_VIDEO_ENCODE_H264_STD_DIFFERENT_SLICE_QP_DELTA_BIT_EXT = 0b100000000000000000000,
+VideoEncodeH264StdSeparateColorPlaneFlagSetBitExt = 0b1,
+VideoEncodeH264StdQpprimeYZeroTransformBypassFlagSetBitExt = 0b10,
+VideoEncodeH264StdScalingMatrixPresentFlagSetBitExt = 0b100,
+VideoEncodeH264StdChromaQpIndexOffsetBitExt = 0b1000,
+VideoEncodeH264StdSecondChromaQpIndexOffsetBitExt = 0b10000,
+VideoEncodeH264StdPicInitQpMinus26BitExt = 0b100000,
+VideoEncodeH264StdWeightedPredFlagSetBitExt = 0b1000000,
+VideoEncodeH264StdWeightedBipredIdcExplicitBitExt = 0b10000000,
+VideoEncodeH264StdWeightedBipredIdcImplicitBitExt = 0b100000000,
+VideoEncodeH264StdTransform8x8ModeFlagSetBitExt = 0b1000000000,
+VideoEncodeH264StdDirectSpatialMvPredFlagUnsetBitExt = 0b10000000000,
+VideoEncodeH264StdEntropyCodingModeFlagUnsetBitExt = 0b100000000000,
+VideoEncodeH264StdEntropyCodingModeFlagSetBitExt = 0b1000000000000,
+VideoEncodeH264StdDirect8x8InferenceFlagUnsetBitExt = 0b10000000000000,
+VideoEncodeH264StdConstrainedIntraPredFlagSetBitExt = 0b100000000000000,
+VideoEncodeH264StdDeblockingFilterDisabledBitExt = 0b1000000000000000,
+VideoEncodeH264StdDeblockingFilterEnabledBitExt = 0b10000000000000000,
+VideoEncodeH264StdDeblockingFilterPartialBitExt = 0b100000000000000000,
+VideoEncodeH264StdSliceQpDeltaBitExt = 0b10000000000000000000,
+VideoEncodeH264StdDifferentSliceQpDeltaBitExt = 0b100000000000000000000,
 }
 
 #[repr(u32)]
 pub enum VideoEncodeH264RateControlFlagBitsEXT {
-VK_VIDEO_ENCODE_H264_RATE_CONTROL_ATTEMPT_HRD_COMPLIANCE_BIT_EXT = 0b1,
-VK_VIDEO_ENCODE_H264_RATE_CONTROL_REGULAR_GOP_BIT_EXT = 0b10,
-VK_VIDEO_ENCODE_H264_RATE_CONTROL_REFERENCE_PATTERN_FLAT_BIT_EXT = 0b100,
-VK_VIDEO_ENCODE_H264_RATE_CONTROL_REFERENCE_PATTERN_DYADIC_BIT_EXT = 0b1000,
-VK_VIDEO_ENCODE_H264_RATE_CONTROL_TEMPORAL_LAYER_PATTERN_DYADIC_BIT_EXT = 0b10000,
+VideoEncodeH264RateControlAttemptHrdComplianceBitExt = 0b1,
+VideoEncodeH264RateControlRegularGopBitExt = 0b10,
+VideoEncodeH264RateControlReferencePatternFlatBitExt = 0b100,
+VideoEncodeH264RateControlReferencePatternDyadicBitExt = 0b1000,
+VideoEncodeH264RateControlTemporalLayerPatternDyadicBitExt = 0b10000,
 }
 
 #[repr(u32)]
 pub enum HostImageCopyFlagBitsEXT {
-VK_HOST_IMAGE_COPY_MEMCPY_EXT = 0b1,
+HostImageCopyMemcpyExt = 0b1,
 }
 
 #[repr(u32)]
@@ -2265,122 +2331,122 @@ pub enum ImageFormatConstraintsFlagBitsFUCHSIA {
 
 #[repr(u32)]
 pub enum ImageConstraintsInfoFlagBitsFUCHSIA {
-VK_IMAGE_CONSTRAINTS_INFO_CPU_READ_RARELY_FUCHSIA = 0b1,
-VK_IMAGE_CONSTRAINTS_INFO_CPU_READ_OFTEN_FUCHSIA = 0b10,
-VK_IMAGE_CONSTRAINTS_INFO_CPU_WRITE_RARELY_FUCHSIA = 0b100,
-VK_IMAGE_CONSTRAINTS_INFO_CPU_WRITE_OFTEN_FUCHSIA = 0b1000,
-VK_IMAGE_CONSTRAINTS_INFO_PROTECTED_OPTIONAL_FUCHSIA = 0b10000,
+ImageConstraintsInfoCpuReadRarelyFuchsia = 0b1,
+ImageConstraintsInfoCpuReadOftenFuchsia = 0b10,
+ImageConstraintsInfoCpuWriteRarelyFuchsia = 0b100,
+ImageConstraintsInfoCpuWriteOftenFuchsia = 0b1000,
+ImageConstraintsInfoProtectedOptionalFuchsia = 0b10000,
 }
 
 #[repr(u64)]
 pub enum FormatFeatureFlagBits2 {
-VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_BIT = 0b1,
-VK_FORMAT_FEATURE_2_STORAGE_IMAGE_BIT = 0b10,
-VK_FORMAT_FEATURE_2_STORAGE_IMAGE_ATOMIC_BIT = 0b100,
-VK_FORMAT_FEATURE_2_UNIFORM_TEXEL_BUFFER_BIT = 0b1000,
-VK_FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_BIT = 0b10000,
-VK_FORMAT_FEATURE_2_STORAGE_TEXEL_BUFFER_ATOMIC_BIT = 0b100000,
-VK_FORMAT_FEATURE_2_VERTEX_BUFFER_BIT = 0b1000000,
-VK_FORMAT_FEATURE_2_COLOR_ATTACHMENT_BIT = 0b10000000,
-VK_FORMAT_FEATURE_2_COLOR_ATTACHMENT_BLEND_BIT = 0b100000000,
-VK_FORMAT_FEATURE_2_DEPTH_STENCIL_ATTACHMENT_BIT = 0b1000000000,
-VK_FORMAT_FEATURE_2_BLIT_SRC_BIT = 0b10000000000,
-VK_FORMAT_FEATURE_2_BLIT_DST_BIT = 0b100000000000,
-VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_LINEAR_BIT = 0b1000000000000,
-VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_CUBIC_BIT = 0b10000000000000,
-VK_FORMAT_FEATURE_2_TRANSFER_SRC_BIT = 0b100000000000000,
-VK_FORMAT_FEATURE_2_TRANSFER_DST_BIT = 0b1000000000000000,
-VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_FILTER_MINMAX_BIT = 0b10000000000000000,
-VK_FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES_BIT = 0b100000000000000000,
-VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT = 0b1000000000000000000,
-VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT = 0b10000000000000000000,
-VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT = 0b100000000000000000000,
-VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT = 0b1000000000000000000000,
-VK_FORMAT_FEATURE_2_DISJOINT_BIT = 0b10000000000000000000000,
-VK_FORMAT_FEATURE_2_COSITED_CHROMA_SAMPLES_BIT = 0b100000000000000000000000,
-VK_FORMAT_FEATURE_2_STORAGE_READ_WITHOUT_FORMAT_BIT = 0b10000000000000000000000000000000,
-VK_FORMAT_FEATURE_2_STORAGE_WRITE_WITHOUT_FORMAT_BIT = 0b100000000000000000000000000000000,
-VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON_BIT = 0b1000000000000000000000000000000000,
+FormatFeature2SampledImageBit = 0b1,
+FormatFeature2StorageImageBit = 0b10,
+FormatFeature2StorageImageAtomicBit = 0b100,
+FormatFeature2UniformTexelBufferBit = 0b1000,
+FormatFeature2StorageTexelBufferBit = 0b10000,
+FormatFeature2StorageTexelBufferAtomicBit = 0b100000,
+FormatFeature2VertexBufferBit = 0b1000000,
+FormatFeature2ColorAttachmentBit = 0b10000000,
+FormatFeature2ColorAttachmentBlendBit = 0b100000000,
+FormatFeature2DepthStencilAttachmentBit = 0b1000000000,
+FormatFeature2BlitSrcBit = 0b10000000000,
+FormatFeature2BlitDstBit = 0b100000000000,
+FormatFeature2SampledImageFilterLinearBit = 0b1000000000000,
+FormatFeature2SampledImageFilterCubicBit = 0b10000000000000,
+FormatFeature2TransferSrcBit = 0b100000000000000,
+FormatFeature2TransferDstBit = 0b1000000000000000,
+FormatFeature2SampledImageFilterMinmaxBit = 0b10000000000000000,
+FormatFeature2MidpointChromaSamplesBit = 0b100000000000000000,
+FormatFeature2SampledImageYcbcrConversionLinearFilterBit = 0b1000000000000000000,
+FormatFeature2SampledImageYcbcrConversionSeparateReconstructionFilterBit = 0b10000000000000000000,
+FormatFeature2SampledImageYcbcrConversionChromaReconstructionExplicitBit = 0b100000000000000000000,
+FormatFeature2SampledImageYcbcrConversionChromaReconstructionExplicitForceableBit = 0b1000000000000000000000,
+FormatFeature2DisjointBit = 0b10000000000000000000000,
+FormatFeature2CositedChromaSamplesBit = 0b100000000000000000000000,
+FormatFeature2StorageReadWithoutFormatBit = 0b10000000000000000000000000000000,
+FormatFeature2StorageWriteWithoutFormatBit = 0b100000000000000000000000000000000,
+FormatFeature2SampledImageDepthComparisonBit = 0b1000000000000000000000000000000000,
 }
 
 #[repr(u32)]
 pub enum RenderingFlagBits {
-VK_RENDERING_CONTENTS_SECONDARY_COMMAND_BUFFERS_BIT = 0b1,
-VK_RENDERING_SUSPENDING_BIT = 0b10,
-VK_RENDERING_RESUMING_BIT = 0b100,
+RenderingContentsSecondaryCommandBuffersBit = 0b1,
+RenderingSuspendingBit = 0b10,
+RenderingResumingBit = 0b100,
 }
 
 #[repr(u32)]
 pub enum VideoEncodeH265CapabilityFlagBitsEXT {
-VK_VIDEO_ENCODE_H265_CAPABILITY_HRD_COMPLIANCE_BIT_EXT = 0b1,
-VK_VIDEO_ENCODE_H265_CAPABILITY_PREDICTION_WEIGHT_TABLE_GENERATED_BIT_EXT = 0b10,
-VK_VIDEO_ENCODE_H265_CAPABILITY_ROW_UNALIGNED_SLICE_SEGMENT_BIT_EXT = 0b100,
-VK_VIDEO_ENCODE_H265_CAPABILITY_DIFFERENT_SLICE_SEGMENT_TYPE_BIT_EXT = 0b1000,
-VK_VIDEO_ENCODE_H265_CAPABILITY_B_FRAME_IN_L0_LIST_BIT_EXT = 0b10000,
-VK_VIDEO_ENCODE_H265_CAPABILITY_B_FRAME_IN_L1_LIST_BIT_EXT = 0b100000,
-VK_VIDEO_ENCODE_H265_CAPABILITY_PER_PICTURE_TYPE_MIN_MAX_QP_BIT_EXT = 0b1000000,
-VK_VIDEO_ENCODE_H265_CAPABILITY_PER_SLICE_SEGMENT_CONSTANT_QP_BIT_EXT = 0b10000000,
-VK_VIDEO_ENCODE_H265_CAPABILITY_MULTIPLE_TILES_PER_SLICE_SEGMENT_BIT_EXT = 0b100000000,
-VK_VIDEO_ENCODE_H265_CAPABILITY_MULTIPLE_SLICE_SEGMENTS_PER_TILE_BIT_EXT = 0b1000000000,
+VideoEncodeH265CapabilityHrdComplianceBitExt = 0b1,
+VideoEncodeH265CapabilityPredictionWeightTableGeneratedBitExt = 0b10,
+VideoEncodeH265CapabilityRowUnalignedSliceSegmentBitExt = 0b100,
+VideoEncodeH265CapabilityDifferentSliceSegmentTypeBitExt = 0b1000,
+VideoEncodeH265CapabilityBFrameInL0ListBitExt = 0b10000,
+VideoEncodeH265CapabilityBFrameInL1ListBitExt = 0b100000,
+VideoEncodeH265CapabilityPerPictureTypeMinMaxQpBitExt = 0b1000000,
+VideoEncodeH265CapabilityPerSliceSegmentConstantQpBitExt = 0b10000000,
+VideoEncodeH265CapabilityMultipleTilesPerSliceSegmentBitExt = 0b100000000,
+VideoEncodeH265CapabilityMultipleSliceSegmentsPerTileBitExt = 0b1000000000,
 }
 
 #[repr(u32)]
 pub enum VideoEncodeH265StdFlagBitsEXT {
-VK_VIDEO_ENCODE_H265_STD_SEPARATE_COLOR_PLANE_FLAG_SET_BIT_EXT = 0b1,
-VK_VIDEO_ENCODE_H265_STD_SAMPLE_ADAPTIVE_OFFSET_ENABLED_FLAG_SET_BIT_EXT = 0b10,
-VK_VIDEO_ENCODE_H265_STD_SCALING_LIST_DATA_PRESENT_FLAG_SET_BIT_EXT = 0b100,
-VK_VIDEO_ENCODE_H265_STD_PCM_ENABLED_FLAG_SET_BIT_EXT = 0b1000,
-VK_VIDEO_ENCODE_H265_STD_SPS_TEMPORAL_MVP_ENABLED_FLAG_SET_BIT_EXT = 0b10000,
-VK_VIDEO_ENCODE_H265_STD_INIT_QP_MINUS26_BIT_EXT = 0b100000,
-VK_VIDEO_ENCODE_H265_STD_WEIGHTED_PRED_FLAG_SET_BIT_EXT = 0b1000000,
-VK_VIDEO_ENCODE_H265_STD_WEIGHTED_BIPRED_FLAG_SET_BIT_EXT = 0b10000000,
-VK_VIDEO_ENCODE_H265_STD_LOG2_PARALLEL_MERGE_LEVEL_MINUS2_BIT_EXT = 0b100000000,
-VK_VIDEO_ENCODE_H265_STD_SIGN_DATA_HIDING_ENABLED_FLAG_SET_BIT_EXT = 0b1000000000,
-VK_VIDEO_ENCODE_H265_STD_TRANSFORM_SKIP_ENABLED_FLAG_SET_BIT_EXT = 0b10000000000,
-VK_VIDEO_ENCODE_H265_STD_TRANSFORM_SKIP_ENABLED_FLAG_UNSET_BIT_EXT = 0b100000000000,
-VK_VIDEO_ENCODE_H265_STD_PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT_FLAG_SET_BIT_EXT = 0b1000000000000,
-VK_VIDEO_ENCODE_H265_STD_TRANSQUANT_BYPASS_ENABLED_FLAG_SET_BIT_EXT = 0b10000000000000,
-VK_VIDEO_ENCODE_H265_STD_CONSTRAINED_INTRA_PRED_FLAG_SET_BIT_EXT = 0b100000000000000,
-VK_VIDEO_ENCODE_H265_STD_ENTROPY_CODING_SYNC_ENABLED_FLAG_SET_BIT_EXT = 0b1000000000000000,
-VK_VIDEO_ENCODE_H265_STD_DEBLOCKING_FILTER_OVERRIDE_ENABLED_FLAG_SET_BIT_EXT = 0b10000000000000000,
-VK_VIDEO_ENCODE_H265_STD_DEPENDENT_SLICE_SEGMENTS_ENABLED_FLAG_SET_BIT_EXT = 0b100000000000000000,
-VK_VIDEO_ENCODE_H265_STD_DEPENDENT_SLICE_SEGMENT_FLAG_SET_BIT_EXT = 0b1000000000000000000,
-VK_VIDEO_ENCODE_H265_STD_SLICE_QP_DELTA_BIT_EXT = 0b10000000000000000000,
-VK_VIDEO_ENCODE_H265_STD_DIFFERENT_SLICE_QP_DELTA_BIT_EXT = 0b100000000000000000000,
+VideoEncodeH265StdSeparateColorPlaneFlagSetBitExt = 0b1,
+VideoEncodeH265StdSampleAdaptiveOffsetEnabledFlagSetBitExt = 0b10,
+VideoEncodeH265StdScalingListDataPresentFlagSetBitExt = 0b100,
+VideoEncodeH265StdPcmEnabledFlagSetBitExt = 0b1000,
+VideoEncodeH265StdSpsTemporalMvpEnabledFlagSetBitExt = 0b10000,
+VideoEncodeH265StdInitQpMinus26BitExt = 0b100000,
+VideoEncodeH265StdWeightedPredFlagSetBitExt = 0b1000000,
+VideoEncodeH265StdWeightedBipredFlagSetBitExt = 0b10000000,
+VideoEncodeH265StdLog2ParallelMergeLevelMinus2BitExt = 0b100000000,
+VideoEncodeH265StdSignDataHidingEnabledFlagSetBitExt = 0b1000000000,
+VideoEncodeH265StdTransformSkipEnabledFlagSetBitExt = 0b10000000000,
+VideoEncodeH265StdTransformSkipEnabledFlagUnsetBitExt = 0b100000000000,
+VideoEncodeH265StdPpsSliceChromaQpOffsetsPresentFlagSetBitExt = 0b1000000000000,
+VideoEncodeH265StdTransquantBypassEnabledFlagSetBitExt = 0b10000000000000,
+VideoEncodeH265StdConstrainedIntraPredFlagSetBitExt = 0b100000000000000,
+VideoEncodeH265StdEntropyCodingSyncEnabledFlagSetBitExt = 0b1000000000000000,
+VideoEncodeH265StdDeblockingFilterOverrideEnabledFlagSetBitExt = 0b10000000000000000,
+VideoEncodeH265StdDependentSliceSegmentsEnabledFlagSetBitExt = 0b100000000000000000,
+VideoEncodeH265StdDependentSliceSegmentFlagSetBitExt = 0b1000000000000000000,
+VideoEncodeH265StdSliceQpDeltaBitExt = 0b10000000000000000000,
+VideoEncodeH265StdDifferentSliceQpDeltaBitExt = 0b100000000000000000000,
 }
 
 #[repr(u32)]
 pub enum VideoEncodeH265RateControlFlagBitsEXT {
-VK_VIDEO_ENCODE_H265_RATE_CONTROL_ATTEMPT_HRD_COMPLIANCE_BIT_EXT = 0b1,
-VK_VIDEO_ENCODE_H265_RATE_CONTROL_REGULAR_GOP_BIT_EXT = 0b10,
-VK_VIDEO_ENCODE_H265_RATE_CONTROL_REFERENCE_PATTERN_FLAT_BIT_EXT = 0b100,
-VK_VIDEO_ENCODE_H265_RATE_CONTROL_REFERENCE_PATTERN_DYADIC_BIT_EXT = 0b1000,
-VK_VIDEO_ENCODE_H265_RATE_CONTROL_TEMPORAL_SUB_LAYER_PATTERN_DYADIC_BIT_EXT = 0b10000,
+VideoEncodeH265RateControlAttemptHrdComplianceBitExt = 0b1,
+VideoEncodeH265RateControlRegularGopBitExt = 0b10,
+VideoEncodeH265RateControlReferencePatternFlatBitExt = 0b100,
+VideoEncodeH265RateControlReferencePatternDyadicBitExt = 0b1000,
+VideoEncodeH265RateControlTemporalSubLayerPatternDyadicBitExt = 0b10000,
 }
 
 #[repr(u32)]
 pub enum VideoEncodeH265CtbSizeFlagBitsEXT {
-VK_VIDEO_ENCODE_H265_CTB_SIZE_16_BIT_EXT = 0b1,
-VK_VIDEO_ENCODE_H265_CTB_SIZE_32_BIT_EXT = 0b10,
-VK_VIDEO_ENCODE_H265_CTB_SIZE_64_BIT_EXT = 0b100,
+VideoEncodeH265CtbSize16BitExt = 0b1,
+VideoEncodeH265CtbSize32BitExt = 0b10,
+VideoEncodeH265CtbSize64BitExt = 0b100,
 }
 
 #[repr(u32)]
 pub enum VideoEncodeH265TransformBlockSizeFlagBitsEXT {
-VK_VIDEO_ENCODE_H265_TRANSFORM_BLOCK_SIZE_4_BIT_EXT = 0b1,
-VK_VIDEO_ENCODE_H265_TRANSFORM_BLOCK_SIZE_8_BIT_EXT = 0b10,
-VK_VIDEO_ENCODE_H265_TRANSFORM_BLOCK_SIZE_16_BIT_EXT = 0b100,
-VK_VIDEO_ENCODE_H265_TRANSFORM_BLOCK_SIZE_32_BIT_EXT = 0b1000,
+VideoEncodeH265TransformBlockSize4BitExt = 0b1,
+VideoEncodeH265TransformBlockSize8BitExt = 0b10,
+VideoEncodeH265TransformBlockSize16BitExt = 0b100,
+VideoEncodeH265TransformBlockSize32BitExt = 0b1000,
 }
 
 #[repr(u32)]
 pub enum ExportMetalObjectTypeFlagBitsEXT {
-VK_EXPORT_METAL_OBJECT_TYPE_METAL_DEVICE_BIT_EXT = 0b1,
-VK_EXPORT_METAL_OBJECT_TYPE_METAL_COMMAND_QUEUE_BIT_EXT = 0b10,
-VK_EXPORT_METAL_OBJECT_TYPE_METAL_BUFFER_BIT_EXT = 0b100,
-VK_EXPORT_METAL_OBJECT_TYPE_METAL_TEXTURE_BIT_EXT = 0b1000,
-VK_EXPORT_METAL_OBJECT_TYPE_METAL_IOSURFACE_BIT_EXT = 0b10000,
-VK_EXPORT_METAL_OBJECT_TYPE_METAL_SHARED_EVENT_BIT_EXT = 0b100000,
+ExportMetalObjectTypeMetalDeviceBitExt = 0b1,
+ExportMetalObjectTypeMetalCommandQueueBitExt = 0b10,
+ExportMetalObjectTypeMetalBufferBitExt = 0b100,
+ExportMetalObjectTypeMetalTextureBitExt = 0b1000,
+ExportMetalObjectTypeMetalIosurfaceBitExt = 0b10000,
+ExportMetalObjectTypeMetalSharedEventBitExt = 0b100000,
 }
 
 #[repr(u32)]
@@ -2389,259 +2455,259 @@ pub enum InstanceCreateFlagBits {
 
 #[repr(u32)]
 pub enum ImageCompressionFlagBitsEXT {
-VK_IMAGE_COMPRESSION_DEFAULT_EXT = 0b0,
-VK_IMAGE_COMPRESSION_FIXED_RATE_DEFAULT_EXT = 0b1,
-VK_IMAGE_COMPRESSION_FIXED_RATE_EXPLICIT_EXT = 0b10,
-VK_IMAGE_COMPRESSION_DISABLED_EXT = 0b100,
+ImageCompressionDefaultExt = 0b0,
+ImageCompressionFixedRateDefaultExt = 0b1,
+ImageCompressionFixedRateExplicitExt = 0b10,
+ImageCompressionDisabledExt = 0b100,
 }
 
 #[repr(u32)]
 pub enum ImageCompressionFixedRateFlagBitsEXT {
-VK_IMAGE_COMPRESSION_FIXED_RATE_NONE_EXT = 0b0,
-VK_IMAGE_COMPRESSION_FIXED_RATE_1BPC_BIT_EXT = 0b1,
-VK_IMAGE_COMPRESSION_FIXED_RATE_2BPC_BIT_EXT = 0b10,
-VK_IMAGE_COMPRESSION_FIXED_RATE_3BPC_BIT_EXT = 0b100,
-VK_IMAGE_COMPRESSION_FIXED_RATE_4BPC_BIT_EXT = 0b1000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_5BPC_BIT_EXT = 0b10000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_6BPC_BIT_EXT = 0b100000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_7BPC_BIT_EXT = 0b1000000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_8BPC_BIT_EXT = 0b10000000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_9BPC_BIT_EXT = 0b100000000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_10BPC_BIT_EXT = 0b1000000000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_11BPC_BIT_EXT = 0b10000000000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_12BPC_BIT_EXT = 0b100000000000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_13BPC_BIT_EXT = 0b1000000000000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_14BPC_BIT_EXT = 0b10000000000000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_15BPC_BIT_EXT = 0b100000000000000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_16BPC_BIT_EXT = 0b1000000000000000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_17BPC_BIT_EXT = 0b10000000000000000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_18BPC_BIT_EXT = 0b100000000000000000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_19BPC_BIT_EXT = 0b1000000000000000000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_20BPC_BIT_EXT = 0b10000000000000000000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_21BPC_BIT_EXT = 0b100000000000000000000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_22BPC_BIT_EXT = 0b1000000000000000000000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_23BPC_BIT_EXT = 0b10000000000000000000000,
-VK_IMAGE_COMPRESSION_FIXED_RATE_24BPC_BIT_EXT = 0b100000000000000000000000,
+ImageCompressionFixedRateNoneExt = 0b0,
+ImageCompressionFixedRate1bpcBitExt = 0b1,
+ImageCompressionFixedRate2bpcBitExt = 0b10,
+ImageCompressionFixedRate3bpcBitExt = 0b100,
+ImageCompressionFixedRate4bpcBitExt = 0b1000,
+ImageCompressionFixedRate5bpcBitExt = 0b10000,
+ImageCompressionFixedRate6bpcBitExt = 0b100000,
+ImageCompressionFixedRate7bpcBitExt = 0b1000000,
+ImageCompressionFixedRate8bpcBitExt = 0b10000000,
+ImageCompressionFixedRate9bpcBitExt = 0b100000000,
+ImageCompressionFixedRate10bpcBitExt = 0b1000000000,
+ImageCompressionFixedRate11bpcBitExt = 0b10000000000,
+ImageCompressionFixedRate12bpcBitExt = 0b100000000000,
+ImageCompressionFixedRate13bpcBitExt = 0b1000000000000,
+ImageCompressionFixedRate14bpcBitExt = 0b10000000000000,
+ImageCompressionFixedRate15bpcBitExt = 0b100000000000000,
+ImageCompressionFixedRate16bpcBitExt = 0b1000000000000000,
+ImageCompressionFixedRate17bpcBitExt = 0b10000000000000000,
+ImageCompressionFixedRate18bpcBitExt = 0b100000000000000000,
+ImageCompressionFixedRate19bpcBitExt = 0b1000000000000000000,
+ImageCompressionFixedRate20bpcBitExt = 0b10000000000000000000,
+ImageCompressionFixedRate21bpcBitExt = 0b100000000000000000000,
+ImageCompressionFixedRate22bpcBitExt = 0b1000000000000000000000,
+ImageCompressionFixedRate23bpcBitExt = 0b10000000000000000000000,
+ImageCompressionFixedRate24bpcBitExt = 0b100000000000000000000000,
 }
 
 #[repr(C)]
 pub enum PipelineRobustnessBufferBehaviorEXT {
-VK_PIPELINE_ROBUSTNESS_BUFFER_BEHAVIOR_DEVICE_DEFAULT_EXT = 0,
-VK_PIPELINE_ROBUSTNESS_BUFFER_BEHAVIOR_DISABLED_EXT = 1,
-VK_PIPELINE_ROBUSTNESS_BUFFER_BEHAVIOR_ROBUST_BUFFER_ACCESS_EXT = 2,
-VK_PIPELINE_ROBUSTNESS_BUFFER_BEHAVIOR_ROBUST_BUFFER_ACCESS_2_EXT = 3,
+PipelineRobustnessBufferBehaviorDeviceDefaultExt = 0,
+PipelineRobustnessBufferBehaviorDisabledExt = 1,
+PipelineRobustnessBufferBehaviorRobustBufferAccessExt = 2,
+PipelineRobustnessBufferBehaviorRobustBufferAccess2Ext = 3,
 }
 
 #[repr(C)]
 pub enum PipelineRobustnessImageBehaviorEXT {
-VK_PIPELINE_ROBUSTNESS_IMAGE_BEHAVIOR_DEVICE_DEFAULT_EXT = 0,
-VK_PIPELINE_ROBUSTNESS_IMAGE_BEHAVIOR_DISABLED_EXT = 1,
-VK_PIPELINE_ROBUSTNESS_IMAGE_BEHAVIOR_ROBUST_IMAGE_ACCESS_EXT = 2,
-VK_PIPELINE_ROBUSTNESS_IMAGE_BEHAVIOR_ROBUST_IMAGE_ACCESS_2_EXT = 3,
+PipelineRobustnessImageBehaviorDeviceDefaultExt = 0,
+PipelineRobustnessImageBehaviorDisabledExt = 1,
+PipelineRobustnessImageBehaviorRobustImageAccessExt = 2,
+PipelineRobustnessImageBehaviorRobustImageAccess2Ext = 3,
 }
 
 #[repr(u32)]
 pub enum OpticalFlowGridSizeFlagBitsNV {
-VK_OPTICAL_FLOW_GRID_SIZE_UNKNOWN_NV = 0b0,
-VK_OPTICAL_FLOW_GRID_SIZE_1X1_BIT_NV = 0b1,
-VK_OPTICAL_FLOW_GRID_SIZE_2X2_BIT_NV = 0b10,
-VK_OPTICAL_FLOW_GRID_SIZE_4X4_BIT_NV = 0b100,
-VK_OPTICAL_FLOW_GRID_SIZE_8X8_BIT_NV = 0b1000,
+OpticalFlowGridSizeUnknownNv = 0b0,
+OpticalFlowGridSize1x1BitNv = 0b1,
+OpticalFlowGridSize2x2BitNv = 0b10,
+OpticalFlowGridSize4x4BitNv = 0b100,
+OpticalFlowGridSize8x8BitNv = 0b1000,
 }
 
 #[repr(u32)]
 pub enum OpticalFlowUsageFlagBitsNV {
-VK_OPTICAL_FLOW_USAGE_UNKNOWN_NV = 0b0,
-VK_OPTICAL_FLOW_USAGE_INPUT_BIT_NV = 0b1,
-VK_OPTICAL_FLOW_USAGE_OUTPUT_BIT_NV = 0b10,
-VK_OPTICAL_FLOW_USAGE_HINT_BIT_NV = 0b100,
-VK_OPTICAL_FLOW_USAGE_COST_BIT_NV = 0b1000,
-VK_OPTICAL_FLOW_USAGE_GLOBAL_FLOW_BIT_NV = 0b10000,
+OpticalFlowUsageUnknownNv = 0b0,
+OpticalFlowUsageInputBitNv = 0b1,
+OpticalFlowUsageOutputBitNv = 0b10,
+OpticalFlowUsageHintBitNv = 0b100,
+OpticalFlowUsageCostBitNv = 0b1000,
+OpticalFlowUsageGlobalFlowBitNv = 0b10000,
 }
 
 #[repr(C)]
 pub enum OpticalFlowPerformanceLevelNV {
-VK_OPTICAL_FLOW_PERFORMANCE_LEVEL_UNKNOWN_NV = 0,
-VK_OPTICAL_FLOW_PERFORMANCE_LEVEL_SLOW_NV = 1,
-VK_OPTICAL_FLOW_PERFORMANCE_LEVEL_MEDIUM_NV = 2,
-VK_OPTICAL_FLOW_PERFORMANCE_LEVEL_FAST_NV = 3,
+OpticalFlowPerformanceLevelUnknownNv = 0,
+OpticalFlowPerformanceLevelSlowNv = 1,
+OpticalFlowPerformanceLevelMediumNv = 2,
+OpticalFlowPerformanceLevelFastNv = 3,
 }
 
 #[repr(C)]
 pub enum OpticalFlowSessionBindingPointNV {
-VK_OPTICAL_FLOW_SESSION_BINDING_POINT_UNKNOWN_NV = 0,
-VK_OPTICAL_FLOW_SESSION_BINDING_POINT_INPUT_NV = 1,
-VK_OPTICAL_FLOW_SESSION_BINDING_POINT_REFERENCE_NV = 2,
-VK_OPTICAL_FLOW_SESSION_BINDING_POINT_HINT_NV = 3,
-VK_OPTICAL_FLOW_SESSION_BINDING_POINT_FLOW_VECTOR_NV = 4,
-VK_OPTICAL_FLOW_SESSION_BINDING_POINT_BACKWARD_FLOW_VECTOR_NV = 5,
-VK_OPTICAL_FLOW_SESSION_BINDING_POINT_COST_NV = 6,
-VK_OPTICAL_FLOW_SESSION_BINDING_POINT_BACKWARD_COST_NV = 7,
-VK_OPTICAL_FLOW_SESSION_BINDING_POINT_GLOBAL_FLOW_NV = 8,
+OpticalFlowSessionBindingPointUnknownNv = 0,
+OpticalFlowSessionBindingPointInputNv = 1,
+OpticalFlowSessionBindingPointReferenceNv = 2,
+OpticalFlowSessionBindingPointHintNv = 3,
+OpticalFlowSessionBindingPointFlowVectorNv = 4,
+OpticalFlowSessionBindingPointBackwardFlowVectorNv = 5,
+OpticalFlowSessionBindingPointCostNv = 6,
+OpticalFlowSessionBindingPointBackwardCostNv = 7,
+OpticalFlowSessionBindingPointGlobalFlowNv = 8,
 }
 
 #[repr(u32)]
 pub enum OpticalFlowSessionCreateFlagBitsNV {
-VK_OPTICAL_FLOW_SESSION_CREATE_ENABLE_HINT_BIT_NV = 0b1,
-VK_OPTICAL_FLOW_SESSION_CREATE_ENABLE_COST_BIT_NV = 0b10,
-VK_OPTICAL_FLOW_SESSION_CREATE_ENABLE_GLOBAL_FLOW_BIT_NV = 0b100,
-VK_OPTICAL_FLOW_SESSION_CREATE_ALLOW_REGIONS_BIT_NV = 0b1000,
-VK_OPTICAL_FLOW_SESSION_CREATE_BOTH_DIRECTIONS_BIT_NV = 0b10000,
+OpticalFlowSessionCreateEnableHintBitNv = 0b1,
+OpticalFlowSessionCreateEnableCostBitNv = 0b10,
+OpticalFlowSessionCreateEnableGlobalFlowBitNv = 0b100,
+OpticalFlowSessionCreateAllowRegionsBitNv = 0b1000,
+OpticalFlowSessionCreateBothDirectionsBitNv = 0b10000,
 }
 
 #[repr(u32)]
 pub enum OpticalFlowExecuteFlagBitsNV {
-VK_OPTICAL_FLOW_EXECUTE_DISABLE_TEMPORAL_HINTS_BIT_NV = 0b1,
+OpticalFlowExecuteDisableTemporalHintsBitNv = 0b1,
 }
 
 #[repr(C)]
 pub enum MicromapTypeEXT {
-VK_MICROMAP_TYPE_OPACITY_MICROMAP_EXT = 0,
+MicromapTypeOpacityMicromapExt = 0,
 }
 
 #[repr(u32)]
 pub enum BuildMicromapFlagBitsEXT {
-VK_BUILD_MICROMAP_PREFER_FAST_TRACE_BIT_EXT = 0b1,
-VK_BUILD_MICROMAP_PREFER_FAST_BUILD_BIT_EXT = 0b10,
-VK_BUILD_MICROMAP_ALLOW_COMPACTION_BIT_EXT = 0b100,
+BuildMicromapPreferFastTraceBitExt = 0b1,
+BuildMicromapPreferFastBuildBitExt = 0b10,
+BuildMicromapAllowCompactionBitExt = 0b100,
 }
 
 #[repr(u32)]
 pub enum MicromapCreateFlagBitsEXT {
-VK_MICROMAP_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT = 0b1,
+MicromapCreateDeviceAddressCaptureReplayBitExt = 0b1,
 }
 
 #[repr(C)]
 pub enum CopyMicromapModeEXT {
-VK_COPY_MICROMAP_MODE_CLONE_EXT = 0,
-VK_COPY_MICROMAP_MODE_SERIALIZE_EXT = 1,
-VK_COPY_MICROMAP_MODE_DESERIALIZE_EXT = 2,
-VK_COPY_MICROMAP_MODE_COMPACT_EXT = 3,
+CopyMicromapModeCloneExt = 0,
+CopyMicromapModeSerializeExt = 1,
+CopyMicromapModeDeserializeExt = 2,
+CopyMicromapModeCompactExt = 3,
 }
 
 #[repr(C)]
 pub enum BuildMicromapModeEXT {
-VK_BUILD_MICROMAP_MODE_BUILD_EXT = 0,
+BuildMicromapModeBuildExt = 0,
 }
 
 #[repr(C)]
 pub enum OpacityMicromapFormatEXT {
-VK_OPACITY_MICROMAP_FORMAT_2_STATE_EXT = 1,
-VK_OPACITY_MICROMAP_FORMAT_4_STATE_EXT = 2,
+OpacityMicromapFormat2StateExt = 1,
+OpacityMicromapFormat4StateExt = 2,
 }
 
 #[repr(C)]
 pub enum OpacityMicromapSpecialIndexEXT {
-VK_OPACITY_MICROMAP_SPECIAL_INDEX_FULLY_TRANSPARENT_EXT = -1,
-VK_OPACITY_MICROMAP_SPECIAL_INDEX_FULLY_OPAQUE_EXT = -2,
-VK_OPACITY_MICROMAP_SPECIAL_INDEX_FULLY_UNKNOWN_TRANSPARENT_EXT = -3,
-VK_OPACITY_MICROMAP_SPECIAL_INDEX_FULLY_UNKNOWN_OPAQUE_EXT = -4,
+OpacityMicromapSpecialIndexFullyTransparentExt = -1,
+OpacityMicromapSpecialIndexFullyOpaqueExt = -2,
+OpacityMicromapSpecialIndexFullyUnknownTransparentExt = -3,
+OpacityMicromapSpecialIndexFullyUnknownOpaqueExt = -4,
 }
 
 #[repr(C)]
 pub enum DepthBiasRepresentationEXT {
-VK_DEPTH_BIAS_REPRESENTATION_LEAST_REPRESENTABLE_VALUE_FORMAT_EXT = 0,
-VK_DEPTH_BIAS_REPRESENTATION_LEAST_REPRESENTABLE_VALUE_FORCE_UNORM_EXT = 1,
-VK_DEPTH_BIAS_REPRESENTATION_FLOAT_EXT = 2,
+DepthBiasRepresentationLeastRepresentableValueFormatExt = 0,
+DepthBiasRepresentationLeastRepresentableValueForceUnormExt = 1,
+DepthBiasRepresentationFloatExt = 2,
 }
 
 #[repr(C)]
 pub enum DeviceFaultAddressTypeEXT {
-VK_DEVICE_FAULT_ADDRESS_TYPE_NONE_EXT = 0,
-VK_DEVICE_FAULT_ADDRESS_TYPE_READ_INVALID_EXT = 1,
-VK_DEVICE_FAULT_ADDRESS_TYPE_WRITE_INVALID_EXT = 2,
-VK_DEVICE_FAULT_ADDRESS_TYPE_EXECUTE_INVALID_EXT = 3,
-VK_DEVICE_FAULT_ADDRESS_TYPE_INSTRUCTION_POINTER_UNKNOWN_EXT = 4,
-VK_DEVICE_FAULT_ADDRESS_TYPE_INSTRUCTION_POINTER_INVALID_EXT = 5,
-VK_DEVICE_FAULT_ADDRESS_TYPE_INSTRUCTION_POINTER_FAULT_EXT = 6,
+DeviceFaultAddressTypeNoneExt = 0,
+DeviceFaultAddressTypeReadInvalidExt = 1,
+DeviceFaultAddressTypeWriteInvalidExt = 2,
+DeviceFaultAddressTypeExecuteInvalidExt = 3,
+DeviceFaultAddressTypeInstructionPointerUnknownExt = 4,
+DeviceFaultAddressTypeInstructionPointerInvalidExt = 5,
+DeviceFaultAddressTypeInstructionPointerFaultExt = 6,
 }
 
 #[repr(C)]
 pub enum DeviceFaultVendorBinaryHeaderVersionEXT {
-VK_DEVICE_FAULT_VENDOR_BINARY_HEADER_VERSION_ONE_EXT = 1,
+DeviceFaultVendorBinaryHeaderVersionOneExt = 1,
 }
 
 #[repr(C)]
 pub enum DisplacementMicromapFormatNV {
-VK_DISPLACEMENT_MICROMAP_FORMAT_64_TRIANGLES_64_BYTES_NV = 1,
-VK_DISPLACEMENT_MICROMAP_FORMAT_256_TRIANGLES_128_BYTES_NV = 2,
-VK_DISPLACEMENT_MICROMAP_FORMAT_1024_TRIANGLES_128_BYTES_NV = 3,
+DisplacementMicromapFormat64Triangles64BytesNv = 1,
+DisplacementMicromapFormat256Triangles128BytesNv = 2,
+DisplacementMicromapFormat1024Triangles128BytesNv = 3,
 }
 
 #[repr(u32)]
 pub enum ShaderCreateFlagBitsEXT {
-VK_SHADER_CREATE_LINK_STAGE_BIT_EXT = 0b1,
+ShaderCreateLinkStageBitExt = 0b1,
 }
 
 #[repr(C)]
 pub enum ShaderCodeTypeEXT {
-VK_SHADER_CODE_TYPE_BINARY_EXT = 0,
-VK_SHADER_CODE_TYPE_SPIRV_EXT = 1,
+ShaderCodeTypeBinaryExt = 0,
+ShaderCodeTypeSpirvExt = 1,
 }
 
 #[repr(C)]
 pub enum ScopeKHR {
-VK_SCOPE_DEVICE_KHR = 1,
-VK_SCOPE_WORKGROUP_KHR = 2,
-VK_SCOPE_SUBGROUP_KHR = 3,
-VK_SCOPE_QUEUE_FAMILY_KHR = 5,
+ScopeDeviceKhr = 1,
+ScopeWorkgroupKhr = 2,
+ScopeSubgroupKhr = 3,
+ScopeQueueFamilyKhr = 5,
 }
 
 #[repr(C)]
 pub enum ComponentTypeKHR {
-VK_COMPONENT_TYPE_FLOAT16_KHR = 0,
-VK_COMPONENT_TYPE_FLOAT32_KHR = 1,
-VK_COMPONENT_TYPE_FLOAT64_KHR = 2,
-VK_COMPONENT_TYPE_SINT8_KHR = 3,
-VK_COMPONENT_TYPE_SINT16_KHR = 4,
-VK_COMPONENT_TYPE_SINT32_KHR = 5,
-VK_COMPONENT_TYPE_SINT64_KHR = 6,
-VK_COMPONENT_TYPE_UINT8_KHR = 7,
-VK_COMPONENT_TYPE_UINT16_KHR = 8,
-VK_COMPONENT_TYPE_UINT32_KHR = 9,
-VK_COMPONENT_TYPE_UINT64_KHR = 10,
+ComponentTypeFloat16Khr = 0,
+ComponentTypeFloat32Khr = 1,
+ComponentTypeFloat64Khr = 2,
+ComponentTypeSint8Khr = 3,
+ComponentTypeSint16Khr = 4,
+ComponentTypeSint32Khr = 5,
+ComponentTypeSint64Khr = 6,
+ComponentTypeUint8Khr = 7,
+ComponentTypeUint16Khr = 8,
+ComponentTypeUint32Khr = 9,
+ComponentTypeUint64Khr = 10,
 }
 
 #[repr(C)]
 pub enum CubicFilterWeightsQCOM {
-VK_CUBIC_FILTER_WEIGHTS_CATMULL_ROM_QCOM = 0,
-VK_CUBIC_FILTER_WEIGHTS_ZERO_TANGENT_CARDINAL_QCOM = 1,
-VK_CUBIC_FILTER_WEIGHTS_B_SPLINE_QCOM = 2,
-VK_CUBIC_FILTER_WEIGHTS_MITCHELL_NETRAVALI_QCOM = 3,
+CubicFilterWeightsCatmullRomQcom = 0,
+CubicFilterWeightsZeroTangentCardinalQcom = 1,
+CubicFilterWeightsBSplineQcom = 2,
+CubicFilterWeightsMitchellNetravaliQcom = 3,
 }
 
 #[repr(C)]
 pub enum BlockMatchWindowCompareModeQCOM {
-VK_BLOCK_MATCH_WINDOW_COMPARE_MODE_MIN_QCOM = 0,
-VK_BLOCK_MATCH_WINDOW_COMPARE_MODE_MAX_QCOM = 1,
+BlockMatchWindowCompareModeMinQcom = 0,
+BlockMatchWindowCompareModeMaxQcom = 1,
 }
 
 #[repr(C)]
 pub enum LayeredDriverUnderlyingApiMSFT {
-VK_LAYERED_DRIVER_UNDERLYING_API_NONE_MSFT = 0,
-VK_LAYERED_DRIVER_UNDERLYING_API_D3D12_MSFT = 1,
+LayeredDriverUnderlyingApiNoneMsft = 0,
+LayeredDriverUnderlyingApiD3d12Msft = 1,
 }
 
 #[repr(C)]
 pub enum LatencyMarkerNV {
-VK_LATENCY_MARKER_SIMULATION_START_NV = 0,
-VK_LATENCY_MARKER_SIMULATION_END_NV = 1,
-VK_LATENCY_MARKER_RENDERSUBMIT_START_NV = 2,
-VK_LATENCY_MARKER_RENDERSUBMIT_END_NV = 3,
-VK_LATENCY_MARKER_PRESENT_START_NV = 4,
-VK_LATENCY_MARKER_PRESENT_END_NV = 5,
-VK_LATENCY_MARKER_INPUT_SAMPLE_NV = 6,
-VK_LATENCY_MARKER_TRIGGER_FLASH_NV = 7,
-VK_LATENCY_MARKER_OUT_OF_BAND_RENDERSUBMIT_START_NV = 8,
-VK_LATENCY_MARKER_OUT_OF_BAND_RENDERSUBMIT_END_NV = 9,
-VK_LATENCY_MARKER_OUT_OF_BAND_PRESENT_START_NV = 10,
-VK_LATENCY_MARKER_OUT_OF_BAND_PRESENT_END_NV = 11,
+LatencyMarkerSimulationStartNv = 0,
+LatencyMarkerSimulationEndNv = 1,
+LatencyMarkerRendersubmitStartNv = 2,
+LatencyMarkerRendersubmitEndNv = 3,
+LatencyMarkerPresentStartNv = 4,
+LatencyMarkerPresentEndNv = 5,
+LatencyMarkerInputSampleNv = 6,
+LatencyMarkerTriggerFlashNv = 7,
+LatencyMarkerOutOfBandRendersubmitStartNv = 8,
+LatencyMarkerOutOfBandRendersubmitEndNv = 9,
+LatencyMarkerOutOfBandPresentStartNv = 10,
+LatencyMarkerOutOfBandPresentEndNv = 11,
 }
 
 #[repr(C)]
 pub enum OutOfBandQueueTypeNV {
-VK_OUT_OF_BAND_QUEUE_TYPE_RENDER_NV = 0,
-VK_OUT_OF_BAND_QUEUE_TYPE_PRESENT_NV = 1,
+OutOfBandQueueTypeRenderNv = 0,
+OutOfBandQueueTypePresentNv = 1,
 }
 
 #[repr(u32)]
@@ -2655,13 +2721,13 @@ pub enum DeviceCreateFlagBits {
 #[repr(C)]
 pub struct BaseOutStructure {
 s_type: StructureType,
-p_next: BaseOutStructure,
+p_next: *mut BaseOutStructure,
 }
 
 #[repr(C)]
 pub struct BaseInStructure {
 s_type: StructureType,
-p_next: BaseInStructure,
+p_next: *const BaseInStructure,
 }
 
 #[repr(C)]
@@ -2751,17 +2817,17 @@ description: u8,
 #[repr(C)]
 pub struct ApplicationInfo {
 s_type: StructureType,
-p_next: c_void,
-p_application_name: u8,
+p_next: *const c_void,
+p_application_name: *const u8,
 application_version: u32,
-p_engine_name: u8,
+p_engine_name: *const u8,
 engine_version: u32,
 api_version: u32,
 }
 
 #[repr(C)]
 pub struct AllocationCallbacks {
-p_user_data: c_void,
+p_user_data: *mut c_void,
 pfn_allocation: PFN_vkAllocationFunction,
 pfn_reallocation: PFN_vkReallocationFunction,
 pfn_free: PFN_vkFreeFunction,
@@ -2772,39 +2838,39 @@ pfn_internal_free: PFN_vkInternalFreeNotification,
 #[repr(C)]
 pub struct DeviceQueueCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: DeviceQueueCreateFlags,
 queue_family_index: u32,
 queue_count: u32,
-p_queue_priorities: f32,
+p_queue_priorities: *const f32,
 }
 
 #[repr(C)]
 pub struct DeviceCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: DeviceCreateFlags,
 queue_create_info_count: u32,
-p_queue_create_infos: DeviceQueueCreateInfo,
+p_queue_create_infos: *const DeviceQueueCreateInfo,
 #[deprecated(note = "Ignored")]
 enabled_layer_count: u32,
 #[deprecated(note = "Ignored")]
-pp_enabled_layer_names: u8,
+pp_enabled_layer_names: *const u8,
 enabled_extension_count: u32,
-pp_enabled_extension_names: u8,
-p_enabled_features: PhysicalDeviceFeatures,
+pp_enabled_extension_names: *const u8,
+p_enabled_features: *const PhysicalDeviceFeatures,
 }
 
 #[repr(C)]
 pub struct InstanceCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: InstanceCreateFlags,
-p_application_info: ApplicationInfo,
+p_application_info: *const ApplicationInfo,
 enabled_layer_count: u32,
-pp_enabled_layer_names: u8,
+pp_enabled_layer_names: *const u8,
 enabled_extension_count: u32,
-pp_enabled_extension_names: u8,
+pp_enabled_extension_names: *const u8,
 }
 
 #[repr(C)]
@@ -2826,7 +2892,7 @@ memory_heaps: MemoryHeap,
 #[repr(C)]
 pub struct MemoryAllocateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 allocation_size: DeviceSize,
 memory_type_index: u32,
 }
@@ -2869,7 +2935,7 @@ flags: MemoryHeapFlags,
 #[repr(C)]
 pub struct MappedMemoryRange {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 memory: DeviceMemory,
 offset: DeviceSize,
 size: DeviceSize,
@@ -2908,21 +2974,21 @@ image_layout: ImageLayout,
 #[repr(C)]
 pub struct WriteDescriptorSet {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 dst_set: DescriptorSet,
 dst_binding: u32,
 dst_array_element: u32,
 descriptor_count: u32,
 descriptor_type: DescriptorType,
-p_image_info: DescriptorImageInfo,
-p_buffer_info: DescriptorBufferInfo,
-p_texel_buffer_view: BufferView,
+p_image_info: *const DescriptorImageInfo,
+p_buffer_info: *const DescriptorBufferInfo,
+p_texel_buffer_view: *const BufferView,
 }
 
 #[repr(C)]
 pub struct CopyDescriptorSet {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_set: DescriptorSet,
 src_binding: u32,
 src_array_element: u32,
@@ -2935,26 +3001,26 @@ descriptor_count: u32,
 #[repr(C)]
 pub struct BufferUsageFlags2CreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 usage: BufferUsageFlags2KHR,
 }
 
 #[repr(C)]
 pub struct BufferCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: BufferCreateFlags,
 size: DeviceSize,
 usage: BufferUsageFlags,
 sharing_mode: SharingMode,
 queue_family_index_count: u32,
-p_queue_family_indices: u32,
+p_queue_family_indices: *const u32,
 }
 
 #[repr(C)]
 pub struct BufferViewCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: BufferViewCreateFlags,
 buffer: Buffer,
 format: Format,
@@ -2989,7 +3055,7 @@ layer_count: u32,
 #[repr(C)]
 pub struct MemoryBarrier {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_access_mask: AccessFlags,
 dst_access_mask: AccessFlags,
 }
@@ -2997,7 +3063,7 @@ dst_access_mask: AccessFlags,
 #[repr(C)]
 pub struct BufferMemoryBarrier {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_access_mask: AccessFlags,
 dst_access_mask: AccessFlags,
 src_queue_family_index: u32,
@@ -3010,7 +3076,7 @@ size: DeviceSize,
 #[repr(C)]
 pub struct ImageMemoryBarrier {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_access_mask: AccessFlags,
 dst_access_mask: AccessFlags,
 old_layout: ImageLayout,
@@ -3024,7 +3090,7 @@ subresource_range: ImageSubresourceRange,
 #[repr(C)]
 pub struct ImageCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: ImageCreateFlags,
 image_type: ImageType,
 format: Format,
@@ -3036,7 +3102,7 @@ tiling: ImageTiling,
 usage: ImageUsageFlags,
 sharing_mode: SharingMode,
 queue_family_index_count: u32,
-p_queue_family_indices: u32,
+p_queue_family_indices: *const u32,
 initial_layout: ImageLayout,
 }
 
@@ -3052,7 +3118,7 @@ depth_pitch: DeviceSize,
 #[repr(C)]
 pub struct ImageViewCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: ImageViewCreateFlags,
 image: Image,
 view_type: ImageViewType,
@@ -3091,37 +3157,37 @@ flags: SparseMemoryBindFlags,
 pub struct SparseBufferMemoryBindInfo {
 buffer: Buffer,
 bind_count: u32,
-p_binds: SparseMemoryBind,
+p_binds: *const SparseMemoryBind,
 }
 
 #[repr(C)]
 pub struct SparseImageOpaqueMemoryBindInfo {
 image: Image,
 bind_count: u32,
-p_binds: SparseMemoryBind,
+p_binds: *const SparseMemoryBind,
 }
 
 #[repr(C)]
 pub struct SparseImageMemoryBindInfo {
 image: Image,
 bind_count: u32,
-p_binds: SparseImageMemoryBind,
+p_binds: *const SparseImageMemoryBind,
 }
 
 #[repr(C)]
 pub struct BindSparseInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 wait_semaphore_count: u32,
-p_wait_semaphores: Semaphore,
+p_wait_semaphores: *const Semaphore,
 buffer_bind_count: u32,
-p_buffer_binds: SparseBufferMemoryBindInfo,
+p_buffer_binds: *const SparseBufferMemoryBindInfo,
 image_opaque_bind_count: u32,
-p_image_opaque_binds: SparseImageOpaqueMemoryBindInfo,
+p_image_opaque_binds: *const SparseImageOpaqueMemoryBindInfo,
 image_bind_count: u32,
-p_image_binds: SparseImageMemoryBindInfo,
+p_image_binds: *const SparseImageMemoryBindInfo,
 signal_semaphore_count: u32,
-p_signal_semaphores: Semaphore,
+p_signal_semaphores: *const Semaphore,
 }
 
 #[repr(C)]
@@ -3180,10 +3246,10 @@ extent: Extent3D,
 #[repr(C)]
 pub struct ShaderModuleCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: ShaderModuleCreateFlags,
 code_size: usize,
-p_code: u32,
+p_code: *const u32,
 }
 
 #[repr(C)]
@@ -3192,16 +3258,16 @@ binding: u32,
 descriptor_type: DescriptorType,
 descriptor_count: u32,
 stage_flags: ShaderStageFlags,
-p_immutable_samplers: Sampler,
+p_immutable_samplers: *const Sampler,
 }
 
 #[repr(C)]
 pub struct DescriptorSetLayoutCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: DescriptorSetLayoutCreateFlags,
 binding_count: u32,
-p_bindings: DescriptorSetLayoutBinding,
+p_bindings: *const DescriptorSetLayoutBinding,
 }
 
 #[repr(C)]
@@ -3213,20 +3279,20 @@ descriptor_count: u32,
 #[repr(C)]
 pub struct DescriptorPoolCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: DescriptorPoolCreateFlags,
 max_sets: u32,
 pool_size_count: u32,
-p_pool_sizes: DescriptorPoolSize,
+p_pool_sizes: *const DescriptorPoolSize,
 }
 
 #[repr(C)]
 pub struct DescriptorSetAllocateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 descriptor_pool: DescriptorPool,
 descriptor_set_count: u32,
-p_set_layouts: DescriptorSetLayout,
+p_set_layouts: *const DescriptorSetLayout,
 }
 
 #[repr(C)]
@@ -3239,29 +3305,29 @@ size: usize,
 #[repr(C)]
 pub struct SpecializationInfo {
 map_entry_count: u32,
-p_map_entries: SpecializationMapEntry,
+p_map_entries: *const SpecializationMapEntry,
 data_size: usize,
-p_data: c_void,
+p_data: *const c_void,
 }
 
 #[repr(C)]
 pub struct PipelineShaderStageCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineShaderStageCreateFlags,
 stage: ShaderStageFlagBits,
 module: ShaderModule,
 #[cfg(vulkan)]
-p_name: u8,
+p_name: *const u8,
 #[cfg(vulkansc)]
-p_name: u8,
-p_specialization_info: SpecializationInfo,
+p_name: *const u8,
+p_specialization_info: *const SpecializationInfo,
 }
 
 #[repr(C)]
 pub struct ComputePipelineCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineCreateFlags,
 stage: PipelineShaderStageCreateInfo,
 layout: PipelineLayout,
@@ -3272,7 +3338,7 @@ base_pipeline_index: i32,
 #[repr(C)]
 pub struct ComputePipelineIndirectBufferInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 device_address: DeviceAddress,
 size: DeviceSize,
 pipeline_device_address_capture_replay: DeviceAddress,
@@ -3281,7 +3347,7 @@ pipeline_device_address_capture_replay: DeviceAddress,
 #[repr(C)]
 pub struct PipelineCreateFlags2CreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineCreateFlags2KHR,
 }
 
@@ -3303,18 +3369,18 @@ offset: u32,
 #[repr(C)]
 pub struct PipelineVertexInputStateCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineVertexInputStateCreateFlags,
 vertex_binding_description_count: u32,
-p_vertex_binding_descriptions: VertexInputBindingDescription,
+p_vertex_binding_descriptions: *const VertexInputBindingDescription,
 vertex_attribute_description_count: u32,
-p_vertex_attribute_descriptions: VertexInputAttributeDescription,
+p_vertex_attribute_descriptions: *const VertexInputAttributeDescription,
 }
 
 #[repr(C)]
 pub struct PipelineInputAssemblyStateCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineInputAssemblyStateCreateFlags,
 topology: PrimitiveTopology,
 primitive_restart_enable: Bool32,
@@ -3323,7 +3389,7 @@ primitive_restart_enable: Bool32,
 #[repr(C)]
 pub struct PipelineTessellationStateCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineTessellationStateCreateFlags,
 patch_control_points: u32,
 }
@@ -3331,18 +3397,18 @@ patch_control_points: u32,
 #[repr(C)]
 pub struct PipelineViewportStateCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineViewportStateCreateFlags,
 viewport_count: u32,
-p_viewports: Viewport,
+p_viewports: *const Viewport,
 scissor_count: u32,
-p_scissors: Rect2D,
+p_scissors: *const Rect2D,
 }
 
 #[repr(C)]
 pub struct PipelineRasterizationStateCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineRasterizationStateCreateFlags,
 depth_clamp_enable: Bool32,
 rasterizer_discard_enable: Bool32,
@@ -3359,12 +3425,12 @@ line_width: f32,
 #[repr(C)]
 pub struct PipelineMultisampleStateCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineMultisampleStateCreateFlags,
 rasterization_samples: SampleCountFlagBits,
 sample_shading_enable: Bool32,
 min_sample_shading: f32,
-p_sample_mask: SampleMask,
+p_sample_mask: *const SampleMask,
 alpha_to_coverage_enable: Bool32,
 alpha_to_one_enable: Bool32,
 }
@@ -3384,22 +3450,22 @@ color_write_mask: ColorComponentFlags,
 #[repr(C)]
 pub struct PipelineColorBlendStateCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineColorBlendStateCreateFlags,
 logic_op_enable: Bool32,
 logic_op: LogicOp,
 attachment_count: u32,
-p_attachments: PipelineColorBlendAttachmentState,
+p_attachments: *const PipelineColorBlendAttachmentState,
 blend_constants: f32,
 }
 
 #[repr(C)]
 pub struct PipelineDynamicStateCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineDynamicStateCreateFlags,
 dynamic_state_count: u32,
-p_dynamic_states: DynamicState,
+p_dynamic_states: *const DynamicState,
 }
 
 #[repr(C)]
@@ -3416,7 +3482,7 @@ reference: u32,
 #[repr(C)]
 pub struct PipelineDepthStencilStateCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineDepthStencilStateCreateFlags,
 depth_test_enable: Bool32,
 depth_write_enable: Bool32,
@@ -3432,22 +3498,22 @@ max_depth_bounds: f32,
 #[repr(C)]
 pub struct GraphicsPipelineCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineCreateFlags,
 stage_count: u32,
 #[cfg(vulkan)]
-p_stages: PipelineShaderStageCreateInfo,
+p_stages: *const PipelineShaderStageCreateInfo,
 #[cfg(vulkansc)]
-p_stages: PipelineShaderStageCreateInfo,
-p_vertex_input_state: PipelineVertexInputStateCreateInfo,
-p_input_assembly_state: PipelineInputAssemblyStateCreateInfo,
-p_tessellation_state: PipelineTessellationStateCreateInfo,
-p_viewport_state: PipelineViewportStateCreateInfo,
-p_rasterization_state: PipelineRasterizationStateCreateInfo,
-p_multisample_state: PipelineMultisampleStateCreateInfo,
-p_depth_stencil_state: PipelineDepthStencilStateCreateInfo,
-p_color_blend_state: PipelineColorBlendStateCreateInfo,
-p_dynamic_state: PipelineDynamicStateCreateInfo,
+p_stages: *const PipelineShaderStageCreateInfo,
+p_vertex_input_state: *const PipelineVertexInputStateCreateInfo,
+p_input_assembly_state: *const PipelineInputAssemblyStateCreateInfo,
+p_tessellation_state: *const PipelineTessellationStateCreateInfo,
+p_viewport_state: *const PipelineViewportStateCreateInfo,
+p_rasterization_state: *const PipelineRasterizationStateCreateInfo,
+p_multisample_state: *const PipelineMultisampleStateCreateInfo,
+p_depth_stencil_state: *const PipelineDepthStencilStateCreateInfo,
+p_color_blend_state: *const PipelineColorBlendStateCreateInfo,
+p_dynamic_state: *const PipelineDynamicStateCreateInfo,
 layout: PipelineLayout,
 render_pass: RenderPass,
 subpass: u32,
@@ -3458,13 +3524,13 @@ base_pipeline_index: i32,
 #[repr(C)]
 pub struct PipelineCacheCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineCacheCreateFlags,
 #[cfg(vulkan)]
 initial_data_size: usize,
 #[cfg(vulkansc)]
 initial_data_size: usize,
-p_initial_data: c_void,
+p_initial_data: *const c_void,
 }
 
 #[repr(C)]
@@ -3513,18 +3579,18 @@ size: u32,
 #[repr(C)]
 pub struct PipelineLayoutCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineLayoutCreateFlags,
 set_layout_count: u32,
-p_set_layouts: DescriptorSetLayout,
+p_set_layouts: *const DescriptorSetLayout,
 push_constant_range_count: u32,
-p_push_constant_ranges: PushConstantRange,
+p_push_constant_ranges: *const PushConstantRange,
 }
 
 #[repr(C)]
 pub struct SamplerCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: SamplerCreateFlags,
 mag_filter: Filter,
 min_filter: Filter,
@@ -3546,7 +3612,7 @@ unnormalized_coordinates: Bool32,
 #[repr(C)]
 pub struct CommandPoolCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: CommandPoolCreateFlags,
 queue_family_index: u32,
 }
@@ -3554,7 +3620,7 @@ queue_family_index: u32,
 #[repr(C)]
 pub struct CommandBufferAllocateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 command_pool: CommandPool,
 level: CommandBufferLevel,
 command_buffer_count: u32,
@@ -3563,7 +3629,7 @@ command_buffer_count: u32,
 #[repr(C)]
 pub struct CommandBufferInheritanceInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 render_pass: RenderPass,
 subpass: u32,
 framebuffer: Framebuffer,
@@ -3575,20 +3641,20 @@ pipeline_statistics: QueryPipelineStatisticFlags,
 #[repr(C)]
 pub struct CommandBufferBeginInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: CommandBufferUsageFlags,
-p_inheritance_info: CommandBufferInheritanceInfo,
+p_inheritance_info: *const CommandBufferInheritanceInfo,
 }
 
 #[repr(C)]
 pub struct RenderPassBeginInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 render_pass: RenderPass,
 framebuffer: Framebuffer,
 render_area: Rect2D,
 clear_value_count: u32,
-p_clear_values: ClearValue,
+p_clear_values: *const ClearValue,
 }
 
 #[repr(C)]
@@ -3628,13 +3694,13 @@ pub struct SubpassDescription {
 flags: SubpassDescriptionFlags,
 pipeline_bind_point: PipelineBindPoint,
 input_attachment_count: u32,
-p_input_attachments: AttachmentReference,
+p_input_attachments: *const AttachmentReference,
 color_attachment_count: u32,
-p_color_attachments: AttachmentReference,
-p_resolve_attachments: AttachmentReference,
-p_depth_stencil_attachment: AttachmentReference,
+p_color_attachments: *const AttachmentReference,
+p_resolve_attachments: *const AttachmentReference,
+p_depth_stencil_attachment: *const AttachmentReference,
 preserve_attachment_count: u32,
-p_preserve_attachments: u32,
+p_preserve_attachments: *const u32,
 }
 
 #[repr(C)]
@@ -3651,27 +3717,27 @@ dependency_flags: DependencyFlags,
 #[repr(C)]
 pub struct RenderPassCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: RenderPassCreateFlags,
 attachment_count: u32,
-p_attachments: AttachmentDescription,
+p_attachments: *const AttachmentDescription,
 subpass_count: u32,
-p_subpasses: SubpassDescription,
+p_subpasses: *const SubpassDescription,
 dependency_count: u32,
-p_dependencies: SubpassDependency,
+p_dependencies: *const SubpassDependency,
 }
 
 #[repr(C)]
 pub struct EventCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: EventCreateFlags,
 }
 
 #[repr(C)]
 pub struct FenceCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: FenceCreateFlags,
 }
 
@@ -3856,14 +3922,14 @@ non_coherent_atom_size: DeviceSize,
 #[repr(C)]
 pub struct SemaphoreCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: SemaphoreCreateFlags,
 }
 
 #[repr(C)]
 pub struct QueryPoolCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: QueryPoolCreateFlags,
 query_type: QueryType,
 query_count: u32,
@@ -3873,11 +3939,11 @@ pipeline_statistics: QueryPipelineStatisticFlags,
 #[repr(C)]
 pub struct FramebufferCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: FramebufferCreateFlags,
 render_pass: RenderPass,
 attachment_count: u32,
-p_attachments: ImageView,
+p_attachments: *const ImageView,
 width: u32,
 height: u32,
 layers: u32,
@@ -3923,20 +3989,20 @@ vertex_offset: i32,
 #[repr(C)]
 pub struct SubmitInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 wait_semaphore_count: u32,
-p_wait_semaphores: Semaphore,
-p_wait_dst_stage_mask: PipelineStageFlags,
+p_wait_semaphores: *const Semaphore,
+p_wait_dst_stage_mask: *const PipelineStageFlags,
 command_buffer_count: u32,
-p_command_buffers: CommandBuffer,
+p_command_buffers: *const CommandBuffer,
 signal_semaphore_count: u32,
-p_signal_semaphores: Semaphore,
+p_signal_semaphores: *const Semaphore,
 }
 
 #[repr(C)]
 pub struct DisplayPropertiesKHR {
 display: DisplayKHR,
-display_name: u8,
+display_name: *const u8,
 physical_dimensions: Extent2D,
 physical_resolution: Extent2D,
 supported_transforms: SurfaceTransformFlagsKHR,
@@ -3965,7 +4031,7 @@ parameters: DisplayModeParametersKHR,
 #[repr(C)]
 pub struct DisplayModeCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: DisplayModeCreateFlagsKHR,
 parameters: DisplayModeParametersKHR,
 }
@@ -3986,7 +4052,7 @@ max_dst_extent: Extent2D,
 #[repr(C)]
 pub struct DisplaySurfaceCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: DisplaySurfaceCreateFlagsKHR,
 display_mode: DisplayModeKHR,
 plane_index: u32,
@@ -4000,7 +4066,7 @@ image_extent: Extent2D,
 #[repr(C)]
 pub struct DisplayPresentInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_rect: Rect2D,
 dst_rect: Rect2D,
 persistent: Bool32,
@@ -4023,32 +4089,32 @@ supported_usage_flags: ImageUsageFlags,
 #[repr(C)]
 pub struct AndroidSurfaceCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: AndroidSurfaceCreateFlagsKHR,
-window: ANativeWindow,
+window: *mut ANativeWindow,
 }
 
 #[repr(C)]
 pub struct ViSurfaceCreateInfoNN {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: ViSurfaceCreateFlagsNN,
-window: c_void,
+window: *mut c_void,
 }
 
 #[repr(C)]
 pub struct WaylandSurfaceCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: WaylandSurfaceCreateFlagsKHR,
-display: wl_display,
-surface: wl_surface,
+display: *mut wl_display,
+surface: *mut wl_surface,
 }
 
 #[repr(C)]
 pub struct Win32SurfaceCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: Win32SurfaceCreateFlagsKHR,
 hinstance: HINSTANCE,
 hwnd: HWND,
@@ -4057,34 +4123,34 @@ hwnd: HWND,
 #[repr(C)]
 pub struct XlibSurfaceCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: XlibSurfaceCreateFlagsKHR,
-dpy: Display,
+dpy: *mut Display,
 window: Window,
 }
 
 #[repr(C)]
 pub struct XcbSurfaceCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: XcbSurfaceCreateFlagsKHR,
-connection: xcb_connection_t,
+connection: *mut xcb_connection_t,
 window: xcb_window_t,
 }
 
 #[repr(C)]
 pub struct DirectFBSurfaceCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: DirectFBSurfaceCreateFlagsEXT,
-dfb: IDirectFB,
-surface: IDirectFBSurface,
+dfb: *mut IDirectFB,
+surface: *mut IDirectFBSurface,
 }
 
 #[repr(C)]
 pub struct ImagePipeSurfaceCreateInfoFUCHSIA {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: ImagePipeSurfaceCreateFlagsFUCHSIA,
 image_pipe_handle: zx_handle_t,
 }
@@ -4092,7 +4158,7 @@ image_pipe_handle: zx_handle_t,
 #[repr(C)]
 pub struct StreamDescriptorSurfaceCreateInfoGGP {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: StreamDescriptorSurfaceCreateFlagsGGP,
 stream_descriptor: GgpStreamDescriptor,
 }
@@ -4100,10 +4166,10 @@ stream_descriptor: GgpStreamDescriptor,
 #[repr(C)]
 pub struct ScreenSurfaceCreateInfoQNX {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: ScreenSurfaceCreateFlagsQNX,
-context: _screen_context,
-window: _screen_window,
+context: *mut _screen_context,
+window: *mut _screen_window,
 }
 
 #[repr(C)]
@@ -4115,7 +4181,7 @@ color_space: ColorSpaceKHR,
 #[repr(C)]
 pub struct SwapchainCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: SwapchainCreateFlagsKHR,
 surface: SurfaceKHR,
 min_image_count: u32,
@@ -4126,7 +4192,7 @@ image_array_layers: u32,
 image_usage: ImageUsageFlags,
 image_sharing_mode: SharingMode,
 queue_family_index_count: u32,
-p_queue_family_indices: u32,
+p_queue_family_indices: *const u32,
 pre_transform: SurfaceTransformFlagBitsKHR,
 composite_alpha: CompositeAlphaFlagBitsKHR,
 present_mode: PresentModeKHR,
@@ -4140,46 +4206,46 @@ old_swapchain: SwapchainKHR,
 #[repr(C)]
 pub struct PresentInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 wait_semaphore_count: u32,
-p_wait_semaphores: Semaphore,
+p_wait_semaphores: *const Semaphore,
 swapchain_count: u32,
-p_swapchains: SwapchainKHR,
-p_image_indices: u32,
-p_results: Result,
+p_swapchains: *const SwapchainKHR,
+p_image_indices: *const u32,
+p_results: *mut Result,
 }
 
 #[repr(C)]
 pub struct DebugReportCallbackCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: DebugReportFlagsEXT,
 pfn_callback: PFN_vkDebugReportCallbackEXT,
-p_user_data: c_void,
+p_user_data: *mut c_void,
 }
 
 #[repr(C)]
 pub struct ValidationFlagsEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 disabled_validation_check_count: u32,
-p_disabled_validation_checks: ValidationCheckEXT,
+p_disabled_validation_checks: *const ValidationCheckEXT,
 }
 
 #[repr(C)]
 pub struct ValidationFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 enabled_validation_feature_count: u32,
-p_enabled_validation_features: ValidationFeatureEnableEXT,
+p_enabled_validation_features: *const ValidationFeatureEnableEXT,
 disabled_validation_feature_count: u32,
-p_disabled_validation_features: ValidationFeatureDisableEXT,
+p_disabled_validation_features: *const ValidationFeatureDisableEXT,
 }
 
 #[repr(C)]
 pub struct ApplicationParametersEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 vendor_id: u32,
 device_id: u32,
 key: u32,
@@ -4189,56 +4255,56 @@ value: u64,
 #[repr(C)]
 pub struct PipelineRasterizationStateRasterizationOrderAMD {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 rasterization_order: RasterizationOrderAMD,
 }
 
 #[repr(C)]
 pub struct DebugMarkerObjectNameInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 object_type: DebugReportObjectTypeEXT,
 object: u64,
-p_object_name: u8,
+p_object_name: *const u8,
 }
 
 #[repr(C)]
 pub struct DebugMarkerObjectTagInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 object_type: DebugReportObjectTypeEXT,
 object: u64,
 tag_name: u64,
 tag_size: usize,
-p_tag: c_void,
+p_tag: *const c_void,
 }
 
 #[repr(C)]
 pub struct DebugMarkerMarkerInfoEXT {
 s_type: StructureType,
-p_next: c_void,
-p_marker_name: u8,
+p_next: *const c_void,
+p_marker_name: *const u8,
 color: f32,
 }
 
 #[repr(C)]
 pub struct DedicatedAllocationImageCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 dedicated_allocation: Bool32,
 }
 
 #[repr(C)]
 pub struct DedicatedAllocationBufferCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 dedicated_allocation: Bool32,
 }
 
 #[repr(C)]
 pub struct DedicatedAllocationMemoryAllocateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 image: Image,
 buffer: Buffer,
 }
@@ -4254,21 +4320,21 @@ compatible_handle_types: ExternalMemoryHandleTypeFlagsNV,
 #[repr(C)]
 pub struct ExternalMemoryImageCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 handle_types: ExternalMemoryHandleTypeFlagsNV,
 }
 
 #[repr(C)]
 pub struct ExportMemoryAllocateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 handle_types: ExternalMemoryHandleTypeFlagsNV,
 }
 
 #[repr(C)]
 pub struct ImportMemoryWin32HandleInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 handle_type: ExternalMemoryHandleTypeFlagsNV,
 handle: HANDLE,
 }
@@ -4276,22 +4342,22 @@ handle: HANDLE,
 #[repr(C)]
 pub struct ExportMemoryWin32HandleInfoNV {
 s_type: StructureType,
-p_next: c_void,
-p_attributes: SECURITY_ATTRIBUTES,
+p_next: *const c_void,
+p_attributes: *const SECURITY_ATTRIBUTES,
 dw_access: DWORD,
 }
 
 #[repr(C)]
 pub struct ExportMemorySciBufInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 p_attributes: NvSciBufAttrList,
 }
 
 #[repr(C)]
 pub struct ImportMemorySciBufInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 handle_type: ExternalMemoryHandleTypeFlagBits,
 handle: NvSciBufObj,
 }
@@ -4299,7 +4365,7 @@ handle: NvSciBufObj,
 #[repr(C)]
 pub struct MemoryGetSciBufInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 memory: DeviceMemory,
 handle_type: ExternalMemoryHandleTypeFlagBits,
 }
@@ -4307,14 +4373,14 @@ handle_type: ExternalMemoryHandleTypeFlagBits,
 #[repr(C)]
 pub struct MemorySciBufPropertiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 memory_type_bits: u32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceExternalMemorySciBufFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 sci_buf_import: Bool32,
 sci_buf_export: Bool32,
 }
@@ -4322,27 +4388,27 @@ sci_buf_export: Bool32,
 #[repr(C)]
 pub struct Win32KeyedMutexAcquireReleaseInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 acquire_count: u32,
-p_acquire_syncs: DeviceMemory,
-p_acquire_keys: u64,
-p_acquire_timeout_milliseconds: u32,
+p_acquire_syncs: *const DeviceMemory,
+p_acquire_keys: *const u64,
+p_acquire_timeout_milliseconds: *const u32,
 release_count: u32,
-p_release_syncs: DeviceMemory,
-p_release_keys: u64,
+p_release_syncs: *const DeviceMemory,
+p_release_keys: *const u64,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 device_generated_commands: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 device_generated_compute: Bool32,
 device_generated_compute_pipelines: Bool32,
 device_generated_compute_capture_replay: Bool32,
@@ -4351,28 +4417,28 @@ device_generated_compute_capture_replay: Bool32,
 #[repr(C)]
 pub struct DevicePrivateDataCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 private_data_slot_request_count: u32,
 }
 
 #[repr(C)]
 pub struct PrivateDataSlotCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PrivateDataSlotCreateFlags,
 }
 
 #[repr(C)]
 pub struct PhysicalDevicePrivateDataFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 private_data: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_graphics_shader_group_count: u32,
 max_indirect_sequence_count: u32,
 max_indirect_commands_token_count: u32,
@@ -4387,28 +4453,28 @@ min_indirect_commands_buffer_offset_alignment: u32,
 #[repr(C)]
 pub struct PhysicalDeviceMultiDrawPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_multi_draw_count: u32,
 }
 
 #[repr(C)]
 pub struct GraphicsShaderGroupCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 stage_count: u32,
-p_stages: PipelineShaderStageCreateInfo,
-p_vertex_input_state: PipelineVertexInputStateCreateInfo,
-p_tessellation_state: PipelineTessellationStateCreateInfo,
+p_stages: *const PipelineShaderStageCreateInfo,
+p_vertex_input_state: *const PipelineVertexInputStateCreateInfo,
+p_tessellation_state: *const PipelineTessellationStateCreateInfo,
 }
 
 #[repr(C)]
 pub struct GraphicsPipelineShaderGroupsCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 group_count: u32,
-p_groups: GraphicsShaderGroupCreateInfoNV,
+p_groups: *const GraphicsShaderGroupCreateInfoNV,
 pipeline_count: u32,
-p_pipelines: Pipeline,
+p_pipelines: *const Pipeline,
 }
 
 #[repr(C)]
@@ -4444,7 +4510,7 @@ offset: DeviceSize,
 #[repr(C)]
 pub struct IndirectCommandsLayoutTokenNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 token_type: IndirectCommandsTokenTypeNV,
 stream: u32,
 offset: u32,
@@ -4456,31 +4522,31 @@ pushconstant_offset: u32,
 pushconstant_size: u32,
 indirect_state_flags: IndirectStateFlagsNV,
 index_type_count: u32,
-p_index_types: IndexType,
-p_index_type_values: u32,
+p_index_types: *const IndexType,
+p_index_type_values: *const u32,
 }
 
 #[repr(C)]
 pub struct IndirectCommandsLayoutCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: IndirectCommandsLayoutUsageFlagsNV,
 pipeline_bind_point: PipelineBindPoint,
 token_count: u32,
-p_tokens: IndirectCommandsLayoutTokenNV,
+p_tokens: *const IndirectCommandsLayoutTokenNV,
 stream_count: u32,
-p_stream_strides: u32,
+p_stream_strides: *const u32,
 }
 
 #[repr(C)]
 pub struct GeneratedCommandsInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 pipeline_bind_point: PipelineBindPoint,
 pipeline: Pipeline,
 indirect_commands_layout: IndirectCommandsLayoutNV,
 stream_count: u32,
-p_streams: IndirectCommandsStreamNV,
+p_streams: *const IndirectCommandsStreamNV,
 sequences_count: u32,
 preprocess_buffer: Buffer,
 preprocess_offset: DeviceSize,
@@ -4494,7 +4560,7 @@ sequences_index_offset: DeviceSize,
 #[repr(C)]
 pub struct GeneratedCommandsMemoryRequirementsInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 pipeline_bind_point: PipelineBindPoint,
 pipeline: Pipeline,
 indirect_commands_layout: IndirectCommandsLayoutNV,
@@ -4504,7 +4570,7 @@ max_sequences_count: u32,
 #[repr(C)]
 pub struct PipelineIndirectDeviceAddressInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 pipeline_bind_point: PipelineBindPoint,
 pipeline: Pipeline,
 }
@@ -4517,35 +4583,35 @@ pipeline_address: DeviceAddress,
 #[repr(C)]
 pub struct PhysicalDeviceFeatures2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 features: PhysicalDeviceFeatures,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceProperties2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 properties: PhysicalDeviceProperties,
 }
 
 #[repr(C)]
 pub struct FormatProperties2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 format_properties: FormatProperties,
 }
 
 #[repr(C)]
 pub struct ImageFormatProperties2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 image_format_properties: ImageFormatProperties,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceImageFormatInfo2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 format: Format,
 r#type: ImageType,
 tiling: ImageTiling,
@@ -4556,28 +4622,28 @@ flags: ImageCreateFlags,
 #[repr(C)]
 pub struct QueueFamilyProperties2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 queue_family_properties: QueueFamilyProperties,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceMemoryProperties2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 memory_properties: PhysicalDeviceMemoryProperties,
 }
 
 #[repr(C)]
 pub struct SparseImageFormatProperties2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 properties: SparseImageFormatProperties,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceSparseImageFormatInfo2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 format: Format,
 r#type: ImageType,
 samples: SampleCountFlagBits,
@@ -4588,7 +4654,7 @@ tiling: ImageTiling,
 #[repr(C)]
 pub struct PhysicalDevicePushDescriptorPropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_push_descriptors: u32,
 }
 
@@ -4603,7 +4669,7 @@ patch: u8,
 #[repr(C)]
 pub struct PhysicalDeviceDriverProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 driver_id: DriverId,
 driver_name: u8,
 driver_info: u8,
@@ -4613,15 +4679,15 @@ conformance_version: ConformanceVersion,
 #[repr(C)]
 pub struct PresentRegionsKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 swapchain_count: u32,
-p_regions: PresentRegionKHR,
+p_regions: *const PresentRegionKHR,
 }
 
 #[repr(C)]
 pub struct PresentRegionKHR {
 rectangle_count: u32,
-p_rectangles: RectLayerKHR,
+p_rectangles: *const RectLayerKHR,
 }
 
 #[repr(C)]
@@ -4634,7 +4700,7 @@ layer: u32,
 #[repr(C)]
 pub struct PhysicalDeviceVariablePointersFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 variable_pointers_storage_buffer: Bool32,
 variable_pointers: Bool32,
 }
@@ -4649,21 +4715,21 @@ compatible_handle_types: ExternalMemoryHandleTypeFlags,
 #[repr(C)]
 pub struct PhysicalDeviceExternalImageFormatInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 handle_type: ExternalMemoryHandleTypeFlagBits,
 }
 
 #[repr(C)]
 pub struct ExternalImageFormatProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 external_memory_properties: ExternalMemoryProperties,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceExternalBufferInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: BufferCreateFlags,
 usage: BufferUsageFlags,
 handle_type: ExternalMemoryHandleTypeFlagBits,
@@ -4672,14 +4738,14 @@ handle_type: ExternalMemoryHandleTypeFlagBits,
 #[repr(C)]
 pub struct ExternalBufferProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 external_memory_properties: ExternalMemoryProperties,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceIDProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 device_uuid: u8,
 driver_uuid: u8,
 device_luid: u8,
@@ -4690,28 +4756,28 @@ device_luidvalid: Bool32,
 #[repr(C)]
 pub struct ExternalMemoryImageCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 handle_types: ExternalMemoryHandleTypeFlags,
 }
 
 #[repr(C)]
 pub struct ExternalMemoryBufferCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 handle_types: ExternalMemoryHandleTypeFlags,
 }
 
 #[repr(C)]
 pub struct ExportMemoryAllocateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 handle_types: ExternalMemoryHandleTypeFlags,
 }
 
 #[repr(C)]
 pub struct ImportMemoryWin32HandleInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 handle_type: ExternalMemoryHandleTypeFlagBits,
 handle: HANDLE,
 name: LPCWSTR,
@@ -4720,8 +4786,8 @@ name: LPCWSTR,
 #[repr(C)]
 pub struct ExportMemoryWin32HandleInfoKHR {
 s_type: StructureType,
-p_next: c_void,
-p_attributes: SECURITY_ATTRIBUTES,
+p_next: *const c_void,
+p_attributes: *const SECURITY_ATTRIBUTES,
 dw_access: DWORD,
 name: LPCWSTR,
 }
@@ -4729,7 +4795,7 @@ name: LPCWSTR,
 #[repr(C)]
 pub struct ImportMemoryZirconHandleInfoFUCHSIA {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 handle_type: ExternalMemoryHandleTypeFlagBits,
 handle: zx_handle_t,
 }
@@ -4737,14 +4803,14 @@ handle: zx_handle_t,
 #[repr(C)]
 pub struct MemoryZirconHandlePropertiesFUCHSIA {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 memory_type_bits: u32,
 }
 
 #[repr(C)]
 pub struct MemoryGetZirconHandleInfoFUCHSIA {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 memory: DeviceMemory,
 handle_type: ExternalMemoryHandleTypeFlagBits,
 }
@@ -4752,14 +4818,14 @@ handle_type: ExternalMemoryHandleTypeFlagBits,
 #[repr(C)]
 pub struct MemoryWin32HandlePropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 memory_type_bits: u32,
 }
 
 #[repr(C)]
 pub struct MemoryGetWin32HandleInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 memory: DeviceMemory,
 handle_type: ExternalMemoryHandleTypeFlagBits,
 }
@@ -4767,7 +4833,7 @@ handle_type: ExternalMemoryHandleTypeFlagBits,
 #[repr(C)]
 pub struct ImportMemoryFdInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 handle_type: ExternalMemoryHandleTypeFlagBits,
 fd: int,
 }
@@ -4775,14 +4841,14 @@ fd: int,
 #[repr(C)]
 pub struct MemoryFdPropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 memory_type_bits: u32,
 }
 
 #[repr(C)]
 pub struct MemoryGetFdInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 memory: DeviceMemory,
 handle_type: ExternalMemoryHandleTypeFlagBits,
 }
@@ -4790,27 +4856,27 @@ handle_type: ExternalMemoryHandleTypeFlagBits,
 #[repr(C)]
 pub struct Win32KeyedMutexAcquireReleaseInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 acquire_count: u32,
-p_acquire_syncs: DeviceMemory,
-p_acquire_keys: u64,
-p_acquire_timeouts: u32,
+p_acquire_syncs: *const DeviceMemory,
+p_acquire_keys: *const u64,
+p_acquire_timeouts: *const u32,
 release_count: u32,
-p_release_syncs: DeviceMemory,
-p_release_keys: u64,
+p_release_syncs: *const DeviceMemory,
+p_release_keys: *const u64,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceExternalSemaphoreInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 handle_type: ExternalSemaphoreHandleTypeFlagBits,
 }
 
 #[repr(C)]
 pub struct ExternalSemaphoreProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 export_from_imported_handle_types: ExternalSemaphoreHandleTypeFlags,
 compatible_handle_types: ExternalSemaphoreHandleTypeFlags,
 external_semaphore_features: ExternalSemaphoreFeatureFlags,
@@ -4819,14 +4885,14 @@ external_semaphore_features: ExternalSemaphoreFeatureFlags,
 #[repr(C)]
 pub struct ExportSemaphoreCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 handle_types: ExternalSemaphoreHandleTypeFlags,
 }
 
 #[repr(C)]
 pub struct ImportSemaphoreWin32HandleInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 semaphore: Semaphore,
 flags: SemaphoreImportFlags,
 handle_type: ExternalSemaphoreHandleTypeFlagBits,
@@ -4837,8 +4903,8 @@ name: LPCWSTR,
 #[repr(C)]
 pub struct ExportSemaphoreWin32HandleInfoKHR {
 s_type: StructureType,
-p_next: c_void,
-p_attributes: SECURITY_ATTRIBUTES,
+p_next: *const c_void,
+p_attributes: *const SECURITY_ATTRIBUTES,
 dw_access: DWORD,
 name: LPCWSTR,
 }
@@ -4846,17 +4912,17 @@ name: LPCWSTR,
 #[repr(C)]
 pub struct D3D12FenceSubmitInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 wait_semaphore_values_count: u32,
-p_wait_semaphore_values: u64,
+p_wait_semaphore_values: *const u64,
 signal_semaphore_values_count: u32,
-p_signal_semaphore_values: u64,
+p_signal_semaphore_values: *const u64,
 }
 
 #[repr(C)]
 pub struct SemaphoreGetWin32HandleInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 semaphore: Semaphore,
 handle_type: ExternalSemaphoreHandleTypeFlagBits,
 }
@@ -4864,7 +4930,7 @@ handle_type: ExternalSemaphoreHandleTypeFlagBits,
 #[repr(C)]
 pub struct ImportSemaphoreFdInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 semaphore: Semaphore,
 flags: SemaphoreImportFlags,
 handle_type: ExternalSemaphoreHandleTypeFlagBits,
@@ -4874,7 +4940,7 @@ fd: int,
 #[repr(C)]
 pub struct SemaphoreGetFdInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 semaphore: Semaphore,
 handle_type: ExternalSemaphoreHandleTypeFlagBits,
 }
@@ -4882,7 +4948,7 @@ handle_type: ExternalSemaphoreHandleTypeFlagBits,
 #[repr(C)]
 pub struct ImportSemaphoreZirconHandleInfoFUCHSIA {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 semaphore: Semaphore,
 flags: SemaphoreImportFlags,
 handle_type: ExternalSemaphoreHandleTypeFlagBits,
@@ -4892,7 +4958,7 @@ zircon_handle: zx_handle_t,
 #[repr(C)]
 pub struct SemaphoreGetZirconHandleInfoFUCHSIA {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 semaphore: Semaphore,
 handle_type: ExternalSemaphoreHandleTypeFlagBits,
 }
@@ -4900,14 +4966,14 @@ handle_type: ExternalSemaphoreHandleTypeFlagBits,
 #[repr(C)]
 pub struct PhysicalDeviceExternalFenceInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 handle_type: ExternalFenceHandleTypeFlagBits,
 }
 
 #[repr(C)]
 pub struct ExternalFenceProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 export_from_imported_handle_types: ExternalFenceHandleTypeFlags,
 compatible_handle_types: ExternalFenceHandleTypeFlags,
 external_fence_features: ExternalFenceFeatureFlags,
@@ -4916,14 +4982,14 @@ external_fence_features: ExternalFenceFeatureFlags,
 #[repr(C)]
 pub struct ExportFenceCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 handle_types: ExternalFenceHandleTypeFlags,
 }
 
 #[repr(C)]
 pub struct ImportFenceWin32HandleInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 fence: Fence,
 flags: FenceImportFlags,
 handle_type: ExternalFenceHandleTypeFlagBits,
@@ -4934,8 +5000,8 @@ name: LPCWSTR,
 #[repr(C)]
 pub struct ExportFenceWin32HandleInfoKHR {
 s_type: StructureType,
-p_next: c_void,
-p_attributes: SECURITY_ATTRIBUTES,
+p_next: *const c_void,
+p_attributes: *const SECURITY_ATTRIBUTES,
 dw_access: DWORD,
 name: LPCWSTR,
 }
@@ -4943,7 +5009,7 @@ name: LPCWSTR,
 #[repr(C)]
 pub struct FenceGetWin32HandleInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 fence: Fence,
 handle_type: ExternalFenceHandleTypeFlagBits,
 }
@@ -4951,7 +5017,7 @@ handle_type: ExternalFenceHandleTypeFlagBits,
 #[repr(C)]
 pub struct ImportFenceFdInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 fence: Fence,
 flags: FenceImportFlags,
 handle_type: ExternalFenceHandleTypeFlagBits,
@@ -4961,7 +5027,7 @@ fd: int,
 #[repr(C)]
 pub struct FenceGetFdInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 fence: Fence,
 handle_type: ExternalFenceHandleTypeFlagBits,
 }
@@ -4969,23 +5035,23 @@ handle_type: ExternalFenceHandleTypeFlagBits,
 #[repr(C)]
 pub struct ExportFenceSciSyncInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 p_attributes: NvSciSyncAttrList,
 }
 
 #[repr(C)]
 pub struct ImportFenceSciSyncInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 fence: Fence,
 handle_type: ExternalFenceHandleTypeFlagBits,
-handle: c_void,
+handle: *mut c_void,
 }
 
 #[repr(C)]
 pub struct FenceGetSciSyncInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 fence: Fence,
 handle_type: ExternalFenceHandleTypeFlagBits,
 }
@@ -4993,23 +5059,23 @@ handle_type: ExternalFenceHandleTypeFlagBits,
 #[repr(C)]
 pub struct ExportSemaphoreSciSyncInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 p_attributes: NvSciSyncAttrList,
 }
 
 #[repr(C)]
 pub struct ImportSemaphoreSciSyncInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 semaphore: Semaphore,
 handle_type: ExternalSemaphoreHandleTypeFlagBits,
-handle: c_void,
+handle: *mut c_void,
 }
 
 #[repr(C)]
 pub struct SemaphoreGetSciSyncInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 semaphore: Semaphore,
 handle_type: ExternalSemaphoreHandleTypeFlagBits,
 }
@@ -5017,7 +5083,7 @@ handle_type: ExternalSemaphoreHandleTypeFlagBits,
 #[repr(C)]
 pub struct SciSyncAttributesInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 client_type: SciSyncClientTypeNV,
 primitive_type: SciSyncPrimitiveTypeNV,
 }
@@ -5025,7 +5091,7 @@ primitive_type: SciSyncPrimitiveTypeNV,
 #[repr(C)]
 pub struct PhysicalDeviceExternalSciSyncFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 sci_sync_fence: Bool32,
 sci_sync_semaphore: Bool32,
 sci_sync_import: Bool32,
@@ -5035,7 +5101,7 @@ sci_sync_export: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceExternalSciSync2FeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 sci_sync_fence: Bool32,
 sci_sync_semaphore2: Bool32,
 sci_sync_import: Bool32,
@@ -5045,29 +5111,29 @@ sci_sync_export: Bool32,
 #[repr(C)]
 pub struct SemaphoreSciSyncPoolCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 handle: NvSciSyncObj,
 }
 
 #[repr(C)]
 pub struct SemaphoreSciSyncCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 semaphore_pool: SemaphoreSciSyncPoolNV,
-p_fence: NvSciSyncFence,
+p_fence: *const NvSciSyncFence,
 }
 
 #[repr(C)]
 pub struct DeviceSemaphoreSciSyncPoolReservationCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 semaphore_sci_sync_pool_request_count: u32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceMultiviewFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 multiview: Bool32,
 multiview_geometry_shader: Bool32,
 multiview_tessellation_shader: Bool32,
@@ -5076,7 +5142,7 @@ multiview_tessellation_shader: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceMultiviewProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_multiview_view_count: u32,
 max_multiview_instance_index: u32,
 }
@@ -5084,19 +5150,19 @@ max_multiview_instance_index: u32,
 #[repr(C)]
 pub struct RenderPassMultiviewCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 subpass_count: u32,
-p_view_masks: u32,
+p_view_masks: *const u32,
 dependency_count: u32,
-p_view_offsets: i32,
+p_view_offsets: *const i32,
 correlation_mask_count: u32,
-p_correlation_masks: u32,
+p_correlation_masks: *const u32,
 }
 
 #[repr(C)]
 pub struct SurfaceCapabilities2EXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 min_image_count: u32,
 max_image_count: u32,
 current_extent: Extent2D,
@@ -5113,35 +5179,35 @@ supported_surface_counters: SurfaceCounterFlagsEXT,
 #[repr(C)]
 pub struct DisplayPowerInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 power_state: DisplayPowerStateEXT,
 }
 
 #[repr(C)]
 pub struct DeviceEventInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 device_event: DeviceEventTypeEXT,
 }
 
 #[repr(C)]
 pub struct DisplayEventInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 display_event: DisplayEventTypeEXT,
 }
 
 #[repr(C)]
 pub struct SwapchainCounterCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 surface_counters: SurfaceCounterFlagsEXT,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceGroupProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 physical_device_count: u32,
 physical_devices: PhysicalDevice,
 subset_allocation: Bool32,
@@ -5150,7 +5216,7 @@ subset_allocation: Bool32,
 #[repr(C)]
 pub struct MemoryAllocateFlagsInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: MemoryAllocateFlags,
 device_mask: u32,
 }
@@ -5158,7 +5224,7 @@ device_mask: u32,
 #[repr(C)]
 pub struct BindBufferMemoryInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 buffer: Buffer,
 memory: DeviceMemory,
 memory_offset: DeviceSize,
@@ -5167,15 +5233,15 @@ memory_offset: DeviceSize,
 #[repr(C)]
 pub struct BindBufferMemoryDeviceGroupInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 device_index_count: u32,
-p_device_indices: u32,
+p_device_indices: *const u32,
 }
 
 #[repr(C)]
 pub struct BindImageMemoryInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 image: Image,
 memory: DeviceMemory,
 memory_offset: DeviceSize,
@@ -5184,45 +5250,45 @@ memory_offset: DeviceSize,
 #[repr(C)]
 pub struct BindImageMemoryDeviceGroupInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 device_index_count: u32,
-p_device_indices: u32,
+p_device_indices: *const u32,
 split_instance_bind_region_count: u32,
-p_split_instance_bind_regions: Rect2D,
+p_split_instance_bind_regions: *const Rect2D,
 }
 
 #[repr(C)]
 pub struct DeviceGroupRenderPassBeginInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 device_mask: u32,
 device_render_area_count: u32,
-p_device_render_areas: Rect2D,
+p_device_render_areas: *const Rect2D,
 }
 
 #[repr(C)]
 pub struct DeviceGroupCommandBufferBeginInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 device_mask: u32,
 }
 
 #[repr(C)]
 pub struct DeviceGroupSubmitInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 wait_semaphore_count: u32,
-p_wait_semaphore_device_indices: u32,
+p_wait_semaphore_device_indices: *const u32,
 command_buffer_count: u32,
-p_command_buffer_device_masks: u32,
+p_command_buffer_device_masks: *const u32,
 signal_semaphore_count: u32,
-p_signal_semaphore_device_indices: u32,
+p_signal_semaphore_device_indices: *const u32,
 }
 
 #[repr(C)]
 pub struct DeviceGroupBindSparseInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 resource_device_index: u32,
 memory_device_index: u32,
 }
@@ -5230,7 +5296,7 @@ memory_device_index: u32,
 #[repr(C)]
 pub struct DeviceGroupPresentCapabilitiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 present_mask: u32,
 modes: DeviceGroupPresentModeFlagsKHR,
 }
@@ -5238,14 +5304,14 @@ modes: DeviceGroupPresentModeFlagsKHR,
 #[repr(C)]
 pub struct ImageSwapchainCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 swapchain: SwapchainKHR,
 }
 
 #[repr(C)]
 pub struct BindImageMemorySwapchainInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 swapchain: SwapchainKHR,
 image_index: u32,
 }
@@ -5253,7 +5319,7 @@ image_index: u32,
 #[repr(C)]
 pub struct AcquireNextImageInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 swapchain: SwapchainKHR,
 timeout: u64,
 semaphore: Semaphore,
@@ -5264,24 +5330,24 @@ device_mask: u32,
 #[repr(C)]
 pub struct DeviceGroupPresentInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 swapchain_count: u32,
-p_device_masks: u32,
+p_device_masks: *const u32,
 mode: DeviceGroupPresentModeFlagBitsKHR,
 }
 
 #[repr(C)]
 pub struct DeviceGroupDeviceCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 physical_device_count: u32,
-p_physical_devices: PhysicalDevice,
+p_physical_devices: *const PhysicalDevice,
 }
 
 #[repr(C)]
 pub struct DeviceGroupSwapchainCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 modes: DeviceGroupPresentModeFlagsKHR,
 }
 
@@ -5298,10 +5364,10 @@ stride: usize,
 #[repr(C)]
 pub struct DescriptorUpdateTemplateCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: DescriptorUpdateTemplateCreateFlags,
 descriptor_update_entry_count: u32,
-p_descriptor_update_entries: DescriptorUpdateTemplateEntry,
+p_descriptor_update_entries: *const DescriptorUpdateTemplateEntry,
 template_type: DescriptorUpdateTemplateType,
 descriptor_set_layout: DescriptorSetLayout,
 pipeline_bind_point: PipelineBindPoint,
@@ -5318,29 +5384,29 @@ y: f32,
 #[repr(C)]
 pub struct PhysicalDevicePresentIdFeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 present_id: Bool32,
 }
 
 #[repr(C)]
 pub struct PresentIdKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 swapchain_count: u32,
-p_present_ids: u64,
+p_present_ids: *const u64,
 }
 
 #[repr(C)]
 pub struct PhysicalDevicePresentWaitFeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 present_wait: Bool32,
 }
 
 #[repr(C)]
 pub struct HdrMetadataEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 display_primary_red: XYColorEXT,
 display_primary_green: XYColorEXT,
 display_primary_blue: XYColorEXT,
@@ -5354,14 +5420,14 @@ max_frame_average_light_level: f32,
 #[repr(C)]
 pub struct DisplayNativeHdrSurfaceCapabilitiesAMD {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 local_dimming_support: Bool32,
 }
 
 #[repr(C)]
 pub struct SwapchainDisplayNativeHdrCreateInfoAMD {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 local_dimming_enable: Bool32,
 }
 
@@ -5382,9 +5448,9 @@ present_margin: u64,
 #[repr(C)]
 pub struct PresentTimesInfoGOOGLE {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 swapchain_count: u32,
-p_times: PresentTimeGOOGLE,
+p_times: *const PresentTimeGOOGLE,
 }
 
 #[repr(C)]
@@ -5396,25 +5462,25 @@ desired_present_time: u64,
 #[repr(C)]
 pub struct IOSSurfaceCreateInfoMVK {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: IOSSurfaceCreateFlagsMVK,
-p_view: c_void,
+p_view: *const c_void,
 }
 
 #[repr(C)]
 pub struct MacOSSurfaceCreateInfoMVK {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: MacOSSurfaceCreateFlagsMVK,
-p_view: c_void,
+p_view: *const c_void,
 }
 
 #[repr(C)]
 pub struct MetalSurfaceCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: MetalSurfaceCreateFlagsEXT,
-p_layer: CAMetalLayer,
+p_layer: *const CAMetalLayer,
 }
 
 #[repr(C)]
@@ -5426,10 +5492,10 @@ ycoeff: f32,
 #[repr(C)]
 pub struct PipelineViewportWScalingStateCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 viewport_wscaling_enable: Bool32,
 viewport_count: u32,
-p_viewport_wscalings: ViewportWScalingNV,
+p_viewport_wscalings: *const ViewportWScalingNV,
 }
 
 #[repr(C)]
@@ -5443,33 +5509,33 @@ w: ViewportCoordinateSwizzleNV,
 #[repr(C)]
 pub struct PipelineViewportSwizzleStateCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineViewportSwizzleStateCreateFlagsNV,
 viewport_count: u32,
-p_viewport_swizzles: ViewportSwizzleNV,
+p_viewport_swizzles: *const ViewportSwizzleNV,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceDiscardRectanglePropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_discard_rectangles: u32,
 }
 
 #[repr(C)]
 pub struct PipelineDiscardRectangleStateCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineDiscardRectangleStateCreateFlagsEXT,
 discard_rectangle_mode: DiscardRectangleModeEXT,
 discard_rectangle_count: u32,
-p_discard_rectangles: Rect2D,
+p_discard_rectangles: *const Rect2D,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 per_view_position_all_components: Bool32,
 }
 
@@ -5483,57 +5549,57 @@ aspect_mask: ImageAspectFlags,
 #[repr(C)]
 pub struct RenderPassInputAttachmentAspectCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 aspect_reference_count: u32,
-p_aspect_references: InputAttachmentAspectReference,
+p_aspect_references: *const InputAttachmentAspectReference,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceSurfaceInfo2KHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 surface: SurfaceKHR,
 }
 
 #[repr(C)]
 pub struct SurfaceCapabilities2KHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 surface_capabilities: SurfaceCapabilitiesKHR,
 }
 
 #[repr(C)]
 pub struct SurfaceFormat2KHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 surface_format: SurfaceFormatKHR,
 }
 
 #[repr(C)]
 pub struct DisplayProperties2KHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 display_properties: DisplayPropertiesKHR,
 }
 
 #[repr(C)]
 pub struct DisplayPlaneProperties2KHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 display_plane_properties: DisplayPlanePropertiesKHR,
 }
 
 #[repr(C)]
 pub struct DisplayModeProperties2KHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 display_mode_properties: DisplayModePropertiesKHR,
 }
 
 #[repr(C)]
 pub struct DisplayPlaneInfo2KHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 mode: DisplayModeKHR,
 plane_index: u32,
 }
@@ -5541,21 +5607,21 @@ plane_index: u32,
 #[repr(C)]
 pub struct DisplayPlaneCapabilities2KHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 capabilities: DisplayPlaneCapabilitiesKHR,
 }
 
 #[repr(C)]
 pub struct SharedPresentSurfaceCapabilitiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shared_present_supported_usage_flags: ImageUsageFlags,
 }
 
 #[repr(C)]
 pub struct PhysicalDevice16BitStorageFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 storage_buffer16_bit_access: Bool32,
 uniform_and_storage_buffer16_bit_access: Bool32,
 storage_push_constant16: Bool32,
@@ -5565,7 +5631,7 @@ storage_input_output16: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceSubgroupProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 subgroup_size: u32,
 supported_stages: ShaderStageFlags,
 supported_operations: SubgroupFeatureFlags,
@@ -5575,71 +5641,71 @@ quad_operations_in_all_stages: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceShaderSubgroupExtendedTypesFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_subgroup_extended_types: Bool32,
 }
 
 #[repr(C)]
 pub struct BufferMemoryRequirementsInfo2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 buffer: Buffer,
 }
 
 #[repr(C)]
 pub struct DeviceBufferMemoryRequirements {
 s_type: StructureType,
-p_next: c_void,
-p_create_info: BufferCreateInfo,
+p_next: *const c_void,
+p_create_info: *const BufferCreateInfo,
 }
 
 #[repr(C)]
 pub struct ImageMemoryRequirementsInfo2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 image: Image,
 }
 
 #[repr(C)]
 pub struct ImageSparseMemoryRequirementsInfo2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 image: Image,
 }
 
 #[repr(C)]
 pub struct DeviceImageMemoryRequirements {
 s_type: StructureType,
-p_next: c_void,
-p_create_info: ImageCreateInfo,
+p_next: *const c_void,
+p_create_info: *const ImageCreateInfo,
 plane_aspect: ImageAspectFlagBits,
 }
 
 #[repr(C)]
 pub struct MemoryRequirements2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 memory_requirements: MemoryRequirements,
 }
 
 #[repr(C)]
 pub struct SparseImageMemoryRequirements2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 memory_requirements: SparseImageMemoryRequirements,
 }
 
 #[repr(C)]
 pub struct PhysicalDevicePointClippingProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 point_clipping_behavior: PointClippingBehavior,
 }
 
 #[repr(C)]
 pub struct MemoryDedicatedRequirements {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 prefers_dedicated_allocation: Bool32,
 requires_dedicated_allocation: Bool32,
 }
@@ -5647,7 +5713,7 @@ requires_dedicated_allocation: Bool32,
 #[repr(C)]
 pub struct MemoryDedicatedAllocateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 image: Image,
 buffer: Buffer,
 }
@@ -5655,14 +5721,14 @@ buffer: Buffer,
 #[repr(C)]
 pub struct ImageViewUsageCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 usage: ImageUsageFlags,
 }
 
 #[repr(C)]
 pub struct ImageViewSlicedCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 slice_offset: u32,
 slice_count: u32,
 }
@@ -5670,21 +5736,21 @@ slice_count: u32,
 #[repr(C)]
 pub struct PipelineTessellationDomainOriginStateCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 domain_origin: TessellationDomainOrigin,
 }
 
 #[repr(C)]
 pub struct SamplerYcbcrConversionInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 conversion: SamplerYcbcrConversion,
 }
 
 #[repr(C)]
 pub struct SamplerYcbcrConversionCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 format: Format,
 ycbcr_model: SamplerYcbcrModelConversion,
 ycbcr_range: SamplerYcbcrRange,
@@ -5698,42 +5764,42 @@ force_explicit_reconstruction: Bool32,
 #[repr(C)]
 pub struct BindImagePlaneMemoryInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 plane_aspect: ImageAspectFlagBits,
 }
 
 #[repr(C)]
 pub struct ImagePlaneMemoryRequirementsInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 plane_aspect: ImageAspectFlagBits,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceSamplerYcbcrConversionFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 sampler_ycbcr_conversion: Bool32,
 }
 
 #[repr(C)]
 pub struct SamplerYcbcrConversionImageFormatProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 combined_image_sampler_descriptor_count: u32,
 }
 
 #[repr(C)]
 pub struct TextureLODGatherFormatPropertiesAMD {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 supports_texture_gather_lodbias_amd: Bool32,
 }
 
 #[repr(C)]
 pub struct ConditionalRenderingBeginInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 buffer: Buffer,
 offset: DeviceSize,
 flags: ConditionalRenderingFlagsEXT,
@@ -5742,28 +5808,28 @@ flags: ConditionalRenderingFlagsEXT,
 #[repr(C)]
 pub struct ProtectedSubmitInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 protected_submit: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceProtectedMemoryFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 protected_memory: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceProtectedMemoryProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 protected_no_fault: Bool32,
 }
 
 #[repr(C)]
 pub struct DeviceQueueInfo2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: DeviceQueueCreateFlags,
 queue_family_index: u32,
 queue_index: u32,
@@ -5772,7 +5838,7 @@ queue_index: u32,
 #[repr(C)]
 pub struct PipelineCoverageToColorStateCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineCoverageToColorStateCreateFlagsNV,
 coverage_to_color_enable: Bool32,
 coverage_to_color_location: u32,
@@ -5781,7 +5847,7 @@ coverage_to_color_location: u32,
 #[repr(C)]
 pub struct PhysicalDeviceSamplerFilterMinmaxProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 filter_minmax_single_component_formats: Bool32,
 filter_minmax_image_component_mapping: Bool32,
 }
@@ -5795,11 +5861,11 @@ y: f32,
 #[repr(C)]
 pub struct SampleLocationsInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 sample_locations_per_pixel: SampleCountFlagBits,
 sample_location_grid_size: Extent2D,
 sample_locations_count: u32,
-p_sample_locations: SampleLocationEXT,
+p_sample_locations: *const SampleLocationEXT,
 }
 
 #[repr(C)]
@@ -5817,17 +5883,17 @@ sample_locations_info: SampleLocationsInfoEXT,
 #[repr(C)]
 pub struct RenderPassSampleLocationsBeginInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 attachment_initial_sample_locations_count: u32,
-p_attachment_initial_sample_locations: AttachmentSampleLocationsEXT,
+p_attachment_initial_sample_locations: *const AttachmentSampleLocationsEXT,
 post_subpass_sample_locations_count: u32,
-p_post_subpass_sample_locations: SubpassSampleLocationsEXT,
+p_post_subpass_sample_locations: *const SubpassSampleLocationsEXT,
 }
 
 #[repr(C)]
 pub struct PipelineSampleLocationsStateCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 sample_locations_enable: Bool32,
 sample_locations_info: SampleLocationsInfoEXT,
 }
@@ -5835,7 +5901,7 @@ sample_locations_info: SampleLocationsInfoEXT,
 #[repr(C)]
 pub struct PhysicalDeviceSampleLocationsPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 sample_location_sample_counts: SampleCountFlags,
 max_sample_location_grid_size: Extent2D,
 sample_location_coordinate_range: f32,
@@ -5846,35 +5912,35 @@ variable_sample_locations: Bool32,
 #[repr(C)]
 pub struct MultisamplePropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_sample_location_grid_size: Extent2D,
 }
 
 #[repr(C)]
 pub struct SamplerReductionModeCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 reduction_mode: SamplerReductionMode,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 advanced_blend_coherent_operations: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceMultiDrawFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 multi_draw: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 advanced_blend_max_color_attachments: u32,
 advanced_blend_independent_blend: Bool32,
 advanced_blend_non_premultiplied_src_color: Bool32,
@@ -5886,7 +5952,7 @@ advanced_blend_all_operations: Bool32,
 #[repr(C)]
 pub struct PipelineColorBlendAdvancedStateCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_premultiplied: Bool32,
 dst_premultiplied: Bool32,
 blend_overlap: BlendOverlapEXT,
@@ -5895,7 +5961,7 @@ blend_overlap: BlendOverlapEXT,
 #[repr(C)]
 pub struct PhysicalDeviceInlineUniformBlockFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 inline_uniform_block: Bool32,
 descriptor_binding_inline_uniform_block_update_after_bind: Bool32,
 }
@@ -5903,7 +5969,7 @@ descriptor_binding_inline_uniform_block_update_after_bind: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceInlineUniformBlockProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_inline_uniform_block_size: u32,
 max_per_stage_descriptor_inline_uniform_blocks: u32,
 max_per_stage_descriptor_update_after_bind_inline_uniform_blocks: u32,
@@ -5914,57 +5980,57 @@ max_descriptor_set_update_after_bind_inline_uniform_blocks: u32,
 #[repr(C)]
 pub struct WriteDescriptorSetInlineUniformBlock {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 data_size: u32,
-p_data: c_void,
+p_data: *const c_void,
 }
 
 #[repr(C)]
 pub struct DescriptorPoolInlineUniformBlockCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 max_inline_uniform_block_bindings: u32,
 }
 
 #[repr(C)]
 pub struct PipelineCoverageModulationStateCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineCoverageModulationStateCreateFlagsNV,
 coverage_modulation_mode: CoverageModulationModeNV,
 coverage_modulation_table_enable: Bool32,
 coverage_modulation_table_count: u32,
-p_coverage_modulation_table: f32,
+p_coverage_modulation_table: *const f32,
 }
 
 #[repr(C)]
 pub struct ImageFormatListCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 view_format_count: u32,
-p_view_formats: Format,
+p_view_formats: *const Format,
 }
 
 #[repr(C)]
 pub struct ValidationCacheCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: ValidationCacheCreateFlagsEXT,
 initial_data_size: usize,
-p_initial_data: c_void,
+p_initial_data: *const c_void,
 }
 
 #[repr(C)]
 pub struct ShaderModuleValidationCacheCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 validation_cache: ValidationCacheEXT,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance3Properties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_per_set_descriptors: u32,
 max_memory_allocation_size: DeviceSize,
 }
@@ -5972,28 +6038,28 @@ max_memory_allocation_size: DeviceSize,
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance4Features {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 maintenance4: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance4Properties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_buffer_size: DeviceSize,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance5FeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 maintenance5: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance5PropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 early_fragment_multisample_coverage_after_sample_counting: Bool32,
 early_fragment_sample_mask_test_before_sample_counting: Bool32,
 depth_stencil_swizzle_one_support: Bool32,
@@ -6005,10 +6071,10 @@ non_strict_wide_lines_use_parallelogram: Bool32,
 #[repr(C)]
 pub struct RenderingAreaInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 view_mask: u32,
 color_attachment_count: u32,
-p_color_attachment_formats: Format,
+p_color_attachment_formats: *const Format,
 depth_attachment_format: Format,
 stencil_attachment_format: Format,
 }
@@ -6016,21 +6082,21 @@ stencil_attachment_format: Format,
 #[repr(C)]
 pub struct DescriptorSetLayoutSupport {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 supported: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShaderDrawParametersFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_draw_parameters: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShaderFloat16Int8Features {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_float16: Bool32,
 shader_int8: Bool32,
 }
@@ -6038,7 +6104,7 @@ shader_int8: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceFloatControlsProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 denorm_behavior_independence: ShaderFloatControlsIndependence,
 rounding_mode_independence: ShaderFloatControlsIndependence,
 shader_signed_zero_inf_nan_preserve_float16: Bool32,
@@ -6061,7 +6127,7 @@ shader_rounding_mode_rtzfloat64: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceHostQueryResetFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 host_query_reset: Bool32,
 }
 
@@ -6074,8 +6140,8 @@ producer: u64,
 #[repr(C)]
 pub struct NativeBufferANDROID {
 s_type: StructureType,
-p_next: c_void,
-handle: c_void,
+p_next: *const c_void,
+handle: *const c_void,
 stride: int,
 format: int,
 usage: int,
@@ -6085,14 +6151,14 @@ usage2: NativeBufferUsage2ANDROID,
 #[repr(C)]
 pub struct SwapchainImageCreateInfoANDROID {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 usage: SwapchainImageUsageFlagsANDROID,
 }
 
 #[repr(C)]
 pub struct PhysicalDevicePresentationPropertiesANDROID {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 shared_image: Bool32,
 }
 
@@ -6119,21 +6185,21 @@ compute_work_group_size: u32,
 #[repr(C)]
 pub struct DeviceQueueGlobalPriorityCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 global_priority: QueueGlobalPriorityKHR,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceGlobalPriorityQueryFeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 global_priority_query: Bool32,
 }
 
 #[repr(C)]
 pub struct QueueFamilyGlobalPriorityPropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 priority_count: u32,
 priorities: QueueGlobalPriorityKHR,
 }
@@ -6141,78 +6207,78 @@ priorities: QueueGlobalPriorityKHR,
 #[repr(C)]
 pub struct DebugUtilsObjectNameInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 object_type: ObjectType,
 object_handle: u64,
-p_object_name: u8,
+p_object_name: *const u8,
 }
 
 #[repr(C)]
 pub struct DebugUtilsObjectTagInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 object_type: ObjectType,
 object_handle: u64,
 tag_name: u64,
 tag_size: usize,
-p_tag: c_void,
+p_tag: *const c_void,
 }
 
 #[repr(C)]
 pub struct DebugUtilsLabelEXT {
 s_type: StructureType,
-p_next: c_void,
-p_label_name: u8,
+p_next: *const c_void,
+p_label_name: *const u8,
 color: f32,
 }
 
 #[repr(C)]
 pub struct DebugUtilsMessengerCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: DebugUtilsMessengerCreateFlagsEXT,
 message_severity: DebugUtilsMessageSeverityFlagsEXT,
 message_type: DebugUtilsMessageTypeFlagsEXT,
 pfn_user_callback: PFN_vkDebugUtilsMessengerCallbackEXT,
-p_user_data: c_void,
+p_user_data: *mut c_void,
 }
 
 #[repr(C)]
 pub struct DebugUtilsMessengerCallbackDataEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: DebugUtilsMessengerCallbackDataFlagsEXT,
-p_message_id_name: u8,
+p_message_id_name: *const u8,
 message_id_number: i32,
-p_message: u8,
+p_message: *const u8,
 queue_label_count: u32,
-p_queue_labels: DebugUtilsLabelEXT,
+p_queue_labels: *const DebugUtilsLabelEXT,
 cmd_buf_label_count: u32,
-p_cmd_buf_labels: DebugUtilsLabelEXT,
+p_cmd_buf_labels: *const DebugUtilsLabelEXT,
 object_count: u32,
-p_objects: DebugUtilsObjectNameInfoEXT,
+p_objects: *const DebugUtilsObjectNameInfoEXT,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceDeviceMemoryReportFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 device_memory_report: Bool32,
 }
 
 #[repr(C)]
 pub struct DeviceDeviceMemoryReportCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: DeviceMemoryReportFlagsEXT,
 pfn_user_callback: PFN_vkDeviceMemoryReportCallbackEXT,
-p_user_data: c_void,
+p_user_data: *mut c_void,
 }
 
 #[repr(C)]
 pub struct DeviceMemoryReportCallbackDataEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 flags: DeviceMemoryReportFlagsEXT,
 r#type: DeviceMemoryReportEventTypeEXT,
 memory_object_id: u64,
@@ -6225,29 +6291,29 @@ heap_index: u32,
 #[repr(C)]
 pub struct ImportMemoryHostPointerInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 handle_type: ExternalMemoryHandleTypeFlagBits,
-p_host_pointer: c_void,
+p_host_pointer: *mut c_void,
 }
 
 #[repr(C)]
 pub struct MemoryHostPointerPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 memory_type_bits: u32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceExternalMemoryHostPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 min_imported_host_pointer_alignment: DeviceSize,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 primitive_overestimation_size: f32,
 max_extra_primitive_overestimation_size: f32,
 extra_primitive_overestimation_size_granularity: f32,
@@ -6262,14 +6328,14 @@ conservative_rasterization_post_depth_coverage: Bool32,
 #[repr(C)]
 pub struct CalibratedTimestampInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 time_domain: TimeDomainEXT,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShaderCorePropertiesAMD {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_engine_count: u32,
 shader_arrays_per_engine_count: u32,
 compute_units_per_shader_array: u32,
@@ -6289,7 +6355,7 @@ vgpr_allocation_granularity: u32,
 #[repr(C)]
 pub struct PhysicalDeviceShaderCoreProperties2AMD {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_core_features: ShaderCorePropertiesFlagsAMD,
 active_compute_unit_count: u32,
 }
@@ -6297,7 +6363,7 @@ active_compute_unit_count: u32,
 #[repr(C)]
 pub struct PipelineRasterizationConservativeStateCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineRasterizationConservativeStateCreateFlagsEXT,
 conservative_rasterization_mode: ConservativeRasterizationModeEXT,
 extra_primitive_overestimation_size: f32,
@@ -6306,7 +6372,7 @@ extra_primitive_overestimation_size: f32,
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorIndexingFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_input_attachment_array_dynamic_indexing: Bool32,
 shader_uniform_texel_buffer_array_dynamic_indexing: Bool32,
 shader_storage_texel_buffer_array_dynamic_indexing: Bool32,
@@ -6332,7 +6398,7 @@ runtime_descriptor_array: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorIndexingProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_update_after_bind_descriptors_in_all_pools: u32,
 shader_uniform_buffer_array_non_uniform_indexing_native: Bool32,
 shader_sampled_image_array_non_uniform_indexing_native: Bool32,
@@ -6361,30 +6427,30 @@ max_descriptor_set_update_after_bind_input_attachments: u32,
 #[repr(C)]
 pub struct DescriptorSetLayoutBindingFlagsCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 binding_count: u32,
-p_binding_flags: DescriptorBindingFlags,
+p_binding_flags: *const DescriptorBindingFlags,
 }
 
 #[repr(C)]
 pub struct DescriptorSetVariableDescriptorCountAllocateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 descriptor_set_count: u32,
-p_descriptor_counts: u32,
+p_descriptor_counts: *const u32,
 }
 
 #[repr(C)]
 pub struct DescriptorSetVariableDescriptorCountLayoutSupport {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_variable_descriptor_count: u32,
 }
 
 #[repr(C)]
 pub struct AttachmentDescription2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: AttachmentDescriptionFlags,
 format: Format,
 samples: SampleCountFlagBits,
@@ -6399,7 +6465,7 @@ final_layout: ImageLayout,
 #[repr(C)]
 pub struct AttachmentReference2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 attachment: u32,
 layout: ImageLayout,
 aspect_mask: ImageAspectFlags,
@@ -6408,24 +6474,24 @@ aspect_mask: ImageAspectFlags,
 #[repr(C)]
 pub struct SubpassDescription2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: SubpassDescriptionFlags,
 pipeline_bind_point: PipelineBindPoint,
 view_mask: u32,
 input_attachment_count: u32,
-p_input_attachments: AttachmentReference2,
+p_input_attachments: *const AttachmentReference2,
 color_attachment_count: u32,
-p_color_attachments: AttachmentReference2,
-p_resolve_attachments: AttachmentReference2,
-p_depth_stencil_attachment: AttachmentReference2,
+p_color_attachments: *const AttachmentReference2,
+p_resolve_attachments: *const AttachmentReference2,
+p_depth_stencil_attachment: *const AttachmentReference2,
 preserve_attachment_count: u32,
-p_preserve_attachments: u32,
+p_preserve_attachments: *const u32,
 }
 
 #[repr(C)]
 pub struct SubpassDependency2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_subpass: u32,
 dst_subpass: u32,
 src_stage_mask: PipelineStageFlags,
@@ -6439,49 +6505,49 @@ view_offset: i32,
 #[repr(C)]
 pub struct RenderPassCreateInfo2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: RenderPassCreateFlags,
 attachment_count: u32,
-p_attachments: AttachmentDescription2,
+p_attachments: *const AttachmentDescription2,
 subpass_count: u32,
-p_subpasses: SubpassDescription2,
+p_subpasses: *const SubpassDescription2,
 dependency_count: u32,
-p_dependencies: SubpassDependency2,
+p_dependencies: *const SubpassDependency2,
 correlated_view_mask_count: u32,
-p_correlated_view_masks: u32,
+p_correlated_view_masks: *const u32,
 }
 
 #[repr(C)]
 pub struct SubpassBeginInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 contents: SubpassContents,
 }
 
 #[repr(C)]
 pub struct SubpassEndInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceTimelineSemaphoreFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 timeline_semaphore: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceTimelineSemaphoreProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_timeline_semaphore_value_difference: u64,
 }
 
 #[repr(C)]
 pub struct SemaphoreTypeCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 semaphore_type: SemaphoreType,
 initial_value: u64,
 }
@@ -6489,27 +6555,27 @@ initial_value: u64,
 #[repr(C)]
 pub struct TimelineSemaphoreSubmitInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 wait_semaphore_value_count: u32,
-p_wait_semaphore_values: u64,
+p_wait_semaphore_values: *const u64,
 signal_semaphore_value_count: u32,
-p_signal_semaphore_values: u64,
+p_signal_semaphore_values: *const u64,
 }
 
 #[repr(C)]
 pub struct SemaphoreWaitInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: SemaphoreWaitFlags,
 semaphore_count: u32,
-p_semaphores: Semaphore,
-p_values: u64,
+p_semaphores: *const Semaphore,
+p_values: *const u64,
 }
 
 #[repr(C)]
 pub struct SemaphoreSignalInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 semaphore: Semaphore,
 value: u64,
 }
@@ -6523,22 +6589,22 @@ divisor: u32,
 #[repr(C)]
 pub struct PipelineVertexInputDivisorStateCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 vertex_binding_divisor_count: u32,
-p_vertex_binding_divisors: VertexInputBindingDivisorDescriptionEXT,
+p_vertex_binding_divisors: *const VertexInputBindingDivisorDescriptionEXT,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceVertexAttributeDivisorPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_vertex_attrib_divisor: u32,
 }
 
 #[repr(C)]
 pub struct PhysicalDevicePCIBusInfoPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 pci_domain: u32,
 pci_bus: u32,
 pci_device: u32,
@@ -6548,21 +6614,21 @@ pci_function: u32,
 #[repr(C)]
 pub struct ImportAndroidHardwareBufferInfoANDROID {
 s_type: StructureType,
-p_next: c_void,
-buffer: AHardwareBuffer,
+p_next: *const c_void,
+buffer: *mut AHardwareBuffer,
 }
 
 #[repr(C)]
 pub struct AndroidHardwareBufferUsageANDROID {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 android_hardware_buffer_usage: u64,
 }
 
 #[repr(C)]
 pub struct AndroidHardwareBufferPropertiesANDROID {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 allocation_size: DeviceSize,
 memory_type_bits: u32,
 }
@@ -6570,14 +6636,14 @@ memory_type_bits: u32,
 #[repr(C)]
 pub struct MemoryGetAndroidHardwareBufferInfoANDROID {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 memory: DeviceMemory,
 }
 
 #[repr(C)]
 pub struct AndroidHardwareBufferFormatPropertiesANDROID {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 format: Format,
 external_format: u64,
 format_features: FormatFeatureFlags,
@@ -6591,21 +6657,21 @@ suggested_ychroma_offset: ChromaLocation,
 #[repr(C)]
 pub struct CommandBufferInheritanceConditionalRenderingInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 conditional_rendering_enable: Bool32,
 }
 
 #[repr(C)]
 pub struct ExternalFormatANDROID {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 external_format: u64,
 }
 
 #[repr(C)]
 pub struct PhysicalDevice8BitStorageFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 storage_buffer8_bit_access: Bool32,
 uniform_and_storage_buffer8_bit_access: Bool32,
 storage_push_constant8: Bool32,
@@ -6614,7 +6680,7 @@ storage_push_constant8: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceConditionalRenderingFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 conditional_rendering: Bool32,
 inherited_conditional_rendering: Bool32,
 }
@@ -6622,7 +6688,7 @@ inherited_conditional_rendering: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceVulkanMemoryModelFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 vulkan_memory_model: Bool32,
 vulkan_memory_model_device_scope: Bool32,
 vulkan_memory_model_availability_visibility_chains: Bool32,
@@ -6631,7 +6697,7 @@ vulkan_memory_model_availability_visibility_chains: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceShaderAtomicInt64Features {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_buffer_int64_atomics: Bool32,
 shader_shared_int64_atomics: Bool32,
 }
@@ -6639,7 +6705,7 @@ shader_shared_int64_atomics: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceShaderAtomicFloatFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_buffer_float32_atomics: Bool32,
 shader_buffer_float32_atomic_add: Bool32,
 shader_buffer_float64_atomics: Bool32,
@@ -6657,7 +6723,7 @@ sparse_image_float32_atomic_add: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceShaderAtomicFloat2FeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_buffer_float16_atomics: Bool32,
 shader_buffer_float16_atomic_add: Bool32,
 shader_buffer_float16_atomic_min_max: Bool32,
@@ -6675,7 +6741,7 @@ sparse_image_float32_atomic_min_max: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceVertexAttributeDivisorFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 vertex_attribute_instance_rate_divisor: Bool32,
 vertex_attribute_instance_rate_zero_divisor: Bool32,
 }
@@ -6683,22 +6749,22 @@ vertex_attribute_instance_rate_zero_divisor: Bool32,
 #[repr(C)]
 pub struct QueueFamilyCheckpointPropertiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 checkpoint_execution_stage_mask: PipelineStageFlags,
 }
 
 #[repr(C)]
 pub struct CheckpointDataNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 stage: PipelineStageFlagBits,
-p_checkpoint_marker: c_void,
+p_checkpoint_marker: *mut c_void,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceDepthStencilResolveProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 supported_depth_resolve_modes: ResolveModeFlags,
 supported_stencil_resolve_modes: ResolveModeFlags,
 independent_resolve_none: Bool32,
@@ -6708,30 +6774,30 @@ independent_resolve: Bool32,
 #[repr(C)]
 pub struct SubpassDescriptionDepthStencilResolve {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 depth_resolve_mode: ResolveModeFlagBits,
 stencil_resolve_mode: ResolveModeFlagBits,
-p_depth_stencil_resolve_attachment: AttachmentReference2,
+p_depth_stencil_resolve_attachment: *const AttachmentReference2,
 }
 
 #[repr(C)]
 pub struct ImageViewASTCDecodeModeEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 decode_mode: Format,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceASTCDecodeFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 decode_mode_shared_exponent: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceTransformFeedbackFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 transform_feedback: Bool32,
 geometry_streams: Bool32,
 }
@@ -6739,7 +6805,7 @@ geometry_streams: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceTransformFeedbackPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_transform_feedback_streams: u32,
 max_transform_feedback_buffers: u32,
 max_transform_feedback_buffer_size: DeviceSize,
@@ -6755,7 +6821,7 @@ transform_feedback_draw: Bool32,
 #[repr(C)]
 pub struct PipelineRasterizationStateStreamCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineRasterizationStateStreamCreateFlagsEXT,
 rasterization_stream: u32,
 }
@@ -6763,43 +6829,43 @@ rasterization_stream: u32,
 #[repr(C)]
 pub struct PhysicalDeviceRepresentativeFragmentTestFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 representative_fragment_test: Bool32,
 }
 
 #[repr(C)]
 pub struct PipelineRepresentativeFragmentTestStateCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 representative_fragment_test_enable: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceExclusiveScissorFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 exclusive_scissor: Bool32,
 }
 
 #[repr(C)]
 pub struct PipelineViewportExclusiveScissorStateCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 exclusive_scissor_count: u32,
-p_exclusive_scissors: Rect2D,
+p_exclusive_scissors: *const Rect2D,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceCornerSampledImageFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 corner_sampled_image: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceComputeShaderDerivativesFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 compute_derivative_group_quads: Bool32,
 compute_derivative_group_linear: Bool32,
 }
@@ -6807,42 +6873,42 @@ compute_derivative_group_linear: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceShaderImageFootprintFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 image_footprint: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 dedicated_allocation_image_aliasing: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceCopyMemoryIndirectFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 indirect_copy: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceCopyMemoryIndirectPropertiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 supported_queues: QueueFlags,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceMemoryDecompressionFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 memory_decompression: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceMemoryDecompressionPropertiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 decompression_methods: MemoryDecompressionMethodFlagsNV,
 max_decompression_indirect_count: u64,
 }
@@ -6850,22 +6916,22 @@ max_decompression_indirect_count: u64,
 #[repr(C)]
 pub struct ShadingRatePaletteNV {
 shading_rate_palette_entry_count: u32,
-p_shading_rate_palette_entries: ShadingRatePaletteEntryNV,
+p_shading_rate_palette_entries: *const ShadingRatePaletteEntryNV,
 }
 
 #[repr(C)]
 pub struct PipelineViewportShadingRateImageStateCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 shading_rate_image_enable: Bool32,
 viewport_count: u32,
-p_shading_rate_palettes: ShadingRatePaletteNV,
+p_shading_rate_palettes: *const ShadingRatePaletteNV,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShadingRateImageFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shading_rate_image: Bool32,
 shading_rate_coarse_sample_order: Bool32,
 }
@@ -6873,7 +6939,7 @@ shading_rate_coarse_sample_order: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceShadingRateImagePropertiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shading_rate_texel_size: Extent2D,
 shading_rate_palette_size: u32,
 shading_rate_max_coarse_samples: u32,
@@ -6882,7 +6948,7 @@ shading_rate_max_coarse_samples: u32,
 #[repr(C)]
 pub struct PhysicalDeviceInvocationMaskFeaturesHUAWEI {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 invocation_mask: Bool32,
 }
 
@@ -6898,22 +6964,22 @@ pub struct CoarseSampleOrderCustomNV {
 shading_rate: ShadingRatePaletteEntryNV,
 sample_count: u32,
 sample_location_count: u32,
-p_sample_locations: CoarseSampleLocationNV,
+p_sample_locations: *const CoarseSampleLocationNV,
 }
 
 #[repr(C)]
 pub struct PipelineViewportCoarseSampleOrderStateCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 sample_order_type: CoarseSampleOrderTypeNV,
 custom_sample_order_count: u32,
-p_custom_sample_orders: CoarseSampleOrderCustomNV,
+p_custom_sample_orders: *const CoarseSampleOrderCustomNV,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceMeshShaderFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 task_shader: Bool32,
 mesh_shader: Bool32,
 }
@@ -6921,7 +6987,7 @@ mesh_shader: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceMeshShaderPropertiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_draw_mesh_tasks_count: u32,
 max_task_work_group_invocations: u32,
 max_task_work_group_size: u32,
@@ -6946,7 +7012,7 @@ first_task: u32,
 #[repr(C)]
 pub struct PhysicalDeviceMeshShaderFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 task_shader: Bool32,
 mesh_shader: Bool32,
 multiview_mesh_shader: Bool32,
@@ -6957,7 +7023,7 @@ mesh_shader_queries: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceMeshShaderPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_task_work_group_total_count: u32,
 max_task_work_group_count: u32,
 max_task_work_group_invocations: u32,
@@ -6998,7 +7064,7 @@ group_count_z: u32,
 #[repr(C)]
 pub struct RayTracingShaderGroupCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 r#type: RayTracingShaderGroupTypeKHR,
 general_shader: u32,
 closest_hit_shader: u32,
@@ -7009,24 +7075,24 @@ intersection_shader: u32,
 #[repr(C)]
 pub struct RayTracingShaderGroupCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 r#type: RayTracingShaderGroupTypeKHR,
 general_shader: u32,
 closest_hit_shader: u32,
 any_hit_shader: u32,
 intersection_shader: u32,
-p_shader_group_capture_replay_handle: c_void,
+p_shader_group_capture_replay_handle: *const c_void,
 }
 
 #[repr(C)]
 pub struct RayTracingPipelineCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineCreateFlags,
 stage_count: u32,
-p_stages: PipelineShaderStageCreateInfo,
+p_stages: *const PipelineShaderStageCreateInfo,
 group_count: u32,
-p_groups: RayTracingShaderGroupCreateInfoNV,
+p_groups: *const RayTracingShaderGroupCreateInfoNV,
 max_recursion_depth: u32,
 layout: PipelineLayout,
 base_pipeline_handle: Pipeline,
@@ -7036,16 +7102,16 @@ base_pipeline_index: i32,
 #[repr(C)]
 pub struct RayTracingPipelineCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineCreateFlags,
 stage_count: u32,
-p_stages: PipelineShaderStageCreateInfo,
+p_stages: *const PipelineShaderStageCreateInfo,
 group_count: u32,
-p_groups: RayTracingShaderGroupCreateInfoKHR,
+p_groups: *const RayTracingShaderGroupCreateInfoKHR,
 max_pipeline_ray_recursion_depth: u32,
-p_library_info: PipelineLibraryCreateInfoKHR,
-p_library_interface: RayTracingPipelineInterfaceCreateInfoKHR,
-p_dynamic_state: PipelineDynamicStateCreateInfo,
+p_library_info: *const PipelineLibraryCreateInfoKHR,
+p_library_interface: *const RayTracingPipelineInterfaceCreateInfoKHR,
+p_dynamic_state: *const PipelineDynamicStateCreateInfo,
 layout: PipelineLayout,
 base_pipeline_handle: Pipeline,
 base_pipeline_index: i32,
@@ -7054,7 +7120,7 @@ base_pipeline_index: i32,
 #[repr(C)]
 pub struct GeometryTrianglesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 vertex_data: Buffer,
 vertex_offset: DeviceSize,
 vertex_count: u32,
@@ -7071,7 +7137,7 @@ transform_offset: DeviceSize,
 #[repr(C)]
 pub struct GeometryAABBNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 aabb_data: Buffer,
 num_aabbs: u32,
 stride: u32,
@@ -7087,7 +7153,7 @@ aabbs: GeometryAABBNV,
 #[repr(C)]
 pub struct GeometryNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 geometry_type: GeometryTypeKHR,
 geometry: GeometryDataNV,
 flags: GeometryFlagsKHR,
@@ -7096,18 +7162,18 @@ flags: GeometryFlagsKHR,
 #[repr(C)]
 pub struct AccelerationStructureInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 r#type: AccelerationStructureTypeNV,
 flags: BuildAccelerationStructureFlagsNV,
 instance_count: u32,
 geometry_count: u32,
-p_geometries: GeometryNV,
+p_geometries: *const GeometryNV,
 }
 
 #[repr(C)]
 pub struct AccelerationStructureCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 compacted_size: DeviceSize,
 info: AccelerationStructureInfoNV,
 }
@@ -7115,34 +7181,34 @@ info: AccelerationStructureInfoNV,
 #[repr(C)]
 pub struct BindAccelerationStructureMemoryInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 acceleration_structure: AccelerationStructureNV,
 memory: DeviceMemory,
 memory_offset: DeviceSize,
 device_index_count: u32,
-p_device_indices: u32,
+p_device_indices: *const u32,
 }
 
 #[repr(C)]
 pub struct WriteDescriptorSetAccelerationStructureKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 acceleration_structure_count: u32,
-p_acceleration_structures: AccelerationStructureKHR,
+p_acceleration_structures: *const AccelerationStructureKHR,
 }
 
 #[repr(C)]
 pub struct WriteDescriptorSetAccelerationStructureNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 acceleration_structure_count: u32,
-p_acceleration_structures: AccelerationStructureNV,
+p_acceleration_structures: *const AccelerationStructureNV,
 }
 
 #[repr(C)]
 pub struct AccelerationStructureMemoryRequirementsInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 r#type: AccelerationStructureMemoryRequirementsTypeNV,
 acceleration_structure: AccelerationStructureNV,
 }
@@ -7150,7 +7216,7 @@ acceleration_structure: AccelerationStructureNV,
 #[repr(C)]
 pub struct PhysicalDeviceAccelerationStructureFeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 acceleration_structure: Bool32,
 acceleration_structure_capture_replay: Bool32,
 acceleration_structure_indirect_build: Bool32,
@@ -7161,7 +7227,7 @@ descriptor_binding_acceleration_structure_update_after_bind: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPipelineFeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 ray_tracing_pipeline: Bool32,
 ray_tracing_pipeline_shader_group_handle_capture_replay: Bool32,
 ray_tracing_pipeline_shader_group_handle_capture_replay_mixed: Bool32,
@@ -7172,14 +7238,14 @@ ray_traversal_primitive_culling: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceRayQueryFeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 ray_query: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceAccelerationStructurePropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_geometry_count: u64,
 max_instance_count: u64,
 max_primitive_count: u64,
@@ -7193,7 +7259,7 @@ min_acceleration_structure_scratch_offset_alignment: u32,
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPipelinePropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_group_handle_size: u32,
 max_ray_recursion_depth: u32,
 max_shader_group_stride: u32,
@@ -7207,7 +7273,7 @@ max_ray_hit_attribute_size: u32,
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPropertiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_group_handle_size: u32,
 max_recursion_depth: u32,
 max_shader_group_stride: u32,
@@ -7253,7 +7319,7 @@ depth: u32,
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingMaintenance1FeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 ray_tracing_maintenance1: Bool32,
 ray_tracing_pipeline_trace_rays_indirect2: Bool32,
 }
@@ -7261,9 +7327,9 @@ ray_tracing_pipeline_trace_rays_indirect2: Bool32,
 #[repr(C)]
 pub struct DrmFormatModifierPropertiesListEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 drm_format_modifier_count: u32,
-p_drm_format_modifier_properties: DrmFormatModifierPropertiesEXT,
+p_drm_format_modifier_properties: *mut DrmFormatModifierPropertiesEXT,
 }
 
 #[repr(C)]
@@ -7276,55 +7342,55 @@ drm_format_modifier_tiling_features: FormatFeatureFlags,
 #[repr(C)]
 pub struct PhysicalDeviceImageDrmFormatModifierInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 drm_format_modifier: u64,
 sharing_mode: SharingMode,
 queue_family_index_count: u32,
-p_queue_family_indices: u32,
+p_queue_family_indices: *const u32,
 }
 
 #[repr(C)]
 pub struct ImageDrmFormatModifierListCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 drm_format_modifier_count: u32,
-p_drm_format_modifiers: u64,
+p_drm_format_modifiers: *const u64,
 }
 
 #[repr(C)]
 pub struct ImageDrmFormatModifierExplicitCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 drm_format_modifier: u64,
 drm_format_modifier_plane_count: u32,
-p_plane_layouts: SubresourceLayout,
+p_plane_layouts: *const SubresourceLayout,
 }
 
 #[repr(C)]
 pub struct ImageDrmFormatModifierPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 drm_format_modifier: u64,
 }
 
 #[repr(C)]
 pub struct ImageStencilUsageCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 stencil_usage: ImageUsageFlags,
 }
 
 #[repr(C)]
 pub struct DeviceMemoryOverallocationCreateInfoAMD {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 overallocation_behavior: MemoryOverallocationBehaviorAMD,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 fragment_density_map: Bool32,
 fragment_density_map_dynamic: Bool32,
 fragment_density_map_non_subsampled_images: Bool32,
@@ -7333,21 +7399,21 @@ fragment_density_map_non_subsampled_images: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMap2FeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 fragment_density_map_deferred: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 fragment_density_map_offset: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 min_fragment_density_texel_size: Extent2D,
 max_fragment_density_texel_size: Extent2D,
 fragment_density_invocations: Bool32,
@@ -7356,7 +7422,7 @@ fragment_density_invocations: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMap2PropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 subsampled_loads: Bool32,
 subsampled_coarse_reconstruction_early_access: Bool32,
 max_subsampled_array_layers: u32,
@@ -7366,57 +7432,57 @@ max_descriptor_set_subsampled_samplers: u32,
 #[repr(C)]
 pub struct PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 fragment_density_offset_granularity: Extent2D,
 }
 
 #[repr(C)]
 pub struct RenderPassFragmentDensityMapCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 fragment_density_map_attachment: AttachmentReference,
 }
 
 #[repr(C)]
 pub struct SubpassFragmentDensityMapOffsetEndInfoQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 fragment_density_offset_count: u32,
-p_fragment_density_offsets: Offset2D,
+p_fragment_density_offsets: *const Offset2D,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceScalarBlockLayoutFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 scalar_block_layout: Bool32,
 }
 
 #[repr(C)]
 pub struct SurfaceProtectedCapabilitiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 supports_protected: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceUniformBufferStandardLayoutFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 uniform_buffer_standard_layout: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceDepthClipEnableFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 depth_clip_enable: Bool32,
 }
 
 #[repr(C)]
 pub struct PipelineRasterizationDepthClipStateCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineRasterizationDepthClipStateCreateFlagsEXT,
 depth_clip_enable: Bool32,
 }
@@ -7424,7 +7490,7 @@ depth_clip_enable: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceMemoryBudgetPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 heap_budget: DeviceSize,
 heap_usage: DeviceSize,
 }
@@ -7432,28 +7498,28 @@ heap_usage: DeviceSize,
 #[repr(C)]
 pub struct PhysicalDeviceMemoryPriorityFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 memory_priority: Bool32,
 }
 
 #[repr(C)]
 pub struct MemoryPriorityAllocateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 priority: f32,
 }
 
 #[repr(C)]
 pub struct PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 pageable_device_local_memory: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceBufferDeviceAddressFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 buffer_device_address: Bool32,
 buffer_device_address_capture_replay: Bool32,
 buffer_device_address_multi_device: Bool32,
@@ -7462,7 +7528,7 @@ buffer_device_address_multi_device: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceBufferDeviceAddressFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 buffer_device_address: Bool32,
 buffer_device_address_capture_replay: Bool32,
 buffer_device_address_multi_device: Bool32,
@@ -7471,35 +7537,35 @@ buffer_device_address_multi_device: Bool32,
 #[repr(C)]
 pub struct BufferDeviceAddressInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 buffer: Buffer,
 }
 
 #[repr(C)]
 pub struct BufferOpaqueCaptureAddressCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 opaque_capture_address: u64,
 }
 
 #[repr(C)]
 pub struct BufferDeviceAddressCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 device_address: DeviceAddress,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceImageViewImageFormatInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 image_view_type: ImageViewType,
 }
 
 #[repr(C)]
 pub struct FilterCubicImageViewImageFormatPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 filter_cubic: Bool32,
 filter_cubic_minmax: Bool32,
 }
@@ -7507,50 +7573,50 @@ filter_cubic_minmax: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceImagelessFramebufferFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 imageless_framebuffer: Bool32,
 }
 
 #[repr(C)]
 pub struct FramebufferAttachmentsCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 attachment_image_info_count: u32,
-p_attachment_image_infos: FramebufferAttachmentImageInfo,
+p_attachment_image_infos: *const FramebufferAttachmentImageInfo,
 }
 
 #[repr(C)]
 pub struct FramebufferAttachmentImageInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: ImageCreateFlags,
 usage: ImageUsageFlags,
 width: u32,
 height: u32,
 layer_count: u32,
 view_format_count: u32,
-p_view_formats: Format,
+p_view_formats: *const Format,
 }
 
 #[repr(C)]
 pub struct RenderPassAttachmentBeginInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 attachment_count: u32,
-p_attachments: ImageView,
+p_attachments: *const ImageView,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceTextureCompressionASTCHDRFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 texture_compression_astc_hdr: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeMatrixFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 cooperative_matrix: Bool32,
 cooperative_matrix_robust_buffer_access: Bool32,
 }
@@ -7558,35 +7624,35 @@ cooperative_matrix_robust_buffer_access: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeMatrixPropertiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 cooperative_matrix_supported_stages: ShaderStageFlags,
 }
 
 #[repr(C)]
 pub struct CooperativeMatrixPropertiesNV {
 s_type: StructureType,
-p_next: c_void,
-_msize: u32,
-_nsize: u32,
-_ksize: u32,
-_atype: ComponentTypeNV,
-_btype: ComponentTypeNV,
-_ctype: ComponentTypeNV,
-_dtype: ComponentTypeNV,
+p_next: *mut c_void,
+msize: u32,
+nsize: u32,
+ksize: u32,
+atype: ComponentTypeNV,
+btype: ComponentTypeNV,
+ctype: ComponentTypeNV,
+dtype: ComponentTypeNV,
 scope: ScopeNV,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceYcbcrImageArraysFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 ycbcr_image_arrays: Bool32,
 }
 
 #[repr(C)]
 pub struct ImageViewHandleInfoNVX {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 image_view: ImageView,
 descriptor_type: DescriptorType,
 sampler: Sampler,
@@ -7595,7 +7661,7 @@ sampler: Sampler,
 #[repr(C)]
 pub struct ImageViewAddressPropertiesNVX {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 device_address: DeviceAddress,
 size: DeviceSize,
 }
@@ -7603,7 +7669,7 @@ size: DeviceSize,
 #[repr(C)]
 pub struct PresentFrameTokenGGP {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 frame_token: GgpFrameToken,
 }
 
@@ -7616,58 +7682,58 @@ duration: u64,
 #[repr(C)]
 pub struct PipelineCreationFeedbackCreateInfo {
 s_type: StructureType,
-p_next: c_void,
-p_pipeline_creation_feedback: PipelineCreationFeedback,
+p_next: *const c_void,
+p_pipeline_creation_feedback: *mut PipelineCreationFeedback,
 pipeline_stage_creation_feedback_count: u32,
-p_pipeline_stage_creation_feedbacks: PipelineCreationFeedback,
+p_pipeline_stage_creation_feedbacks: *mut PipelineCreationFeedback,
 }
 
 #[repr(C)]
 pub struct SurfaceFullScreenExclusiveInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 full_screen_exclusive: FullScreenExclusiveEXT,
 }
 
 #[repr(C)]
 pub struct SurfaceFullScreenExclusiveWin32InfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 hmonitor: HMONITOR,
 }
 
 #[repr(C)]
 pub struct SurfaceCapabilitiesFullScreenExclusiveEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 full_screen_exclusive_supported: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDevicePresentBarrierFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 present_barrier: Bool32,
 }
 
 #[repr(C)]
 pub struct SurfaceCapabilitiesPresentBarrierNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 present_barrier_supported: Bool32,
 }
 
 #[repr(C)]
 pub struct SwapchainPresentBarrierCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 present_barrier_enable: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDevicePerformanceQueryFeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 performance_counter_query_pools: Bool32,
 performance_counter_multiple_query_pools: Bool32,
 }
@@ -7675,14 +7741,14 @@ performance_counter_multiple_query_pools: Bool32,
 #[repr(C)]
 pub struct PhysicalDevicePerformanceQueryPropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 allow_command_buffer_query_copies: Bool32,
 }
 
 #[repr(C)]
 pub struct PerformanceCounterKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 unit: PerformanceCounterUnitKHR,
 scope: PerformanceCounterScopeKHR,
 storage: PerformanceCounterStorageKHR,
@@ -7692,7 +7758,7 @@ uuid: u8,
 #[repr(C)]
 pub struct PerformanceCounterDescriptionKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 flags: PerformanceCounterDescriptionFlagsKHR,
 name: u8,
 category: u8,
@@ -7702,16 +7768,16 @@ description: u8,
 #[repr(C)]
 pub struct QueryPoolPerformanceCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 queue_family_index: u32,
 counter_index_count: u32,
-p_counter_indices: u32,
+p_counter_indices: *const u32,
 }
 
 #[repr(C)]
 pub struct AcquireProfilingLockInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: AcquireProfilingLockFlagsKHR,
 timeout: u64,
 }
@@ -7719,35 +7785,35 @@ timeout: u64,
 #[repr(C)]
 pub struct PerformanceQuerySubmitInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 counter_pass_index: u32,
 }
 
 #[repr(C)]
 pub struct PerformanceQueryReservationInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 max_performance_queries_per_pool: u32,
 }
 
 #[repr(C)]
 pub struct HeadlessSurfaceCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: HeadlessSurfaceCreateFlagsEXT,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceCoverageReductionModeFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 coverage_reduction_mode: Bool32,
 }
 
 #[repr(C)]
 pub struct PipelineCoverageReductionStateCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineCoverageReductionStateCreateFlagsNV,
 coverage_reduction_mode: CoverageReductionModeNV,
 }
@@ -7755,7 +7821,7 @@ coverage_reduction_mode: CoverageReductionModeNV,
 #[repr(C)]
 pub struct FramebufferMixedSamplesCombinationNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 coverage_reduction_mode: CoverageReductionModeNV,
 rasterization_samples: SampleCountFlagBits,
 depth_stencil_samples: SampleCountFlags,
@@ -7765,7 +7831,7 @@ color_samples: SampleCountFlags,
 #[repr(C)]
 pub struct PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_integer_functions2: Bool32,
 }
 
@@ -7778,35 +7844,35 @@ data: PerformanceValueDataINTEL,
 #[repr(C)]
 pub struct InitializePerformanceApiInfoINTEL {
 s_type: StructureType,
-p_next: c_void,
-p_user_data: c_void,
+p_next: *const c_void,
+p_user_data: *mut c_void,
 }
 
 #[repr(C)]
 pub struct QueryPoolPerformanceQueryCreateInfoINTEL {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 performance_counters_sampling: QueryPoolSamplingModeINTEL,
 }
 
 #[repr(C)]
 pub struct PerformanceMarkerInfoINTEL {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 marker: u64,
 }
 
 #[repr(C)]
 pub struct PerformanceStreamMarkerInfoINTEL {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 marker: u32,
 }
 
 #[repr(C)]
 pub struct PerformanceOverrideInfoINTEL {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 r#type: PerformanceOverrideTypeINTEL,
 enable: Bool32,
 parameter: u64,
@@ -7815,14 +7881,14 @@ parameter: u64,
 #[repr(C)]
 pub struct PerformanceConfigurationAcquireInfoINTEL {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 r#type: PerformanceConfigurationTypeINTEL,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShaderClockFeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_subgroup_clock: Bool32,
 shader_device_clock: Bool32,
 }
@@ -7830,14 +7896,14 @@ shader_device_clock: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceIndexTypeUint8FeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 index_type_uint8: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShaderSMBuiltinsPropertiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_smcount: u32,
 shader_warps_per_sm: u32,
 }
@@ -7845,14 +7911,14 @@ shader_warps_per_sm: u32,
 #[repr(C)]
 pub struct PhysicalDeviceShaderSMBuiltinsFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_smbuiltins: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShaderInterlockFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 fragment_shader_sample_interlock: Bool32,
 fragment_shader_pixel_interlock: Bool32,
 fragment_shader_shading_rate_interlock: Bool32,
@@ -7861,21 +7927,21 @@ fragment_shader_shading_rate_interlock: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceSeparateDepthStencilLayoutsFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 separate_depth_stencil_layouts: Bool32,
 }
 
 #[repr(C)]
 pub struct AttachmentReferenceStencilLayout {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 stencil_layout: ImageLayout,
 }
 
 #[repr(C)]
 pub struct PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 primitive_topology_list_restart: Bool32,
 primitive_topology_patch_list_restart: Bool32,
 }
@@ -7883,7 +7949,7 @@ primitive_topology_patch_list_restart: Bool32,
 #[repr(C)]
 pub struct AttachmentDescriptionStencilLayout {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 stencil_initial_layout: ImageLayout,
 stencil_final_layout: ImageLayout,
 }
@@ -7891,21 +7957,21 @@ stencil_final_layout: ImageLayout,
 #[repr(C)]
 pub struct PhysicalDevicePipelineExecutablePropertiesFeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 pipeline_executable_info: Bool32,
 }
 
 #[repr(C)]
 pub struct PipelineInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 pipeline: Pipeline,
 }
 
 #[repr(C)]
 pub struct PipelineExecutablePropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 stages: ShaderStageFlags,
 name: u8,
 description: u8,
@@ -7915,7 +7981,7 @@ subgroup_size: u32,
 #[repr(C)]
 pub struct PipelineExecutableInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 pipeline: Pipeline,
 executable_index: u32,
 }
@@ -7923,7 +7989,7 @@ executable_index: u32,
 #[repr(C)]
 pub struct PipelineExecutableStatisticKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 name: u8,
 description: u8,
 format: PipelineExecutableStatisticFormatKHR,
@@ -7933,32 +7999,32 @@ value: PipelineExecutableStatisticValueKHR,
 #[repr(C)]
 pub struct PipelineExecutableInternalRepresentationKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 name: u8,
 description: u8,
 is_text: Bool32,
 data_size: usize,
-p_data: c_void,
+p_data: *mut c_void,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShaderDemoteToHelperInvocationFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_demote_to_helper_invocation: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceTexelBufferAlignmentFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 texel_buffer_alignment: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceTexelBufferAlignmentProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 storage_texel_buffer_offset_alignment_bytes: DeviceSize,
 storage_texel_buffer_offset_single_texel_alignment: Bool32,
 uniform_texel_buffer_offset_alignment_bytes: DeviceSize,
@@ -7968,7 +8034,7 @@ uniform_texel_buffer_offset_single_texel_alignment: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceSubgroupSizeControlFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 subgroup_size_control: Bool32,
 compute_full_subgroups: Bool32,
 }
@@ -7976,7 +8042,7 @@ compute_full_subgroups: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceSubgroupSizeControlProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 min_subgroup_size: u32,
 max_subgroup_size: u32,
 max_compute_workgroup_subgroups: u32,
@@ -7986,14 +8052,14 @@ required_subgroup_size_stages: ShaderStageFlags,
 #[repr(C)]
 pub struct PipelineShaderStageRequiredSubgroupSizeCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 required_subgroup_size: u32,
 }
 
 #[repr(C)]
 pub struct SubpassShadingPipelineCreateInfoHUAWEI {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 render_pass: RenderPass,
 subpass: u32,
 }
@@ -8001,14 +8067,14 @@ subpass: u32,
 #[repr(C)]
 pub struct PhysicalDeviceSubpassShadingPropertiesHUAWEI {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_subpass_shading_workgroup_size_aspect_ratio: u32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceClusterCullingShaderPropertiesHUAWEI {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_work_group_count: u32,
 max_work_group_size: u32,
 max_output_cluster_count: u32,
@@ -8018,21 +8084,21 @@ indirect_buffer_offset_alignment: DeviceSize,
 #[repr(C)]
 pub struct MemoryOpaqueCaptureAddressAllocateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 opaque_capture_address: u64,
 }
 
 #[repr(C)]
 pub struct DeviceMemoryOpaqueCaptureAddressInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 memory: DeviceMemory,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceLineRasterizationFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 rectangular_lines: Bool32,
 bresenham_lines: Bool32,
 smooth_lines: Bool32,
@@ -8044,14 +8110,14 @@ stippled_smooth_lines: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceLineRasterizationPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 line_sub_pixel_precision_bits: u32,
 }
 
 #[repr(C)]
 pub struct PipelineRasterizationLineStateCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 line_rasterization_mode: LineRasterizationModeEXT,
 stippled_line_enable: Bool32,
 line_stipple_factor: u32,
@@ -8061,14 +8127,14 @@ line_stipple_pattern: u16,
 #[repr(C)]
 pub struct PhysicalDevicePipelineCreationCacheControlFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 pipeline_creation_cache_control: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceVulkan11Features {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 storage_buffer16_bit_access: Bool32,
 uniform_and_storage_buffer16_bit_access: Bool32,
 storage_push_constant16: Bool32,
@@ -8086,7 +8152,7 @@ shader_draw_parameters: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceVulkan11Properties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 device_uuid: u8,
 driver_uuid: u8,
 device_luid: u8,
@@ -8107,7 +8173,7 @@ max_memory_allocation_size: DeviceSize,
 #[repr(C)]
 pub struct PhysicalDeviceVulkan12Features {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 sampler_mirror_clamp_to_edge: Bool32,
 draw_indirect_count: Bool32,
 storage_buffer8_bit_access: Bool32,
@@ -8160,7 +8226,7 @@ subgroup_broadcast_dynamic_id: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceVulkan12Properties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 driver_id: DriverId,
 driver_name: u8,
 driver_info: u8,
@@ -8218,7 +8284,7 @@ framebuffer_integer_color_sample_counts: SampleCountFlags,
 #[repr(C)]
 pub struct PhysicalDeviceVulkan13Features {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 robust_image_access: Bool32,
 inline_uniform_block: Bool32,
 descriptor_binding_inline_uniform_block_update_after_bind: Bool32,
@@ -8239,7 +8305,7 @@ maintenance4: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceVulkan13Properties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 min_subgroup_size: u32,
 max_subgroup_size: u32,
 max_compute_workgroup_subgroups: u32,
@@ -8290,21 +8356,21 @@ max_buffer_size: DeviceSize,
 #[repr(C)]
 pub struct PipelineCompilerControlCreateInfoAMD {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 compiler_control_flags: PipelineCompilerControlFlagsAMD,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceCoherentMemoryFeaturesAMD {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 device_coherent_memory: Bool32,
 }
 
 #[repr(C)]
 pub struct FaultData {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 fault_level: FaultLevel,
 fault_type: FaultType,
 }
@@ -8312,16 +8378,16 @@ fault_type: FaultType,
 #[repr(C)]
 pub struct FaultCallbackInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 fault_count: u32,
-p_faults: FaultData,
+p_faults: *mut FaultData,
 pfn_fault_callback: PFN_vkFaultCallbackFunction,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceToolProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 name: u8,
 version: u8,
 purposes: ToolPurposeFlags,
@@ -8332,7 +8398,7 @@ layer: u8,
 #[repr(C)]
 pub struct SamplerCustomBorderColorCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 custom_border_color: ClearColorValue,
 format: Format,
 }
@@ -8340,14 +8406,14 @@ format: Format,
 #[repr(C)]
 pub struct PhysicalDeviceCustomBorderColorPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_custom_border_color_samplers: u32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceCustomBorderColorFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 custom_border_colors: Bool32,
 custom_border_color_without_format: Bool32,
 }
@@ -8355,7 +8421,7 @@ custom_border_color_without_format: Bool32,
 #[repr(C)]
 pub struct SamplerBorderColorComponentMappingCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 components: ComponentMapping,
 srgb: Bool32,
 }
@@ -8363,7 +8429,7 @@ srgb: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceBorderColorSwizzleFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 border_color_swizzle: Bool32,
 border_color_swizzle_from_image: Bool32,
 }
@@ -8371,7 +8437,7 @@ border_color_swizzle_from_image: Bool32,
 #[repr(C)]
 pub struct AccelerationStructureGeometryTrianglesDataKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 vertex_format: Format,
 vertex_data: DeviceOrHostAddressConstKHR,
 vertex_stride: DeviceSize,
@@ -8384,7 +8450,7 @@ transform_data: DeviceOrHostAddressConstKHR,
 #[repr(C)]
 pub struct AccelerationStructureGeometryAabbsDataKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 data: DeviceOrHostAddressConstKHR,
 stride: DeviceSize,
 }
@@ -8392,7 +8458,7 @@ stride: DeviceSize,
 #[repr(C)]
 pub struct AccelerationStructureGeometryInstancesDataKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 array_of_pointers: Bool32,
 data: DeviceOrHostAddressConstKHR,
 }
@@ -8400,7 +8466,7 @@ data: DeviceOrHostAddressConstKHR,
 #[repr(C)]
 pub struct AccelerationStructureGeometryKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 geometry_type: GeometryTypeKHR,
 geometry: AccelerationStructureGeometryDataKHR,
 flags: GeometryFlagsKHR,
@@ -8409,15 +8475,15 @@ flags: GeometryFlagsKHR,
 #[repr(C)]
 pub struct AccelerationStructureBuildGeometryInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 r#type: AccelerationStructureTypeKHR,
 flags: BuildAccelerationStructureFlagsKHR,
 mode: BuildAccelerationStructureModeKHR,
 src_acceleration_structure: AccelerationStructureKHR,
 dst_acceleration_structure: AccelerationStructureKHR,
 geometry_count: u32,
-p_geometries: AccelerationStructureGeometryKHR,
-pp_geometries: AccelerationStructureGeometryKHR,
+p_geometries: *const AccelerationStructureGeometryKHR,
+pp_geometries: *const AccelerationStructureGeometryKHR,
 scratch_data: DeviceOrHostAddressKHR,
 }
 
@@ -8432,7 +8498,7 @@ transform_offset: u32,
 #[repr(C)]
 pub struct AccelerationStructureCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 create_flags: AccelerationStructureCreateFlagsKHR,
 buffer: Buffer,
 offset: DeviceSize,
@@ -8469,21 +8535,21 @@ acceleration_structure_reference: u64,
 #[repr(C)]
 pub struct AccelerationStructureDeviceAddressInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 acceleration_structure: AccelerationStructureKHR,
 }
 
 #[repr(C)]
 pub struct AccelerationStructureVersionInfoKHR {
 s_type: StructureType,
-p_next: c_void,
-p_version_data: u8,
+p_next: *const c_void,
+p_version_data: *const u8,
 }
 
 #[repr(C)]
 pub struct CopyAccelerationStructureInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src: AccelerationStructureKHR,
 dst: AccelerationStructureKHR,
 mode: CopyAccelerationStructureModeKHR,
@@ -8492,7 +8558,7 @@ mode: CopyAccelerationStructureModeKHR,
 #[repr(C)]
 pub struct CopyAccelerationStructureToMemoryInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src: AccelerationStructureKHR,
 dst: DeviceOrHostAddressKHR,
 mode: CopyAccelerationStructureModeKHR,
@@ -8501,7 +8567,7 @@ mode: CopyAccelerationStructureModeKHR,
 #[repr(C)]
 pub struct CopyMemoryToAccelerationStructureInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src: DeviceOrHostAddressConstKHR,
 dst: AccelerationStructureKHR,
 mode: CopyAccelerationStructureModeKHR,
@@ -8510,7 +8576,7 @@ mode: CopyAccelerationStructureModeKHR,
 #[repr(C)]
 pub struct RayTracingPipelineInterfaceCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 max_pipeline_ray_payload_size: u32,
 max_pipeline_ray_hit_attribute_size: u32,
 }
@@ -8518,9 +8584,9 @@ max_pipeline_ray_hit_attribute_size: u32,
 #[repr(C)]
 pub struct PipelineLibraryCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 library_count: u32,
-p_libraries: Pipeline,
+p_libraries: *const Pipeline,
 }
 
 #[repr(C)]
@@ -8533,22 +8599,22 @@ flags: RefreshObjectFlagsKHR,
 #[repr(C)]
 pub struct RefreshObjectListKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 object_count: u32,
-p_objects: RefreshObjectKHR,
+p_objects: *const RefreshObjectKHR,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceExtendedDynamicStateFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 extended_dynamic_state: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceExtendedDynamicState2FeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 extended_dynamic_state2: Bool32,
 extended_dynamic_state2_logic_op: Bool32,
 extended_dynamic_state2_patch_control_points: Bool32,
@@ -8557,7 +8623,7 @@ extended_dynamic_state2_patch_control_points: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceExtendedDynamicState3FeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 extended_dynamic_state3_tessellation_domain_origin: Bool32,
 extended_dynamic_state3_depth_clamp_enable: Bool32,
 extended_dynamic_state3_polygon_mode: Bool32,
@@ -8594,7 +8660,7 @@ extended_dynamic_state3_shading_rate_image_enable: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceExtendedDynamicState3PropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 dynamic_primitive_topology_unrestricted: Bool32,
 }
 
@@ -8620,21 +8686,21 @@ clamp_results: Bool32,
 #[repr(C)]
 pub struct RenderPassTransformBeginInfoQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 transform: SurfaceTransformFlagBitsKHR,
 }
 
 #[repr(C)]
 pub struct CopyCommandTransformInfoQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 transform: SurfaceTransformFlagBitsKHR,
 }
 
 #[repr(C)]
 pub struct CommandBufferInheritanceRenderPassTransformInfoQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 transform: SurfaceTransformFlagBitsKHR,
 render_area: Rect2D,
 }
@@ -8642,21 +8708,21 @@ render_area: Rect2D,
 #[repr(C)]
 pub struct PhysicalDeviceDiagnosticsConfigFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 diagnostics_config: Bool32,
 }
 
 #[repr(C)]
 pub struct DeviceDiagnosticsConfigCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: DeviceDiagnosticsConfigFlagsNV,
 }
 
 #[repr(C)]
 pub struct PipelineOfflineCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 pipeline_identifier: u8,
 match_control: PipelineMatchControl,
 pool_entry_size: DeviceSize,
@@ -8665,21 +8731,21 @@ pool_entry_size: DeviceSize,
 #[repr(C)]
 pub struct PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_zero_initialize_workgroup_memory: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_subgroup_uniform_control_flow: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceRobustness2FeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 robust_buffer_access2: Bool32,
 robust_image_access2: Bool32,
 null_descriptor: Bool32,
@@ -8688,7 +8754,7 @@ null_descriptor: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceRobustness2PropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 robust_storage_buffer_access_size_alignment: DeviceSize,
 robust_uniform_buffer_access_size_alignment: DeviceSize,
 }
@@ -8696,14 +8762,14 @@ robust_uniform_buffer_access_size_alignment: DeviceSize,
 #[repr(C)]
 pub struct PhysicalDeviceImageRobustnessFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 robust_image_access: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 workgroup_memory_explicit_layout: Bool32,
 workgroup_memory_explicit_layout_scalar_block_layout: Bool32,
 workgroup_memory_explicit_layout8_bit_access: Bool32,
@@ -8713,7 +8779,7 @@ workgroup_memory_explicit_layout16_bit_access: Bool32,
 #[repr(C)]
 pub struct PhysicalDevicePortabilitySubsetFeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 ant_alpha_color_blend_factors: Bool32,
 events: Bool32,
 image_view_format_reinterpretation: Bool32,
@@ -8734,14 +8800,14 @@ vertex_attribute_access_beyond_stride: Bool32,
 #[repr(C)]
 pub struct PhysicalDevicePortabilitySubsetPropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 min_vertex_input_binding_stride_alignment: u32,
 }
 
 #[repr(C)]
 pub struct PhysicalDevice4444FormatsFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 format_a4_r4_g4_b4: Bool32,
 format_a4_b4_g4_r4: Bool32,
 }
@@ -8749,14 +8815,14 @@ format_a4_b4_g4_r4: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceSubpassShadingFeaturesHUAWEI {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 subpass_shading: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceClusterCullingShaderFeaturesHUAWEI {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 clusterculling_shader: Bool32,
 multiview_cluster_culling_shader: Bool32,
 }
@@ -8764,7 +8830,7 @@ multiview_cluster_culling_shader: Bool32,
 #[repr(C)]
 pub struct BufferCopy2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_offset: DeviceSize,
 dst_offset: DeviceSize,
 size: DeviceSize,
@@ -8773,7 +8839,7 @@ size: DeviceSize,
 #[repr(C)]
 pub struct ImageCopy2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_subresource: ImageSubresourceLayers,
 src_offset: Offset3D,
 dst_subresource: ImageSubresourceLayers,
@@ -8784,7 +8850,7 @@ extent: Extent3D,
 #[repr(C)]
 pub struct ImageBlit2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_subresource: ImageSubresourceLayers,
 src_offsets: Offset3D,
 dst_subresource: ImageSubresourceLayers,
@@ -8794,7 +8860,7 @@ dst_offsets: Offset3D,
 #[repr(C)]
 pub struct BufferImageCopy2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 buffer_offset: DeviceSize,
 buffer_row_length: u32,
 buffer_image_height: u32,
@@ -8806,7 +8872,7 @@ image_extent: Extent3D,
 #[repr(C)]
 pub struct ImageResolve2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_subresource: ImageSubresourceLayers,
 src_offset: Offset3D,
 dst_subresource: ImageSubresourceLayers,
@@ -8817,76 +8883,76 @@ extent: Extent3D,
 #[repr(C)]
 pub struct CopyBufferInfo2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_buffer: Buffer,
 dst_buffer: Buffer,
 region_count: u32,
-p_regions: BufferCopy2,
+p_regions: *const BufferCopy2,
 }
 
 #[repr(C)]
 pub struct CopyImageInfo2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_image: Image,
 src_image_layout: ImageLayout,
 dst_image: Image,
 dst_image_layout: ImageLayout,
 region_count: u32,
-p_regions: ImageCopy2,
+p_regions: *const ImageCopy2,
 }
 
 #[repr(C)]
 pub struct BlitImageInfo2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_image: Image,
 src_image_layout: ImageLayout,
 dst_image: Image,
 dst_image_layout: ImageLayout,
 region_count: u32,
-p_regions: ImageBlit2,
+p_regions: *const ImageBlit2,
 filter: Filter,
 }
 
 #[repr(C)]
 pub struct CopyBufferToImageInfo2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_buffer: Buffer,
 dst_image: Image,
 dst_image_layout: ImageLayout,
 region_count: u32,
-p_regions: BufferImageCopy2,
+p_regions: *const BufferImageCopy2,
 }
 
 #[repr(C)]
 pub struct CopyImageToBufferInfo2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_image: Image,
 src_image_layout: ImageLayout,
 dst_buffer: Buffer,
 region_count: u32,
-p_regions: BufferImageCopy2,
+p_regions: *const BufferImageCopy2,
 }
 
 #[repr(C)]
 pub struct ResolveImageInfo2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_image: Image,
 src_image_layout: ImageLayout,
 dst_image: Image,
 dst_image_layout: ImageLayout,
 region_count: u32,
-p_regions: ImageResolve2,
+p_regions: *const ImageResolve2,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShaderImageAtomicInt64FeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_image_int64_atomics: Bool32,
 sparse_image_int64_atomics: Bool32,
 }
@@ -8894,15 +8960,15 @@ sparse_image_int64_atomics: Bool32,
 #[repr(C)]
 pub struct FragmentShadingRateAttachmentInfoKHR {
 s_type: StructureType,
-p_next: c_void,
-p_fragment_shading_rate_attachment: AttachmentReference2,
+p_next: *const c_void,
+p_fragment_shading_rate_attachment: *const AttachmentReference2,
 shading_rate_attachment_texel_size: Extent2D,
 }
 
 #[repr(C)]
 pub struct PipelineFragmentShadingRateStateCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 fragment_size: Extent2D,
 combiner_ops: FragmentShadingRateCombinerOpKHR,
 }
@@ -8910,7 +8976,7 @@ combiner_ops: FragmentShadingRateCombinerOpKHR,
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateFeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 pipeline_fragment_shading_rate: Bool32,
 primitive_fragment_shading_rate: Bool32,
 attachment_fragment_shading_rate: Bool32,
@@ -8919,7 +8985,7 @@ attachment_fragment_shading_rate: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 min_fragment_shading_rate_attachment_texel_size: Extent2D,
 max_fragment_shading_rate_attachment_texel_size: Extent2D,
 max_fragment_shading_rate_attachment_texel_size_aspect_ratio: u32,
@@ -8942,7 +9008,7 @@ fragment_shading_rate_strict_multiply_combiner: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 sample_counts: SampleCountFlags,
 fragment_size: Extent2D,
 }
@@ -8950,14 +9016,14 @@ fragment_size: Extent2D,
 #[repr(C)]
 pub struct PhysicalDeviceShaderTerminateInvocationFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_terminate_invocation: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 fragment_shading_rate_enums: Bool32,
 supersample_fragment_shading_rates: Bool32,
 no_invocation_fragment_shading_rates: Bool32,
@@ -8966,14 +9032,14 @@ no_invocation_fragment_shading_rates: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_fragment_shading_rate_invocation_count: SampleCountFlagBits,
 }
 
 #[repr(C)]
 pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 shading_rate_type: FragmentShadingRateTypeNV,
 shading_rate: FragmentShadingRateNV,
 combiner_ops: FragmentShadingRateCombinerOpKHR,
@@ -8982,7 +9048,7 @@ combiner_ops: FragmentShadingRateCombinerOpKHR,
 #[repr(C)]
 pub struct AccelerationStructureBuildSizesInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 acceleration_structure_size: DeviceSize,
 update_scratch_size: DeviceSize,
 build_scratch_size: DeviceSize,
@@ -8991,7 +9057,7 @@ build_scratch_size: DeviceSize,
 #[repr(C)]
 pub struct PhysicalDeviceImage2DViewOf3DFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 image2_dview_of3_d: Bool32,
 sampler2_dview_of3_d: Bool32,
 }
@@ -8999,70 +9065,70 @@ sampler2_dview_of3_d: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceImageSlicedViewOf3DFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 image_sliced_view_of3_d: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 attachment_feedback_loop_dynamic_state: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceMutableDescriptorTypeFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 mutable_descriptor_type: Bool32,
 }
 
 #[repr(C)]
 pub struct MutableDescriptorTypeListEXT {
 descriptor_type_count: u32,
-p_descriptor_types: DescriptorType,
+p_descriptor_types: *const DescriptorType,
 }
 
 #[repr(C)]
 pub struct MutableDescriptorTypeCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 mutable_descriptor_type_list_count: u32,
-p_mutable_descriptor_type_lists: MutableDescriptorTypeListEXT,
+p_mutable_descriptor_type_lists: *const MutableDescriptorTypeListEXT,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceDepthClipControlFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 depth_clip_control: Bool32,
 }
 
 #[repr(C)]
 pub struct PipelineViewportDepthClipControlCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 negative_one_to_one: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceVertexInputDynamicStateFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 vertex_input_dynamic_state: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceExternalMemoryRDMAFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 external_memory_rdma: Bool32,
 }
 
 #[repr(C)]
 pub struct VertexInputBindingDescription2EXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 binding: u32,
 stride: u32,
 input_rate: VertexInputRate,
@@ -9072,7 +9138,7 @@ divisor: u32,
 #[repr(C)]
 pub struct VertexInputAttributeDescription2EXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 location: u32,
 binding: u32,
 format: Format,
@@ -9082,22 +9148,22 @@ offset: u32,
 #[repr(C)]
 pub struct PhysicalDeviceColorWriteEnableFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 color_write_enable: Bool32,
 }
 
 #[repr(C)]
 pub struct PipelineColorWriteCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 attachment_count: u32,
-p_color_write_enables: Bool32,
+p_color_write_enables: *const Bool32,
 }
 
 #[repr(C)]
 pub struct MemoryBarrier2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_stage_mask: PipelineStageFlags2,
 src_access_mask: AccessFlags2,
 dst_stage_mask: PipelineStageFlags2,
@@ -9107,7 +9173,7 @@ dst_access_mask: AccessFlags2,
 #[repr(C)]
 pub struct ImageMemoryBarrier2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_stage_mask: PipelineStageFlags2,
 src_access_mask: AccessFlags2,
 dst_stage_mask: PipelineStageFlags2,
@@ -9123,7 +9189,7 @@ subresource_range: ImageSubresourceRange,
 #[repr(C)]
 pub struct BufferMemoryBarrier2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src_stage_mask: PipelineStageFlags2,
 src_access_mask: AccessFlags2,
 dst_stage_mask: PipelineStageFlags2,
@@ -9138,20 +9204,20 @@ size: DeviceSize,
 #[repr(C)]
 pub struct DependencyInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 dependency_flags: DependencyFlags,
 memory_barrier_count: u32,
-p_memory_barriers: MemoryBarrier2,
+p_memory_barriers: *const MemoryBarrier2,
 buffer_memory_barrier_count: u32,
-p_buffer_memory_barriers: BufferMemoryBarrier2,
+p_buffer_memory_barriers: *const BufferMemoryBarrier2,
 image_memory_barrier_count: u32,
-p_image_memory_barriers: ImageMemoryBarrier2,
+p_image_memory_barriers: *const ImageMemoryBarrier2,
 }
 
 #[repr(C)]
 pub struct SemaphoreSubmitInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 semaphore: Semaphore,
 value: u64,
 stage_mask: PipelineStageFlags2,
@@ -9161,7 +9227,7 @@ device_index: u32,
 #[repr(C)]
 pub struct CommandBufferSubmitInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 command_buffer: CommandBuffer,
 device_mask: u32,
 }
@@ -9169,53 +9235,53 @@ device_mask: u32,
 #[repr(C)]
 pub struct SubmitInfo2 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: SubmitFlags,
 wait_semaphore_info_count: u32,
-p_wait_semaphore_infos: SemaphoreSubmitInfo,
+p_wait_semaphore_infos: *const SemaphoreSubmitInfo,
 command_buffer_info_count: u32,
-p_command_buffer_infos: CommandBufferSubmitInfo,
+p_command_buffer_infos: *const CommandBufferSubmitInfo,
 signal_semaphore_info_count: u32,
-p_signal_semaphore_infos: SemaphoreSubmitInfo,
+p_signal_semaphore_infos: *const SemaphoreSubmitInfo,
 }
 
 #[repr(C)]
 pub struct QueueFamilyCheckpointProperties2NV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 checkpoint_execution_stage_mask: PipelineStageFlags2,
 }
 
 #[repr(C)]
 pub struct CheckpointData2NV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 stage: PipelineStageFlags2,
-p_checkpoint_marker: c_void,
+p_checkpoint_marker: *mut c_void,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceSynchronization2Features {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 synchronization2: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceHostImageCopyFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 host_image_copy: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceHostImageCopyPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 copy_src_layout_count: u32,
-p_copy_src_layouts: ImageLayout,
+p_copy_src_layouts: *mut ImageLayout,
 copy_dst_layout_count: u32,
-p_copy_dst_layouts: ImageLayout,
+p_copy_dst_layouts: *mut ImageLayout,
 optimal_tiling_layout_uuid: u8,
 identical_memory_type_requirements: Bool32,
 }
@@ -9223,8 +9289,8 @@ identical_memory_type_requirements: Bool32,
 #[repr(C)]
 pub struct MemoryToImageCopyEXT {
 s_type: StructureType,
-p_next: c_void,
-p_host_pointer: c_void,
+p_next: *const c_void,
+p_host_pointer: *const c_void,
 memory_row_length: u32,
 memory_image_height: u32,
 image_subresource: ImageSubresourceLayers,
@@ -9235,8 +9301,8 @@ image_extent: Extent3D,
 #[repr(C)]
 pub struct ImageToMemoryCopyEXT {
 s_type: StructureType,
-p_next: c_void,
-p_host_pointer: c_void,
+p_next: *const c_void,
+p_host_pointer: *mut c_void,
 memory_row_length: u32,
 memory_image_height: u32,
 image_subresource: ImageSubresourceLayers,
@@ -9247,42 +9313,42 @@ image_extent: Extent3D,
 #[repr(C)]
 pub struct CopyMemoryToImageInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: HostImageCopyFlagsEXT,
 dst_image: Image,
 dst_image_layout: ImageLayout,
 region_count: u32,
-p_regions: MemoryToImageCopyEXT,
+p_regions: *const MemoryToImageCopyEXT,
 }
 
 #[repr(C)]
 pub struct CopyImageToMemoryInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: HostImageCopyFlagsEXT,
 src_image: Image,
 src_image_layout: ImageLayout,
 region_count: u32,
-p_regions: ImageToMemoryCopyEXT,
+p_regions: *const ImageToMemoryCopyEXT,
 }
 
 #[repr(C)]
 pub struct CopyImageToImageInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: HostImageCopyFlagsEXT,
 src_image: Image,
 src_image_layout: ImageLayout,
 dst_image: Image,
 dst_image_layout: ImageLayout,
 region_count: u32,
-p_regions: ImageCopy2,
+p_regions: *const ImageCopy2,
 }
 
 #[repr(C)]
 pub struct HostImageLayoutTransitionInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 image: Image,
 old_layout: ImageLayout,
 new_layout: ImageLayout,
@@ -9292,14 +9358,14 @@ subresource_range: ImageSubresourceRange,
 #[repr(C)]
 pub struct SubresourceHostMemcpySizeEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 size: DeviceSize,
 }
 
 #[repr(C)]
 pub struct HostImageCopyDevicePerformanceQueryEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 optimal_device_access: Bool32,
 identical_memory_layout: Bool32,
 }
@@ -9307,7 +9373,7 @@ identical_memory_layout: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceVulkanSC10Properties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 device_no_dynamic_host_allocations: Bool32,
 device_destroy_frees_memory: Bool32,
 command_pool_multiple_command_buffers_recording: Bool32,
@@ -9331,7 +9397,7 @@ max_command_buffer_size: DeviceSize,
 #[repr(C)]
 pub struct PipelinePoolSize {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 pool_entry_size: DeviceSize,
 pool_entry_count: u32,
 }
@@ -9339,11 +9405,11 @@ pool_entry_count: u32,
 #[repr(C)]
 pub struct DeviceObjectReservationCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 pipeline_cache_create_info_count: u32,
-p_pipeline_cache_create_infos: PipelineCacheCreateInfo,
+p_pipeline_cache_create_infos: *const PipelineCacheCreateInfo,
 pipeline_pool_size_count: u32,
-p_pipeline_pool_sizes: PipelinePoolSize,
+p_pipeline_pool_sizes: *const PipelinePoolSize,
 semaphore_request_count: u32,
 command_buffer_request_count: u32,
 fence_request_count: u32,
@@ -9386,7 +9452,7 @@ max_immutable_samplers_per_descriptor_set_layout: u32,
 #[repr(C)]
 pub struct CommandPoolMemoryReservationCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 command_pool_reserved_size: DeviceSize,
 command_pool_max_command_buffers: u32,
 }
@@ -9394,7 +9460,7 @@ command_pool_max_command_buffers: u32,
 #[repr(C)]
 pub struct CommandPoolMemoryConsumption {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 command_pool_allocated: DeviceSize,
 command_pool_reserved_size: DeviceSize,
 command_buffer_allocated: DeviceSize,
@@ -9403,14 +9469,14 @@ command_buffer_allocated: DeviceSize,
 #[repr(C)]
 pub struct PhysicalDeviceVulkanSC10Features {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_atomic_instructions: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 primitives_generated_query: Bool32,
 primitives_generated_query_with_rasterizer_discard: Bool32,
 primitives_generated_query_with_non_zero_streams: Bool32,
@@ -9419,28 +9485,28 @@ primitives_generated_query_with_non_zero_streams: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceLegacyDitheringFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 legacy_dithering: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 multisampled_render_to_single_sampled: Bool32,
 }
 
 #[repr(C)]
 pub struct SubpassResolvePerformanceQueryEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 optimal: Bool32,
 }
 
 #[repr(C)]
 pub struct MultisampledRenderToSingleSampledInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 multisampled_render_to_single_sampled_enable: Bool32,
 rasterization_samples: SampleCountFlagBits,
 }
@@ -9448,43 +9514,43 @@ rasterization_samples: SampleCountFlagBits,
 #[repr(C)]
 pub struct PhysicalDevicePipelineProtectedAccessFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 pipeline_protected_access: Bool32,
 }
 
 #[repr(C)]
 pub struct QueueFamilyVideoPropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 video_codec_operations: VideoCodecOperationFlagsKHR,
 }
 
 #[repr(C)]
 pub struct QueueFamilyQueryResultStatusPropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 query_result_status_support: Bool32,
 }
 
 #[repr(C)]
 pub struct VideoProfileListInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 profile_count: u32,
-p_profiles: VideoProfileInfoKHR,
+p_profiles: *const VideoProfileInfoKHR,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceVideoFormatInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 image_usage: ImageUsageFlags,
 }
 
 #[repr(C)]
 pub struct VideoFormatPropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 format: Format,
 component_mapping: ComponentMapping,
 image_create_flags: ImageCreateFlags,
@@ -9496,7 +9562,7 @@ image_usage_flags: ImageUsageFlags,
 #[repr(C)]
 pub struct VideoProfileInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 video_codec_operation: VideoCodecOperationFlagBitsKHR,
 chroma_subsampling: VideoChromaSubsamplingFlagsKHR,
 luma_bit_depth: VideoComponentBitDepthFlagsKHR,
@@ -9506,7 +9572,7 @@ chroma_bit_depth: VideoComponentBitDepthFlagsKHR,
 #[repr(C)]
 pub struct VideoCapabilitiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 flags: VideoCapabilityFlagsKHR,
 min_bitstream_buffer_offset_alignment: DeviceSize,
 min_bitstream_buffer_size_alignment: DeviceSize,
@@ -9521,7 +9587,7 @@ std_header_version: ExtensionProperties,
 #[repr(C)]
 pub struct VideoSessionMemoryRequirementsKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 memory_bind_index: u32,
 memory_requirements: MemoryRequirements,
 }
@@ -9529,7 +9595,7 @@ memory_requirements: MemoryRequirements,
 #[repr(C)]
 pub struct BindVideoSessionMemoryInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 memory_bind_index: u32,
 memory: DeviceMemory,
 memory_offset: DeviceSize,
@@ -9539,7 +9605,7 @@ memory_size: DeviceSize,
 #[repr(C)]
 pub struct VideoPictureResourceInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 coded_offset: Offset2D,
 coded_extent: Extent2D,
 base_array_layer: u32,
@@ -9549,43 +9615,43 @@ image_view_binding: ImageView,
 #[repr(C)]
 pub struct VideoReferenceSlotInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 slot_index: i32,
-p_picture_resource: VideoPictureResourceInfoKHR,
+p_picture_resource: *const VideoPictureResourceInfoKHR,
 }
 
 #[repr(C)]
 pub struct VideoDecodeCapabilitiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 flags: VideoDecodeCapabilityFlagsKHR,
 }
 
 #[repr(C)]
 pub struct VideoDecodeUsageInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 video_usage_hints: VideoDecodeUsageFlagsKHR,
 }
 
 #[repr(C)]
 pub struct VideoDecodeInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: VideoDecodeFlagsKHR,
 src_buffer: Buffer,
 src_buffer_offset: DeviceSize,
 src_buffer_range: DeviceSize,
 dst_picture_resource: VideoPictureResourceInfoKHR,
-p_setup_reference_slot: VideoReferenceSlotInfoKHR,
+p_setup_reference_slot: *const VideoReferenceSlotInfoKHR,
 reference_slot_count: u32,
-p_reference_slots: VideoReferenceSlotInfoKHR,
+p_reference_slots: *const VideoReferenceSlotInfoKHR,
 }
 
 #[repr(C)]
 pub struct VideoDecodeH264ProfileInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 std_profile_idc: StdVideoH264ProfileIdc,
 picture_layout: VideoDecodeH264PictureLayoutFlagBitsKHR,
 }
@@ -9593,7 +9659,7 @@ picture_layout: VideoDecodeH264PictureLayoutFlagBitsKHR,
 #[repr(C)]
 pub struct VideoDecodeH264CapabilitiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_level_idc: StdVideoH264LevelIdc,
 field_offset_granularity: Offset2D,
 }
@@ -9601,109 +9667,109 @@ field_offset_granularity: Offset2D,
 #[repr(C)]
 pub struct VideoDecodeH264SessionParametersAddInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 std_spscount: u32,
-p_std_spss: StdVideoH264SequenceParameterSet,
+p_std_spss: *const StdVideoH264SequenceParameterSet,
 std_ppscount: u32,
-p_std_ppss: StdVideoH264PictureParameterSet,
+p_std_ppss: *const StdVideoH264PictureParameterSet,
 }
 
 #[repr(C)]
 pub struct VideoDecodeH264SessionParametersCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 max_std_spscount: u32,
 max_std_ppscount: u32,
-p_parameters_add_info: VideoDecodeH264SessionParametersAddInfoKHR,
+p_parameters_add_info: *const VideoDecodeH264SessionParametersAddInfoKHR,
 }
 
 #[repr(C)]
 pub struct VideoDecodeH264PictureInfoKHR {
 s_type: StructureType,
-p_next: c_void,
-p_std_picture_info: StdVideoDecodeH264PictureInfo,
+p_next: *const c_void,
+p_std_picture_info: *const StdVideoDecodeH264PictureInfo,
 slice_count: u32,
-p_slice_offsets: u32,
+p_slice_offsets: *const u32,
 }
 
 #[repr(C)]
 pub struct VideoDecodeH264DpbSlotInfoKHR {
 s_type: StructureType,
-p_next: c_void,
-p_std_reference_info: StdVideoDecodeH264ReferenceInfo,
+p_next: *const c_void,
+p_std_reference_info: *const StdVideoDecodeH264ReferenceInfo,
 }
 
 #[repr(C)]
 pub struct VideoDecodeH265ProfileInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 std_profile_idc: StdVideoH265ProfileIdc,
 }
 
 #[repr(C)]
 pub struct VideoDecodeH265CapabilitiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_level_idc: StdVideoH265LevelIdc,
 }
 
 #[repr(C)]
 pub struct VideoDecodeH265SessionParametersAddInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 std_vpscount: u32,
-p_std_vpss: StdVideoH265VideoParameterSet,
+p_std_vpss: *const StdVideoH265VideoParameterSet,
 std_spscount: u32,
-p_std_spss: StdVideoH265SequenceParameterSet,
+p_std_spss: *const StdVideoH265SequenceParameterSet,
 std_ppscount: u32,
-p_std_ppss: StdVideoH265PictureParameterSet,
+p_std_ppss: *const StdVideoH265PictureParameterSet,
 }
 
 #[repr(C)]
 pub struct VideoDecodeH265SessionParametersCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 max_std_vpscount: u32,
 max_std_spscount: u32,
 max_std_ppscount: u32,
-p_parameters_add_info: VideoDecodeH265SessionParametersAddInfoKHR,
+p_parameters_add_info: *const VideoDecodeH265SessionParametersAddInfoKHR,
 }
 
 #[repr(C)]
 pub struct VideoDecodeH265PictureInfoKHR {
 s_type: StructureType,
-p_next: c_void,
-p_std_picture_info: StdVideoDecodeH265PictureInfo,
+p_next: *const c_void,
+p_std_picture_info: *const StdVideoDecodeH265PictureInfo,
 slice_segment_count: u32,
-p_slice_segment_offsets: u32,
+p_slice_segment_offsets: *const u32,
 }
 
 #[repr(C)]
 pub struct VideoDecodeH265DpbSlotInfoKHR {
 s_type: StructureType,
-p_next: c_void,
-p_std_reference_info: StdVideoDecodeH265ReferenceInfo,
+p_next: *const c_void,
+p_std_reference_info: *const StdVideoDecodeH265ReferenceInfo,
 }
 
 #[repr(C)]
 pub struct VideoSessionCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 queue_family_index: u32,
 flags: VideoSessionCreateFlagsKHR,
-p_video_profile: VideoProfileInfoKHR,
+p_video_profile: *const VideoProfileInfoKHR,
 picture_format: Format,
 max_coded_extent: Extent2D,
 reference_picture_format: Format,
 max_dpb_slots: u32,
 max_active_reference_pictures: u32,
-p_std_header_version: ExtensionProperties,
+p_std_header_version: *const ExtensionProperties,
 }
 
 #[repr(C)]
 pub struct VideoSessionParametersCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: VideoSessionParametersCreateFlagsKHR,
 video_session_parameters_template: VideoSessionParametersKHR,
 video_session: VideoSessionKHR,
@@ -9712,53 +9778,53 @@ video_session: VideoSessionKHR,
 #[repr(C)]
 pub struct VideoSessionParametersUpdateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 update_sequence_count: u32,
 }
 
 #[repr(C)]
 pub struct VideoEncodeSessionParametersGetInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 video_session_parameters: VideoSessionParametersKHR,
 }
 
 #[repr(C)]
 pub struct VideoEncodeSessionParametersFeedbackInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 has_overrides: Bool32,
 }
 
 #[repr(C)]
 pub struct VideoBeginCodingInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: VideoBeginCodingFlagsKHR,
 video_session: VideoSessionKHR,
 video_session_parameters: VideoSessionParametersKHR,
 reference_slot_count: u32,
-p_reference_slots: VideoReferenceSlotInfoKHR,
+p_reference_slots: *const VideoReferenceSlotInfoKHR,
 }
 
 #[repr(C)]
 pub struct VideoEndCodingInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: VideoEndCodingFlagsKHR,
 }
 
 #[repr(C)]
 pub struct VideoCodingControlInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: VideoCodingControlFlagsKHR,
 }
 
 #[repr(C)]
 pub struct VideoEncodeUsageInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 video_usage_hints: VideoEncodeUsageFlagsKHR,
 video_content_hints: VideoEncodeContentFlagsKHR,
 tuning_mode: VideoEncodeTuningModeKHR,
@@ -9767,44 +9833,44 @@ tuning_mode: VideoEncodeTuningModeKHR,
 #[repr(C)]
 pub struct VideoEncodeInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: VideoEncodeFlagsKHR,
 dst_buffer: Buffer,
 dst_buffer_offset: DeviceSize,
 dst_buffer_range: DeviceSize,
 src_picture_resource: VideoPictureResourceInfoKHR,
-p_setup_reference_slot: VideoReferenceSlotInfoKHR,
+p_setup_reference_slot: *const VideoReferenceSlotInfoKHR,
 reference_slot_count: u32,
-p_reference_slots: VideoReferenceSlotInfoKHR,
+p_reference_slots: *const VideoReferenceSlotInfoKHR,
 preceding_externally_encoded_bytes: u32,
 }
 
 #[repr(C)]
 pub struct QueryPoolVideoEncodeFeedbackCreateInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 encode_feedback_flags: VideoEncodeFeedbackFlagsKHR,
 }
 
 #[repr(C)]
 pub struct VideoEncodeQualityLevelInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 quality_level: u32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceVideoEncodeQualityLevelInfoKHR {
 s_type: StructureType,
-p_next: c_void,
-p_video_profile: VideoProfileInfoKHR,
+p_next: *const c_void,
+p_video_profile: *const VideoProfileInfoKHR,
 quality_level: u32,
 }
 
 #[repr(C)]
 pub struct VideoEncodeQualityLevelPropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 preferred_rate_control_mode: VideoEncodeRateControlModeFlagBitsKHR,
 preferred_rate_control_layer_count: u32,
 }
@@ -9812,11 +9878,11 @@ preferred_rate_control_layer_count: u32,
 #[repr(C)]
 pub struct VideoEncodeRateControlInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: VideoEncodeRateControlFlagsKHR,
 rate_control_mode: VideoEncodeRateControlModeFlagBitsKHR,
 layer_count: u32,
-p_layers: VideoEncodeRateControlLayerInfoKHR,
+p_layers: *const VideoEncodeRateControlLayerInfoKHR,
 virtual_buffer_size_in_ms: u32,
 initial_virtual_buffer_size_in_ms: u32,
 }
@@ -9824,7 +9890,7 @@ initial_virtual_buffer_size_in_ms: u32,
 #[repr(C)]
 pub struct VideoEncodeRateControlLayerInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 average_bitrate: u64,
 max_bitrate: u64,
 frame_rate_numerator: u32,
@@ -9834,7 +9900,7 @@ frame_rate_denominator: u32,
 #[repr(C)]
 pub struct VideoEncodeCapabilitiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 flags: VideoEncodeCapabilityFlagsKHR,
 rate_control_modes: VideoEncodeRateControlModeFlagsKHR,
 max_rate_control_layers: u32,
@@ -9847,7 +9913,7 @@ supported_encode_feedback_flags: VideoEncodeFeedbackFlagsKHR,
 #[repr(C)]
 pub struct VideoEncodeH264CapabilitiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 flags: VideoEncodeH264CapabilityFlagsEXT,
 max_level_idc: StdVideoH264LevelIdc,
 max_slice_count: u32,
@@ -9866,7 +9932,7 @@ std_syntax_flags: VideoEncodeH264StdFlagsEXT,
 #[repr(C)]
 pub struct VideoEncodeH264QualityLevelPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 preferred_rate_control_flags: VideoEncodeH264RateControlFlagsEXT,
 preferred_gop_frame_count: u32,
 preferred_idr_period: u32,
@@ -9881,7 +9947,7 @@ preferred_std_entropy_coding_mode_flag: Bool32,
 #[repr(C)]
 pub struct VideoEncodeH264SessionCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 use_max_level_idc: Bool32,
 max_level_idc: StdVideoH264LevelIdc,
 }
@@ -9889,26 +9955,26 @@ max_level_idc: StdVideoH264LevelIdc,
 #[repr(C)]
 pub struct VideoEncodeH264SessionParametersAddInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 std_spscount: u32,
-p_std_spss: StdVideoH264SequenceParameterSet,
+p_std_spss: *const StdVideoH264SequenceParameterSet,
 std_ppscount: u32,
-p_std_ppss: StdVideoH264PictureParameterSet,
+p_std_ppss: *const StdVideoH264PictureParameterSet,
 }
 
 #[repr(C)]
 pub struct VideoEncodeH264SessionParametersCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 max_std_spscount: u32,
 max_std_ppscount: u32,
-p_parameters_add_info: VideoEncodeH264SessionParametersAddInfoEXT,
+p_parameters_add_info: *const VideoEncodeH264SessionParametersAddInfoEXT,
 }
 
 #[repr(C)]
 pub struct VideoEncodeH264SessionParametersGetInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 write_std_sps: Bool32,
 write_std_pps: Bool32,
 std_spsid: u32,
@@ -9918,7 +9984,7 @@ std_ppsid: u32,
 #[repr(C)]
 pub struct VideoEncodeH264SessionParametersFeedbackInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 has_std_spsoverrides: Bool32,
 has_std_ppsoverrides: Bool32,
 }
@@ -9926,39 +9992,39 @@ has_std_ppsoverrides: Bool32,
 #[repr(C)]
 pub struct VideoEncodeH264DpbSlotInfoEXT {
 s_type: StructureType,
-p_next: c_void,
-p_std_reference_info: StdVideoEncodeH264ReferenceInfo,
+p_next: *const c_void,
+p_std_reference_info: *const StdVideoEncodeH264ReferenceInfo,
 }
 
 #[repr(C)]
 pub struct VideoEncodeH264PictureInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 nalu_slice_entry_count: u32,
-p_nalu_slice_entries: VideoEncodeH264NaluSliceInfoEXT,
-p_std_picture_info: StdVideoEncodeH264PictureInfo,
+p_nalu_slice_entries: *const VideoEncodeH264NaluSliceInfoEXT,
+p_std_picture_info: *const StdVideoEncodeH264PictureInfo,
 generate_prefix_nalu: Bool32,
 }
 
 #[repr(C)]
 pub struct VideoEncodeH264ProfileInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 std_profile_idc: StdVideoH264ProfileIdc,
 }
 
 #[repr(C)]
 pub struct VideoEncodeH264NaluSliceInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 ant_qp: i32,
-p_std_slice_header: StdVideoEncodeH264SliceHeader,
+p_std_slice_header: *const StdVideoEncodeH264SliceHeader,
 }
 
 #[repr(C)]
 pub struct VideoEncodeH264RateControlInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: VideoEncodeH264RateControlFlagsEXT,
 gop_frame_count: u32,
 idr_period: u32,
@@ -9983,7 +10049,7 @@ frame_bsize: u32,
 #[repr(C)]
 pub struct VideoEncodeH264GopRemainingFrameInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 use_gop_remaining_frames: Bool32,
 gop_remaining_i: u32,
 gop_remaining_p: u32,
@@ -9993,7 +10059,7 @@ gop_remaining_b: u32,
 #[repr(C)]
 pub struct VideoEncodeH264RateControlLayerInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 use_min_qp: Bool32,
 min_qp: VideoEncodeH264QpEXT,
 use_max_qp: Bool32,
@@ -10005,7 +10071,7 @@ max_frame_size: VideoEncodeH264FrameSizeEXT,
 #[repr(C)]
 pub struct VideoEncodeH265CapabilitiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 flags: VideoEncodeH265CapabilityFlagsEXT,
 max_level_idc: StdVideoH265LevelIdc,
 max_slice_segment_count: u32,
@@ -10027,7 +10093,7 @@ std_syntax_flags: VideoEncodeH265StdFlagsEXT,
 #[repr(C)]
 pub struct VideoEncodeH265QualityLevelPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 preferred_rate_control_flags: VideoEncodeH265RateControlFlagsEXT,
 preferred_gop_frame_count: u32,
 preferred_idr_period: u32,
@@ -10041,7 +10107,7 @@ preferred_max_l1_reference_count: u32,
 #[repr(C)]
 pub struct VideoEncodeH265SessionCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 use_max_level_idc: Bool32,
 max_level_idc: StdVideoH265LevelIdc,
 }
@@ -10049,29 +10115,29 @@ max_level_idc: StdVideoH265LevelIdc,
 #[repr(C)]
 pub struct VideoEncodeH265SessionParametersAddInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 std_vpscount: u32,
-p_std_vpss: StdVideoH265VideoParameterSet,
+p_std_vpss: *const StdVideoH265VideoParameterSet,
 std_spscount: u32,
-p_std_spss: StdVideoH265SequenceParameterSet,
+p_std_spss: *const StdVideoH265SequenceParameterSet,
 std_ppscount: u32,
-p_std_ppss: StdVideoH265PictureParameterSet,
+p_std_ppss: *const StdVideoH265PictureParameterSet,
 }
 
 #[repr(C)]
 pub struct VideoEncodeH265SessionParametersCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 max_std_vpscount: u32,
 max_std_spscount: u32,
 max_std_ppscount: u32,
-p_parameters_add_info: VideoEncodeH265SessionParametersAddInfoEXT,
+p_parameters_add_info: *const VideoEncodeH265SessionParametersAddInfoEXT,
 }
 
 #[repr(C)]
 pub struct VideoEncodeH265SessionParametersGetInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 write_std_vps: Bool32,
 write_std_sps: Bool32,
 write_std_pps: Bool32,
@@ -10083,7 +10149,7 @@ std_ppsid: u32,
 #[repr(C)]
 pub struct VideoEncodeH265SessionParametersFeedbackInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 has_std_vpsoverrides: Bool32,
 has_std_spsoverrides: Bool32,
 has_std_ppsoverrides: Bool32,
@@ -10092,24 +10158,24 @@ has_std_ppsoverrides: Bool32,
 #[repr(C)]
 pub struct VideoEncodeH265PictureInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 nalu_slice_segment_entry_count: u32,
-p_nalu_slice_segment_entries: VideoEncodeH265NaluSliceSegmentInfoEXT,
-p_std_picture_info: StdVideoEncodeH265PictureInfo,
+p_nalu_slice_segment_entries: *const VideoEncodeH265NaluSliceSegmentInfoEXT,
+p_std_picture_info: *const StdVideoEncodeH265PictureInfo,
 }
 
 #[repr(C)]
 pub struct VideoEncodeH265NaluSliceSegmentInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 ant_qp: i32,
-p_std_slice_segment_header: StdVideoEncodeH265SliceSegmentHeader,
+p_std_slice_segment_header: *const StdVideoEncodeH265SliceSegmentHeader,
 }
 
 #[repr(C)]
 pub struct VideoEncodeH265RateControlInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: VideoEncodeH265RateControlFlagsEXT,
 gop_frame_count: u32,
 idr_period: u32,
@@ -10134,7 +10200,7 @@ frame_bsize: u32,
 #[repr(C)]
 pub struct VideoEncodeH265GopRemainingFrameInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 use_gop_remaining_frames: Bool32,
 gop_remaining_i: u32,
 gop_remaining_p: u32,
@@ -10144,7 +10210,7 @@ gop_remaining_b: u32,
 #[repr(C)]
 pub struct VideoEncodeH265RateControlLayerInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 use_min_qp: Bool32,
 min_qp: VideoEncodeH265QpEXT,
 use_max_qp: Bool32,
@@ -10156,44 +10222,44 @@ max_frame_size: VideoEncodeH265FrameSizeEXT,
 #[repr(C)]
 pub struct VideoEncodeH265ProfileInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 std_profile_idc: StdVideoH265ProfileIdc,
 }
 
 #[repr(C)]
 pub struct VideoEncodeH265DpbSlotInfoEXT {
 s_type: StructureType,
-p_next: c_void,
-p_std_reference_info: StdVideoEncodeH265ReferenceInfo,
+p_next: *const c_void,
+p_std_reference_info: *const StdVideoEncodeH265ReferenceInfo,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceInheritedViewportScissorFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 inherited_viewport_scissor2_d: Bool32,
 }
 
 #[repr(C)]
 pub struct CommandBufferInheritanceViewportScissorInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 viewport_scissor2_d: Bool32,
 viewport_depth_count: u32,
-p_viewport_depths: Viewport,
+p_viewport_depths: *const Viewport,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 ycbcr2plane444_formats: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceProvokingVertexFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 provoking_vertex_last: Bool32,
 transform_feedback_preserves_provoking_vertex: Bool32,
 }
@@ -10201,7 +10267,7 @@ transform_feedback_preserves_provoking_vertex: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceProvokingVertexPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 provoking_vertex_mode_per_pipeline: Bool32,
 transform_feedback_preserves_triangle_fan_provoking_vertex: Bool32,
 }
@@ -10209,30 +10275,30 @@ transform_feedback_preserves_triangle_fan_provoking_vertex: Bool32,
 #[repr(C)]
 pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 provoking_vertex_mode: ProvokingVertexModeEXT,
 }
 
 #[repr(C)]
 pub struct CuModuleCreateInfoNVX {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 data_size: usize,
-p_data: c_void,
+p_data: *const c_void,
 }
 
 #[repr(C)]
 pub struct CuFunctionCreateInfoNVX {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 module: CuModuleNVX,
-p_name: u8,
+p_name: *const u8,
 }
 
 #[repr(C)]
 pub struct CuLaunchInfoNVX {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 function: CuFunctionNVX,
 grid_dim_x: u32,
 grid_dim_y: u32,
@@ -10242,15 +10308,15 @@ block_dim_y: u32,
 block_dim_z: u32,
 shared_mem_bytes: u32,
 param_count: usize,
-p_params: c_void,
+p_params: *const c_void,
 extra_count: usize,
-p_extras: c_void,
+p_extras: *const c_void,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorBufferFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 descriptor_buffer: Bool32,
 descriptor_buffer_capture_replay: Bool32,
 descriptor_buffer_image_layout_ignored: Bool32,
@@ -10260,7 +10326,7 @@ descriptor_buffer_push_descriptors: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorBufferPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 combined_image_sampler_descriptor_single_array: Bool32,
 bufferless_push_descriptors: Bool32,
 allow_sampler_image_view_post_submit_creation: Bool32,
@@ -10299,14 +10365,14 @@ descriptor_buffer_address_space_size: DeviceSize,
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 combined_image_sampler_density_map_descriptor_size: usize,
 }
 
 #[repr(C)]
 pub struct DescriptorAddressInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 address: DeviceAddress,
 range: DeviceSize,
 format: Format,
@@ -10315,7 +10381,7 @@ format: Format,
 #[repr(C)]
 pub struct DescriptorBufferBindingInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 address: DeviceAddress,
 usage: BufferUsageFlags,
 }
@@ -10323,14 +10389,14 @@ usage: BufferUsageFlags,
 #[repr(C)]
 pub struct DescriptorBufferBindingPushDescriptorBufferHandleEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 buffer: Buffer,
 }
 
 #[repr(C)]
 pub struct DescriptorGetInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 r#type: DescriptorType,
 data: DescriptorDataEXT,
 }
@@ -10338,35 +10404,35 @@ data: DescriptorDataEXT,
 #[repr(C)]
 pub struct BufferCaptureDescriptorDataInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 buffer: Buffer,
 }
 
 #[repr(C)]
 pub struct ImageCaptureDescriptorDataInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 image: Image,
 }
 
 #[repr(C)]
 pub struct ImageViewCaptureDescriptorDataInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 image_view: ImageView,
 }
 
 #[repr(C)]
 pub struct SamplerCaptureDescriptorDataInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 sampler: Sampler,
 }
 
 #[repr(C)]
 pub struct AccelerationStructureCaptureDescriptorDataInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 acceleration_structure: AccelerationStructureKHR,
 acceleration_structure_nv: AccelerationStructureNV,
 }
@@ -10374,21 +10440,21 @@ acceleration_structure_nv: AccelerationStructureNV,
 #[repr(C)]
 pub struct OpaqueCaptureDescriptorDataCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
-opaque_capture_descriptor_data: c_void,
+p_next: *const c_void,
+opaque_capture_descriptor_data: *const c_void,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShaderIntegerDotProductFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_integer_dot_product: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShaderIntegerDotProductProperties {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 integer_dot_product8_bit_unsigned_accelerated: Bool32,
 integer_dot_product8_bit_signed_accelerated: Bool32,
 integer_dot_product8_bit_mixed_signedness_accelerated: Bool32,
@@ -10424,7 +10490,7 @@ integer_dot_product_accumulating_saturating64_bit_mixed_signedness_accelerated: 
 #[repr(C)]
 pub struct PhysicalDeviceDrmPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 has_primary: Bool32,
 has_render: Bool32,
 primary_major: i64,
@@ -10436,21 +10502,21 @@ render_minor: i64,
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShaderBarycentricFeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 fragment_shader_barycentric: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShaderBarycentricPropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 tri_strip_vertex_order_independent_of_provoking_vertex: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 ray_tracing_motion_blur: Bool32,
 ray_tracing_motion_blur_pipeline_trace_rays_indirect: Bool32,
 }
@@ -10458,14 +10524,14 @@ ray_tracing_motion_blur_pipeline_trace_rays_indirect: Bool32,
 #[repr(C)]
 pub struct AccelerationStructureGeometryMotionTrianglesDataNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 vertex_data: DeviceOrHostAddressConstKHR,
 }
 
 #[repr(C)]
 pub struct AccelerationStructureMotionInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 max_instances: u32,
 flags: AccelerationStructureMotionInfoFlagsNV,
 }
@@ -10522,7 +10588,7 @@ data: AccelerationStructureMotionInstanceDataNV,
 #[repr(C)]
 pub struct MemoryGetRemoteAddressInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 memory: DeviceMemory,
 handle_type: ExternalMemoryHandleTypeFlagBits,
 }
@@ -10530,7 +10596,7 @@ handle_type: ExternalMemoryHandleTypeFlagBits,
 #[repr(C)]
 pub struct ImportMemoryBufferCollectionFUCHSIA {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 collection: BufferCollectionFUCHSIA,
 index: u32,
 }
@@ -10538,7 +10604,7 @@ index: u32,
 #[repr(C)]
 pub struct BufferCollectionImageCreateInfoFUCHSIA {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 collection: BufferCollectionFUCHSIA,
 index: u32,
 }
@@ -10546,7 +10612,7 @@ index: u32,
 #[repr(C)]
 pub struct BufferCollectionBufferCreateInfoFUCHSIA {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 collection: BufferCollectionFUCHSIA,
 index: u32,
 }
@@ -10554,14 +10620,14 @@ index: u32,
 #[repr(C)]
 pub struct BufferCollectionCreateInfoFUCHSIA {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 collection_token: zx_handle_t,
 }
 
 #[repr(C)]
 pub struct BufferCollectionPropertiesFUCHSIA {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 memory_type_bits: u32,
 buffer_count: u32,
 create_info_index: u32,
@@ -10578,7 +10644,7 @@ suggested_ychroma_offset: ChromaLocation,
 #[repr(C)]
 pub struct BufferConstraintsInfoFUCHSIA {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 create_info: BufferCreateInfo,
 required_format_features: FormatFeatureFlags,
 buffer_collection_constraints: BufferCollectionConstraintsInfoFUCHSIA,
@@ -10587,28 +10653,28 @@ buffer_collection_constraints: BufferCollectionConstraintsInfoFUCHSIA,
 #[repr(C)]
 pub struct SysmemColorSpaceFUCHSIA {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 color_space: u32,
 }
 
 #[repr(C)]
 pub struct ImageFormatConstraintsInfoFUCHSIA {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 image_create_info: ImageCreateInfo,
 required_format_features: FormatFeatureFlags,
 flags: ImageFormatConstraintsFlagsFUCHSIA,
 sysmem_pixel_format: u64,
 color_space_count: u32,
-p_color_spaces: SysmemColorSpaceFUCHSIA,
+p_color_spaces: *const SysmemColorSpaceFUCHSIA,
 }
 
 #[repr(C)]
 pub struct ImageConstraintsInfoFUCHSIA {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 format_constraints_count: u32,
-p_format_constraints: ImageFormatConstraintsInfoFUCHSIA,
+p_format_constraints: *const ImageFormatConstraintsInfoFUCHSIA,
 buffer_collection_constraints: BufferCollectionConstraintsInfoFUCHSIA,
 flags: ImageConstraintsInfoFlagsFUCHSIA,
 }
@@ -10616,7 +10682,7 @@ flags: ImageConstraintsInfoFlagsFUCHSIA,
 #[repr(C)]
 pub struct BufferCollectionConstraintsInfoFUCHSIA {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 min_buffer_count: u32,
 max_buffer_count: u32,
 min_buffer_count_for_camping: u32,
@@ -10627,23 +10693,23 @@ min_buffer_count_for_shared_slack: u32,
 #[repr(C)]
 pub struct CudaModuleCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 data_size: usize,
-p_data: c_void,
+p_data: *const c_void,
 }
 
 #[repr(C)]
 pub struct CudaFunctionCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 module: CudaModuleNV,
-p_name: u8,
+p_name: *const u8,
 }
 
 #[repr(C)]
 pub struct CudaLaunchInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 function: CudaFunctionNV,
 grid_dim_x: u32,
 grid_dim_y: u32,
@@ -10653,22 +10719,22 @@ block_dim_y: u32,
 block_dim_z: u32,
 shared_mem_bytes: u32,
 param_count: usize,
-p_params: c_void,
+p_params: *const c_void,
 extra_count: usize,
-p_extras: c_void,
+p_extras: *const c_void,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceRGBA10X6FormatsFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 format_rgba10x6_without_ycb_cr_sampler: Bool32,
 }
 
 #[repr(C)]
 pub struct FormatProperties3 {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 linear_tiling_features: FormatFeatureFlags2,
 optimal_tiling_features: FormatFeatureFlags2,
 buffer_features: FormatFeatureFlags2,
@@ -10677,9 +10743,9 @@ buffer_features: FormatFeatureFlags2,
 #[repr(C)]
 pub struct DrmFormatModifierPropertiesList2EXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 drm_format_modifier_count: u32,
-p_drm_format_modifier_properties: DrmFormatModifierProperties2EXT,
+p_drm_format_modifier_properties: *mut DrmFormatModifierProperties2EXT,
 }
 
 #[repr(C)]
@@ -10692,7 +10758,7 @@ drm_format_modifier_tiling_features: FormatFeatureFlags2,
 #[repr(C)]
 pub struct AndroidHardwareBufferFormatProperties2ANDROID {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 format: Format,
 external_format: u64,
 format_features: FormatFeatureFlags2,
@@ -10706,10 +10772,10 @@ suggested_ychroma_offset: ChromaLocation,
 #[repr(C)]
 pub struct PipelineRenderingCreateInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 view_mask: u32,
 color_attachment_count: u32,
-p_color_attachment_formats: Format,
+p_color_attachment_formats: *const Format,
 depth_attachment_format: Format,
 stencil_attachment_format: Format,
 }
@@ -10717,21 +10783,21 @@ stencil_attachment_format: Format,
 #[repr(C)]
 pub struct RenderingInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: RenderingFlags,
 render_area: Rect2D,
 layer_count: u32,
 view_mask: u32,
 color_attachment_count: u32,
-p_color_attachments: RenderingAttachmentInfo,
-p_depth_attachment: RenderingAttachmentInfo,
-p_stencil_attachment: RenderingAttachmentInfo,
+p_color_attachments: *const RenderingAttachmentInfo,
+p_depth_attachment: *const RenderingAttachmentInfo,
+p_stencil_attachment: *const RenderingAttachmentInfo,
 }
 
 #[repr(C)]
 pub struct RenderingAttachmentInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 image_view: ImageView,
 image_layout: ImageLayout,
 resolve_mode: ResolveModeFlagBits,
@@ -10745,7 +10811,7 @@ clear_value: ClearValue,
 #[repr(C)]
 pub struct RenderingFragmentShadingRateAttachmentInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 image_view: ImageView,
 image_layout: ImageLayout,
 shading_rate_attachment_texel_size: Extent2D,
@@ -10754,7 +10820,7 @@ shading_rate_attachment_texel_size: Extent2D,
 #[repr(C)]
 pub struct RenderingFragmentDensityMapAttachmentInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 image_view: ImageView,
 image_layout: ImageLayout,
 }
@@ -10762,21 +10828,21 @@ image_layout: ImageLayout,
 #[repr(C)]
 pub struct PhysicalDeviceDynamicRenderingFeatures {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 dynamic_rendering: Bool32,
 }
 
 #[repr(C)]
 pub struct CommandBufferInheritanceRenderingInfo {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: RenderingFlags,
 view_mask: u32,
 #[cfg(vulkan)]
 color_attachment_count: u32,
 #[cfg(vulkansc)]
 color_attachment_count: u32,
-p_color_attachment_formats: Format,
+p_color_attachment_formats: *const Format,
 depth_attachment_format: Format,
 stencil_attachment_format: Format,
 rasterization_samples: SampleCountFlagBits,
@@ -10785,16 +10851,16 @@ rasterization_samples: SampleCountFlagBits,
 #[repr(C)]
 pub struct AttachmentSampleCountInfoAMD {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 color_attachment_count: u32,
-p_color_attachment_samples: SampleCountFlagBits,
+p_color_attachment_samples: *const SampleCountFlagBits,
 depth_stencil_attachment_samples: SampleCountFlagBits,
 }
 
 #[repr(C)]
 pub struct MultiviewPerViewAttributesInfoNVX {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 per_view_attributes: Bool32,
 per_view_attributes_position_xonly: Bool32,
 }
@@ -10802,21 +10868,21 @@ per_view_attributes_position_xonly: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceImageViewMinLodFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 min_lod: Bool32,
 }
 
 #[repr(C)]
 pub struct ImageViewMinLodCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 min_lod: f32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 rasterization_order_color_attachment_access: Bool32,
 rasterization_order_depth_attachment_access: Bool32,
 rasterization_order_stencil_attachment_access: Bool32,
@@ -10825,21 +10891,21 @@ rasterization_order_stencil_attachment_access: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceLinearColorAttachmentFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 linear_color_attachment: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 graphics_pipeline_library: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 graphics_pipeline_library_fast_linking: Bool32,
 graphics_pipeline_library_independent_interpolation_decoration: Bool32,
 }
@@ -10847,21 +10913,21 @@ graphics_pipeline_library_independent_interpolation_decoration: Bool32,
 #[repr(C)]
 pub struct GraphicsPipelineLibraryCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: GraphicsPipelineLibraryFlagsEXT,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 descriptor_set_host_mapping: Bool32,
 }
 
 #[repr(C)]
 pub struct DescriptorSetBindingReferenceVALVE {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 descriptor_set_layout: DescriptorSetLayout,
 binding: u32,
 }
@@ -10869,7 +10935,7 @@ binding: u32,
 #[repr(C)]
 pub struct DescriptorSetLayoutHostMappingInfoVALVE {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 descriptor_offset: usize,
 descriptor_size: u32,
 }
@@ -10877,7 +10943,7 @@ descriptor_size: u32,
 #[repr(C)]
 pub struct PhysicalDeviceNestedCommandBufferFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 nested_command_buffer: Bool32,
 nested_command_buffer_rendering: Bool32,
 nested_command_buffer_simultaneous_use: Bool32,
@@ -10886,36 +10952,36 @@ nested_command_buffer_simultaneous_use: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceNestedCommandBufferPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_command_buffer_nesting_level: u32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShaderModuleIdentifierFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_module_identifier: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShaderModuleIdentifierPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_module_identifier_algorithm_uuid: u8,
 }
 
 #[repr(C)]
 pub struct PipelineShaderStageModuleIdentifierCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 identifier_size: u32,
-p_identifier: u8,
+p_identifier: *const u8,
 }
 
 #[repr(C)]
 pub struct ShaderModuleIdentifierEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 identifier_size: u32,
 identifier: u8,
 }
@@ -10923,23 +10989,23 @@ identifier: u8,
 #[repr(C)]
 pub struct ImageCompressionControlEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: ImageCompressionFlagsEXT,
 compression_control_plane_count: u32,
-p_fixed_rate_flags: ImageCompressionFixedRateFlagsEXT,
+p_fixed_rate_flags: *mut ImageCompressionFixedRateFlagsEXT,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceImageCompressionControlFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 image_compression_control: Bool32,
 }
 
 #[repr(C)]
 pub struct ImageCompressionPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 image_compression_flags: ImageCompressionFlagsEXT,
 image_compression_fixed_rate_flags: ImageCompressionFixedRateFlagsEXT,
 }
@@ -10947,28 +11013,28 @@ image_compression_fixed_rate_flags: ImageCompressionFixedRateFlagsEXT,
 #[repr(C)]
 pub struct PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 image_compression_control_swapchain: Bool32,
 }
 
 #[repr(C)]
 pub struct ImageSubresource2KHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 image_subresource: ImageSubresource,
 }
 
 #[repr(C)]
 pub struct SubresourceLayout2KHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 subresource_layout: SubresourceLayout,
 }
 
 #[repr(C)]
 pub struct RenderPassCreationControlEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 disallow_merging: Bool32,
 }
 
@@ -10980,8 +11046,8 @@ post_merge_subpass_count: u32,
 #[repr(C)]
 pub struct RenderPassCreationFeedbackCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
-p_render_pass_feedback: RenderPassCreationFeedbackInfoEXT,
+p_next: *const c_void,
+p_render_pass_feedback: *mut RenderPassCreationFeedbackInfoEXT,
 }
 
 #[repr(C)]
@@ -10994,28 +11060,28 @@ post_merge_index: u32,
 #[repr(C)]
 pub struct RenderPassSubpassFeedbackCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
-p_subpass_feedback: RenderPassSubpassFeedbackInfoEXT,
+p_next: *const c_void,
+p_subpass_feedback: *mut RenderPassSubpassFeedbackInfoEXT,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceSubpassMergeFeedbackFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 subpass_merge_feedback: Bool32,
 }
 
 #[repr(C)]
 pub struct MicromapBuildInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 r#type: MicromapTypeEXT,
 flags: BuildMicromapFlagsEXT,
 mode: BuildMicromapModeEXT,
 dst_micromap: MicromapEXT,
 usage_counts_count: u32,
-p_usage_counts: MicromapUsageEXT,
-pp_usage_counts: MicromapUsageEXT,
+p_usage_counts: *const MicromapUsageEXT,
+pp_usage_counts: *const MicromapUsageEXT,
 data: DeviceOrHostAddressConstKHR,
 scratch_data: DeviceOrHostAddressKHR,
 triangle_array: DeviceOrHostAddressConstKHR,
@@ -11025,7 +11091,7 @@ triangle_array_stride: DeviceSize,
 #[repr(C)]
 pub struct MicromapCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 create_flags: MicromapCreateFlagsEXT,
 buffer: Buffer,
 offset: DeviceSize,
@@ -11037,14 +11103,14 @@ device_address: DeviceAddress,
 #[repr(C)]
 pub struct MicromapVersionInfoEXT {
 s_type: StructureType,
-p_next: c_void,
-p_version_data: u8,
+p_next: *const c_void,
+p_version_data: *const u8,
 }
 
 #[repr(C)]
 pub struct CopyMicromapInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src: MicromapEXT,
 dst: MicromapEXT,
 mode: CopyMicromapModeEXT,
@@ -11053,7 +11119,7 @@ mode: CopyMicromapModeEXT,
 #[repr(C)]
 pub struct CopyMicromapToMemoryInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src: MicromapEXT,
 dst: DeviceOrHostAddressKHR,
 mode: CopyMicromapModeEXT,
@@ -11062,7 +11128,7 @@ mode: CopyMicromapModeEXT,
 #[repr(C)]
 pub struct CopyMemoryToMicromapInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 src: DeviceOrHostAddressConstKHR,
 dst: MicromapEXT,
 mode: CopyMicromapModeEXT,
@@ -11071,7 +11137,7 @@ mode: CopyMicromapModeEXT,
 #[repr(C)]
 pub struct MicromapBuildSizesInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 micromap_size: DeviceSize,
 build_scratch_size: DeviceSize,
 discardable: Bool32,
@@ -11094,7 +11160,7 @@ format: u16,
 #[repr(C)]
 pub struct PhysicalDeviceOpacityMicromapFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 micromap: Bool32,
 micromap_capture_replay: Bool32,
 micromap_host_commands: Bool32,
@@ -11103,7 +11169,7 @@ micromap_host_commands: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceOpacityMicromapPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_opacity2_state_subdivision_level: u32,
 max_opacity4_state_subdivision_level: u32,
 }
@@ -11111,35 +11177,35 @@ max_opacity4_state_subdivision_level: u32,
 #[repr(C)]
 pub struct AccelerationStructureTrianglesOpacityMicromapEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 index_type: IndexType,
 index_buffer: DeviceOrHostAddressConstKHR,
 index_stride: DeviceSize,
 base_triangle: u32,
 usage_counts_count: u32,
-p_usage_counts: MicromapUsageEXT,
-pp_usage_counts: MicromapUsageEXT,
+p_usage_counts: *const MicromapUsageEXT,
+pp_usage_counts: *const MicromapUsageEXT,
 micromap: MicromapEXT,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceDisplacementMicromapFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 displacement_micromap: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceDisplacementMicromapPropertiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_displacement_micromap_subdivision_level: u32,
 }
 
 #[repr(C)]
 pub struct AccelerationStructureTrianglesDisplacementMicromapNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 displacement_bias_and_scale_format: Format,
 displacement_vector_format: Format,
 displacement_bias_and_scale_buffer: DeviceOrHostAddressConstKHR,
@@ -11153,63 +11219,63 @@ index_buffer: DeviceOrHostAddressConstKHR,
 index_stride: DeviceSize,
 base_triangle: u32,
 usage_counts_count: u32,
-p_usage_counts: MicromapUsageEXT,
-pp_usage_counts: MicromapUsageEXT,
+p_usage_counts: *const MicromapUsageEXT,
+pp_usage_counts: *const MicromapUsageEXT,
 micromap: MicromapEXT,
 }
 
 #[repr(C)]
 pub struct PipelinePropertiesIdentifierEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 pipeline_identifier: u8,
 }
 
 #[repr(C)]
 pub struct PhysicalDevicePipelinePropertiesFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 pipeline_properties_identifier: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_early_and_late_fragment_tests: Bool32,
 }
 
 #[repr(C)]
 pub struct ExternalMemoryAcquireUnmodifiedEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 acquire_unmodified_memory: Bool32,
 }
 
 #[repr(C)]
 pub struct ExportMetalObjectCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 export_object_type: ExportMetalObjectTypeFlagBitsEXT,
 }
 
 #[repr(C)]
 pub struct ExportMetalObjectsInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 }
 
 #[repr(C)]
 pub struct ExportMetalDeviceInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 mtl_device: MTLDevice_id,
 }
 
 #[repr(C)]
 pub struct ExportMetalCommandQueueInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 queue: Queue,
 mtl_command_queue: MTLCommandQueue_id,
 }
@@ -11217,7 +11283,7 @@ mtl_command_queue: MTLCommandQueue_id,
 #[repr(C)]
 pub struct ExportMetalBufferInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 memory: DeviceMemory,
 mtl_buffer: MTLBuffer_id,
 }
@@ -11225,14 +11291,14 @@ mtl_buffer: MTLBuffer_id,
 #[repr(C)]
 pub struct ImportMetalBufferInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 mtl_buffer: MTLBuffer_id,
 }
 
 #[repr(C)]
 pub struct ExportMetalTextureInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 image: Image,
 image_view: ImageView,
 buffer_view: BufferView,
@@ -11243,7 +11309,7 @@ mtl_texture: MTLTexture_id,
 #[repr(C)]
 pub struct ImportMetalTextureInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 plane: ImageAspectFlagBits,
 mtl_texture: MTLTexture_id,
 }
@@ -11251,7 +11317,7 @@ mtl_texture: MTLTexture_id,
 #[repr(C)]
 pub struct ExportMetalIOSurfaceInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 image: Image,
 io_surface: IOSurfaceRef,
 }
@@ -11259,14 +11325,14 @@ io_surface: IOSurfaceRef,
 #[repr(C)]
 pub struct ImportMetalIOSurfaceInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 io_surface: IOSurfaceRef,
 }
 
 #[repr(C)]
 pub struct ExportMetalSharedEventInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 semaphore: Semaphore,
 event: Event,
 mtl_shared_event: MTLSharedEvent_id,
@@ -11275,28 +11341,28 @@ mtl_shared_event: MTLSharedEvent_id,
 #[repr(C)]
 pub struct ImportMetalSharedEventInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 mtl_shared_event: MTLSharedEvent_id,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceNonSeamlessCubeMapFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 non_seamless_cube_map: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDevicePipelineRobustnessFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 pipeline_robustness: Bool32,
 }
 
 #[repr(C)]
 pub struct PipelineRobustnessCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 storage_buffers: PipelineRobustnessBufferBehaviorEXT,
 uniform_buffers: PipelineRobustnessBufferBehaviorEXT,
 vertex_inputs: PipelineRobustnessBufferBehaviorEXT,
@@ -11306,7 +11372,7 @@ images: PipelineRobustnessImageBehaviorEXT,
 #[repr(C)]
 pub struct PhysicalDevicePipelineRobustnessPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 default_robustness_storage_buffers: PipelineRobustnessBufferBehaviorEXT,
 default_robustness_uniform_buffers: PipelineRobustnessBufferBehaviorEXT,
 default_robustness_vertex_inputs: PipelineRobustnessBufferBehaviorEXT,
@@ -11316,7 +11382,7 @@ default_robustness_images: PipelineRobustnessImageBehaviorEXT,
 #[repr(C)]
 pub struct ImageViewSampleWeightCreateInfoQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 filter_center: Offset2D,
 filter_size: Extent2D,
 num_phases: u32,
@@ -11325,7 +11391,7 @@ num_phases: u32,
 #[repr(C)]
 pub struct PhysicalDeviceImageProcessingFeaturesQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 texture_sample_weighted: Bool32,
 texture_box_filter: Bool32,
 texture_block_match: Bool32,
@@ -11334,7 +11400,7 @@ texture_block_match: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceImageProcessingPropertiesQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_weight_filter_phases: u32,
 max_weight_filter_dimension: Extent2D,
 max_block_match_region: Extent2D,
@@ -11344,14 +11410,14 @@ max_box_filter_block_size: Extent2D,
 #[repr(C)]
 pub struct PhysicalDeviceTilePropertiesFeaturesQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 tile_properties: Bool32,
 }
 
 #[repr(C)]
 pub struct TilePropertiesQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 tile_size: Extent3D,
 apron_size: Extent2D,
 origin: Offset2D,
@@ -11360,14 +11426,14 @@ origin: Offset2D,
 #[repr(C)]
 pub struct PhysicalDeviceAmigoProfilingFeaturesSEC {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 amigo_profiling: Bool32,
 }
 
 #[repr(C)]
 pub struct AmigoProfilingSubmitInfoSEC {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 first_draw_timestamp: u64,
 swap_buffer_timestamp: u64,
 }
@@ -11375,28 +11441,28 @@ swap_buffer_timestamp: u64,
 #[repr(C)]
 pub struct PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 attachment_feedback_loop_layout: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceDepthClampZeroOneFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 depth_clamp_zero_one: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceAddressBindingReportFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 report_address_binding: Bool32,
 }
 
 #[repr(C)]
 pub struct DeviceAddressBindingCallbackDataEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 flags: DeviceAddressBindingFlagsEXT,
 base_address: DeviceAddress,
 size: DeviceSize,
@@ -11406,14 +11472,14 @@ binding_type: DeviceAddressBindingTypeEXT,
 #[repr(C)]
 pub struct PhysicalDeviceOpticalFlowFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 optical_flow: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceOpticalFlowPropertiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 supported_output_grid_sizes: OpticalFlowGridSizeFlagsNV,
 supported_hint_grid_sizes: OpticalFlowGridSizeFlagsNV,
 hint_supported: Bool32,
@@ -11430,21 +11496,21 @@ max_num_regions_of_interest: u32,
 #[repr(C)]
 pub struct OpticalFlowImageFormatInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 usage: OpticalFlowUsageFlagsNV,
 }
 
 #[repr(C)]
 pub struct OpticalFlowImageFormatPropertiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 format: Format,
 }
 
 #[repr(C)]
 pub struct OpticalFlowSessionCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 width: u32,
 height: u32,
 image_format: Format,
@@ -11459,25 +11525,25 @@ flags: OpticalFlowSessionCreateFlagsNV,
 #[repr(C)]
 pub struct OpticalFlowSessionCreatePrivateDataInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 id: u32,
 size: u32,
-p_private_data: c_void,
+p_private_data: *const c_void,
 }
 
 #[repr(C)]
 pub struct OpticalFlowExecuteInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 flags: OpticalFlowExecuteFlagsNV,
 region_count: u32,
-p_regions: Rect2D,
+p_regions: *const Rect2D,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceFaultFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 device_fault: Bool32,
 device_fault_vendor_binary: Bool32,
 }
@@ -11499,7 +11565,7 @@ vendor_fault_data: u64,
 #[repr(C)]
 pub struct DeviceFaultCountsEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 address_info_count: u32,
 vendor_info_count: u32,
 vendor_binary_size: DeviceSize,
@@ -11508,11 +11574,11 @@ vendor_binary_size: DeviceSize,
 #[repr(C)]
 pub struct DeviceFaultInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 description: u8,
-p_address_infos: DeviceFaultAddressInfoEXT,
-p_vendor_infos: DeviceFaultVendorInfoEXT,
-p_vendor_binary_data: c_void,
+p_address_infos: *mut DeviceFaultAddressInfoEXT,
+p_vendor_infos: *mut DeviceFaultVendorInfoEXT,
+p_vendor_binary_data: *mut c_void,
 }
 
 #[repr(C)]
@@ -11533,14 +11599,14 @@ api_version: u32,
 #[repr(C)]
 pub struct PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 pipeline_library_group_handles: Bool32,
 }
 
 #[repr(C)]
 pub struct DepthBiasInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 depth_bias_constant_factor: f32,
 depth_bias_clamp: f32,
 depth_bias_slope_factor: f32,
@@ -11549,7 +11615,7 @@ depth_bias_slope_factor: f32,
 #[repr(C)]
 pub struct DepthBiasRepresentationInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 depth_bias_representation: DepthBiasRepresentationEXT,
 depth_bias_exact: Bool32,
 }
@@ -11566,7 +11632,7 @@ decompression_method: MemoryDecompressionMethodFlagsNV,
 #[repr(C)]
 pub struct PhysicalDeviceShaderCoreBuiltinsPropertiesARM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_core_mask: u64,
 shader_core_count: u32,
 shader_warps_per_core: u32,
@@ -11575,50 +11641,50 @@ shader_warps_per_core: u32,
 #[repr(C)]
 pub struct PhysicalDeviceShaderCoreBuiltinsFeaturesARM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_core_builtins: Bool32,
 }
 
 #[repr(C)]
 pub struct FrameBoundaryEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: FrameBoundaryFlagsEXT,
 frame_id: u64,
 image_count: u32,
-p_images: Image,
+p_images: *const Image,
 buffer_count: u32,
-p_buffers: Buffer,
+p_buffers: *const Buffer,
 tag_name: u64,
 tag_size: usize,
-p_tag: c_void,
+p_tag: *const c_void,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceFrameBoundaryFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 frame_boundary: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 dynamic_rendering_unused_attachments: Bool32,
 }
 
 #[repr(C)]
 pub struct SurfacePresentModeEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 present_mode: PresentModeKHR,
 }
 
 #[repr(C)]
 pub struct SurfacePresentScalingCapabilitiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 supported_present_scaling: PresentScalingFlagsEXT,
 supported_present_gravity_x: PresentGravityFlagsEXT,
 supported_present_gravity_y: PresentGravityFlagsEXT,
@@ -11629,46 +11695,46 @@ max_scaled_image_extent: Extent2D,
 #[repr(C)]
 pub struct SurfacePresentModeCompatibilityEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 present_mode_count: u32,
-p_present_modes: PresentModeKHR,
+p_present_modes: *mut PresentModeKHR,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceSwapchainMaintenance1FeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 swapchain_maintenance1: Bool32,
 }
 
 #[repr(C)]
 pub struct SwapchainPresentFenceInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 swapchain_count: u32,
-p_fences: Fence,
+p_fences: *const Fence,
 }
 
 #[repr(C)]
 pub struct SwapchainPresentModesCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 present_mode_count: u32,
-p_present_modes: PresentModeKHR,
+p_present_modes: *const PresentModeKHR,
 }
 
 #[repr(C)]
 pub struct SwapchainPresentModeInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 swapchain_count: u32,
-p_present_modes: PresentModeKHR,
+p_present_modes: *const PresentModeKHR,
 }
 
 #[repr(C)]
 pub struct SwapchainPresentScalingCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 scaling_behavior: PresentScalingFlagsEXT,
 present_gravity_x: PresentGravityFlagsEXT,
 present_gravity_y: PresentGravityFlagsEXT,
@@ -11677,16 +11743,16 @@ present_gravity_y: PresentGravityFlagsEXT,
 #[repr(C)]
 pub struct ReleaseSwapchainImagesInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 swapchain: SwapchainKHR,
 image_index_count: u32,
-p_image_indices: u32,
+p_image_indices: *const u32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceDepthBiasControlFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 depth_bias_control: Bool32,
 least_representable_value_force_unorm_representation: Bool32,
 float_representation: Bool32,
@@ -11696,28 +11762,28 @@ depth_bias_exact: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingInvocationReorderFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 ray_tracing_invocation_reorder: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingInvocationReorderPropertiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 ray_tracing_invocation_reorder_reordering_hint: RayTracingInvocationReorderModeNV,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 extended_sparse_address_space: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceExtendedSparseAddressSpacePropertiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 extended_sparse_address_space_size: DeviceSize,
 extended_sparse_image_usage_flags: ImageUsageFlags,
 extended_sparse_buffer_usage_flags: BufferUsageFlags,
@@ -11726,7 +11792,7 @@ extended_sparse_buffer_usage_flags: BufferUsageFlags,
 #[repr(C)]
 pub struct DirectDriverLoadingInfoLUNARG {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 flags: DirectDriverLoadingFlagsLUNARG,
 pfn_get_instance_proc_addr: PFN_vkGetInstanceProcAddrLUNARG,
 }
@@ -11734,38 +11800,38 @@ pfn_get_instance_proc_addr: PFN_vkGetInstanceProcAddrLUNARG,
 #[repr(C)]
 pub struct DirectDriverLoadingListLUNARG {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 mode: DirectDriverLoadingModeLUNARG,
 driver_count: u32,
-p_drivers: DirectDriverLoadingInfoLUNARG,
+p_drivers: *const DirectDriverLoadingInfoLUNARG,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 multiview_per_view_viewports: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPositionFetchFeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 ray_tracing_position_fetch: Bool32,
 }
 
 #[repr(C)]
 pub struct DeviceImageSubresourceInfoKHR {
 s_type: StructureType,
-p_next: c_void,
-p_create_info: ImageCreateInfo,
-p_subresource: ImageSubresource2KHR,
+p_next: *const c_void,
+p_create_info: *const ImageCreateInfo,
+p_subresource: *const ImageSubresource2KHR,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShaderCorePropertiesARM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 pixel_rate: u32,
 texel_rate: u32,
 fma_rate: u32,
@@ -11774,29 +11840,29 @@ fma_rate: u32,
 #[repr(C)]
 pub struct PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 multiview_per_view_render_areas: Bool32,
 }
 
 #[repr(C)]
 pub struct MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 per_view_render_area_count: u32,
-p_per_view_render_areas: Rect2D,
+p_per_view_render_areas: *const Rect2D,
 }
 
 #[repr(C)]
 pub struct QueryLowLatencySupportNV {
 s_type: StructureType,
-p_next: c_void,
-p_queried_low_latency_data: c_void,
+p_next: *const c_void,
+p_queried_low_latency_data: *mut c_void,
 }
 
 #[repr(C)]
 pub struct MemoryMapInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: MemoryMapFlags,
 memory: DeviceMemory,
 offset: DeviceSize,
@@ -11806,7 +11872,7 @@ size: DeviceSize,
 #[repr(C)]
 pub struct MemoryUnmapInfoKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: MemoryUnmapFlagsKHR,
 memory: DeviceMemory,
 }
@@ -11814,14 +11880,14 @@ memory: DeviceMemory,
 #[repr(C)]
 pub struct PhysicalDeviceShaderObjectFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_object: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShaderObjectPropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_binary_uuid: u8,
 shader_binary_version: u32,
 }
@@ -11829,25 +11895,25 @@ shader_binary_version: u32,
 #[repr(C)]
 pub struct ShaderCreateInfoEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: ShaderCreateFlagsEXT,
 stage: ShaderStageFlagBits,
 next_stage: ShaderStageFlags,
 code_type: ShaderCodeTypeEXT,
 code_size: usize,
-p_code: c_void,
-p_name: u8,
+p_code: *const c_void,
+p_name: *const u8,
 set_layout_count: u32,
-p_set_layouts: DescriptorSetLayout,
+p_set_layouts: *const DescriptorSetLayout,
 push_constant_range_count: u32,
-p_push_constant_ranges: PushConstantRange,
-p_specialization_info: SpecializationInfo,
+p_push_constant_ranges: *const PushConstantRange,
+p_specialization_info: *const SpecializationInfo,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShaderTileImageFeaturesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_tile_image_color_read_access: Bool32,
 shader_tile_image_depth_read_access: Bool32,
 shader_tile_image_stencil_read_access: Bool32,
@@ -11856,7 +11922,7 @@ shader_tile_image_stencil_read_access: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceShaderTileImagePropertiesEXT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_tile_image_coherent_read_accelerated: Bool32,
 shader_tile_image_read_sample_from_pixel_rate_invocation: Bool32,
 shader_tile_image_read_from_helper_invocation: Bool32,
@@ -11865,14 +11931,14 @@ shader_tile_image_read_from_helper_invocation: Bool32,
 #[repr(C)]
 pub struct ImportScreenBufferInfoQNX {
 s_type: StructureType,
-p_next: c_void,
-buffer: _screen_buffer,
+p_next: *const c_void,
+buffer: *mut _screen_buffer,
 }
 
 #[repr(C)]
 pub struct ScreenBufferPropertiesQNX {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 allocation_size: DeviceSize,
 memory_type_bits: u32,
 }
@@ -11880,7 +11946,7 @@ memory_type_bits: u32,
 #[repr(C)]
 pub struct ScreenBufferFormatPropertiesQNX {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 format: Format,
 external_format: u64,
 screen_usage: u64,
@@ -11895,21 +11961,21 @@ suggested_ychroma_offset: ChromaLocation,
 #[repr(C)]
 pub struct ExternalFormatQNX {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 external_format: u64,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 screen_buffer_import: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeMatrixFeaturesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 cooperative_matrix: Bool32,
 cooperative_matrix_robust_buffer_access: Bool32,
 }
@@ -11917,14 +11983,14 @@ cooperative_matrix_robust_buffer_access: Bool32,
 #[repr(C)]
 pub struct CooperativeMatrixPropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
-_msize: u32,
-_nsize: u32,
-_ksize: u32,
-_atype: ComponentTypeKHR,
-_btype: ComponentTypeKHR,
-_ctype: ComponentTypeKHR,
-_result_type: ComponentTypeKHR,
+p_next: *mut c_void,
+msize: u32,
+nsize: u32,
+ksize: u32,
+atype: ComponentTypeKHR,
+btype: ComponentTypeKHR,
+ctype: ComponentTypeKHR,
+result_type: ComponentTypeKHR,
 saturating_accumulation: Bool32,
 scope: ScopeKHR,
 }
@@ -11932,14 +11998,14 @@ scope: ScopeKHR,
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeMatrixPropertiesKHR {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 cooperative_matrix_supported_stages: ShaderStageFlags,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceShaderEnqueuePropertiesAMDX {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_execution_graph_depth: u32,
 max_execution_graph_shader_output_nodes: u32,
 max_execution_graph_shader_payload_size: u32,
@@ -11950,18 +12016,18 @@ execution_graph_dispatch_address_alignment: u32,
 #[repr(C)]
 pub struct PhysicalDeviceShaderEnqueueFeaturesAMDX {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_enqueue: Bool32,
 }
 
 #[repr(C)]
 pub struct ExecutionGraphPipelineCreateInfoAMDX {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 flags: PipelineCreateFlags,
 stage_count: u32,
-p_stages: PipelineShaderStageCreateInfo,
-p_library_info: PipelineLibraryCreateInfoKHR,
+p_stages: *const PipelineShaderStageCreateInfo,
+p_library_info: *const PipelineLibraryCreateInfoKHR,
 layout: PipelineLayout,
 base_pipeline_handle: Pipeline,
 base_pipeline_index: i32,
@@ -11970,15 +12036,15 @@ base_pipeline_index: i32,
 #[repr(C)]
 pub struct PipelineShaderStageNodeCreateInfoAMDX {
 s_type: StructureType,
-p_next: c_void,
-p_name: u8,
+p_next: *const c_void,
+p_name: *const u8,
 index: u32,
 }
 
 #[repr(C)]
 pub struct ExecutionGraphPipelineScratchSizeAMDX {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 size: DeviceSize,
 }
 
@@ -12000,21 +12066,21 @@ stride: u64,
 #[repr(C)]
 pub struct PhysicalDeviceCubicClampFeaturesQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 cubic_range_clamp: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceYcbcrDegammaFeaturesQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 ycbcr_degamma: Bool32,
 }
 
 #[repr(C)]
 pub struct SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 enable_ydegamma: Bool32,
 enable_cb_cr_degamma: Bool32,
 }
@@ -12022,42 +12088,42 @@ enable_cb_cr_degamma: Bool32,
 #[repr(C)]
 pub struct PhysicalDeviceCubicWeightsFeaturesQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 selectable_cubic_weights: Bool32,
 }
 
 #[repr(C)]
 pub struct SamplerCubicWeightsCreateInfoQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 cubic_weights: CubicFilterWeightsQCOM,
 }
 
 #[repr(C)]
 pub struct BlitImageCubicWeightsInfoQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 cubic_weights: CubicFilterWeightsQCOM,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceImageProcessing2FeaturesQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 texture_block_match2: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceImageProcessing2PropertiesQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 max_block_match_window: Extent2D,
 }
 
 #[repr(C)]
 pub struct SamplerBlockMatchWindowCreateInfoQCOM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 window_extent: Extent2D,
 window_compare_mode: BlockMatchWindowCompareModeQCOM,
 }
@@ -12065,28 +12131,28 @@ window_compare_mode: BlockMatchWindowCompareModeQCOM,
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorPoolOverallocationFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 descriptor_pool_overallocation: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceLayeredDriverPropertiesMSFT {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 underlying_api: LayeredDriverUnderlyingApiMSFT,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceExternalFormatResolveFeaturesANDROID {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 external_format_resolve: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceExternalFormatResolvePropertiesANDROID {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 null_color_attachment_with_external_format_resolve: Bool32,
 external_format_resolve_chroma_offset_x: ChromaLocation,
 external_format_resolve_chroma_offset_y: ChromaLocation,
@@ -12095,14 +12161,14 @@ external_format_resolve_chroma_offset_y: ChromaLocation,
 #[repr(C)]
 pub struct AndroidHardwareBufferFormatResolvePropertiesANDROID {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 color_attachment_format: Format,
 }
 
 #[repr(C)]
 pub struct LatencySleepModeInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 low_latency_mode: Bool32,
 low_latency_boost: Bool32,
 minimum_interval_us: u32,
@@ -12111,7 +12177,7 @@ minimum_interval_us: u32,
 #[repr(C)]
 pub struct LatencySleepInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 signal_semaphore: Semaphore,
 value: u64,
 }
@@ -12119,7 +12185,7 @@ value: u64,
 #[repr(C)]
 pub struct SetLatencyMarkerInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 present_id: u64,
 marker: LatencyMarkerNV,
 }
@@ -12127,14 +12193,14 @@ marker: LatencyMarkerNV,
 #[repr(C)]
 pub struct GetLatencyMarkerInfoNV {
 s_type: StructureType,
-p_next: c_void,
-p_timings: LatencyTimingsFrameReportNV,
+p_next: *const c_void,
+p_timings: *mut LatencyTimingsFrameReportNV,
 }
 
 #[repr(C)]
 pub struct LatencyTimingsFrameReportNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 present_id: u64,
 input_sample_time_us: u64,
 sim_start_time_us: u64,
@@ -12154,43 +12220,43 @@ gpu_render_end_time_us: u64,
 #[repr(C)]
 pub struct OutOfBandQueueTypeInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 queue_type: OutOfBandQueueTypeNV,
 }
 
 #[repr(C)]
 pub struct LatencySubmissionPresentIdNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 present_id: u64,
 }
 
 #[repr(C)]
 pub struct SwapchainLatencyCreateInfoNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 latency_mode_enable: Bool32,
 }
 
 #[repr(C)]
 pub struct LatencySurfaceCapabilitiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *const c_void,
 present_mode_count: u32,
-p_present_modes: PresentModeKHR,
+p_present_modes: *mut PresentModeKHR,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceCudaKernelLaunchFeaturesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 cuda_kernel_launch_features: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceCudaKernelLaunchPropertiesNV {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 compute_capability_minor: u32,
 compute_capability_major: u32,
 }
@@ -12198,28 +12264,28 @@ compute_capability_major: u32,
 #[repr(C)]
 pub struct DeviceQueueShaderCoreControlCreateInfoARM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 shader_core_count: u32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceSchedulingControlsFeaturesARM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 scheduling_controls: Bool32,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceSchedulingControlsPropertiesARM {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 scheduling_controls_flags: PhysicalDeviceSchedulingControlsFlagsARM,
 }
 
 #[repr(C)]
 pub struct PhysicalDeviceRelaxedLineRasterizationFeaturesIMG {
 s_type: StructureType,
-p_next: c_void,
+p_next: *mut c_void,
 relaxed_line_rasterization: Bool32,
 }
 

@@ -57,9 +57,6 @@ pub struct CommandUseage {
 impl From<&vk::CommandDefinition> for CommandDescriptor {
 	fn from(def: &vk::CommandDefinition) -> Self {
 		assert_eq!(def.alias, None);
-		// assert_eq!(def.videocoding, None);
-
-		// println!("{:#?}", def.code);
 
 		let api_feat = def.api.clone().unwrap_or(String::from("vulkan"));
 

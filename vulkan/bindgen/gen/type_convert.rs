@@ -2,8 +2,8 @@ use crate::descriptors::VarDescriptor;
 
 #[derive(Clone, PartialEq, Eq, Debug)]
 pub struct CTypeInfo {
-	c_type: &'static str,
-	rust_type: &'static str,
+	pub c_type: &'static str,
+	pub rust_type: &'static str,
 }
 
 pub static C_TYPE_MAPPINGS: &[CTypeInfo] = &[
@@ -61,13 +61,27 @@ pub static C_TYPE_MAPPINGS: &[CTypeInfo] = &[
 	},
 ];
 
+pub fn convert_const_value(val: &str) -> String {
+	val
+		.trim_start_matches("(")
+		.trim_end_matches(")")
+		.trim_end_matches("F")
+		.trim_end_matches("L")
+		.trim_end_matches("U")
+		.replace("~", "!")
+}
+
 //TODO: pointers and all the other stuff
 pub fn convert_type(desc: &VarDescriptor) -> String {
-	let rust_type = C_TYPE_MAPPINGS
+	let mut rust_type = C_TYPE_MAPPINGS
 		.iter()
 		.find(|m| m.c_type == desc.c_type.as_str())
 		.map(|v| v.rust_type.to_owned())
 		.unwrap_or(desc.c_type.clone());
+
+	if desc.ptr {
+		rust_type.insert_str(0, if desc.readonly { "*const " } else { "*mut " })
+	}
 
 	return rust_type;
 }

@@ -33,8 +33,6 @@ pub struct StructMember {
 
 impl From<&vk::TypeMemberDefinition> for StructMember {
 	fn from(def: &vk::TypeMemberDefinition) -> Self {
-		// println!("{}", def.code);
-
 		assert_eq!(def.selection, None);
 		assert_eq!(def.validextensionstructs, None);
 

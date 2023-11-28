@@ -7,14 +7,13 @@
 mod descriptors;
 mod gen;
 
-use std::env;
 use std::path::PathBuf;
 
 use descriptors::{
 	get_commands, get_constants, get_enum_aliases, get_enums, get_extensions, get_handles,
 	get_platforms, get_structs, get_type_aliases, get_unions,
 };
-use gen::{FileContent, ModGen};
+use gen::ModGen;
 use vk_parse as vk;
 
 
@@ -69,6 +68,7 @@ fn main() {
 
 	// let version_types = get_version_info(&registry);
 
+	//cwd is Cargo.toml dir
 	let root_path = PathBuf::from("./src/");
 
 	//Right now, we are just shoving everything into a single file.
@@ -77,20 +77,18 @@ fn main() {
 	let root_file = ModGen {
 		name: String::from("everything"),
 		module_doc: None,
-		content: FileContent {
-			constants,
-			const_aliases,
-			enums,
-			enum_aliases,
-			unions,
-			structs,
-			struct_aliases,
-			commands,
-			command_aliases,
-			handles,
-			handle_aliases,
-			type_aliases,
-		},
+		constants,
+		const_aliases,
+		enums,
+		enum_aliases,
+		unions,
+		structs,
+		struct_aliases,
+		commands,
+		command_aliases,
+		handles,
+		handle_aliases,
+		type_aliases,
 	};
 
 	root_file.generate(&root_path).unwrap();

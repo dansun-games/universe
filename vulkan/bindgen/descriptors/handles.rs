@@ -6,8 +6,16 @@ pub fn get_handles(types: &Vec<vk::Type>) -> (Vec<HandleDescriptor>, Vec<Alias>)
 	let handle_types = types
 		.iter()
 		.filter(|t| t.category.as_ref().unwrap() == "handle");
-	let handles: Vec<_> = handle_types.clone().filter(|v| v.alias.is_none()).map(HandleDescriptor::from).collect();
-	let aliases: Vec<_> = handle_types.clone().filter(|v| v.alias.is_some()).map(Alias::from).collect();
+	let handles: Vec<_> = handle_types
+		.clone()
+		.filter(|v| v.alias.is_none())
+		.map(HandleDescriptor::from)
+		.collect();
+	let aliases: Vec<_> = handle_types
+		.clone()
+		.filter(|v| v.alias.is_some())
+		.map(Alias::from)
+		.collect();
 
 	(handles, aliases)
 }
@@ -36,25 +44,27 @@ impl From<&vk::Type> for HandleDescriptor {
 		} else {
 			panic!("Unexpected handle define macro");
 		};
-        let name = name.to_owned();
+		let name = name.to_owned();
 
-        //"dispatchable handles" are actual pointers to memory, hence they should be the actual size of pointers on the device.
-        //"non dispatchable handles" on the other hand, are more like id's to opaque resources. Vulkan always uses 64-bit ids for these.
-        let rust_type = if dispatchable { String::from("usize") } else { String::from("u64") };
+		//"dispatchable handles" are actual pointers to memory, hence they should be the actual size of pointers on the device.
+		//"non dispatchable handles" on the other hand, are more like id's to opaque resources. Vulkan always uses 64-bit ids for these.
+		let rust_type = if dispatchable {
+			String::from("usize")
+		} else {
+			String::from("u64")
+		};
 
-        let object_type = def.objtypeenum.clone().expect("Missing object type enum");
+		let object_type = def.objtypeenum.clone().expect("Missing object type enum");
 		let parent = def
 			.parent
 			.as_ref()
 			.map(String::as_ref)
 			.map(HandleParent::from);
 
-        println!("{name}");
-
 		HandleDescriptor {
 			name,
 			parent,
-            rust_type,
+			rust_type,
 			object_type,
 		}
 	}

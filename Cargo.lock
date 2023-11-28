@@ -63,6 +63,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a2bd12c1caf447e69cd4528f47f94d203fd2582878ecb9e9465484c4148a8223"
 
 [[package]]
+name = "case_style"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0be601f05a919236af08cb96053cf9e9ebcfd08edca86cfad401591400f59896"
+
+[[package]]
 name = "cc"
 version = "1.0.83"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -795,6 +801,7 @@ dependencies = [
 name = "vulkan"
 version = "0.1.0"
 dependencies = [
+ "case_style",
  "reqwest",
  "vk-parse",
 ]
