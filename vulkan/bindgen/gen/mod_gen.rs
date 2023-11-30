@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use std::fs::File;
 use std::io;
 use std::path::PathBuf;
@@ -9,9 +8,10 @@ use super::str_convert::{convert_const_name, fix_pascal, strip_vk};
 use super::type_convert::{convert_type, USIZE_CONSTANTS};
 use crate::descriptors::{
 	Alias, CommandDescriptor, ConstDescriptor, EnumDescriptor, HandleDescriptor, StructDescriptor,
-	UnionDescriptor,
+	UnionDescriptor, BitflagDescriptor,
 };
 use crate::gen::type_convert::{convert_const_value, C_TYPE_MAPPINGS};
+use crate::util::NameMap;
 
 static RESERVED_IDENT: &[&str] = &["type"];
 
@@ -20,18 +20,21 @@ pub struct ModGen {
 	pub module_doc: Option<String>,
 
 	//Content
-	pub type_aliases: HashMap<String, Alias>,
-	pub constants: HashMap<String, ConstDescriptor>,
-	pub handles: HashMap<String, HandleDescriptor>,
-	pub handle_aliases: HashMap<String, Alias>,
-	pub const_aliases: HashMap<String, Alias>,
-	pub enums: HashMap<String, EnumDescriptor>,
-	pub enum_aliases: HashMap<String, Alias>,
-	pub unions: HashMap<String, UnionDescriptor>,
-	pub structs: HashMap<String, StructDescriptor>,
-	pub struct_aliases: HashMap<String, Alias>,
-	pub commands: HashMap<String, CommandDescriptor>,
-	pub command_aliases: HashMap<String, Alias>,
+	pub type_aliases: NameMap<Alias>,
+	pub constants: NameMap<ConstDescriptor>,
+	pub const_aliases: NameMap<Alias>,
+	pub handles: NameMap<HandleDescriptor>,
+	pub handle_aliases: NameMap<Alias>,
+	pub enums: NameMap<EnumDescriptor>,
+	pub enum_aliases: NameMap<Alias>,
+	pub bitflags: NameMap<BitflagDescriptor>,
+	pub bitflag_aliases: NameMap<Alias>,
+	pub unions: NameMap<UnionDescriptor>,
+	pub union_aliases: NameMap<Alias>,
+	pub structs: NameMap<StructDescriptor>,
+	pub struct_aliases: NameMap<Alias>,
+	pub commands: NameMap<CommandDescriptor>,
+	pub command_aliases: NameMap<Alias>,
 }
 
 impl ModGen {
@@ -74,6 +77,7 @@ impl ModGen {
 
 fn write_header(w: &mut impl io::Write) -> Result<(), io::Error> {
 	writeln!(w, "use std::ffi::c_void;")?;
+	writeln!(w, "use bitflags::bitflags;")?;
 	writeln!(w)?;
 
 	Ok(())
@@ -159,32 +163,24 @@ fn write_type_wrapper(w: &mut impl io::Write, desc: &Alias) -> Result<(), io::Er
 fn write_enum(w: &mut impl io::Write, desc: &EnumDescriptor) -> Result<(), io::Error> {
 	let name = strip_vk(desc.name.as_ref());
 
-	let repr = if desc.is_bitmask {
-		format!("u{}", desc.bit_width)
-	} else {
-		//let rust figure it out...
-		String::from("C")
-	};
-
-	writeln!(w, "#[repr({repr})]")?;
+	writeln!(w, "#[repr(C)]")?;
 	writeln!(w, "pub enum {name} {{")?;
 
 	for val in &desc.values {
 		let name = CaseStyle::from_snakecase(&val.name).to_pascalcase();
 		let name = strip_vk(&name);
-		let value = if desc.is_bitmask {
-			format!("{:#b}", val.value)
-		} else {
-			format!("{}", val.value)
-		};
 
-		writeln!(w, "\t{} = {},", name, value)?;
+		writeln!(w, "\t{} = {},", name, val.value)?;
 	}
 
 	writeln!(w, "}}")?;
 	writeln!(w)?;
 
 	Ok(())
+}
+
+fn write_bitmask(w: &mut impl io::Write, desc: &BitflagDescriptor) -> Result<(), io::Error> {
+	unimplemented!();
 }
 
 fn write_handle(w: &mut impl io::Write, desc: &HandleDescriptor) -> Result<(), io::Error> {

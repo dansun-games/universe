@@ -1,8 +1,9 @@
-use std::collections::HashMap;
+
+use crate::util::NameMap;
 
 use super::alias::Alias;
 
-pub fn get_type_aliases() -> HashMap<String, Alias> {
+pub fn get_type_aliases() -> NameMap<Alias> {
 	//These are hardcoded right now because some have some annoying definitions.
 	vec![
 		Alias {
@@ -32,5 +33,5 @@ pub fn get_type_aliases() -> HashMap<String, Alias> {
 	]
 	.into_iter()
 	.map(|v| (v.name.clone(), v))
-	.collect::<HashMap<String, Alias>>()
+	.collect::<NameMap<Alias>>()
 }

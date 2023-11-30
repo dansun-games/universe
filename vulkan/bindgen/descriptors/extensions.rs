@@ -1,8 +1,9 @@
-use std::collections::HashMap;
 
 use vk_parse as vk;
 
-pub fn get_extensions(reg: &vk::Registry) -> HashMap<String, ExtensionDescriptor> {
+use crate::util::NameMap;
+
+pub fn get_extensions(reg: &vk::Registry) -> NameMap<ExtensionDescriptor> {
 	let mut filtered = reg.0.iter().filter_map(|item| match item {
 		vk::RegistryChild::Extensions(exts) => Some(exts),
 		_ => None,
@@ -20,7 +21,7 @@ pub fn get_extensions(reg: &vk::Registry) -> HashMap<String, ExtensionDescriptor
 		})
 		.map(ExtensionDescriptor::from)
 		.map(|v| (v.v_name.clone(), v))
-		.collect::<HashMap<String, ExtensionDescriptor>>()
+		.collect::<NameMap<ExtensionDescriptor>>()
 }
 
 #[derive(Debug, PartialEq, Eq)]

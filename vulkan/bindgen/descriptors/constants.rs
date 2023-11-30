@@ -1,6 +1,6 @@
-use std::collections::HashMap;
-
 use vk_parse as vk;
+
+use crate::util::NameMap;
 
 use super::alias::Alias;
 
@@ -37,7 +37,7 @@ impl From<&vk::Enum> for ConstDescriptor {
 
 pub fn get_constants(
 	reg: &vk::Registry,
-) -> (HashMap<String, ConstDescriptor>, HashMap<String, Alias>) {
+) -> (NameMap<ConstDescriptor>, NameMap<Alias>) {
 	let def_iter = reg
 		.0
 		.iter()
@@ -59,14 +59,14 @@ pub fn get_constants(
 		.filter(|e| e.type_suffix.is_some())
 		.map(ConstDescriptor::from)
 		.map(|v| (v.name.clone(), v))
-		.collect::<HashMap<String, ConstDescriptor>>();
+		.collect::<NameMap<ConstDescriptor>>();
 
 	let aliases = def_iter
 		.clone()
 		.filter(|e| e.type_suffix.is_none())
 		.map(Alias::from)
 		.map(|v| (v.name.clone(), v))
-		.collect::<HashMap<String, Alias>>();
+		.collect::<NameMap<Alias>>();
 
 	(enums, aliases)
 }

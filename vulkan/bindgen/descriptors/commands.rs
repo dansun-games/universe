@@ -1,13 +1,12 @@
-use std::collections::HashMap;
 
 use vk_parse as vk;
 
 use super::var::VarDescriptor;
-use crate::descriptors::alias::Alias;
+use crate::{descriptors::alias::Alias, util::NameMap};
 
 pub fn get_commands(
 	reg: &vk::Registry,
-) -> (HashMap<String, CommandDescriptor>, HashMap<String, Alias>) {
+) -> (NameMap<CommandDescriptor>, NameMap<Alias>) {
 	let mut filtered = reg.0.iter().filter_map(|item| match item {
 		vk::RegistryChild::Commands(v) => Some(&v.children),
 		_ => None,
@@ -24,7 +23,7 @@ pub fn get_commands(
 		})
 		.map(|c| CommandDescriptor::from(c))
 		.map(|v| (v.name.clone(), v))
-		.collect::<HashMap<String, CommandDescriptor>>();
+		.collect::<NameMap<CommandDescriptor>>();
 
 	let aliases = cmds
 		.iter()
@@ -36,7 +35,7 @@ pub fn get_commands(
 			_ => None,
 		})
 		.map(|v| (v.name.clone(), v))
-		.collect::<HashMap<String, Alias>>();
+		.collect::<NameMap<Alias>>();
 
 	(commands, aliases)
 }

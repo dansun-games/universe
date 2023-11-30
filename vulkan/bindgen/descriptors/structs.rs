@@ -1,15 +1,13 @@
-use std::collections::HashMap;
 
 use vk_parse as vk;
 
 use super::var::VarDescriptor;
-use crate::descriptors::alias::Alias;
+use crate::{descriptors::alias::Alias, util::{NameMap, iter_spec_types}};
 
 pub fn get_structs(
-	types: &Vec<vk::Type>,
-) -> (HashMap<String, StructDescriptor>, HashMap<String, Alias>) {
-	let all_types = types
-		.iter()
+	reg: &vk::Registry,
+) -> (NameMap<StructDescriptor>, NameMap<Alias>) {
+	let all_types = iter_spec_types(reg)
 		.filter(|t| t.category.as_ref().is_some_and(|cat| cat == "struct"));
 
 	let structs = all_types
@@ -17,14 +15,14 @@ pub fn get_structs(
         .filter(|t| t.alias.is_none()) //dont care about aliasing
 		.map(|t| t.into())
         .map(|v: StructDescriptor| (v.name.clone(), v))
-		.collect::<HashMap<String, StructDescriptor>>();
+		.collect::<NameMap<StructDescriptor>>();
 
 	let aliases = all_types
 		.clone()
 		.filter(|t| t.alias.is_some())
 		.map(Alias::from)
 		.map(|v| (v.name.clone(), v))
-		.collect::<HashMap<String, Alias>>();
+		.collect::<NameMap<Alias>>();
 
 	(structs, aliases)
 }

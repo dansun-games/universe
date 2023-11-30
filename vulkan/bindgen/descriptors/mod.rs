@@ -9,6 +9,7 @@ mod structs;
 mod type_aliases;
 mod unions;
 mod var;
+mod bitflags;
 
 pub use alias::*;
 pub use commands::*;
@@ -21,3 +22,4 @@ pub use structs::*;
 pub use type_aliases::*;
 pub use unions::*;
 pub use var::*;
+pub use bitflags::*;
