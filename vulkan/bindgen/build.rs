@@ -1,5 +1,4 @@
 #![feature(lazy_cell)]
-#![feature(result_option_inspect)]
 #![feature(let_chains)]
 #![feature(iter_intersperse)]
 #![allow(unused_braces)]
@@ -51,6 +50,9 @@ fn main() {
 	* define - manual
 
 	*/
+
+
+	println!("{:#?}", get_enums(&registry));
 
 	let types = all_types(&registry);
 

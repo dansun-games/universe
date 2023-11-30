@@ -1,6 +1,8 @@
+use std::collections::HashMap;
+
 use super::alias::Alias;
 
-pub fn get_type_aliases() -> Vec<Alias> {
+pub fn get_type_aliases() -> HashMap<String, Alias> {
 	//These are hardcoded right now because some have some annoying definitions.
 	vec![
 		Alias {
@@ -28,4 +30,7 @@ pub fn get_type_aliases() -> Vec<Alias> {
 			alias_for: String::from("u64"),
 		},
 	]
+	.into_iter()
+	.map(|v| (v.name.clone(), v))
+	.collect::<HashMap<String, Alias>>()
 }

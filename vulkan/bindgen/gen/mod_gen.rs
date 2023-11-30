@@ -1,15 +1,15 @@
+use std::collections::HashMap;
 use std::fs::File;
 use std::io;
-use std::io::Write;
 use std::path::PathBuf;
 
 use case_style::CaseStyle;
 
-use super::str_convert::{fix_pascal, strip_vk, convert_const_name};
+use super::str_convert::{convert_const_name, fix_pascal, strip_vk};
 use super::type_convert::{convert_type, USIZE_CONSTANTS};
 use crate::descriptors::{
 	Alias, CommandDescriptor, ConstDescriptor, EnumDescriptor, HandleDescriptor, StructDescriptor,
-	UnionDescriptor, VarDescriptor,
+	UnionDescriptor,
 };
 use crate::gen::type_convert::{convert_const_value, C_TYPE_MAPPINGS};
 
@@ -20,18 +20,18 @@ pub struct ModGen {
 	pub module_doc: Option<String>,
 
 	//Content
-	pub type_aliases: Vec<Alias>,
-	pub constants: Vec<ConstDescriptor>,
-	pub handles: Vec<HandleDescriptor>,
-	pub handle_aliases: Vec<Alias>,
-	pub const_aliases: Vec<Alias>,
-	pub enums: Vec<EnumDescriptor>,
-	pub enum_aliases: Vec<Alias>,
-	pub unions: Vec<UnionDescriptor>,
-	pub structs: Vec<StructDescriptor>,
-	pub struct_aliases: Vec<Alias>,
-	pub commands: Vec<CommandDescriptor>,
-	pub command_aliases: Vec<Alias>,
+	pub type_aliases: HashMap<String, Alias>,
+	pub constants: HashMap<String, ConstDescriptor>,
+	pub handles: HashMap<String, HandleDescriptor>,
+	pub handle_aliases: HashMap<String, Alias>,
+	pub const_aliases: HashMap<String, Alias>,
+	pub enums: HashMap<String, EnumDescriptor>,
+	pub enum_aliases: HashMap<String, Alias>,
+	pub unions: HashMap<String, UnionDescriptor>,
+	pub structs: HashMap<String, StructDescriptor>,
+	pub struct_aliases: HashMap<String, Alias>,
+	pub commands: HashMap<String, CommandDescriptor>,
+	pub command_aliases: HashMap<String, Alias>,
 }
 
 impl ModGen {
@@ -42,30 +42,29 @@ impl ModGen {
 
 		write_header(&mut file)?;
 
-
-		for desc in &self.type_aliases {
+		for desc in self.type_aliases.values() {
 			write_type_wrapper(&mut file, desc)?;
 		}
 
-		for desc in &self.constants {
+		for desc in self.constants.values() {
 			write_const(&mut file, desc)?;
 		}
 
-		for desc in &self.const_aliases {
+		for desc in self.const_aliases.values() {
 			//this is pretty clunky right now because we have vec instead of hashmap
-			let alias_for = &self.constants.iter().find(|v| v.name == desc.alias_for).expect("Could not find alias const");
+			let alias_for = &self.constants[&desc.alias_for];
 			write_const_alias(&mut file, desc, &alias_for.c_type)?;
 		}
 
-		for desc in &self.handles {
+		for desc in self.handles.values() {
 			write_handle(&mut file, desc)?;
 		}
 
-		for desc in &self.enums {
+		for desc in self.enums.values() {
 			write_enum(&mut file, desc)?;
 		}
 
-		for desc in &self.structs {
+		for desc in self.structs.values() {
 			write_struct(&mut file, desc)?;
 		}
 
@@ -121,10 +120,10 @@ fn write_const(w: &mut impl io::Write, desc: &ConstDescriptor) -> Result<(), io:
 			"Bool32"
 		} else {
 			C_TYPE_MAPPINGS
-			.iter()
-			.find(|m| m.c_type == desc.c_type)
-			.expect("Could not convert c_type for const")
-			.rust_type
+				.iter()
+				.find(|m| m.c_type == desc.c_type)
+				.expect("Could not convert c_type for const")
+				.rust_type
 		}
 	};
 

@@ -1,11 +1,12 @@
 use core::panic;
+use std::collections::HashMap;
 
 use vk_parse as vk;
 
 use super::alias::Alias;
 
-pub fn get_enums(reg: &vk::Registry) -> Vec<EnumDescriptor> {
-	let mut enums: Vec<_> = reg
+pub fn get_enums(reg: &vk::Registry) -> HashMap<String, EnumDescriptor> {
+	let mut enums = reg
 		.0
 		.iter()
 		.filter_map(|item| match item {
@@ -14,13 +15,16 @@ pub fn get_enums(reg: &vk::Registry) -> Vec<EnumDescriptor> {
 		})
 		.filter(|e| e.kind.is_some())
 		.map(|e| EnumDescriptor::from(e))
-		.collect();
+		.map(|v| (v.name.clone(), v))
+		.collect::<HashMap<String, EnumDescriptor>>();
 
 	patch_enums(&mut enums);
 	enums
 }
 
-pub fn get_enum_aliases(enums: &Vec<EnumDescriptor>, types: &Vec<vk::Type>) -> Vec<Alias> {
+pub fn get_enum_aliases(
+	enums: &HashMap<String, EnumDescriptor>, types: &Vec<vk::Type>,
+) -> HashMap<String, Alias> {
 	let enums_types = types
 		.iter()
 		.filter(|c| c.category.as_ref().is_some_and(|c| c == "enum"));
@@ -28,8 +32,8 @@ pub fn get_enum_aliases(enums: &Vec<EnumDescriptor>, types: &Vec<vk::Type>) -> V
 	let enum_defs = enums_types.clone().filter(|c| c.alias.is_none());
 	for def in enum_defs {
 		let search_name = def.name.as_ref().expect("Enum missing name").to_owned();
-		let matched = enums.iter().find(|e| e.name == search_name);
-		if matched.is_none() {
+		let matched = enums.contains_key(&search_name);
+		if !matched {
 			panic!(
 				"Could not find enum {:?} referenced in type list",
 				search_name
@@ -41,7 +45,8 @@ pub fn get_enum_aliases(enums: &Vec<EnumDescriptor>, types: &Vec<vk::Type>) -> V
 		.iter()
 		.filter(|c| c.category.as_ref().is_some_and(|c| c == "enum") && c.alias.is_some())
 		.map(Alias::from)
-		.collect()
+		.map(|v| (v.name.clone(), v))
+		.collect::<HashMap<String, Alias>>()
 }
 
 #[derive(Debug, PartialEq, Eq)]
@@ -136,8 +141,8 @@ fn parse_enum_val(value: &str) -> i64 {
 	.unwrap()
 }
 
-fn patch_enums(enums: &mut Vec<EnumDescriptor>) {
-	let mut new_enums = vec![
+fn patch_enums(enums: &mut HashMap<String, EnumDescriptor>) {
+	let new_enums = vec![
 		EnumDescriptor {
 			name: String::from("VkQueryPoolCreateFlagBits"),
 			is_bitmask: true,
@@ -153,17 +158,13 @@ fn patch_enums(enums: &mut Vec<EnumDescriptor>) {
 			aliases: vec![],
 		},
 	];
-	let new_names: Vec<_> = new_enums.iter().map(|v| v.name.as_ref()).collect();
+	let new_names: Vec<_> = new_enums.iter().map(|v| &v.name).collect();
 
-	let conflicting: Vec<_> = enums
-		.iter()
-		.filter(|e| new_names.contains(&e.name.as_str()))
-		.map(|e| e.name.as_str())
-		.collect();
+	let conflicting: Vec<_> = enums.keys().filter(|v| new_names.contains(v)).collect();
 
 	if conflicting.len() > 0 {
 		panic!("Patch enums are already defined: {:?}", conflicting);
 	}
 
-	enums.append(&mut new_enums);
+	enums.extend(&mut new_enums.into_iter().map(|v| (v.name.clone(), v)));
 }

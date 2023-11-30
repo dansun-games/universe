@@ -1,15 +1,17 @@
+use std::collections::HashMap;
+
 use vk_parse as vk;
 
 use crate::descriptors::var::VarDescriptor;
 
-pub fn get_unions(types: &Vec<vk::Type>) -> Vec<UnionDescriptor> {
+pub fn get_unions(types: &Vec<vk::Type>) -> HashMap<String, UnionDescriptor> {
 	types
 		.iter()
 		.filter(|item| item.category.as_ref().unwrap() == "union")
 		.map(UnionDescriptor::from)
-		.collect()
+		.map(|v| (v.name.clone(), v))
+		.collect::<HashMap<String, UnionDescriptor>>()
 }
-
 
 pub struct UnionDescriptor {
 	pub name: String,
