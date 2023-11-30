@@ -62,8 +62,7 @@ pub static C_TYPE_MAPPINGS: &[CTypeInfo] = &[
 ];
 
 pub fn convert_const_value(val: &str) -> String {
-	val
-		.trim_start_matches("(")
+	val.trim_start_matches("(")
 		.trim_end_matches(")")
 		.trim_end_matches("F")
 		.trim_end_matches("L")

@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use vk_parse as vk;
 
 use super::alias::Alias;
@@ -33,7 +35,9 @@ impl From<&vk::Enum> for ConstDescriptor {
 	}
 }
 
-pub fn get_constants(reg: &vk::Registry) -> (Vec<ConstDescriptor>, Vec<Alias>) {
+pub fn get_constants(
+	reg: &vk::Registry,
+) -> (HashMap<String, ConstDescriptor>, HashMap<String, Alias>) {
 	let def_iter = reg
 		.0
 		.iter()
@@ -50,17 +54,19 @@ pub fn get_constants(reg: &vk::Registry) -> (Vec<ConstDescriptor>, Vec<Alias>) {
 			_ => None,
 		});
 
-	let enums: Vec<_> = def_iter
+	let enums = def_iter
 		.clone()
 		.filter(|e| e.type_suffix.is_some())
 		.map(ConstDescriptor::from)
-		.collect();
+		.map(|v| (v.name.clone(), v))
+		.collect::<HashMap<String, ConstDescriptor>>();
 
-	let aliases: Vec<_> = def_iter
+	let aliases = def_iter
 		.clone()
 		.filter(|e| e.type_suffix.is_none())
 		.map(Alias::from)
-		.collect();
+		.map(|v| (v.name.clone(), v))
+		.collect::<HashMap<String, Alias>>();
 
 	(enums, aliases)
 }

@@ -1,24 +1,30 @@
+use std::collections::HashMap;
+
 use vk_parse as vk;
 
 use super::var::VarDescriptor;
 use crate::descriptors::alias::Alias;
 
-pub fn get_structs(types: &Vec<vk::Type>) -> (Vec<StructDescriptor>, Vec<Alias>) {
+pub fn get_structs(
+	types: &Vec<vk::Type>,
+) -> (HashMap<String, StructDescriptor>, HashMap<String, Alias>) {
 	let all_types = types
 		.iter()
 		.filter(|t| t.category.as_ref().is_some_and(|cat| cat == "struct"));
 
-	let structs: Vec<StructDescriptor> = all_types
+	let structs = all_types
         .clone()
         .filter(|t| t.alias.is_none()) //dont care about aliasing
 		.map(|t| t.into())
-		.collect();
+        .map(|v: StructDescriptor| (v.name.clone(), v))
+		.collect::<HashMap<String, StructDescriptor>>();
 
-	let aliases: Vec<_> = all_types
+	let aliases = all_types
 		.clone()
 		.filter(|t| t.alias.is_some())
 		.map(Alias::from)
-		.collect();
+		.map(|v| (v.name.clone(), v))
+		.collect::<HashMap<String, Alias>>();
 
 	(structs, aliases)
 }

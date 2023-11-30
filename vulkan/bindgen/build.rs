@@ -52,6 +52,9 @@ fn main() {
 
 	*/
 
+
+	println!("{:#?}", get_enums(&registry));
+
 	let types = all_types(&registry);
 
 	let extensions = get_extensions(&registry);
@@ -95,6 +98,7 @@ fn main() {
 }
 
 fn all_types(reg: &vk::Registry) -> Vec<vk::Type> {
+	// Josh - convert to map
 	let mut filtered = reg.0.iter().filter_map(|item| match item {
 		vk::RegistryChild::Types(v) => Some(v),
 		_ => None,

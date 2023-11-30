@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use std::fs::File;
 use std::io;
 use std::io::Write;
@@ -20,18 +21,18 @@ pub struct ModGen {
 	pub module_doc: Option<String>,
 
 	//Content
-	pub type_aliases: Vec<Alias>,
-	pub constants: Vec<ConstDescriptor>,
-	pub handles: Vec<HandleDescriptor>,
-	pub handle_aliases: Vec<Alias>,
-	pub const_aliases: Vec<Alias>,
-	pub enums: Vec<EnumDescriptor>,
-	pub enum_aliases: Vec<Alias>,
-	pub unions: Vec<UnionDescriptor>,
-	pub structs: Vec<StructDescriptor>,
-	pub struct_aliases: Vec<Alias>,
-	pub commands: Vec<CommandDescriptor>,
-	pub command_aliases: Vec<Alias>,
+	pub type_aliases: HashMap<String, Alias>,
+	pub constants: HashMap<String, ConstDescriptor>,
+	pub handles: HashMap<String, HandleDescriptor>,
+	pub handle_aliases: HashMap<String, Alias>,
+	pub const_aliases: HashMap<String, Alias>,
+	pub enums: HashMap<String, EnumDescriptor>,
+	pub enum_aliases: HashMap<String, Alias>,
+	pub unions: HashMap<String, UnionDescriptor>,
+	pub structs: HashMap<String, StructDescriptor>,
+	pub struct_aliases: HashMap<String, Alias>,
+	pub commands: HashMap<String, CommandDescriptor>,
+	pub command_aliases: HashMap<String, Alias>,
 }
 
 impl ModGen {
@@ -40,27 +41,27 @@ impl ModGen {
 		let out = root.join(file_name.as_str());
 		let mut file = File::create(out)?;
 
-		for desc in &self.type_aliases {
+		for desc in self.type_aliases.values() {
 			write_type_wrapper(&mut file, desc)?;
 		}
 
-		for desc in &self.constants {
+		for desc in self.constants.values() {
 			write_const(&mut file, desc)?;
 		}
 
-		for desc in &self.const_aliases {
+		for desc in self.const_aliases.values() {
 			write_const_alias(&mut file, desc)?;
 		}
 
-		for desc in &self.handles {
+		for desc in self.handles.values() {
 			write_handle(&mut file, desc)?;
 		}
 
-		for desc in &self.enums {
+		for desc in self.enums.values() {
 			write_enum(&mut file, desc)?;
 		}
 
-		for desc in &self.structs {
+		for desc in self.structs.values() {
 			write_struct(&mut file, desc)?;
 		}
 
