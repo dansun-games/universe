@@ -5,7 +5,7 @@ use std::path::PathBuf;
 
 use case_style::CaseStyle;
 
-use super::str_convert::{fix_pascal, strip_vk};
+use super::str_convert::{fix_pascal, strip_vk, convert_const_name};
 use super::type_convert::convert_type;
 use crate::descriptors::{
 	Alias, CommandDescriptor, ConstDescriptor, EnumDescriptor, HandleDescriptor, StructDescriptor,
@@ -40,6 +40,9 @@ impl ModGen {
 		let out = root.join(file_name.as_str());
 		let mut file = File::create(out)?;
 
+		write_header(&mut file)?;
+
+
 		for desc in &self.type_aliases {
 			write_type_wrapper(&mut file, desc)?;
 		}
@@ -49,7 +52,9 @@ impl ModGen {
 		}
 
 		for desc in &self.const_aliases {
-			write_const_alias(&mut file, desc)?;
+			//this is pretty clunky right now because we have vec instead of hashmap
+			let alias_for = &self.constants.iter().find(|v| v.name == desc.alias_for).expect("Could not find alias const");
+			write_const_alias(&mut file, desc, &alias_for.c_type)?;
 		}
 
 		for desc in &self.handles {
@@ -66,6 +71,13 @@ impl ModGen {
 
 		Ok(())
 	}
+}
+
+fn write_header(w: &mut impl io::Write) -> Result<(), io::Error> {
+	writeln!(w, "use std::ffi::c_void;")?;
+	writeln!();
+
+	Ok(())
 }
 
 fn write_struct(w: &mut impl io::Write, desc: &StructDescriptor) -> Result<(), io::Error> {
@@ -89,7 +101,7 @@ fn write_struct(w: &mut impl io::Write, desc: &StructDescriptor) -> Result<(), i
 		}
 		let rtype = convert_type(&mem.var_spec);
 
-		writeln!(w, "{}: {},", member_name, rtype)?;
+		writeln!(w, "\t{}: {},", member_name, rtype)?;
 	}
 
 	writeln!(w, "}}")?;
@@ -99,7 +111,7 @@ fn write_struct(w: &mut impl io::Write, desc: &StructDescriptor) -> Result<(), i
 }
 
 fn write_const(w: &mut impl io::Write, desc: &ConstDescriptor) -> Result<(), io::Error> {
-	let name = desc.name.trim_start_matches("VK_");
+	let name = convert_const_name(&desc.name);
 	let value = convert_const_value(&desc.value);
 	let rust_type = {
 		if name == "TRUE" || name == "FALSE" {
@@ -119,11 +131,17 @@ fn write_const(w: &mut impl io::Write, desc: &ConstDescriptor) -> Result<(), io:
 	Ok(())
 }
 
-fn write_const_alias(w: &mut impl io::Write, desc: &Alias) -> Result<(), io::Error> {
-	let name = desc.name.trim_start_matches("VK_");
+fn write_const_alias(w: &mut impl io::Write, desc: &Alias, c_type: &str) -> Result<(), io::Error> {
+	let name = convert_const_name(&desc.name);
 	let alias_for = desc.alias_for.trim_start_matches("VK_");
 
-	writeln!(w, "const {} = {};", name, alias_for)?;
+	let rust_type = C_TYPE_MAPPINGS
+		.iter()
+		.find(|m| m.c_type == c_type)
+		.expect("Could not convert c_type for const")
+		.rust_type;
+
+	writeln!(w, "const {}: {} = {};", name, rust_type, alias_for)?;
 	writeln!(w)?;
 
 	Ok(())
@@ -161,7 +179,7 @@ fn write_enum(w: &mut impl io::Write, desc: &EnumDescriptor) -> Result<(), io::E
 			format!("{}", val.value)
 		};
 
-		writeln!(w, "{} = {},", name, value)?;
+		writeln!(w, "\t{} = {},", name, value)?;
 	}
 
 	writeln!(w, "}}")?;

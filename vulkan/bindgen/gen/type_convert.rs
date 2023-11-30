@@ -1,4 +1,5 @@
-use crate::descriptors::VarDescriptor;
+use super::str_convert::convert_const_name;
+use crate::descriptors::{StaticArrayLen, VarDescriptor, VariableMeta};
 
 #[derive(Clone, PartialEq, Eq, Debug)]
 pub struct CTypeInfo {
@@ -62,8 +63,7 @@ pub static C_TYPE_MAPPINGS: &[CTypeInfo] = &[
 ];
 
 pub fn convert_const_value(val: &str) -> String {
-	val
-		.trim_start_matches("(")
+	val.trim_start_matches("(")
 		.trim_end_matches(")")
 		.trim_end_matches("F")
 		.trim_end_matches("L")
@@ -75,12 +75,24 @@ pub fn convert_const_value(val: &str) -> String {
 pub fn convert_type(desc: &VarDescriptor) -> String {
 	let mut rust_type = C_TYPE_MAPPINGS
 		.iter()
-		.find(|m| m.c_type == desc.c_type.as_str())
+		.find(|m| m.c_type == desc.c_type)
 		.map(|v| v.rust_type.to_owned())
 		.unwrap_or(desc.c_type.clone());
 
-	if desc.ptr {
-		rust_type.insert_str(0, if desc.readonly { "*const " } else { "*mut " })
+	for ptr in &desc.ptrs {
+		let spec = if ptr.readonly { "*const " } else { "*mut " };
+		rust_type.insert_str(0, spec);
+	}
+
+	for len in &desc.arr_lens {
+		let size_str = match len {
+			StaticArrayLen::GlobalRef(v) => convert_const_name(v),
+			StaticArrayLen::Value(v) => v.to_string(),
+		};
+
+		//Goal is to wrap the existing type like:
+		//[existing; size_str]
+		rust_type = format!("[{rust_type}; {size_str}]");
 	}
 
 	return rust_type;

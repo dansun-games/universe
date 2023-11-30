@@ -19,3 +19,8 @@ pub fn fix_pascal(ident: &str) -> String {
 	
 	name
 }
+
+pub fn convert_const_name(name: &str) -> String {
+	let name = name.trim_start_matches("VK_");
+	name.to_owned()
+}
