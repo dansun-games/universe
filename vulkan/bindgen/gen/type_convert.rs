@@ -62,6 +62,21 @@ pub static C_TYPE_MAPPINGS: &[CTypeInfo] = &[
 	},
 ];
 
+pub static USIZE_CONSTANTS: &[&str] = &[
+	"MAX_PHYSICAL_DEVICE_NAME_SIZE",
+	"UUID_SIZE",
+	"LUID_SIZE",
+	"MAX_EXTENSION_NAME_SIZE",
+	"MAX_DESCRIPTION_SIZE",
+	"MAX_MEMORY_TYPES",
+	"MAX_MEMORY_HEAPS",
+	"MAX_DRIVER_NAME_SIZE",
+	"MAX_DRIVER_INFO_SIZE",
+	"MAX_GLOBAL_PRIORITY_SIZE_KHR",
+	"MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT",
+	"MAX_DEVICE_GROUP_SIZE",
+];
+
 pub fn convert_const_value(val: &str) -> String {
 	val.trim_start_matches("(")
 		.trim_end_matches(")")

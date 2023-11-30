@@ -6,7 +6,7 @@ use std::path::PathBuf;
 use case_style::CaseStyle;
 
 use super::str_convert::{fix_pascal, strip_vk, convert_const_name};
-use super::type_convert::convert_type;
+use super::type_convert::{convert_type, USIZE_CONSTANTS};
 use crate::descriptors::{
 	Alias, CommandDescriptor, ConstDescriptor, EnumDescriptor, HandleDescriptor, StructDescriptor,
 	UnionDescriptor, VarDescriptor,
@@ -75,7 +75,7 @@ impl ModGen {
 
 fn write_header(w: &mut impl io::Write) -> Result<(), io::Error> {
 	writeln!(w, "use std::ffi::c_void;")?;
-	writeln!();
+	writeln!(w)?;
 
 	Ok(())
 }
@@ -88,10 +88,10 @@ fn write_struct(w: &mut impl io::Write, desc: &StructDescriptor) -> Result<(), i
 
 	for mem in &desc.members {
 		if mem.deprecated {
-			writeln!(w, "#[deprecated(note = \"Ignored\")]")?;
+			writeln!(w, "\t#[deprecated(note = \"Ignored\")]")?;
 		}
 		if let Some(variant) = &mem.variant_feat {
-			writeln!(w, "#[cfg({variant})]")?;
+			writeln!(w, "\t#[cfg({variant})]")?;
 		}
 
 		let mut member_name = fix_pascal(&mem.var_spec.name);
@@ -112,16 +112,19 @@ fn write_struct(w: &mut impl io::Write, desc: &StructDescriptor) -> Result<(), i
 
 fn write_const(w: &mut impl io::Write, desc: &ConstDescriptor) -> Result<(), io::Error> {
 	let name = convert_const_name(&desc.name);
-	let value = convert_const_value(&desc.value);
+	let mut value = convert_const_value(&desc.value);
 	let rust_type = {
-		if name == "TRUE" || name == "FALSE" {
+		if USIZE_CONSTANTS.contains(&name.as_str()) {
+			"usize"
+		} else if name == "TRUE" || name == "FALSE" {
+			value = format!("Bool32({value})");
 			"Bool32"
 		} else {
 			C_TYPE_MAPPINGS
-				.iter()
-				.find(|m| m.c_type == desc.c_type)
-				.expect("Could not convert c_type for const")
-				.rust_type
+			.iter()
+			.find(|m| m.c_type == desc.c_type)
+			.expect("Could not convert c_type for const")
+			.rust_type
 		}
 	};
 
@@ -135,13 +138,10 @@ fn write_const_alias(w: &mut impl io::Write, desc: &Alias, c_type: &str) -> Resu
 	let name = convert_const_name(&desc.name);
 	let alias_for = desc.alias_for.trim_start_matches("VK_");
 
-	let rust_type = C_TYPE_MAPPINGS
-		.iter()
-		.find(|m| m.c_type == c_type)
-		.expect("Could not convert c_type for const")
-		.rust_type;
+	//we dont have a way to know the rust type right now.. need hashmap for const so we can lookup the correct type
+	let rust_type = "TODO";
 
-	writeln!(w, "const {}: {} = {};", name, rust_type, alias_for)?;
+	writeln!(w, "//const {}: {} = {};", name, rust_type, alias_for)?;
 	writeln!(w)?;
 
 	Ok(())
