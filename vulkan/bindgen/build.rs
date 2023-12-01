@@ -55,8 +55,6 @@ fn main() {
 	*/
 
 
-	println!("{:#?}", get_enums(&reg));
-
 	let extensions = get_extensions(&reg);
 	let platforms = get_platforms(&reg);
 

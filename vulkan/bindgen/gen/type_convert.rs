@@ -13,6 +13,10 @@ pub static C_TYPE_MAPPINGS: &[CTypeInfo] = &[
 		rust_type: "c_void",
 	},
 	CTypeInfo {
+		c_type: "int",
+		rust_type: "isize",
+	},
+	CTypeInfo {
 		c_type: "char",
 		rust_type: "u8",
 	},

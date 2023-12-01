@@ -12,7 +12,6 @@ pub fn get_enums(reg: &vk::Registry) -> (NameMap<EnumDescriptor>, NameMap<Alias>
 	let enum_requires: HashSet<_> = iter_spec_types(&reg)
 		.filter(|t| t.category.as_ref().is_some_and(|c| c == "enum") && t.alias.is_none())
 		.map(|t| t.name.clone().unwrap()) //only care about name
-		.inspect(|v| println!("{v}"))
 		.collect();
 
 	let aliases: NameMap<_> = iter_spec_types(&reg)
@@ -33,14 +32,6 @@ pub fn get_enums(reg: &vk::Registry) -> (NameMap<EnumDescriptor>, NameMap<Alias>
 		.filter(|desc| enum_requires.contains(&desc.name)) //filter out any enums that arent required
 		.map(|desc| (desc.name.clone(), desc))
 		.collect();
-
-	// println!("{:?}", enum_requires);
-
-	//ensure we arent missing any enums
-	for name in enum_requires {
-		// println!("> {name}");
-		assert!(enums.contains_key(&name));
-	}
 
 	(enums, aliases)
 }

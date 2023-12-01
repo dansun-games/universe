@@ -18,7 +18,7 @@ pub fn get_unions(reg: &vk::Registry) -> (NameMap<UnionDescriptor>, NameMap<Alia
 
 	let union_aliases = types
     	.clone()
-		.filter(|item| item.alias.is_none())
+		.filter(|item| item.alias.is_some())
     	.map(Alias::from)
     	.map(|v| (v.name.clone(), v))
     	.collect();

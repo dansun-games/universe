@@ -1,10 +1,11 @@
+use core::panic;
 use std::fs::File;
 use std::io;
 use std::path::PathBuf;
 
 use case_style::CaseStyle;
 
-use super::str_convert::{convert_const_name, fix_pascal, strip_vk};
+use super::str_convert::*;
 use super::type_convert::{convert_type, USIZE_CONSTANTS};
 use crate::descriptors::{
 	Alias, CommandDescriptor, ConstDescriptor, EnumDescriptor, HandleDescriptor, StructDescriptor,
@@ -46,7 +47,7 @@ impl ModGen {
 		write_header(&mut file)?;
 
 		for desc in self.type_aliases.values() {
-			write_type_wrapper(&mut file, desc)?;
+			write_type_alias(&mut file, desc)?;
 		}
 
 		for desc in self.constants.values() {
@@ -56,7 +57,7 @@ impl ModGen {
 		for desc in self.const_aliases.values() {
 			//this is pretty clunky right now because we have vec instead of hashmap
 			let alias_for = &self.constants[&desc.alias_for];
-			write_const_alias(&mut file, desc, &alias_for.c_type)?;
+			write_const_alias(&mut file, desc)?;
 		}
 
 		for desc in self.handles.values() {
@@ -65,6 +66,14 @@ impl ModGen {
 
 		for desc in self.enums.values() {
 			write_enum(&mut file, desc)?;
+		}
+
+		for desc in self.bitflags.values() {
+			write_bitflags(&mut file, desc)?;
+		}
+
+		for desc in self.bitflag_aliases.values() {
+			write_bitflag_aliases(&mut file, desc)?;
 		}
 
 		for desc in self.structs.values() {
@@ -115,12 +124,11 @@ fn write_struct(w: &mut impl io::Write, desc: &StructDescriptor) -> Result<(), i
 
 fn write_const(w: &mut impl io::Write, desc: &ConstDescriptor) -> Result<(), io::Error> {
 	let name = convert_const_name(&desc.name);
-	let mut value = convert_const_value(&desc.value);
+	let value = convert_const_value(&desc.value);
 	let rust_type = {
 		if USIZE_CONSTANTS.contains(&name.as_str()) {
 			"usize"
 		} else if name == "TRUE" || name == "FALSE" {
-			value = format!("Bool32({value})");
 			"Bool32"
 		} else {
 			C_TYPE_MAPPINGS
@@ -137,7 +145,7 @@ fn write_const(w: &mut impl io::Write, desc: &ConstDescriptor) -> Result<(), io:
 	Ok(())
 }
 
-fn write_const_alias(w: &mut impl io::Write, desc: &Alias, c_type: &str) -> Result<(), io::Error> {
+fn write_const_alias(w: &mut impl io::Write, desc: &Alias) -> Result<(), io::Error> {
 	let name = convert_const_name(&desc.name);
 	let alias_for = desc.alias_for.trim_start_matches("VK_");
 
@@ -150,11 +158,10 @@ fn write_const_alias(w: &mut impl io::Write, desc: &Alias, c_type: &str) -> Resu
 	Ok(())
 }
 
-fn write_type_wrapper(w: &mut impl io::Write, desc: &Alias) -> Result<(), io::Error> {
+fn write_type_alias(w: &mut impl io::Write, desc: &Alias) -> Result<(), io::Error> {
 	let name = strip_vk(desc.name.as_ref());
 
-	writeln!(w, "#[repr(transparent)]")?;
-	writeln!(w, "pub struct {}({});", name, desc.alias_for)?;
+	writeln!(w, "pub type {} = {};", name, desc.alias_for)?;
 	writeln!(w)?;
 
 	Ok(())
@@ -167,8 +174,7 @@ fn write_enum(w: &mut impl io::Write, desc: &EnumDescriptor) -> Result<(), io::E
 	writeln!(w, "pub enum {name} {{")?;
 
 	for val in &desc.values {
-		let name = CaseStyle::from_snakecase(&val.name).to_pascalcase();
-		let name = strip_vk(&name);
+		let name = convert_enum_val_name(&val.name);
 
 		writeln!(w, "\t{} = {},", name, val.value)?;
 	}
@@ -179,8 +185,64 @@ fn write_enum(w: &mut impl io::Write, desc: &EnumDescriptor) -> Result<(), io::E
 	Ok(())
 }
 
-fn write_bitmask(w: &mut impl io::Write, desc: &BitflagDescriptor) -> Result<(), io::Error> {
-	unimplemented!();
+fn write_bitflags(w: &mut impl io::Write, desc: &BitflagDescriptor) -> Result<(), io::Error> {
+	let name = strip_vk(&desc.name);
+	let bits_name = desc.bits_name.as_ref().map(|v| strip_vk(v));
+	let bit_width = desc.bit_width;
+	let rust_type = match bit_width {
+		32 => "Flags",
+		64 => "Flags64",
+		_ => panic!("Invalid bit_width for flags")
+	};
+
+	if let Some(bits_name) = bits_name && !desc.values.is_empty() {
+		writeln!(w, "#[repr(u{bit_width})]")?;
+		writeln!(w, "pub enum {bits_name} {{")?;
+		for bit in &desc.values {
+			let bit_name = convert_enum_val_name(&bit.name);
+			writeln!(w, "\t{bit_name} = 1 << {},", bit.bitpos)?;
+		}
+		writeln!(w, "}}")?;
+		writeln!(w)?;
+
+		if !desc.aliases.is_empty() {
+			writeln!(w, "impl {bits_name} {{")?;
+			for flag in &desc.aliases {
+				let flag_name = convert_enum_val_name(&flag.name);
+				writeln!(w, "\tconst {flag_name}: u{bit_width} = Self::{flag_name};")?;
+			}
+			writeln!(w, "}}")?;
+			writeln!(w)?;
+		}
+	}
+
+	writeln!(w, "bitflags! {{")?;
+	writeln!(w, "\t#[repr(transparent)]")?;
+	writeln!(w, "\tpub struct {}: {} {{", name, rust_type)?;
+	for bit in &desc.values {
+		let bits_name = bits_name.expect("values defined without bits");
+		let flag_name = convert_const_name(&bit.name);
+		let bit_name = convert_enum_val_name(&bit.name);
+		writeln!(w, "\t\tconst {flag_name} = {bits_name}::{bit_name} as {rust_type};")?;
+	}
+	// https://docs.rs/bitflags/latest/bitflags/#externally-defined-flags
+	// writeln!(w, "\t\tconst _ = !0")?;
+
+	writeln!(w, "\t}}")?;
+	writeln!(w, "}}")?;
+	writeln!(w)?;
+
+	Ok(())
+}
+
+fn write_bitflag_aliases(w: &mut impl io::Write, desc: &Alias) -> Result<(), io::Error> {
+	let name = strip_vk(desc.name.as_ref());
+	let alias_for = strip_vk(&desc.alias_for);
+	
+	writeln!(w, "pub type {name} = {alias_for};")?;
+	writeln!(w)?;
+
+	Ok(())
 }
 
 fn write_handle(w: &mut impl io::Write, desc: &HandleDescriptor) -> Result<(), io::Error> {
