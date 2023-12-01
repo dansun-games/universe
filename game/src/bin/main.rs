@@ -25,10 +25,10 @@ fn main() -> Result<(), Box<dyn Error>> {
             .expect("could not enumerate physical devices")
     };
 
-    let device_desc = devices
+    let device_desc: Vec<_> = devices
         .into_iter()
         .map(|dev| unsafe { instance.get_physical_device_properties(dev) })
-        .collect::<Vec<_>>();
+        .collect();
 
     println!("{:#?}", device_desc);
 

@@ -16,5 +16,5 @@ pub fn get_platforms(reg: &vk::Registry) -> NameMap<String> {
 		.children
 		.iter()
 		.map(|v| (v.name.clone(), v.name.clone()))
-		.collect::<NameMap<String>>()
+		.collect()
 }

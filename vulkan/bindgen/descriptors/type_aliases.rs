@@ -33,5 +33,5 @@ pub fn get_type_aliases() -> NameMap<Alias> {
 	]
 	.into_iter()
 	.map(|v| (v.name.clone(), v))
-	.collect::<NameMap<Alias>>()
+	.collect()
 }

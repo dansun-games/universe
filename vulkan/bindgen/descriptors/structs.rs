@@ -10,19 +10,19 @@ pub fn get_structs(
 	let all_types = iter_spec_types(reg)
 		.filter(|t| t.category.as_ref().is_some_and(|cat| cat == "struct"));
 
-	let structs = all_types
+	let structs: NameMap<_> = all_types
         .clone()
         .filter(|t| t.alias.is_none()) //dont care about aliasing
 		.map(|t| t.into())
         .map(|v: StructDescriptor| (v.name.clone(), v))
-		.collect::<NameMap<StructDescriptor>>();
+		.collect();
 
 	let aliases = all_types
 		.clone()
 		.filter(|t| t.alias.is_some())
 		.map(Alias::from)
 		.map(|v| (v.name.clone(), v))
-		.collect::<NameMap<Alias>>();
+		.collect();
 
 	(structs, aliases)
 }

@@ -54,19 +54,19 @@ pub fn get_constants(
 			_ => None,
 		});
 
-	let enums = def_iter
+	let enums: NameMap<_> = def_iter
 		.clone()
 		.filter(|e| e.type_suffix.is_some())
 		.map(ConstDescriptor::from)
 		.map(|v| (v.name.clone(), v))
-		.collect::<NameMap<ConstDescriptor>>();
+		.collect();
 
-	let aliases = def_iter
+	let aliases: NameMap<_> = def_iter
 		.clone()
 		.filter(|e| e.type_suffix.is_none())
 		.map(Alias::from)
 		.map(|v| (v.name.clone(), v))
-		.collect::<NameMap<Alias>>();
+		.collect();
 
 	(enums, aliases)
 }

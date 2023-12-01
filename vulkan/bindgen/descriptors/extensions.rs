@@ -21,7 +21,7 @@ pub fn get_extensions(reg: &vk::Registry) -> NameMap<ExtensionDescriptor> {
 		})
 		.map(ExtensionDescriptor::from)
 		.map(|v| (v.v_name.clone(), v))
-		.collect::<NameMap<ExtensionDescriptor>>()
+		.collect()
 }
 
 #[derive(Debug, PartialEq, Eq)]

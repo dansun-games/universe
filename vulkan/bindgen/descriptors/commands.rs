@@ -15,7 +15,7 @@ pub fn get_commands(
 	let cmds = filtered.next().expect("Could not find commands");
 	assert_eq!(filtered.next(), None);
 
-	let commands = cmds
+	let commands: NameMap<_> = cmds
 		.iter()
 		.filter_map(|v| match v {
 			vk::Command::Definition(v) => Some(v),
@@ -23,9 +23,9 @@ pub fn get_commands(
 		})
 		.map(|c| CommandDescriptor::from(c))
 		.map(|v| (v.name.clone(), v))
-		.collect::<NameMap<CommandDescriptor>>();
+		.collect();
 
-	let aliases = cmds
+	let aliases: NameMap<_> = cmds
 		.iter()
 		.filter_map(|v| match v {
 			vk::Command::Alias { name, alias } => Some(Alias {
@@ -35,7 +35,7 @@ pub fn get_commands(
 			_ => None,
 		})
 		.map(|v| (v.name.clone(), v))
-		.collect::<NameMap<Alias>>();
+		.collect();
 
 	(commands, aliases)
 }
