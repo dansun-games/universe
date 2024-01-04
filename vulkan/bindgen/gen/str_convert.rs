@@ -1,5 +1,6 @@
+use case_style::CaseStyle;
+
 pub fn strip_vk(ident: &str) -> &str {
-	println!("{}", ident);
 	ident.strip_prefix("Vk").expect("missing vk prefix")
 }
 
@@ -24,4 +25,10 @@ pub fn fix_pascal(ident: &str) -> String {
 pub fn convert_const_name(name: &str) -> String {
 	let name = name.trim_start_matches("VK_");
 	name.to_owned()
+}
+
+pub fn convert_enum_val_name(name: &str) -> String {
+	let out = CaseStyle::from_snakecase(&name).to_pascalcase();
+	//this makes a copy but its really not worth caring about..
+	strip_vk(&out).to_owned()
 }

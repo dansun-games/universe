@@ -1,8 +1,9 @@
-use std::collections::HashMap;
 
 use vk_parse as vk;
 
-pub fn get_platforms(reg: &vk::Registry) -> HashMap<String, String> {
+use crate::util::NameMap;
+
+pub fn get_platforms(reg: &vk::Registry) -> NameMap<String> {
 	let mut search = reg.0.iter().filter_map(|item| match item {
 		vk::RegistryChild::Platforms(v) => Some(v),
 		_ => None,
@@ -15,5 +16,5 @@ pub fn get_platforms(reg: &vk::Registry) -> HashMap<String, String> {
 		.children
 		.iter()
 		.map(|v| (v.name.clone(), v.name.clone()))
-		.collect::<HashMap<String, String>>()
+		.collect()
 }

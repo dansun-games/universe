@@ -1,27 +1,25 @@
-use std::collections::HashMap;
 
 use vk_parse as vk;
 
 use super::alias::Alias;
+use crate::util::{iter_spec_types, NameMap};
 
 pub fn get_handles(
-	types: &Vec<vk::Type>,
-) -> (HashMap<String, HandleDescriptor>, HashMap<String, Alias>) {
-	let handle_types = types
-		.iter()
-		.filter(|t| t.category.as_ref().unwrap() == "handle");
-	let handles = handle_types
+	reg: &vk::Registry,
+) -> (NameMap<HandleDescriptor>, NameMap<Alias>) {
+	let handle_types = iter_spec_types(reg).filter(|t| t.category.as_ref().is_some_and(|c| c == "handle"));
+	let handles: NameMap<_> = handle_types
 		.clone()
 		.filter(|v| v.alias.is_none())
 		.map(HandleDescriptor::from)
 		.map(|v| (v.name.clone(), v))
-		.collect::<HashMap<String, HandleDescriptor>>();
-	let aliases = handle_types
+		.collect();
+	let aliases: NameMap<_> = handle_types
 		.clone()
 		.filter(|v| v.alias.is_some())
 		.map(Alias::from)
 		.map(|v| (v.name.clone(), v))
-		.collect::<HashMap<String, Alias>>();
+		.collect();
 
 	(handles, aliases)
 }
