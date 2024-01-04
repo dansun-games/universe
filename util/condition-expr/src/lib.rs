@@ -1,9 +1,7 @@
-use std::ops::Range;
-
-const GROUP_OPEN: char = '(';
-const GROUP_CLOSE: char = ')';
-const AND_SEPERATOR: char = '&';
-const OR_SEPERATOR: char = '|';
+const GROUP_OPEN: &str = ")";
+const GROUP_CLOSE: &str = ")";
+const AND_SEPERATOR: &str = "&&";
+const OR_SEPERATOR: &str = "||";
 
 pub enum CompOperator {
 	Eq,
