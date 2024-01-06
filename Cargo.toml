@@ -2,7 +2,7 @@
 resolver = "2"
 
 members = [
-    "metasyntax-parser",
+    "ast-parser",
     "util/*",
     "vulkan",
 ]
