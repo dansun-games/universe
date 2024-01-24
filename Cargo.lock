@@ -817,6 +817,7 @@ version = "0.1.0"
 dependencies = [
  "bitflags 2.4.1",
  "case_style",
+ "iter-ext",
  "reqwest",
  "vk-parse",
 ]

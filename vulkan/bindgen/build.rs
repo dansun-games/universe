@@ -1,6 +1,7 @@
 #![feature(lazy_cell)]
 #![feature(let_chains)]
 #![feature(iter_intersperse)]
+#![feature(iterator_try_collect)]
 #![allow(unused_braces)]
 
 mod descriptors;
@@ -11,7 +12,7 @@ use std::path::PathBuf;
 
 use descriptors::{
 	get_commands, get_constants, get_enums, get_extensions, get_handles,
-	get_platforms, get_structs, get_type_aliases, get_unions,
+	get_structs, get_type_aliases, get_unions,
 };
 use gen::ModGen;
 use vk_parse as vk;
@@ -56,7 +57,6 @@ fn main() {
 
 
 	let extensions = get_extensions(&reg);
-	let platforms = get_platforms(&reg);
 
 	let type_aliases = get_type_aliases();
 	let (constants, const_aliases) = get_constants(&reg);

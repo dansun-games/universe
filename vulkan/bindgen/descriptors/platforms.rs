@@ -1,20 +1,32 @@
-
 use vk_parse as vk;
 
-use crate::util::NameMap;
+use super::errors::SpecError;
 
-pub fn get_platforms(reg: &vk::Registry) -> NameMap<String> {
-	let mut search = reg.0.iter().filter_map(|item| match item {
-		vk::RegistryChild::Platforms(v) => Some(v),
-		_ => None,
-	});
+pub struct Platform {
+	pub name: String,
+	pub vendor: String,
+}
 
-	let platforms = search.next().expect("Could not find platforms.");
-	assert_eq!(search.next(), None);
+impl TryFrom<&vk::Platform> for Platform {
+	type Error = SpecError;
 
-	platforms
-		.children
-		.iter()
-		.map(|v| (v.name.clone(), v.name.clone()))
-		.collect()
+	fn try_from(plat: &vk::Platform) -> Result<Self, Self::Error> {
+		let name = plat.name.clone();
+		let flag_prefix = format!("VK_USE_PLATFORM_{}", name.to_uppercase());
+
+		let mut vendor = plat
+			.protect
+			.strip_prefix(&flag_prefix)
+			.ok_or_else(|| SpecError::new(&format!("platform/{name}"), &"Invalid use flag prefix"))?
+			.to_owned();
+
+		//workaround. see: https://github.com/KhronosGroup/Vulkan-Docs/issues/2297
+		if name == "sci" {
+			vendor = "NV".to_owned();
+		} else if vendor.is_empty() {
+			vendor = name.to_uppercase();
+		}
+
+		Ok(Self { name, vendor })
+	}
 }

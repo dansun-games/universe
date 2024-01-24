@@ -196,10 +196,13 @@ fn write_bitflags(w: &mut impl io::Write, desc: &BitflagDescriptor) -> Result<()
 	};
 
 	if let Some(bits_name) = bits_name && !desc.values.is_empty() {
+		println!("{bits_name}");
+		let bits_prefix = extract_bits_prefix(bits_name);
+
 		writeln!(w, "#[repr(u{bit_width})]")?;
 		writeln!(w, "pub enum {bits_name} {{")?;
 		for bit in &desc.values {
-			let bit_name = convert_enum_val_name(&bit.name);
+			let mut bit_name = convert_enum_val_name(&bit.name);
 			writeln!(w, "\t{bit_name} = 1 << {},", bit.bitpos)?;
 		}
 		writeln!(w, "}}")?;
@@ -253,4 +256,10 @@ fn write_handle(w: &mut impl io::Write, desc: &HandleDescriptor) -> Result<(), i
 	writeln!(w)?;
 
 	Ok(())
+}
+
+
+fn extract_bits_prefix(str: &str) -> &str {
+	let i = str.find("FlagBits").expect("Missing FlagBits suffix");
+	&str[..i]
 }

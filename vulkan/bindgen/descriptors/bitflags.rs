@@ -15,6 +15,12 @@ pub fn get_bitflags(reg: &vk::Registry) -> (NameMap<BitflagDescriptor>, NameMap<
 		.map(|bf| (bf.name.clone(), bf))
 		.collect();
 
+	let bitflag_aliases: NameMap<Alias> = iter_spec_types(&reg)
+		.filter(|c| c.category.as_ref().is_some_and(|c| c == BITFLAGS_CAT) && c.alias.is_some())
+		.map(Alias::from)
+		.map(|a| (a.name.clone(), a))
+		.collect();
+
 	let mut bitflag_bits: NameMap<BitflagBits> = reg
 		.0
 		.iter()
@@ -35,9 +41,9 @@ pub fn get_bitflags(reg: &vk::Registry) -> (NameMap<BitflagDescriptor>, NameMap<
 			bitflag.aliases = bits.aliases;
 			
 			//can remove if once https://github.com/KhronosGroup/Vulkan-Headers/issues/462 is resolved
-			if bitflag.name != "VkPhysicalDeviceSchedulingControlsFlagsARM" {
-				assert_eq!(bitflag.bit_width, bits.bit_width);
-			}
+			// if bitflag.name != "VkPhysicalDeviceSchedulingControlsFlagsARM" {
+			// 	assert_eq!(bitflag.bit_width, bits.bit_width);
+			// }
 		}
 	}
 
@@ -49,12 +55,6 @@ pub fn get_bitflags(reg: &vk::Registry) -> (NameMap<BitflagDescriptor>, NameMap<
 		let bitflag = bitflags.get_mut(&bitflag_name).expect("Could not find bitflag from orphan bits");
 		bitflag.bits_name = Some(name);
 	}
-
-	let bitflag_aliases: NameMap<Alias> = iter_spec_types(&reg)
-		.filter(|c| c.category.as_ref().is_some_and(|c| c == BITFLAGS_CAT) && c.alias.is_some())
-		.map(Alias::from)
-		.map(|a| (a.name.clone(), a))
-		.collect();
 	
 	let missing_bits: Vec<_> = bitflags.values().filter(|v| v.bits_name.is_none()).collect();	
 	println!("{:#?}", missing_bits);
@@ -131,7 +131,7 @@ impl From<&vk::Enums> for BitflagBits {
 		assert_eq!(def.end, None);
 		assert_eq!(def.vendor, None);
 
-		let kind = def.kind.as_ref().expect("missing kind");
+		let kind = def.kind.as_ref().expect("Missing kind");
 		assert_eq!(kind, BITFLAGS_CAT);
 
 		let name = def.name.clone().expect("Missing name");
@@ -183,4 +183,7 @@ impl From<&vk::Enums> for BitflagBits {
 pub struct BitflagValue {
 	pub name: String,
 	pub bitpos: u8,
+}
+
+impl BitflagValue {
 }

@@ -8,6 +8,7 @@ build = "bindgen/build.rs"
 case_style = "0.2.1"
 reqwest = { version = "0.11.22", features = ["blocking", "rustls-tls"], default-features = false }
 vk-parse = "0.12.0"
+iter-ext = { path = "../util/iter-ext" }
 
 [dependencies]
 bitflags = "2.4.1"
