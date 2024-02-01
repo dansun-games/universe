@@ -29,6 +29,7 @@ where
 	Self: Sized,
 {
 	fn single(self) -> Result<Self::Item, SingleErr>;
+	fn find_single_map<R>(self, f: impl FnMut(Self::Item) -> Option<R>) -> Result<R, SingleErr>;
 	fn multi_peekable(self) -> multipeek::MultiPeek<Self>;
 }
 
@@ -48,6 +49,11 @@ where
 		}
 
 		Ok(item)
+	}
+
+	fn find_single_map<R>(self, f: impl FnMut(Self::Item) -> Option<R>) -> Result<R, SingleErr> {
+		let iter = self.filter_map(f);
+		iter.single()
 	}
 
 	fn multi_peekable(self) -> MultiPeek<Self> {

@@ -11,7 +11,7 @@ mod util;
 use std::path::PathBuf;
 
 use descriptors::{
-	get_commands, get_constants, get_enums, get_extensions, get_handles,
+	get_commands, get_constants, get_enums, get_handles,
 	get_structs, get_type_aliases, get_unions,
 };
 use gen::ModGen;
@@ -54,9 +54,6 @@ fn main() {
 	* define - manual
 
 	*/
-
-
-	let extensions = get_extensions(&reg);
 
 	let type_aliases = get_type_aliases();
 	let (constants, const_aliases) = get_constants(&reg);

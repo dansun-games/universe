@@ -1,27 +1,33 @@
+use std::rc::Rc;
 
+use iter_ext::IterExt;
 use vk_parse as vk;
 
+use super::errors::SpecError;
+use super::{Platform, Vendor};
 use crate::util::NameMap;
 
-pub fn get_extensions(reg: &vk::Registry) -> NameMap<ExtensionDescriptor> {
-	let mut filtered = reg.0.iter().filter_map(|item| match item {
-		vk::RegistryChild::Extensions(exts) => Some(exts),
-		_ => None,
-	});
+pub fn extensions_from_registry(
+	reg: &vk::Registry, vendors: &NameMap<Rc<Vendor>>, platforms: &NameMap<Rc<Platform>>,
+) -> Result<NameMap<Extension>, SpecError> {
+	
+	let node = reg
+		.0
+		.iter()
+		.find_single_map(|rc| match rc {
+			vk::RegistryChild::Extensions(exts) => Some(exts),
+			_ => None,
+		})
+		.map_err(|err| SpecError::new("extensions", &err.to_string()))?;
 
-	let extensions = filtered.next().expect("Could not find extensions");
-	assert_eq!(filtered.next(), None);
-
-	extensions
+	let extensions: NameMap<_> = node
 		.children
 		.iter()
-		.filter(|ext| match ext.supported.as_ref() {
-			Some(sup) => sup != "disabled",
-			None => false,
-		})
-		.map(ExtensionDescriptor::from)
-		.map(|v| (v.v_name.clone(), v))
-		.collect()
+		.map(|def| Extension::from_vk_def(def, vendors, platforms))
+		.map(|v| (v.name.clone(), v))
+		.collect();
+
+	Ok(extensions)
 }
 
 #[derive(Debug, PartialEq, Eq)]
@@ -53,45 +59,58 @@ impl From<&str> for ExtensionDeprecation {
 }
 
 #[derive(Debug, PartialEq, Eq)]
-pub struct ExtensionDescriptor {
+pub struct Extension {
 	/// Module path
 	pub module: Vec<String>,
 	/// Name used by vulkan when enabling extension.
-	pub v_name: String,
-	/// Numeric Id
-	pub number: u32,
+	pub name: String,
 	/// Instance or Device Extension
 	pub kind: ExtensionKind,
+	/// Numeric Id
+	pub number: u32,
+	// Vendor
+	pub vendor: Rc<Vendor>,
+	/// Special use flag to put this extension behind
+	pub special_use: Vec<SpecialUse>,
+	// Platform
+	pub platform: Option<Rc<Platform>>,
 	/// Whether or not the extension is provisional/unstable
 	pub provisional: bool,
 	/// Extension dependencies
-	pub depends: Vec<String>,
+	pub depends: Vec<Rc<Extension>>,
 	/// The vulkan variant's this extension can be used with
 	pub variant_compat: Vec<VulkanVariant>,
 	/// The vulkan variant's this extensions has been ratified with
 	pub ratified_variants: Vec<VulkanVariant>,
 	/// Other extension or version to use instead
 	pub deprecated_by: Option<ExtensionDeprecation>,
-	/// Feture gates to put this extension behind
-	pub feat_gates: Vec<String>,
 }
 
-impl From<&vk_parse::Extension> for ExtensionDescriptor {
-	fn from(ext: &vk_parse::Extension) -> Self {
+impl Extension {
+	fn from_vk_def(
+		def: &vk::Extension, vendors: &NameMap<Rc<Vendor>>, platforms: &NameMap<Rc<Platform>>,
+	) -> Self {
 		// No longer used.
-		assert_eq!(ext.requires, None);
-		assert_eq!(ext.requires_core, None);
-		assert_eq!(ext.protect, None);
-		assert!(ext.name.starts_with("VK_"));
+		assert_eq!(def.requires, None);
+		assert_eq!(def.requires_core, None);
+		assert_eq!(def.protect, None);
+		assert!(def.name.starts_with("VK_"));
+
+		//Assert only one of these is specified. Spec is pretty inconsistent.
 		{
-			//Assure only one of these is specified. Spec is pretty inconsistent.
-			let depr_count = ext.promotedto.is_some() as u8
-				+ ext.deprecatedby.is_some() as u8
-				+ ext.obsoletedby.is_some() as u8;
+			let depr_count = def.promotedto.is_some() as u8
+				+ def.deprecatedby.is_some() as u8
+				+ def.obsoletedby.is_some() as u8;
 			assert!(depr_count <= 1);
 		}
+		let deprecated_by = def
+			.promotedto
+			.as_ref()
+			.or(def.deprecatedby.as_ref())
+			.or(def.obsoletedby.as_ref())
+			.map(|s| ExtensionDeprecation::from(s.as_str()));
 
-		let variant_compat: Vec<_> = ext
+		let variant_compat: Vec<_> = def
 			.supported
 			.as_ref()
 			.expect("Supported is a required extension attribute")
@@ -99,13 +118,13 @@ impl From<&vk_parse::Extension> for ExtensionDescriptor {
 			.map(VulkanVariant::from)
 			.collect();
 
-		let ratified_variants: Vec<_> = ext
+		let ratified_variants: Vec<_> = def
 			.ratified
 			.as_ref()
 			.map(|v| v.split(',').map(VulkanVariant::from).collect())
 			.unwrap_or_default();
 
-		let mut extension_parts = ext.name.split_inclusive('_').skip(1);
+		let mut extension_parts = def.name.split_inclusive('_').skip(1);
 		let module_group = extension_parts
 			.next()
 			.unwrap()
@@ -118,39 +137,42 @@ impl From<&vk_parse::Extension> for ExtensionDescriptor {
 			module_name.insert_str(0, "n");
 		}
 
-		let number = ext.number.expect("Extension missing number") as u32;
-		let kind: ExtensionKind = ext
+		let number = def.number.expect("Extension missing number") as u32;
+		let kind: ExtensionKind = def
 			.ext_type
 			.as_ref()
 			.expect("Missing extension_type")
 			.as_str()
 			.try_into()
 			.expect("Invalid extension_type");
-		let deprecated_by = ext
-			.promotedto
-			.as_ref()
-			.or(ext.deprecatedby.as_ref())
-			.or(ext.obsoletedby.as_ref())
-			.map(|s| s.as_str().into());
 
-		let feat_gates: Vec<_> = ext
+		let special_use: Vec<_> = def
 			.specialuse
 			.as_ref()
-			.map(|s| s.split(',').map(|s| s.to_owned() + "_exts").collect())
+			.map(|s| s.split(',').map(SpecialUse::from).collect())
 			.unwrap_or_default();
 
-		ExtensionDescriptor {
+		let vendor_name = def.author.as_ref().expect("Missing vendor");
+		let vendor = vendors.get(vendor_name).expect("Unknown vendor name").clone();
+		let platform = def
+			.platform
+			.as_ref()
+			.map(|name| platforms.get(name).expect("Unknown platform name").clone());
+
+		Extension {
 			module: vec![module_group, module_name],
-			v_name: ext.name.to_owned(),
+			name: def.name.to_owned(),
 			number,
+			vendor,
+			platform,
 			kind,
-			provisional: ext.provisional,
+			provisional: def.provisional,
 			// TODO: parse ext.depends via ebnf library
 			depends: vec![],
 			variant_compat,
 			ratified_variants,
 			deprecated_by,
-			feat_gates,
+			special_use,
 		}
 	}
 }
@@ -183,6 +205,28 @@ impl From<&str> for ExtensionKind {
 			"instance" => Self::Instance,
 			"device" => Self::Device,
 			_ => panic!("Invalid extension kind"),
+		}
+	}
+}
+
+#[derive(Debug, PartialEq, Eq)]
+pub enum SpecialUse {
+	DebuggingTools,
+	DeveloperTools,
+	GLEmulation,
+	D3DEmulation,
+	CADSupport,
+}
+
+impl From<&str> for SpecialUse {
+	fn from(value: &str) -> Self {
+		match value.to_lowercase().as_str() {
+			"debugging" => Self::DebuggingTools,
+			"devtools" => Self::DeveloperTools,
+			"glemulation" => Self::GLEmulation,
+			"d3demulation" => Self::D3DEmulation,
+			"cadsupport" => Self::CADSupport,
+			_ => panic!("Invalid special use kind"),
 		}
 	}
 }
